@@ -32,19 +32,19 @@ export default function ContactPage() {
                 <SectionEyebrow>Contact / Request Samples</SectionEyebrow>
                 <SectionHeading>Start your flavor project.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  Tell us what you’re working on and we’ll help guide the next step.
+                  Tell us your market, format, and target flavor. We will follow up with recommended sample directions.
                 </p>
                 <div className="form-grid">
-                  <input value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Name" className="input" />
-                  <input value={form.company} onChange={(e) => update("company", e.target.value)} placeholder="Company" className="input" />
-                  <input value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="Email" className="input" />
-                  <input value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="Phone" className="input" />
-                  <input value={form.industry} onChange={(e) => update("industry", e.target.value)} placeholder="Industry" className="input" />
-                  <input value={form.format} onChange={(e) => update("format", e.target.value)} placeholder="Liquid or Powder" className="input" />
-                  <input value={form.flavor} onChange={(e) => update("flavor", e.target.value)} placeholder="Target Flavor" className="input" />
-                  <input value={form.application} onChange={(e) => update("application", e.target.value)} placeholder="Application" className="input" />
-                  <input value={form.timeline} onChange={(e) => update("timeline", e.target.value)} placeholder="Timeline" className="input" />
-                  <textarea value={form.message} onChange={(e) => update("message", e.target.value)} placeholder="Message" className="textarea" />
+                  <input value={form.name} onChange={(e) => update("name", e.target.value)} aria-label="Name" className="input" />
+                  <input value={form.company} onChange={(e) => update("company", e.target.value)} aria-label="Company" className="input" />
+                  <input value={form.email} onChange={(e) => update("email", e.target.value)} aria-label="Email" className="input" />
+                  <input value={form.phone} onChange={(e) => update("phone", e.target.value)} aria-label="Phone" className="input" />
+                  <input value={form.industry} onChange={(e) => update("industry", e.target.value)} aria-label="Market" className="input" />
+                  <input value={form.format} onChange={(e) => update("format", e.target.value)} aria-label="Liquid or powder" className="input" />
+                  <input value={form.flavor} onChange={(e) => update("flavor", e.target.value)} aria-label="Target flavor" className="input" />
+                  <input value={form.application} onChange={(e) => update("application", e.target.value)} aria-label="Product format" className="input" />
+                  <input value={form.timeline} onChange={(e) => update("timeline", e.target.value)} aria-label="Timeline" className="input" />
+                  <textarea value={form.message} onChange={(e) => update("message", e.target.value)} aria-label="Project notes" className="textarea" />
                 </div>
                 <div className="sample-utility">
                   <button className="cta-btn">Submit Request</button>
@@ -52,11 +52,11 @@ export default function ContactPage() {
                 </div>
               </div>
               <div className="sample-right">
-                <img src="/images/flavor-factory/cta-background.jpg" alt="Contact background" />
+                <img src="/images/flavor-factory/cta-background.jpg" alt="Flavor project planning background" />
                 <div className="sample-overlay" />
                 <div className="bottom-copy">
                   <div className="eyebrow" style={{ color: "#f59e0b" }}>Reach out</div>
-                  <h3>Custom flavors. Reliable manufacturing. Real people.</h3>
+                  <h3>Custom flavors. Low minimums. Real manufacturing support.</h3>
                 </div>
               </div>
             </div>

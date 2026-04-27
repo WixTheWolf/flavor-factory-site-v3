@@ -45,7 +45,7 @@ export function Footer() {
           <a href="/contact" className="dark-btn">Request Samples</a>
         </div>
       </div>
-      <div className="copyright">© 2025 The Flavor Factory. All rights reserved.</div>
+      <div className="copyright">© 2026 The Flavor Factory. All rights reserved.</div>
     </footer>
   );
 }
