@@ -58,53 +58,24 @@ export default function HomePage() {
         <section className="hero">
           <div className="container hero-grid">
             <div>
-              <div className="hero-kicker"><span className="hero-dot" /> Family Owned. Flavor Focused.</div>
-              <h1 className="hero-title">Flavor <span className="accent serif">in motion.</span> Manufacturing <span>you can trust.</span></h1>
+              <div className="hero-kicker"><span className="hero-dot" /> Family-owned. Hands-on. Flavor-focused.</div>
+              <h1 className="hero-title">Custom Liquid &amp; Powder Flavors <span>Built for Real Products.</span></h1>
               <p className="hero-text">
-                Custom liquid and powder flavor solutions for beverages, confections, nutraceuticals, and more—crafted to move from concept to production fast.
+                We make custom liquid and powder flavors for companies that need good samples, clear communication, and dependable production support.
               </p>
               <div className="hero-actions">
                 <a href="/contact" className="dark-btn">Request Samples</a>
-                <a href="/#pathways" className="light-btn">Explore Flavor Worlds</a>
+                <a href="/#pathways" className="light-btn">Explore Markets</a>
               </div>
-              <div className="stat-grid">
-                {[
-                  { value: "3–5", label: "day lead times" },
-                  { value: "Low", label: "minimum orders" },
-                  { value: "2", label: "formats: liquid & powder" },
-                  { value: "∞", label: "custom flavor possibilities" },
-                ].map((item) => (
-                  <div key={item.label} className="stat-card">
-                    <div className="stat-value">{item.value}</div>
-                    <div className="stat-label">{item.label}</div>
-                  </div>
+              <div className="hero-proof-chips">
+                {["Fast samples", "Low minimums", "Liquid & powder", "Custom matching"].map((item) => (
+                  <span key={item} className="hero-proof-chip">{item}</span>
                 ))}
               </div>
             </div>
 
             <div className="hero-media">
-              <img src="/images/flavor-factory/hero-main.jpg" alt="Modern flavor manufacturing still life" />
-              <div className="floating-tags">
-                {[
-                  "citrus oil",
-                  "creamy body",
-                  "berry top notes",
-                  "cooling mint",
-                  "caramel depth",
-                  "vanilla warmth",
-                ].map((item, i) => (
-                  <div key={item} className={`floating-tag ${i % 2 === 0 ? "light" : "brand"}`}>{item}</div>
-                ))}
-              </div>
-              <div className="hero-bottom-cards">
-                {[
-                  "Interactive pathways",
-                  "Mouthwatering imagery",
-                  "Manufacturing credibility",
-                ].map((item) => (
-                  <div key={item} className="glass-card">{item}</div>
-                ))}
-              </div>
+              <img src="/images/flavor-factory/hero-main.jpg" alt="Flavor ingredients and production-ready flavor formats" />
             </div>
           </div>
         </section>
