@@ -61,7 +61,7 @@ export default function HomePage() {
               <div className="hero-kicker"><span className="hero-dot" /> Family Owned. Flavor Focused.</div>
               <h1 className="hero-title">Flavor <span className="accent serif">in motion.</span> Manufacturing <span>you can trust.</span></h1>
               <p className="hero-text">
-                A future-forward homepage for a real working flavor manufacturer: mouthwatering imagery, interactive guidance, and clear next steps that turn curiosity into customers.
+                Custom liquid and powder flavor solutions for beverages, confections, nutraceuticals, and more—crafted to move from concept to production fast.
               </p>
               <div className="hero-actions">
                 <a href="/contact" className="dark-btn">Request Samples</a>
@@ -112,7 +112,7 @@ export default function HomePage() {
         <section className="section" style={{ paddingTop: 20 }}>
           <div className="container banner-grid">
             {[
-              ["Flavor Worlds", "A homepage that behaves more like an experience than a brochure."],
+              ["Flavor Worlds", "Explore flavor families by application, profile, and format."],
               ["Sensory Navigation", "Visuals guide people to the exact application they care about."],
               ["Fast Comprehension", "Users understand what you do in seconds, not minutes."],
               ["Built to Convert", "Every section points naturally toward contact and samples."],
@@ -130,9 +130,9 @@ export default function HomePage() {
             <div className="section-head">
               <div>
                 <SectionEyebrow>Choose your path</SectionEyebrow>
-                <SectionHeading>Make every tile feel like <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>its own flavor universe.</span></SectionHeading>
+                <SectionHeading>Explore each category as <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>its own flavor universe.</span></SectionHeading>
               </div>
-              <p className="section-subtext">Instead of dead category boxes, create cinematic entry points that feel rich, clear, and irresistible to click.</p>
+              <p className="section-subtext">Browse tailored flavor directions for beverage, confection, bakery, and functional product applications.</p>
             </div>
 
             <div className="path-grid">
@@ -160,9 +160,9 @@ export default function HomePage() {
             <div className="finder-grid">
               <div>
                 <SectionEyebrow>Flavor Finder</SectionEyebrow>
-                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Turn the site into a guided flavor machine.</h2>
+                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find the right flavor direction faster.</h2>
                 <p className="section-subtext" style={{ color: "rgba(255,255,255,.75)", marginTop: 20 }}>
-                  This should feel like a clever digital tool: part navigation, part discovery, part sales assistant.
+                  Filter by format, goal, and application to preview a recommended flavor path for your team.
                 </p>
                 <div className="finder-card" style={{ marginTop: 24 }}>
                   <div className="filter-group-title" style={{ display: "flex", alignItems: "center", gap: 8 }}><Search size={14} /> Concept</div>
@@ -214,7 +214,7 @@ export default function HomePage() {
             <div className="section-head" style={{ marginBottom: 24 }}>
               <div>
                 <SectionEyebrow>Why brands stay</SectionEyebrow>
-                <SectionHeading>Make trust look modern.</SectionHeading>
+                <SectionHeading>Why teams trust The Flavor Factory.</SectionHeading>
               </div>
             </div>
 
@@ -242,9 +242,9 @@ export default function HomePage() {
             <div className="section-head">
               <div>
                 <SectionEyebrow>Flavor Library</SectionEyebrow>
-                <SectionHeading>Flavor tiles that feel like <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>clickable cravings.</span></SectionHeading>
+                <SectionHeading>Flavor tiles built for <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>quick exploration.</span></SectionHeading>
               </div>
-              <p className="section-subtext">The visuals should pull people in emotionally while also teaching them where to go next.</p>
+              <p className="section-subtext">Explore flavor families, then jump straight into requesting samples for your next concept.</p>
             </div>
 
             <div className="flavor-grid">
@@ -297,10 +297,10 @@ export default function HomePage() {
           <div className="container quality">
             <div className="quality-top">
               <div>
-                <SectionEyebrow>Trust without boredom</SectionEyebrow>
+                <SectionEyebrow>Quality standards</SectionEyebrow>
                 <h2 className="section-title" style={{ color: "white" }}>Quality standards, presented like a brand people remember.</h2>
                 <p className="section-subtext" style={{ color: "rgba(255,255,255,.72)", marginTop: 16, maxWidth: 760 }}>
-                  Make compliance feel sleek, spaced, and modern—serious enough for buyers, but far from stale.
+                  From documentation to manufacturing consistency, our process is built for dependable scale and repeatable flavor performance.
                 </p>
               </div>
               <a href="/contact" className="light-btn">View Certifications</a>
@@ -320,7 +320,7 @@ export default function HomePage() {
                 <SectionEyebrow>Request Samples</SectionEyebrow>
                 <SectionHeading>Tell us what you’re making. <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>We’ll make the next step feel easy.</span></SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  The final CTA should feel like momentum. No friction. No confusion. Just a clear path to samples and a real conversation.
+                  Share your goals and timeline, and our team will follow up with sample recommendations tailored to your application.
                 </p>
                 <div className="form-grid">
                   <input value={sampleForm.industry} onChange={(e) => updateField("industry", e.target.value)} placeholder="Industry" className="input" />
@@ -345,8 +345,8 @@ export default function HomePage() {
                   ))}
                 </div>
                 <div className="bottom-copy">
-                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Next step energy</div>
-                  <h3>Make the final CTA feel like the start of something.</h3>
+                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Start your sample request</div>
+                  <h3>Let’s build your next flavor together.</h3>
                 </div>
               </div>
             </div>
