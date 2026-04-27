@@ -261,7 +261,7 @@ button, input, textarea, select { font: inherit; }
 .strength-card h3 { margin: 0; font-size: 1.45rem; font-weight: 900; color: #0f172a; }
 .strength-card p { margin: 12px 0 0; line-height: 1.8; color: var(--muted); }
 
-.flavor-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.flavor-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .flavor-card {
   position: relative; overflow: hidden; border-radius: 28px; background: white; border: 1px solid var(--border); box-shadow: 0 12px 35px rgba(17,24,39,.05);
 }
@@ -273,7 +273,7 @@ button, input, textarea, select { font: inherit; }
 }
 .flavor-badge { border-radius: 999px; border: 1px solid rgba(255,255,255,.20); background: rgba(255,255,255,.10); color: white; padding: 6px 10px; font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; backdrop-filter: blur(8px); }
 .flavor-content { position: absolute; left: 20px; right: 20px; bottom: 20px; color: white; }
-.flavor-content h3 { margin: 0; font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 900; line-height: 1.2; }
+.flavor-content h3 { margin: 0; font-size: 1.1rem; font-weight: 900; line-height: 1.2; }
 
 .showcase {
   background: white; border: 1px solid var(--border); border-radius: 42px; box-shadow: 0 25px 70px rgba(17,24,39,.08); padding: 32px;
@@ -331,7 +331,7 @@ button, input, textarea, select { font: inherit; }
 .copyright { border-top: 1px solid var(--border); text-align: center; padding: 18px 24px; font-size: 14px; color: rgba(17,17,17,.45); }
 
 @media (max-width: 1200px) {
-  .path-grid, .strength-grid, .quality-grid, .footer-grid, .application-grid, .flavor-grid { grid-template-columns: repeat(2, 1fr); }
+  .path-grid, .strength-grid, .quality-grid, .footer-grid, .application-grid { grid-template-columns: repeat(2, 1fr); }
   .showcase-grid, .sample-grid, .hero-grid, .finder-grid { grid-template-columns: 1fr; }
   .hero-media { min-height: 560px; }
   .section-head, .quality-top { flex-direction: column; align-items: start; }
