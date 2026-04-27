@@ -8,38 +8,44 @@ const industryPages = {
   bakery: {
     title: "Bakery",
     hero: "/images/flavor-factory/industry-bakery-hero.jpg",
-    intro: "We develop liquid and powder flavor systems for baked goods, fillings, icings, and mixes that need warmth, depth, and consistency.",
-    applications: ["Cakes", "Cookies", "Fillings", "Icings", "Dry Mixes", "Frostings"],
+    intro: "We build liquid and powder flavor systems for bakery manufacturers producing mixes, fillings, icings, and finished goods.",
+    marketFocus: ["Commercial bakeries", "Private label programs", "Dessert brands", "Frozen bakery lines"],
+    productFormats: ["Cake and muffin mixes", "Fillings and icings", "Cookies and bars", "Frostings"],
   },
   confectionery: {
     title: "Confectionery",
     hero: "/images/flavor-factory/industry-confectionery-hero.jpg",
-    intro: "From bright fruit profiles to rich chocolate directions, we help confectionery products stand out and stay memorable.",
-    applications: ["Candy", "Gummies", "Chocolate", "Chews", "Hard Candy", "Novelty Formats"],
+    intro: "Our confectionery work supports brands and manufacturers developing fruit, mint, and chocolate flavor profiles.",
+    marketFocus: ["Candy brands", "Contract manufacturers", "Seasonal programs", "Novelty launches"],
+    productFormats: ["Hard candy", "Chews", "Chocolate centers", "Gummies"],
   },
   nutraceutical: {
     title: "Nutraceutical",
     hero: "/images/flavor-factory/industry-nutraceutical-hero.jpg",
-    intro: "Functional products need better taste. We help support masking, sweetness, and profile design for challenging active systems.",
-    applications: ["Powders", "Drink Mixes", "Gummies", "Shots", "Chewables", "Functional Nutrition"],
+    intro: "We help functional product teams improve taste in active formulas while keeping process requirements in view.",
+    marketFocus: ["Functional nutrition brands", "Supplement manufacturers", "Private label nutrition", "Performance products"],
+    productFormats: ["Stick packs", "Drink mixes", "Shots", "Chewables"],
   },
   "oral-care": {
     title: "Oral Care",
     hero: "/images/flavor-factory/industry-oral-care-hero.jpg",
-    intro: "Cooling, mint, freshness, and clean finish—designed for modern oral care applications with strong sensory clarity.",
-    applications: ["Mouthwash", "Toothpaste", "Breath Care", "Whitening Products", "Freshness Systems", "Novelty Mint"],
+    intro: "Our oral care programs focus on clean finish, mint balance, and repeatable freshness in daily-use products.",
+    marketFocus: ["Oral care brands", "Dental product manufacturers", "Personal care developers", "Specialty freshness lines"],
+    productFormats: ["Mouthwash", "Toothpaste", "Breath products", "Whitening support formats"],
   },
   pharmaceutical: {
     title: "Pharmaceutical",
     hero: "/images/flavor-factory/industry-pharmaceutical-hero.jpg",
-    intro: "Precision applications need reliable support. We build practical flavor systems for demanding pharmaceutical categories.",
-    applications: ["Syrups", "Suspensions", "Powders", "Chewables", "Topical Adjacent Systems", "Specialized Formats"],
+    intro: "Pharmaceutical products require consistent flavor support. We develop practical systems for regulated categories.",
+    marketFocus: ["Pharma manufacturers", "OTC product lines", "Health product teams", "Specialty therapy formats"],
+    productFormats: ["Liquid syrups", "Suspensions", "Powder sachets", "Chewables"],
   },
   beverage: {
     title: "Food & Beverage",
     hero: "/images/flavor-factory/industry-beverage-hero.jpg",
-    intro: "We help brands create drink-ready flavor systems that feel modern, expressive, and built for repeat use.",
-    applications: ["Ready-to-Drink", "Syrups", "Concentrates", "Mixes", "Energy", "Functional Beverages"],
+    intro: "We support beverage and food teams with flavor systems made for repeat production and consistent sensory performance.",
+    marketFocus: ["Beverage brands", "Food manufacturers", "Co-packers", "Emerging consumer brands"],
+    productFormats: ["RTD beverages", "Syrups", "Concentrates", "Powder drink mixes"],
   },
 } as const;
 
@@ -57,10 +63,10 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
-            <img src={industry.hero} alt={`${industry.title} hero`} style={{ width: "100%", borderRadius: 36, maxHeight: 560, objectFit: "cover" }} />
-            <div style={{ marginTop: 32, maxWidth: 880 }}>
+            <img src={industry.hero} alt={`${industry.title} market`} style={{ width: "100%", borderRadius: 32, maxHeight: 460, objectFit: "cover" }} />
+            <div style={{ marginTop: 28, maxWidth: 880 }}>
               <SectionEyebrow>{industry.title}</SectionEyebrow>
-              <SectionHeading>Custom Flavor Solutions for {industry.title}</SectionHeading>
+              <SectionHeading>Flavor Support for {industry.title} Markets</SectionHeading>
               <p className="section-subtext" style={{ marginTop: 16 }}>{industry.intro}</p>
             </div>
           </div>
@@ -70,14 +76,33 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
           <div className="container showcase">
             <div className="showcase-grid">
               <div>
-                <SectionEyebrow>Applications</SectionEyebrow>
-                <SectionHeading>Built for real {industry.title.toLowerCase()} products.</SectionHeading>
+                <SectionEyebrow>Market focus</SectionEyebrow>
+                <SectionHeading>Who this market serves.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16 }}>
-                  From concept to production, we help shape flavor systems that fit the way products are actually made and used.
+                  These are the customer groups and business types we commonly support in this market.
                 </p>
               </div>
               <div className="showcase-pills">
-                {industry.applications.map((item) => (
+                {industry.marketFocus.map((item) => (
+                  <span key={item} className="soft-pill">{item}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" style={{ paddingTop: 8 }}>
+          <div className="container showcase">
+            <div className="showcase-grid">
+              <div>
+                <SectionEyebrow>Application formats</SectionEyebrow>
+                <SectionHeading>Common product formats in this market.</SectionHeading>
+                <p className="section-subtext" style={{ marginTop: 16 }}>
+                  We tailor flavor systems to how products are actually produced, filled, and consumed.
+                </p>
+              </div>
+              <div className="showcase-pills">
+                {industry.productFormats.map((item) => (
                   <span key={item} className="soft-pill">{item}</span>
                 ))}
               </div>
@@ -88,10 +113,10 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
         <section className="section" style={{ paddingTop: 8 }}>
           <div className="container strength-grid">
             {[
-              ["Flavor Development", "Tailored systems built around your target profile and application."],
-              ["Stability Support", "Practical flavor performance for real processing conditions."],
-              ["Masking & Tuning", "Profile balancing, sweetness support, and challenge-solving where needed."],
-              ["Scale-Ready Production", "Reliable sample-to-production thinking from a team that works fast."],
+              ["Custom profile development", "Flavor systems built to match your target profile and process."],
+              ["Sample turnaround", "Fast response for first-round and revised samples."],
+              ["Format-specific support", "Liquid and powder options aligned to your product format."],
+              ["Scale-ready consistency", "Manufacturing controls that support repeatable production output."],
             ].map(([title, text]) => (
               <div key={title} className="strength-card">
                 <h3>{title}</h3>
@@ -105,24 +130,24 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
-                <SectionEyebrow>Why brands work with us</SectionEyebrow>
-                <SectionHeading>Reliable flavor support, without the friction.</SectionHeading>
+                <SectionEyebrow>Ready to start?</SectionEyebrow>
+                <SectionHeading>Let’s discuss your {industry.title.toLowerCase()} project.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16 }}>
-                  Low minimums, fast turnaround, consistent quality, and direct communication from a family-owned team that knows how to get the job done.
+                  Send us your application format, target flavor, and timeline. We will recommend practical sample options.
                 </p>
                 <div className="showcase-pills">
-                  {["Low Minimum Orders", "Fast Turnaround", "Consistent Quality", "Direct Communication"].map((item) => (
+                  {["Low minimum orders", "Fast turnaround", "Family-owned service", "Liquid and powder capabilities"].map((item) => (
                     <span key={item} className="soft-pill">{item}</span>
                   ))}
                 </div>
-                <Link href="/#samples" className="cta-btn" style={{ marginTop: 24 }}>Request Samples</Link>
+                <Link href="/contact" className="cta-btn" style={{ marginTop: 24 }}>Request Samples</Link>
               </div>
               <div className="sample-right">
                 <img src={industry.hero} alt={industry.title} />
                 <div className="sample-overlay" />
                 <div className="bottom-copy">
                   <div className="eyebrow" style={{ color: "#f59e0b" }}>Next step</div>
-                  <h3>Let’s build your {industry.title.toLowerCase()} flavor direction.</h3>
+                  <h3>Build your {industry.title.toLowerCase()} flavor direction with our team.</h3>
                 </div>
               </div>
             </div>
