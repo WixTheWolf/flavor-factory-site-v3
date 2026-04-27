@@ -1,10 +1,31 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { flavorTiles } from "@/components/site-data";
+import { flavorLibrary } from "@/components/site-data";
 import { SectionEyebrow, SectionHeading } from "@/components/ui";
 
+const familyFilters = ["All", "Vanilla", "Berry", "Citrus", "Chocolate", "Caramel", "Mint"] as const;
+const formatFilters = ["All", "Liquid", "Powder", "Liquid & Powder"] as const;
+
 export default function FlavorsPage() {
+  const [query, setQuery] = useState("");
+  const [family, setFamily] = useState<(typeof familyFilters)[number]>("All");
+  const [format, setFormat] = useState<(typeof formatFilters)[number]>("All");
+
+  const filtered = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    return flavorLibrary.filter((item) => {
+      const matchesFamily = family === "All" || item.family === family;
+      const matchesFormat = format === "All" || item.format === format;
+      const haystack = `${item.name} ${item.description} ${item.tags.join(" ")}`.toLowerCase();
+      const matchesQuery = term.length === 0 || haystack.includes(term);
+      return matchesFamily && matchesFormat && matchesQuery;
+    });
+  }, [family, format, query]);
+
   return (
     <>
       <Header />
@@ -12,37 +33,68 @@ export default function FlavorsPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
             <SectionEyebrow>Flavor Library</SectionEyebrow>
-            <SectionHeading>Explore flavor profiles built for real applications.</SectionHeading>
+            <SectionHeading>Expanded flavor library for liquid and powder development.</SectionHeading>
             <p className="section-subtext" style={{ marginTop: 16, maxWidth: 760 }}>
-              From bright citrus to deep caramel, explore flavor profiles by family and request samples for your next product concept.
+              Search by keyword, filter by family, and sort by format to quickly find a profile close to your target.
             </p>
           </div>
         </section>
 
         <section className="section" style={{ paddingTop: 8 }}>
-          <div className="container flavor-grid">
-            {flavorTiles.map((tile) => (
-              <a key={tile.name} href="/#samples" className="flavor-card">
-                <img src={tile.image} alt={tile.name} />
-                <div className="flavor-overlay" />
-                <div className="flavor-family"><div className="flavor-badge">{tile.family}</div></div>
-                <div className="flavor-content">
-                  <h3>{tile.name}</h3>
-                  <div className="mini-link">Request Samples</div>
-                </div>
-              </a>
-            ))}
+          <div className="container library-panel">
+            <div className="library-filters">
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="input"
+                aria-label="Search flavor library"
+              />
+              <div className="library-pill-group">
+                {familyFilters.map((item) => (
+                  <button key={item} className={`filter-pill ${family === item ? "active" : ""}`} onClick={() => setFamily(item)}>{item}</button>
+                ))}
+              </div>
+              <div className="library-pill-group">
+                {formatFilters.map((item) => (
+                  <button key={item} className={`filter-pill ${format === item ? "active" : ""}`} onClick={() => setFormat(item)}>{item}</button>
+                ))}
+              </div>
+            </div>
+
+            <div className="library-count">{filtered.length} flavors</div>
+
+            <div className="library-grid">
+              {filtered.map((item) => (
+                <article key={item.name} className="library-card">
+                  <img src={item.image} alt={item.name} />
+                  <div className="library-card-body">
+                    <div className="library-row">
+                      <h3>{item.name}</h3>
+                      <span className="soft-pill">{item.format}</span>
+                    </div>
+                    <p>{item.description}</p>
+                    <div className="library-tags">
+                      {item.tags.map((tag) => (
+                        <span key={tag} className="soft-pill">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {filtered.length === 0 ? <p className="section-subtext">No matches found. Try a broader family or format filter.</p> : null}
           </div>
         </section>
 
         <section className="section" style={{ paddingTop: 8, paddingBottom: 80 }}>
           <div className="container showcase">
-            <SectionEyebrow>Why custom wins</SectionEyebrow>
-            <SectionHeading>Custom always beats off-the-shelf.</SectionHeading>
+            <SectionEyebrow>Need a match?</SectionEyebrow>
+            <SectionHeading>Send your target profile and we will build a custom sample.</SectionHeading>
             <p className="section-subtext" style={{ marginTop: 16, maxWidth: 800 }}>
-              We don’t just offer flavors—we help shape them for your product, your processing needs, and your customer experience.
+              If you need a specific benchmark, upload details through our contact form and our team will recommend the right next sample set.
             </p>
-            <Link href="/#samples" className="cta-btn" style={{ marginTop: 24 }}>Request Samples</Link>
+            <Link href="/contact" className="cta-btn" style={{ marginTop: 24 }}>Request Samples</Link>
           </div>
         </section>
       </main>

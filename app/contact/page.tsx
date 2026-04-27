@@ -32,19 +32,19 @@ export default function ContactPage() {
                 <SectionEyebrow>Contact / Request Samples</SectionEyebrow>
                 <SectionHeading>Start your flavor project.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  Tell us what you’re working on and we’ll help guide the next step.
+                  Share your product format, flavor target, and timeline. Our team will follow up with sample recommendations and next steps.
                 </p>
                 <div className="form-grid">
-                  <input value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Name" className="input" />
-                  <input value={form.company} onChange={(e) => update("company", e.target.value)} placeholder="Company" className="input" />
-                  <input value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="Email" className="input" />
-                  <input value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="Phone" className="input" />
-                  <input value={form.industry} onChange={(e) => update("industry", e.target.value)} placeholder="Industry" className="input" />
-                  <input value={form.format} onChange={(e) => update("format", e.target.value)} placeholder="Liquid or Powder" className="input" />
-                  <input value={form.flavor} onChange={(e) => update("flavor", e.target.value)} placeholder="Target Flavor" className="input" />
-                  <input value={form.application} onChange={(e) => update("application", e.target.value)} placeholder="Application" className="input" />
-                  <input value={form.timeline} onChange={(e) => update("timeline", e.target.value)} placeholder="Timeline" className="input" />
-                  <textarea value={form.message} onChange={(e) => update("message", e.target.value)} placeholder="Message" className="textarea" />
+                  <input aria-label="Name" value={form.name} onChange={(e) => update("name", e.target.value)} className="input" />
+                  <input aria-label="Company" value={form.company} onChange={(e) => update("company", e.target.value)} className="input" />
+                  <input aria-label="Email" value={form.email} onChange={(e) => update("email", e.target.value)} className="input" />
+                  <input aria-label="Phone" value={form.phone} onChange={(e) => update("phone", e.target.value)} className="input" />
+                  <input aria-label="Industry" value={form.industry} onChange={(e) => update("industry", e.target.value)} className="input" />
+                  <input aria-label="Liquid or Powder" value={form.format} onChange={(e) => update("format", e.target.value)} className="input" />
+                  <input aria-label="Target Flavor" value={form.flavor} onChange={(e) => update("flavor", e.target.value)} className="input" />
+                  <input aria-label="Product Format" value={form.application} onChange={(e) => update("application", e.target.value)} className="input" />
+                  <input aria-label="Timeline" value={form.timeline} onChange={(e) => update("timeline", e.target.value)} className="input" />
+                  <textarea aria-label="Project Details" value={form.message} onChange={(e) => update("message", e.target.value)} className="textarea" />
                 </div>
                 <div className="sample-utility">
                   <button className="cta-btn">Submit Request</button>
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <div className="sample-overlay" />
                 <div className="bottom-copy">
                   <div className="eyebrow" style={{ color: "#f59e0b" }}>Reach out</div>
-                  <h3>Custom flavors. Reliable manufacturing. Real people.</h3>
+                  <h3>Custom flavors. Reliable manufacturing. Friendly service.</h3>
                 </div>
               </div>
             </div>

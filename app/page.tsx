@@ -10,7 +10,7 @@ import { SectionEyebrow, SectionHeading } from "@/components/ui";
 export default function HomePage() {
   const [selectedFormat, setSelectedFormat] = useState("Liquid");
   const [selectedGoal, setSelectedGoal] = useState("Top Notes");
-  const [selectedApplication, setSelectedApplication] = useState("Beverages");
+  const [selectedApplication, setSelectedApplication] = useState("RTD Beverages");
   const [sampleForm, setSampleForm] = useState({
     industry: "",
     format: "",
@@ -23,20 +23,20 @@ export default function HomePage() {
   const finderResult = useMemo(() => {
     const lines: Record<string, Record<string, string>> = {
       Liquid: {
-        "Top Notes": "Bright, aromatic liquid systems that open fast and stay expressive.",
-        "Sweetness Support": "Balanced liquid flavor support that rounds edges without muddying the profile.",
-        Cooling: "Refreshing liquid systems for mint, oral care, and cooling beverage applications.",
-        Masking: "Clean-label liquid support to help difficult actives land smoother.",
-        "Creamy Body": "Smooth, rounded profiles for dairy-inspired and indulgent applications.",
-        "Fruit Profiles": "Juicy, vibrant fruit systems with freshness and lift.",
+        "Top Notes": "Bright aromatic liquid systems for immediate flavor impact.",
+        "Sweetness Support": "Liquid profiles that round edges and support cleaner sweetness.",
+        Cooling: "Cooling liquid systems for mint-forward and freshness-driven products.",
+        Masking: "Practical liquid masking support for challenging active ingredients.",
+        "Creamy Body": "Smooth liquid body notes for dairy and dessert-style products.",
+        "Fruit Profiles": "Juicy fruit systems tuned for beverages and syrups.",
       },
       Powder: {
-        "Top Notes": "Powder flavor systems built to stay expressive in dry applications.",
-        "Sweetness Support": "Dry systems that improve perceived sweetness and round out the finish.",
-        Cooling: "Powder cooling support for mints, oral care, and novelty concepts.",
-        Masking: "Practical masking support for challenging nutraceutical and pharmaceutical formats.",
-        "Creamy Body": "Fuller-bodied powder systems for shakes, gummies, and bakery.",
-        "Fruit Profiles": "Impactful fruit systems designed for powdered and functional formats.",
+        "Top Notes": "Powder systems that hold character through blending and shelf life.",
+        "Sweetness Support": "Dry flavor support to improve perceived sweetness and finish.",
+        Cooling: "Cooling powder systems for chewables, oral care, and novelty formats.",
+        Masking: "Powder masking support for nutraceutical and pharmaceutical formats.",
+        "Creamy Body": "Full-bodied powder profiles for shakes, gummies, and bakery mixes.",
+        "Fruit Profiles": "Impactful fruit profiles for drink mixes and dry applications.",
       },
     };
 
@@ -59,20 +59,20 @@ export default function HomePage() {
           <div className="container hero-grid">
             <div>
               <div className="hero-kicker"><span className="hero-dot" /> Family Owned. Flavor Focused.</div>
-              <h1 className="hero-title">Flavor <span className="accent serif">in motion.</span> Manufacturing <span>you can trust.</span></h1>
+              <h1 className="hero-title">Custom flavor manufacturing <span className="accent serif">for real product teams.</span></h1>
               <p className="hero-text">
-                Custom liquid and powder flavor solutions for beverages, confections, nutraceuticals, and more—crafted to move from concept to production fast.
+                The Flavor Factory in Norco, California develops custom liquid and powder flavors for food, beverage, oral care, nutraceutical, and pharmaceutical products.
               </p>
               <div className="hero-actions">
                 <a href="/contact" className="dark-btn">Request Samples</a>
-                <a href="/#pathways" className="light-btn">Explore Flavor Worlds</a>
+                <a href="/#pathways" className="light-btn">Explore Industries</a>
               </div>
               <div className="stat-grid">
                 {[
-                  { value: "3–5", label: "day lead times" },
-                  { value: "Low", label: "minimum orders" },
+                  { value: "3–5", label: "business day samples" },
+                  { value: "Low", label: "minimums to start" },
                   { value: "2", label: "formats: liquid & powder" },
-                  { value: "∞", label: "custom flavor possibilities" },
+                  { value: "100%", label: "custom matching focus" },
                 ].map((item) => (
                   <div key={item.label} className="stat-card">
                     <div className="stat-value">{item.value}</div>
@@ -83,25 +83,14 @@ export default function HomePage() {
             </div>
 
             <div className="hero-media">
-              <img src="/images/flavor-factory/hero-main.jpg" alt="Modern flavor manufacturing still life" />
+              <img src="/images/flavor-factory/hero-main.jpg" alt="Flavor formulation and ingredients" />
               <div className="floating-tags">
-                {[
-                  "citrus oil",
-                  "creamy body",
-                  "berry top notes",
-                  "cooling mint",
-                  "caramel depth",
-                  "vanilla warmth",
-                ].map((item, i) => (
+                {["liquid flavors", "powder flavors", "fast samples", "low minimums", "custom matching", "family owned"].map((item, i) => (
                   <div key={item} className={`floating-tag ${i % 2 === 0 ? "light" : "brand"}`}>{item}</div>
                 ))}
               </div>
               <div className="hero-bottom-cards">
-                {[
-                  "Interactive pathways",
-                  "Mouthwatering imagery",
-                  "Manufacturing credibility",
-                ].map((item) => (
+                {["Responsive service", "Manufacturing experience", "Sample-to-production support"].map((item) => (
                   <div key={item} className="glass-card">{item}</div>
                 ))}
               </div>
@@ -112,10 +101,10 @@ export default function HomePage() {
         <section className="section" style={{ paddingTop: 20 }}>
           <div className="container banner-grid">
             {[
-              ["Flavor Worlds", "Explore flavor families by application, profile, and format."],
-              ["Sensory Navigation", "Visuals guide people to the exact application they care about."],
-              ["Fast Comprehension", "Users understand what you do in seconds, not minutes."],
-              ["Built to Convert", "Every section points naturally toward contact and samples."],
+              ["Family-owned service", "Direct communication from a team that knows your project."],
+              ["Custom development", "Flavor matching and profile tuning for your product target."],
+              ["Practical lead times", "Fast samples and updates so your launch stays on track."],
+              ["Liquid + powder", "Capabilities that support both wet and dry manufacturing."],
             ].map(([title, text]) => (
               <div key={title} className="banner-card">
                 <h3>{title}</h3>
@@ -129,24 +118,24 @@ export default function HomePage() {
           <div className="container">
             <div className="section-head">
               <div>
-                <SectionEyebrow>Choose your path</SectionEyebrow>
-                <SectionHeading>Explore each category as <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>its own flavor universe.</span></SectionHeading>
+                <SectionEyebrow>Industries we serve</SectionEyebrow>
+                <SectionHeading>Markets where our team supports active product development.</SectionHeading>
               </div>
-              <p className="section-subtext">Browse tailored flavor directions for beverage, confection, bakery, and functional product applications.</p>
+              <p className="section-subtext">Choose your industry to see how we support flavor development, masking, and production readiness.</p>
             </div>
 
             <div className="path-grid">
               {pathways.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <a key={item.title} href="/contact" className="path-card">
+                  <a key={item.title} href={`/industries/${item.slug}`} className="path-card">
                     <img src={item.image} alt={item.title} />
                     <div className="path-overlay" />
                     <div className="path-tag"><Icon size={14} /> {item.tag}</div>
                     <div className="path-content">
                       <h3>{item.title}</h3>
                       <p>{item.subtitle}</p>
-                      <div className="mini-link">Enter This World <ChevronRight size={14} /></div>
+                      <div className="mini-link">View Market Page <ChevronRight size={14} /></div>
                     </div>
                   </a>
                 );
@@ -160,13 +149,13 @@ export default function HomePage() {
             <div className="finder-grid">
               <div>
                 <SectionEyebrow>Flavor Finder</SectionEyebrow>
-                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find the right flavor direction faster.</h2>
+                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find a sample direction in minutes.</h2>
                 <p className="section-subtext" style={{ color: "rgba(255,255,255,.75)", marginTop: 20 }}>
-                  Filter by format, goal, and application to preview a recommended flavor path for your team.
+                  Select format, flavor goal, and product format to preview a recommended direction for your brief.
                 </p>
                 <div className="finder-card" style={{ marginTop: 24 }}>
-                  <div className="filter-group-title" style={{ display: "flex", alignItems: "center", gap: 8 }}><Search size={14} /> Concept</div>
-                  <div style={{ fontSize: "1.2rem", fontWeight: 700 }}>Pick a format, a goal, and a category—then reveal the smartest route.</div>
+                  <div className="filter-group-title" style={{ display: "flex", alignItems: "center", gap: 8 }}><Search size={14} /> Quick setup</div>
+                  <div style={{ fontSize: "1.1rem", fontWeight: 700 }}>Choose your options and send us your request when you are ready.</div>
                 </div>
               </div>
 
@@ -213,8 +202,8 @@ export default function HomePage() {
           <div className="container">
             <div className="section-head" style={{ marginBottom: 24 }}>
               <div>
-                <SectionEyebrow>Why brands stay</SectionEyebrow>
-                <SectionHeading>Why teams trust The Flavor Factory.</SectionHeading>
+                <SectionEyebrow>Why customers stay</SectionEyebrow>
+                <SectionHeading>Manufacturing support built around your deadlines.</SectionHeading>
               </div>
             </div>
 
@@ -241,23 +230,23 @@ export default function HomePage() {
           <div className="container">
             <div className="section-head">
               <div>
-                <SectionEyebrow>Flavor Library</SectionEyebrow>
-                <SectionHeading>Flavor tiles built for <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>quick exploration.</span></SectionHeading>
+                <SectionEyebrow>Flavor families</SectionEyebrow>
+                <SectionHeading>Start with a profile, then request custom matching.</SectionHeading>
               </div>
-              <p className="section-subtext">Explore flavor families, then jump straight into requesting samples for your next concept.</p>
+              <p className="section-subtext">Browse core flavor families and continue to our full library for more options.</p>
             </div>
 
             <div className="flavor-grid">
-              {flavorTiles.map((tile, idx) => (
-                <a key={tile.name} href="/contact" className="flavor-card">
+              {flavorTiles.map((tile) => (
+                <a key={tile.name} href="/flavors" className="flavor-card">
                   <img src={tile.image} alt={tile.name} />
                   <div className="flavor-overlay" />
-                  <div className="flavor-family" style={{ justifyContent: idx % 2 === 0 ? "flex-end" : "flex-start" }}>
+                  <div className="flavor-family">
                     <div className="flavor-badge">{tile.family}</div>
                   </div>
                   <div className="flavor-content">
                     <h3>{tile.name}</h3>
-                    <div className="mini-link">Explore <ChevronRight size={14} /></div>
+                    <div className="mini-link">View Library <ChevronRight size={14} /></div>
                   </div>
                 </a>
               ))}
@@ -269,16 +258,12 @@ export default function HomePage() {
           <div className="container showcase">
             <div className="showcase-grid">
               <div>
-                <SectionEyebrow>Built for real products</SectionEyebrow>
-                <SectionHeading>Show the customer their own future product.</SectionHeading>
+                <SectionEyebrow>Applications</SectionEyebrow>
+                <SectionHeading>Product formats we build flavors for every day.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16 }}>
-                  Don’t stop at ingredients. Show beverages, gummies, popcorn, syrups, baked goods, and more so buyers instantly see where they fit.
+                  These are practical end-product formats our customers bring to us for custom liquid and powder flavor development.
                 </p>
-                <div className="showcase-pills">
-                  {applicationOptions.map((item) => (
-                    <span key={item} className="soft-pill">{item}</span>
-                  ))}
-                </div>
+                <a href="/applications" className="cta-btn" style={{ marginTop: 24 }}>View All Applications</a>
               </div>
 
               <div className="application-grid">
@@ -298,12 +283,12 @@ export default function HomePage() {
             <div className="quality-top">
               <div>
                 <SectionEyebrow>Quality standards</SectionEyebrow>
-                <h2 className="section-title" style={{ color: "white" }}>Quality standards, presented like a brand people remember.</h2>
+                <h2 className="section-title" style={{ color: "white" }}>Built for consistent production and reliable documentation.</h2>
                 <p className="section-subtext" style={{ color: "rgba(255,255,255,.72)", marginTop: 16, maxWidth: 760 }}>
-                  From documentation to manufacturing consistency, our process is built for dependable scale and repeatable flavor performance.
+                  Our quality programs support repeatable flavor performance and manufacturing confidence.
                 </p>
               </div>
-              <a href="/contact" className="light-btn">View Certifications</a>
+              <a href="/contact" className="light-btn">Request Documentation</a>
             </div>
             <div className="quality-grid">
               {qualityBadges.map((item) => (
@@ -318,35 +303,35 @@ export default function HomePage() {
             <div className="sample-grid">
               <div className="sample-left">
                 <SectionEyebrow>Request Samples</SectionEyebrow>
-                <SectionHeading>Tell us what you’re making. <span className="serif" style={{ fontStyle: "italic", color: "#d52b1e" }}>We’ll make the next step feel easy.</span></SectionHeading>
+                <SectionHeading>Tell us what you are making and what flavor you need.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  Share your goals and timeline, and our team will follow up with sample recommendations tailored to your application.
+                  Share your target profile, application, and timeline. Our team will follow up with practical sample recommendations.
                 </p>
                 <div className="form-grid">
-                  <input value={sampleForm.industry} onChange={(e) => updateField("industry", e.target.value)} placeholder="Industry" className="input" />
-                  <input value={sampleForm.format} onChange={(e) => updateField("format", e.target.value)} placeholder="Liquid or Powder" className="input" />
-                  <input value={sampleForm.flavor} onChange={(e) => updateField("flavor", e.target.value)} placeholder="Target Flavor" className="input" />
-                  <input value={sampleForm.application} onChange={(e) => updateField("application", e.target.value)} placeholder="Application" className="input" />
-                  <input value={sampleForm.timeline} onChange={(e) => updateField("timeline", e.target.value)} placeholder="Timeline" className="input" />
-                  <textarea value={sampleForm.message} onChange={(e) => updateField("message", e.target.value)} placeholder="Message" className="textarea" />
+                  <input aria-label="Industry" value={sampleForm.industry} onChange={(e) => updateField("industry", e.target.value)} className="input" />
+                  <input aria-label="Liquid or Powder" value={sampleForm.format} onChange={(e) => updateField("format", e.target.value)} className="input" />
+                  <input aria-label="Target Flavor" value={sampleForm.flavor} onChange={(e) => updateField("flavor", e.target.value)} className="input" />
+                  <input aria-label="Product Format" value={sampleForm.application} onChange={(e) => updateField("application", e.target.value)} className="input" />
+                  <input aria-label="Timeline" value={sampleForm.timeline} onChange={(e) => updateField("timeline", e.target.value)} className="input" />
+                  <textarea aria-label="Project Details" value={sampleForm.message} onChange={(e) => updateField("message", e.target.value)} className="textarea" />
                 </div>
                 <div className="sample-utility">
                   <button className="cta-btn">Send Sample Request</button>
-                  <div style={{ fontSize: 14, color: "rgba(17,17,17,.5)" }}>Fast response from a real team.</div>
+                  <div style={{ fontSize: 14, color: "rgba(17,17,17,.5)" }}>Fast response from our Norco team.</div>
                 </div>
               </div>
 
               <div className="sample-right">
-                <img src="/images/flavor-factory/cta-background.jpg" alt="Flavor still life background" />
+                <img src="/images/flavor-factory/cta-background.jpg" alt="Flavor samples and raw ingredients" />
                 <div className="sample-overlay" />
                 <div className="top-tags">
-                  {['Fast response', 'Human support', 'Tailored samples'].map((tag) => (
+                  {["Family-owned", "Fast samples", "Low minimums"].map((tag) => (
                     <div key={tag} className="flavor-badge">{tag}</div>
                   ))}
                 </div>
                 <div className="bottom-copy">
-                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Start your sample request</div>
-                  <h3>Let’s build your next flavor together.</h3>
+                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Start your project</div>
+                  <h3>Custom flavors made for your product and process.</h3>
                 </div>
               </div>
             </div>

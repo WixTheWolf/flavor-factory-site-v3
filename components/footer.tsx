@@ -11,7 +11,7 @@ export function Footer() {
             <div className="large">FlavorFactory</div>
           </div>
           <p className="footer-copy">
-            Family-owned flavor manufacturing with modern capabilities, clean execution, and a faster path from idea to sample.
+            Family-owned flavor manufacturing focused on custom liquid and powder flavors, fast samples, and dependable production support.
           </p>
           <div className="socials">
             <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
@@ -45,7 +45,7 @@ export function Footer() {
           <a href="/contact" className="dark-btn">Request Samples</a>
         </div>
       </div>
-      <div className="copyright">© 2025 The Flavor Factory. All rights reserved.</div>
+      <div className="copyright">© 2026 The Flavor Factory. All rights reserved.</div>
     </footer>
   );
 }
