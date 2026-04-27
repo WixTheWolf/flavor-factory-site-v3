@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Beaker, Candy, Clock3, CupSoda, Leaf, Pill, ShieldCheck, Sparkles, Truck, Waves } from "lucide-react";
+import { Beaker, Candy, Clock3, CupSoda, Factory, Leaf, Pill, ShieldCheck, Truck, Waves } from "lucide-react";
 
 export type Pathway = {
   title: string;
@@ -7,6 +7,7 @@ export type Pathway = {
   image: string;
   tag: string;
   icon: LucideIcon;
+  href: string;
 };
 
 export type Strength = {
@@ -16,70 +17,75 @@ export type Strength = {
 };
 
 export const navLinks = [
-  { label: "Industries", href: "/#pathways" },
+  { label: "Markets", href: "/industries" },
+  { label: "Applications", href: "/applications" },
   { label: "Flavor Finder", href: "/#finder" },
-  { label: "Why Us", href: "/#strengths" },
   { label: "Flavor Library", href: "/flavors" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Quality", href: "/#quality" },
-  { label: "Request Samples", href: "/contact" },
 ];
 
 export const pathways: Pathway[] = [
   {
-    title: "Food & Beverage",
-    subtitle: "Flavor systems for drinks, mixes, syrups, and beverage innovation.",
+    title: "Food & Beverage Brands",
+    subtitle: "Support for beverage teams, mix houses, and food brands that need dependable flavor systems.",
     image: "/images/flavor-factory/path-food-beverage.jpg",
-    tag: "Fast-moving categories",
+    tag: "Brand manufacturing",
     icon: CupSoda,
+    href: "/industries/beverage",
   },
   {
-    title: "Bakery",
-    subtitle: "Warm, indulgent, and baked-good-ready flavor development.",
+    title: "Bakery Manufacturers",
+    subtitle: "Flavor development for bakery producers building consistent flavor in mixes, fillings, and finished goods.",
     image: "/images/flavor-factory/path-bakery.jpg",
-    tag: "Comfort + craveability",
-    icon: Sparkles,
+    tag: "Baked goods",
+    icon: Factory,
+    href: "/industries/bakery",
   },
   {
-    title: "Confectionery",
-    subtitle: "Candy, chocolate, fruit, and novelty flavor experiences.",
+    title: "Confectionery Makers",
+    subtitle: "Built for candy and confectionery companies that need fruit, chocolate, mint, and novelty profiles.",
     image: "/images/flavor-factory/path-confectionery.jpg",
-    tag: "Fun, bold, memorable",
+    tag: "Candy programs",
     icon: Candy,
+    href: "/industries/confectionery",
   },
   {
-    title: "Nutraceutical",
-    subtitle: "Functional flavor systems that help products taste better.",
+    title: "Nutraceutical Brands",
+    subtitle: "Flavor support for teams developing functional products and active nutrition lines.",
     image: "/images/flavor-factory/path-nutraceutical.jpg",
-    tag: "Masking + support",
+    tag: "Functional products",
     icon: Leaf,
+    href: "/industries/nutraceutical",
   },
   {
-    title: "Oral Care",
-    subtitle: "Mint, cooling, freshness, and clean sensory design.",
+    title: "Oral Care Companies",
+    subtitle: "Freshness and mint systems for oral care formulas where clean finish and consistency matter.",
     image: "/images/flavor-factory/path-oral-care.jpg",
     tag: "Freshness systems",
     icon: Waves,
+    href: "/industries/oral-care",
   },
   {
-    title: "Pharmaceutical",
-    subtitle: "Reliable flavor support for demanding applications.",
+    title: "Pharma Product Teams",
+    subtitle: "Reliable liquid and powder flavor options for pharmaceutical and adjacent wellness programs.",
     image: "/images/flavor-factory/path-pharmaceutical.jpg",
-    tag: "Precision applications",
+    tag: "Regulated categories",
     icon: Pill,
+    href: "/industries/pharmaceutical",
   },
 ];
 
 export const strengths: Strength[] = [
   {
     title: "Low Minimums",
-    text: "Easy to get started without oversized commitments.",
+    text: "Start projects without oversized commitments.",
     icon: Beaker,
   },
   {
     title: "Fast Turnaround",
-    text: "Responsive timelines that keep product teams moving.",
+    text: "Quick sample timelines to keep launches moving.",
     icon: Clock3,
   },
   {
@@ -89,35 +95,46 @@ export const strengths: Strength[] = [
   },
   {
     title: "Family-Owned Service",
-    text: "Real people, direct communication, and personal accountability.",
+    text: "Direct communication and accountability from a working team.",
     icon: Truck,
   },
 ];
 
 export const flavorTiles = [
-  { name: "Vanilla", family: "Warm / creamy", image: "/images/flavor-factory/flavor-vanilla.jpg" },
-  { name: "Berry", family: "Juicy / vibrant", image: "/images/flavor-factory/flavor-berry.jpg" },
-  { name: "Citrus", family: "Bright / crisp", image: "/images/flavor-factory/flavor-citrus.jpg" },
-  { name: "Chocolate", family: "Rich / indulgent", image: "/images/flavor-factory/flavor-chocolate.jpg" },
-  { name: "Caramel", family: "Sweet / deep", image: "/images/flavor-factory/flavor-caramel.jpg" },
-  { name: "Mint", family: "Cooling / clean", image: "/images/flavor-factory/flavor-mint.jpg" },
-];
+  { name: "Vanilla", family: "Warm / creamy", image: "/images/flavor-factory/flavor-vanilla.jpg", tags: ["Dairy", "Bakery", "Custard"] },
+  { name: "Berry", family: "Juicy / vibrant", image: "/images/flavor-factory/flavor-berry.jpg", tags: ["Beverage", "Gummy", "Candy"] },
+  { name: "Citrus", family: "Bright / crisp", image: "/images/flavor-factory/flavor-citrus.jpg", tags: ["RTD", "Sparkling", "Concentrate"] },
+  { name: "Chocolate", family: "Rich / indulgent", image: "/images/flavor-factory/flavor-chocolate.jpg", tags: ["Bakery", "Shake", "Confection"] },
+  { name: "Caramel", family: "Sweet / deep", image: "/images/flavor-factory/flavor-caramel.jpg", tags: ["Coffee", "Dairy", "Dessert"] },
+  { name: "Mint", family: "Cooling / clean", image: "/images/flavor-factory/flavor-mint.jpg", tags: ["Oral Care", "Hard Candy", "Chewable"] },
+] as const;
 
 export const applications = [
-  { name: "Beverages", image: "/images/flavor-factory/application-beverage.jpg" },
-  { name: "Bakery", image: "/images/flavor-factory/application-bakery.jpg" },
-  { name: "Confectionery", image: "/images/flavor-factory/application-confectionery.jpg" },
-  { name: "Nutraceutical", image: "/images/flavor-factory/application-nutraceutical.jpg" },
-  { name: "Oral Care", image: "/images/flavor-factory/application-oral-care.jpg" },
-  { name: "Pharmaceutical", image: "/images/flavor-factory/application-pharmaceutical.jpg" },
-  { name: "Gummies", image: "/images/flavor-factory/application-gummy.jpg" },
-  { name: "Popcorn", image: "/images/flavor-factory/application-popcorn.jpg" },
-  { name: "Dairy", image: "/images/flavor-factory/application-dairy.jpg" },
-  { name: "Sauces & Savory", image: "/images/flavor-factory/application-sauces-savory.jpg" },
+  { name: "Ready-to-Drink Beverages", image: "/images/flavor-factory/application-beverage.jpg" },
+  { name: "Bakery Mixes & Fillings", image: "/images/flavor-factory/application-bakery.jpg" },
+  { name: "Confectionery Pieces", image: "/images/flavor-factory/application-confectionery.jpg" },
+  { name: "Nutraceutical Powders", image: "/images/flavor-factory/application-nutraceutical.jpg" },
+  { name: "Oral Care Products", image: "/images/flavor-factory/application-oral-care.jpg" },
+  { name: "Pharmaceutical Syrups", image: "/images/flavor-factory/application-pharmaceutical.jpg" },
+  { name: "Gummies & Chews", image: "/images/flavor-factory/application-gummy.jpg" },
+  { name: "Snack Seasonings", image: "/images/flavor-factory/application-popcorn.jpg" },
+  { name: "Dairy Systems", image: "/images/flavor-factory/application-dairy.jpg" },
+  { name: "Sauces & Savory Bases", image: "/images/flavor-factory/application-sauces-savory.jpg" },
 ];
 
 export const formatOptions = ["Liquid", "Powder"];
 export const goalOptions = ["Masking", "Sweetness Support", "Cooling", "Top Notes", "Creamy Body", "Fruit Profiles"];
-export const applicationOptions = ["Beverages", "Bakery", "Confectionery", "Nutraceutical", "Oral Care", "Pharmaceutical", "Gummies", "Popcorn", "Dairy", "Sauces & Savory"];
+export const applicationOptions = [
+  "RTD Beverages",
+  "Dry Mixes",
+  "Gummies",
+  "Hard Candy",
+  "Bakery Fillings",
+  "Dairy Bases",
+  "Snack Seasonings",
+  "Syrups",
+  "Chewables",
+  "Oral Care",
+];
 
 export const qualityBadges = ["GMP", "ISO 22000", "Halal", "Kosher", "FDA Registered"];
