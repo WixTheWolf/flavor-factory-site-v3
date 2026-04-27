@@ -115,10 +115,10 @@ export default function HomePage() {
         <section className="section" style={{ paddingTop: 20 }}>
           <div className="container banner-grid">
             {[
-              ["Liquid + Powder Capabilities", "We develop custom flavor systems in both liquid and powder formats."],
-              ["Application Support", "Our team supports beverages, gummies, bakery, dairy, syrups, and savory formats."],
-              ["Fast Sample Turnaround", "Most sample requests move quickly so your R&D team can keep momentum."],
-              ["Low Minimums + Scale Support", "Start with practical order sizes and scale with consistent production-ready quality."],
+              ["Family-Owned Team", "Work directly with people who manage flavor development and production every day."],
+              ["Custom Flavor Matching", "Share your target profile and we will build toward your product goals."],
+              ["Low Minimums", "Start with practical order sizes while you validate your formula and market."],
+              ["Production Focus", "From sample to scale, we plan for dependable manufacturing performance."],
             ].map(([title, text]) => (
               <div key={title} className="banner-card">
                 <h3>{title}</h3>
@@ -133,9 +133,9 @@ export default function HomePage() {
             <div className="section-head">
               <div>
                 <SectionEyebrow>Markets</SectionEyebrow>
-                <SectionHeading>Where our flavor manufacturing team supports customers.</SectionHeading>
+                <SectionHeading>Industries we support every week.</SectionHeading>
               </div>
-              <p className="section-subtext">Review your market, then request liquid or powder flavor samples built for your product format and timeline.</p>
+              <p className="section-subtext">Select your market to review priorities, common product lines, and how we support development.</p>
             </div>
 
             <div className="path-grid">
@@ -165,11 +165,11 @@ export default function HomePage() {
                 <SectionEyebrow>Flavor Finder</SectionEyebrow>
                 <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find a starting direction in seconds.</h2>
                 <p className="section-subtext" style={{ color: "rgba(255,255,255,.75)", marginTop: 20 }}>
-                  Choose your format, technical goal, and product format to preview a practical sample direction.
+                  Choose your format, technical goal, and application format. We will show a practical starting point for samples.
                 </p>
                 <div className="finder-card" style={{ marginTop: 24 }}>
                   <div className="filter-group-title" style={{ display: "flex", alignItems: "center", gap: 8 }}><Search size={14} /> Quick setup</div>
-                  <div style={{ fontSize: "1.2rem", fontWeight: 700 }}>Select your requirements, review the recommendation, and send your sample request.</div>
+                  <div style={{ fontSize: "1.2rem", fontWeight: 700 }}>Set your needs, review the suggested direction, then contact our team.</div>
                 </div>
               </div>
 
