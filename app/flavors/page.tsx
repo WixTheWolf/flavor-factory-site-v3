@@ -14,7 +14,7 @@ export default function FlavorsPage() {
             <SectionEyebrow>Flavor Library</SectionEyebrow>
             <SectionHeading>Explore flavor profiles built for real applications.</SectionHeading>
             <p className="section-subtext" style={{ marginTop: 16, maxWidth: 760 }}>
-              From bright citrus to deep caramel, this library is designed to help visitors quickly understand where your flavor capabilities can take them.
+              From bright citrus to deep caramel, explore flavor profiles by family and request samples for your next product concept.
             </p>
           </div>
         </section>
