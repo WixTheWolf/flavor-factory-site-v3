@@ -10,9 +10,9 @@ export default function FlavorsPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
             <div className="eyebrow">Flavor Finder</div>
-            <h1 className="section-title">Find the exact flavor direction faster.</h1>
-            <p className="section-subtext" style={{ marginTop: 14 }}>
-              Structured for future Excel/PCF ingestion with reusable filtering and recommendation utilities.
+            <h1 className="section-title">Find the right flavor profile for your product, faster.</h1>
+            <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900 }}>
+              Search by flavor name, then narrow by family, format, and industry. This modular finder is structured to swap from demo records to Excel/PCF ingestion with minimal UI rewrite.
             </p>
             <FlavorFinder />
           </div>
