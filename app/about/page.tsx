@@ -13,7 +13,7 @@ export default function AboutPage() {
                 <div className="eyebrow">About Us</div>
                 <h1 className="section-title">A premium flavor partner with practical manufacturing depth.</h1>
                 <p className="section-subtext" style={{ marginTop: 14 }}>
-                  The Flavor Factory is a family-owned custom manufacturer focused on high quality liquid and powder flavor solutions. We support teams that need speed, consistency, and service they can count on.
+                  The Flavor Factory is a custom manufacturer focused on high quality liquid and powder flavor solutions. We support teams that need speed, consistency, and service they can count on.
                 </p>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
                   Our approach is straightforward: understand your product target, recommend profiles that fit your process, and move quickly from first submission to production-ready flavor.

@@ -1,6 +1,6 @@
 export const siteCopy = {
   brand: "The Flavor Factory",
-  heroKicker: "Family-Owned • Southern California",
+  heroKicker: "Southern California • Custom Flavor Manufacturing",
   heroTitle: "Premium custom liquid & powder flavor solutions.",
   heroText:
     "We partner with product teams that need flavor systems that taste right, run right, and scale right. From first sample to production, our work stays practical, responsive, and quality-focused.",

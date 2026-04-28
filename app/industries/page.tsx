@@ -27,9 +27,9 @@ export default function IndustriesPage() {
                   <img src={item.heroImage} alt={item.name} />
                   <div className="path-overlay" />
                   <div className="path-content">
-                    <div className="path-tag">{item.applications.join(" • ")}</div>
                     <h3>{item.name}</h3>
                     <p>{item.summary}</p>
+                    <div className="mini-link">{item.applications.slice(0, 3).join(" • ")}</div>
                   </div>
                 </article>
               ))}
