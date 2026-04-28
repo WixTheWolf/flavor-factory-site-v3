@@ -71,11 +71,12 @@ export default function HomePage() {
                 <span className="hero-dot" /> Family-Owned Flavor Manufacturing • Norco, California
               </div>
               <h1 className="hero-title">
-                Custom flavors for products that need to launch <span className="accent serif">on schedule.</span>
+                Custom Liquid &amp; Powder Flavors
+                <span className="accent serif">Built for Real Products.</span>
               </h1>
               <p className="hero-text">
-                The Flavor Factory develops liquid and powder flavors for brands and manufacturers. We support fast sample cycles,
-                low minimums, and production-ready quality.
+                We help brands and manufacturers develop flavor systems that taste right, work in the application, and are ready for
+                production.
               </p>
               <div className="hero-actions">
                 <a href="/contact" className="dark-btn">Request Samples</a>
@@ -83,10 +84,10 @@ export default function HomePage() {
               </div>
               <div className="stat-grid">
                 {[
-                  { value: "3-5", label: "business days for samples" },
-                  { value: "Low", label: "minimum order options" },
-                  { value: "2", label: "formats: liquid + powder" },
-                  { value: "100%", label: "family-owned operation" },
+                  { value: "Liquid + Powder", label: "custom flavor formats" },
+                  { value: "Fast", label: "sample support and revisions" },
+                  { value: "Low MOQs", label: "practical startup volumes" },
+                  { value: "Direct", label: "communication with our team" },
                 ].map((item) => (
                   <div key={item.label} className="stat-card">
                     <div className="stat-value">{item.value}</div>
@@ -98,16 +99,6 @@ export default function HomePage() {
 
             <div className="hero-media">
               <img src="/images/flavor-factory/hero-main.jpg" alt="Flavor development and manufacturing workspace" />
-              <div className="floating-tags">
-                {["citrus systems", "vanilla profiles", "cooling mint", "berry blends", "caramel depth", "masking support"].map((item, i) => (
-                  <div key={item} className={`floating-tag ${i % 2 === 0 ? "light" : "brand"}`}>{item}</div>
-                ))}
-              </div>
-              <div className="hero-bottom-cards">
-                {["Fast sample turnaround", "Liquid and powder capabilities", "Direct communication"].map((item) => (
-                  <div key={item} className="glass-card">{item}</div>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -115,10 +106,10 @@ export default function HomePage() {
         <section className="section" style={{ paddingTop: 20 }}>
           <div className="container banner-grid">
             {[
-              ["Family-Owned Team", "Work directly with people who manage flavor development and production every day."],
-              ["Custom Flavor Matching", "Share your target profile and we will build toward your product goals."],
-              ["Low Minimums", "Start with practical order sizes while you validate your formula and market."],
-              ["Production Focus", "From sample to scale, we plan for dependable manufacturing performance."],
+              ["Liquid & Powder Capabilities", "Custom liquid and powder flavors designed for your process and finished product."],
+              ["Application Support", "Work with our team on flavor direction, usage levels, and practical product fit."],
+              ["Fast Sample Support", "Quick sample and revision cycles help your team move from idea to approval faster."],
+              ["Low Minimums & Scale Support", "Start with low minimum orders and scale with a manufacturing partner you can keep."],
             ].map(([title, text]) => (
               <div key={title} className="banner-card">
                 <h3>{title}</h3>
@@ -133,9 +124,9 @@ export default function HomePage() {
             <div className="section-head">
               <div>
                 <SectionEyebrow>Markets</SectionEyebrow>
-                <SectionHeading>Industries we support every week.</SectionHeading>
+                <SectionHeading>Markets We Serve</SectionHeading>
               </div>
-              <p className="section-subtext">Select your market to review priorities, common product lines, and how we support development.</p>
+              <p className="section-subtext">Choose your market to see how we support different product types, timelines, and production needs.</p>
             </div>
 
             <div className="path-grid">
@@ -163,9 +154,9 @@ export default function HomePage() {
             <div className="finder-grid">
               <div>
                 <SectionEyebrow>Flavor Finder</SectionEyebrow>
-                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find a starting direction in seconds.</h2>
+                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find a Starting Direction</h2>
                 <p className="section-subtext" style={{ color: "rgba(255,255,255,.75)", marginTop: 20 }}>
-                  Choose your format, technical goal, and application format. We will show a practical starting point for samples.
+                  Choose a format, goal, and application to get a practical sample direction.
                 </p>
                 <div className="finder-card" style={{ marginTop: 24 }}>
                   <div className="filter-group-title" style={{ display: "flex", alignItems: "center", gap: 8 }}><Search size={14} /> Quick setup</div>
@@ -252,13 +243,10 @@ export default function HomePage() {
 
             <div className="flavor-grid">
               {flavorTiles.map((tile) => (
-                <a key={tile.name} href="/flavors" className="flavor-card">
+                <a key={tile.name} href="/flavors" className="flavor-card flavor-card-plain">
                   <img src={tile.image} alt={tile.name} />
-                  <div className="flavor-overlay" />
-                  <div className="flavor-family">
-                    <div className="flavor-badge">{tile.family}</div>
-                  </div>
                   <div className="flavor-content">
+                    <div className="flavor-badge flavor-badge-dark">{tile.family}</div>
                     <h3>{tile.name}</h3>
                     <div className="mini-link">View Library <ChevronRight size={14} /></div>
                   </div>
@@ -273,9 +261,9 @@ export default function HomePage() {
             <div className="showcase-grid">
               <div>
                 <SectionEyebrow>Applications</SectionEyebrow>
-                <SectionHeading>Formats we flavor.</SectionHeading>
+                <SectionHeading>Applications &amp; Formats</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16 }}>
-                  Our application work is format-specific: RTD beverages, gummies, syrups, powders, seasonings, and more.
+                  Start with the product format. We can help with liquid, powder, beverage, gummy, bakery, dairy, oral care, pharmaceutical, savory, and more.
                 </p>
                 <div className="showcase-pills">
                   {applicationOptions.map((item) => (
@@ -307,7 +295,7 @@ export default function HomePage() {
                   We keep documentation, process controls, and manufacturing discipline in place so flavors stay consistent from batch to batch.
                 </p>
               </div>
-              <a href="/contact" className="light-btn">Ask About Certifications</a>
+              <a href="/contact" className="light-btn">Ask About Documentation</a>
             </div>
             <div className="quality-grid">
               {qualityBadges.map((item) => (
@@ -322,9 +310,9 @@ export default function HomePage() {
             <div className="sample-grid">
               <div className="sample-left">
                 <SectionEyebrow>Request Samples</SectionEyebrow>
-                <SectionHeading>Tell us what you are making. We will recommend next samples.</SectionHeading>
+                <SectionHeading>Tell us what you&apos;re making.</SectionHeading>
                 <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  Share your market, target flavor, and timeline. Our team will follow up with practical sample options.
+                  Send your product type, target flavor, format, and timeline. We&apos;ll review the project and help with next steps.
                 </p>
                 <div className="form-grid">
                   <input value={sampleForm.industry} onChange={(e) => updateField("industry", e.target.value)} aria-label="Market" className="input" />
