@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SampleRequestForm } from "@/components/sample-request-form";
+import { siteImages } from "@/data/site-images";
 
 export default function RequestSamplesPage() {
   return (
@@ -12,14 +13,16 @@ export default function RequestSamplesPage() {
             <div className="sample-grid">
               <div className="sample-left">
                 <div className="eyebrow">Request Samples</div>
-                <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>Tell us your target profile and application.</h1>
+                <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
+                  Tell us your target profile, format, and application.
+                </h1>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
-                  Share your industry, desired flavor direction, and timeline. We’ll recommend practical sample options.
+                  Share key details and timelines. We’ll recommend practical sample options for your category and usage conditions.
                 </p>
                 <SampleRequestForm />
               </div>
               <div className="sample-right">
-                <img src="/images/flavor-factory/application-gummy.jpg" alt="sample request" />
+                <img src={siteImages.requestSamplesHero} alt="Premium flavor sample preparation visuals" />
                 <div className="sample-overlay" />
               </div>
             </div>

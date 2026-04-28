@@ -1,4 +1,5 @@
 import { siteCopy } from "@/data/site-copy";
+import { siteImages } from "@/data/site-images";
 import { Button } from "@/components/ui/Button";
 
 export function HeroSection() {
@@ -16,7 +17,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-media">
-          <img src="/images/flavor-factory/hero-main.jpg" alt="Glossy flavor ingredients and formulation lab tools" />
+          <img src={siteImages.homeHero} alt="Glossy flavor ingredients and formulation lab tools" />
           <div className="floating-tags">
             <div className="floating-tag light">Liquid & Powder</div>
             <div className="floating-tag brand">Low MOQ</div>

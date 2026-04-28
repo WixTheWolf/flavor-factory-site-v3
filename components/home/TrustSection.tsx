@@ -1,4 +1,5 @@
 import { siteCopy } from "@/data/site-copy";
+import { siteImages } from "@/data/site-images";
 import { Button } from "@/components/ui/Button";
 
 export function TrustSection() {
@@ -18,7 +19,7 @@ export function TrustSection() {
             <Button href="/request-samples" className="mt-24" >Request Samples</Button>
           </div>
           <div className="sample-right">
-            <img src="/images/flavor-factory/cta-background.jpg" alt="ingredients macro" />
+            <img src={siteImages.homeCta} alt="ingredients macro" />
             <div className="sample-overlay" />
           </div>
         </div>
