@@ -66,11 +66,10 @@ export default function FlavorsPage() {
           <div className="container">
             <div className="flavor-grid flavor-grid-tight">
               {filteredFlavors.map((tile) => (
-                <a key={tile.name} href="/contact" className="flavor-card flavor-card-tight">
+                <a key={tile.name} href="/contact" className="flavor-card flavor-card-tight flavor-card-plain">
                   <img src={tile.image} alt={tile.name} />
-                  <div className="flavor-overlay" />
-                  <div className="flavor-family"><div className="flavor-badge">{tile.family}</div></div>
                   <div className="flavor-content">
+                    <div className="flavor-badge flavor-badge-dark">{tile.family}</div>
                     <h3>{tile.name}</h3>
                     <div className="flavor-tag-row">
                       {tile.tags.map((tag) => (

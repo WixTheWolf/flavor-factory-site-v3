@@ -13,7 +13,7 @@ export default function ApplicationsPage() {
             <SectionEyebrow>Applications</SectionEyebrow>
             <SectionHeading>Practical product formats we support.</SectionHeading>
             <p className="section-subtext" style={{ marginTop: 16, maxWidth: 840 }}>
-              Applications are product formats and delivery systems. Markets are customer worlds. This page focuses on the format side of your project.
+              Start with format and process needs. We support liquid and powder systems across beverage, bakery, gummy, dairy, oral care, pharmaceutical, and savory products.
             </p>
           </div>
         </section>
