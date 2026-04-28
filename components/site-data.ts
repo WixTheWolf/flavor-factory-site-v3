@@ -137,4 +137,10 @@ export const applicationOptions = [
   "Oral Care",
 ];
 
-export const qualityBadges = ["GMP", "ISO 22000", "Halal", "Kosher", "FDA Registered"];
+export const qualityBadges = [
+  "Batch Documentation",
+  "Specification Support",
+  "Lot Traceability",
+  "Quality Review Process",
+  "Project Documentation by Request",
+];
