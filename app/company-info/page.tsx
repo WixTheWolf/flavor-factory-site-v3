@@ -22,6 +22,25 @@ const processSteps = [
   },
 ];
 
+const processSteps = [
+  {
+    title: "1) Scope",
+    copy: "Share your target profile, application, format, and timeline.",
+  },
+  {
+    title: "2) Sample",
+    copy: "We propose profile options and submit practical starting points quickly.",
+  },
+  {
+    title: "3) Refine",
+    copy: "Feedback cycles focus on sensory fit, processing performance, and cost reality.",
+  },
+  {
+    title: "4) Produce",
+    copy: "Approved profiles transition to reliable production support.",
+  },
+];
+
 export default function CompanyInfoPage() {
   return (
     <>
