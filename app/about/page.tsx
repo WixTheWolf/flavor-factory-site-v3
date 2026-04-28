@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Button } from "@/components/ui/Button";
 
 export default function AboutPage() {
   return (
@@ -10,25 +11,33 @@ export default function AboutPage() {
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
-                <div className="eyebrow">About Us</div>
-                <h1 className="section-title">A premium flavor partner with practical manufacturing depth.</h1>
+                <div className="eyebrow">About</div>
+                <h1 className="section-title">Built for teams that need flavor expertise without operational friction.</h1>
                 <p className="section-subtext" style={{ marginTop: 14 }}>
-                  The Flavor Factory is a custom manufacturer focused on high quality liquid and powder flavor solutions. We support teams that need speed, consistency, and service they can count on.
+                  The Flavor Factory is a Southern California custom manufacturer of high quality liquid and powder flavor solutions. We are family-owned, service-driven, and focused on helping customers move from concept to production quickly.
                 </p>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
-                  Our approach is straightforward: understand your product target, recommend profiles that fit your process, and move quickly from first submission to production-ready flavor.
+                  Customers rely on us for clear communication, practical recommendations, and flavor systems tuned for real applications—whether the need is indulgent, functional, or highly specific.
                 </p>
+
                 <div className="showcase-pills" style={{ marginTop: 16 }}>
                   {[
-                    "40+ years of combined experience",
-                    "Customer-first development support",
-                    "Low minimum order quantities",
-                    "Liquid and powder capabilities",
-                  ].map((item) => <span key={item} className="soft-pill">{item}</span>)}
+                    "40+ years of combined industry experience",
+                    "Thousands of available flavor profiles",
+                    "Customization for target taste and process",
+                    "Fast, responsive development support",
+                  ].map((item) => (
+                    <span key={item} className="soft-pill">
+                      {item}
+                    </span>
+                  ))}
                 </div>
+                <Button href="/request-samples" className="mt-24">
+                  Request Samples
+                </Button>
               </div>
               <div className="sample-right">
-                <img src="/images/flavor-factory/application-bakery.jpg" alt="Flavor lab team and ingredients" />
+                <img src="/images/flavor-factory/ChatGPT Image Apr 23, 2026, 11_07_25 AM.png" alt="Premium ingredient and formulation setup" />
                 <div className="sample-overlay" />
               </div>
             </div>
