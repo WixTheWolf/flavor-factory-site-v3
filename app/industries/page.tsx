@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { industries } from "@/data/industries";
+import { siteImages } from "@/data/site-images";
 
 export default function IndustriesPage() {
   return (
@@ -10,7 +11,7 @@ export default function IndustriesPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
             <div className="editorial-hero">
-              <img src="/images/flavor-factory/industry-beverage-hero.jpg" alt="Ingredient and lab atmosphere" />
+              <img src={siteImages.industriesHero} alt="Ingredient and lab atmosphere" />
               <div className="editorial-overlay" />
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>Industries</div>

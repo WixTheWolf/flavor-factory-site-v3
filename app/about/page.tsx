@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { siteImages } from "@/data/site-images";
 import { Button } from "@/components/ui/Button";
 
 export default function AboutPage() {
@@ -37,7 +38,7 @@ export default function AboutPage() {
                 </Button>
               </div>
               <div className="sample-right">
-                <img src="/images/flavor-factory/ChatGPT Image Apr 23, 2026, 11_07_25 AM.png" alt="Premium ingredient and formulation setup" />
+                <img src={siteImages.aboutHero} alt="Premium ingredient and formulation setup" />
                 <div className="sample-overlay" />
               </div>
             </div>

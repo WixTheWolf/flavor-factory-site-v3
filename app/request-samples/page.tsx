@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SampleRequestForm } from "@/components/sample-request-form";
+import { siteImages } from "@/data/site-images";
 
 export default function RequestSamplesPage() {
   return (
@@ -21,7 +22,7 @@ export default function RequestSamplesPage() {
                 <SampleRequestForm />
               </div>
               <div className="sample-right">
-                <img src="/images/flavor-factory/ChatGPT Image Apr 23, 2026, 11_07_24 AM.png" alt="Premium flavor sample preparation visuals" />
+                <img src={siteImages.requestSamplesHero} alt="Premium flavor sample preparation visuals" />
                 <div className="sample-overlay" />
               </div>
             </div>

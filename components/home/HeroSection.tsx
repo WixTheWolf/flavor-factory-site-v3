@@ -1,4 +1,5 @@
 import { siteCopy } from "@/data/site-copy";
+import { siteImages } from "@/data/site-images";
 import { Button } from "@/components/ui/Button";
 
 export function HeroSection() {
@@ -21,8 +22,17 @@ export function HeroSection() {
         </div>
 
         <div className="hero-media">
-          <img src="/images/flavor-factory/hero-main.jpg" alt="Premium ingredient and flavor lab visuals" />
-          <div className="hero-media-badge">Built for Bakery • Confectionery • Nutraceutical • Oral Care • Pharmaceutical</div>
+          <img src={siteImages.homeHero} alt="Glossy flavor ingredients and formulation lab tools" />
+          <div className="floating-tags">
+            <div className="floating-tag light">Liquid & Powder</div>
+            <div className="floating-tag brand">Low MOQ</div>
+            <div className="floating-tag light">Fast Lead Times</div>
+          </div>
+          <div className="hero-bottom-cards">
+            <div className="glass-card">Bakery • Confectionery • Dairy</div>
+            <div className="glass-card">Nutraceutical • Oral Care • Pharma</div>
+            <div className="glass-card">Popcorn • Syrup • Custom Programs</div>
+          </div>
         </div>
       </div>
     </section>

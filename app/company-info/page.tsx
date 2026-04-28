@@ -1,6 +1,26 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteCopy } from "@/data/site-copy";
+import { siteImages } from "@/data/site-images";
+
+const processSteps = [
+  {
+    title: "1) Scope",
+    copy: "Share your target profile, application, format, and timeline.",
+  },
+  {
+    title: "2) Sample",
+    copy: "We propose profile options and submit practical starting points quickly.",
+  },
+  {
+    title: "3) Refine",
+    copy: "Feedback cycles focus on sensory fit, processing performance, and cost reality.",
+  },
+  {
+    title: "4) Produce",
+    copy: "Approved profiles transition to reliable production support.",
+  },
+];
 
 const processSteps = [
   {
@@ -63,7 +83,7 @@ export default function CompanyInfoPage() {
                   </p>
                 </div>
                 <div className="sample-right">
-                  <img src="/images/flavor-factory/ChatGPT Image Apr 23, 2026, 11_07_21 AM.png" alt="Quality-focused flavor production setup" />
+                  <img src={siteImages.companyInfoHero} alt="Quality-focused flavor production setup" />
                   <div className="sample-overlay" />
                 </div>
               </div>
