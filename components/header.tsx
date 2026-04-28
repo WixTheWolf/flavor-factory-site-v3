@@ -18,7 +18,7 @@ export function Header() {
 
         <nav className="nav" aria-label="Primary">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href}>{link.label}</a>
+            <Link key={link.href} href={link.href}>{link.label}</Link>
           ))}
         </nav>
 
@@ -26,18 +26,18 @@ export function Header() {
           <button className="mobile-toggle" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <a href="/contact" className="cta-btn">Start a Project</a>
+          <Link href="/contact" className="cta-btn">Request Samples</Link>
         </div>
       </div>
 
       <div className={`mobile-panel ${mobileOpen ? "open" : ""}`}>
         <div className="container mobile-links">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>{link.label}</a>
+            <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>{link.label}</Link>
           ))}
-          <a href="/contact" className="cta-btn" onClick={() => setMobileOpen(false)} style={{ marginTop: 16, width: "fit-content" }}>
-            Start a Project
-          </a>
+          <Link href="/contact" className="cta-btn" onClick={() => setMobileOpen(false)} style={{ marginTop: 16, width: "fit-content" }}>
+            Request Samples
+          </Link>
         </div>
       </div>
     </header>
