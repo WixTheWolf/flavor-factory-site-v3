@@ -383,3 +383,36 @@ button, input, textarea, select { font: inherit; }
 @media (max-width: 640px) {
   .flavor-grid-tight { grid-template-columns: 1fr; }
 }
+
+.finder-toolbar {
+  position: sticky;
+  top: 96px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.active-chip { border-color: #111 !important; }
+
+@media (max-width: 1080px) {
+  .nav { display: none; }
+  .mobile-toggle { display: inline-flex; border: 1px solid var(--border); background: white; border-radius: 10px; padding: 8px; }
+  .mobile-panel.open { display: block; border-top: 1px solid var(--border); background: white; }
+  .mobile-links { display: grid; gap: 12px; padding: 14px 0 18px; }
+  .hero-grid, .sample-grid { grid-template-columns: 1fr; }
+  .path-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .finder-toolbar { position: static; grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .container { width: min(1600px, calc(100% - 28px)); }
+  .path-grid, .strength-grid { grid-template-columns: 1fr !important; }
+  .cta-btn { padding: 12px 18px; }
+}

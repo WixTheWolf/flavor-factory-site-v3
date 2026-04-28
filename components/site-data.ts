@@ -1,70 +1,114 @@
-import type { LucideIcon } from "lucide-react";
-import { Beaker, Clock3, Handshake, Layers, Sparkles, Truck } from "lucide-react";
+export type IndustrySlug =
+  | "bakery"
+  | "confectionery"
+  | "dairy"
+  | "nutraceutical"
+  | "oral-care"
+  | "pharmaceutical"
+  | "popcorn"
+  | "syrup";
 
-export type IndustryCard = {
+export type Industry = {
+  slug: IndustrySlug;
   name: string;
-  slug: string;
+  tagline: string;
   summary: string;
-};
-
-export type ValueCard = {
-  title: string;
-  text: string;
-  icon: LucideIcon;
+  heroImage: string;
+  applications: string[];
+  strengths: string[];
 };
 
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
+  { label: "Company Info", href: "/company-info" },
   { label: "Industries", href: "/industries" },
   { label: "Flavors", href: "/flavors" },
-  { label: "Quality", href: "/quality" },
+  { label: "Certifications", href: "/certifications" },
   { label: "Contact", href: "/contact" },
+  { label: "Request Samples", href: "/request-samples" },
 ];
 
-export const proofItems = [
-  "Low Minimum Orders",
-  "3–5 Business Day Lead Times",
-  "Thousands of Flavors",
-  "40+ Years Experience",
+export const trustPoints = [
+  "Custom liquid & powder flavor solutions",
+  "Low minimum order quantities",
+  "Fast sample and production turnaround",
+  "Family-owned Southern California service",
 ];
 
-export const industries: IndustryCard[] = [
-  { name: "Bakery", slug: "bakery", summary: "Flavor systems for baked goods, fillings, icings, and mixes." },
-  { name: "Confectionery", slug: "confectionery", summary: "Practical flavor support for candy, chews, and chocolate products." },
-  { name: "Dairy", slug: "dairy", summary: "Profiles for milk-based drinks, cultured products, and dessert applications." },
-  { name: "Nutraceutical", slug: "nutraceutical", summary: "Taste solutions for powders, sticks, functional drinks, and chewables." },
-  { name: "Oral Care", slug: "oral-care", summary: "Clean mint and freshness profiles for oral care products." },
-  { name: "Pharmaceutical", slug: "pharmaceutical", summary: "Consistent liquid and powder flavor options for regulated categories." },
-  { name: "Popcorn", slug: "popcorn", summary: "Savory and sweet flavor directions for popcorn and snack formats." },
-  { name: "Syrup", slug: "syrup", summary: "Built for beverage syrups, toppings, and concentrated systems." },
-  { name: "Food & Beverage", slug: "food-beverage", summary: "Custom flavors for beverage programs and food product lines." },
-  { name: "Personal Care", slug: "personal-care", summary: "Flavor and sensory profiles for personal care formulations." },
-  { name: "Animal Food", slug: "animal-food", summary: "Palatability-focused solutions for companion and production animal feed." },
+export const industries: Industry[] = [
+  {
+    slug: "bakery",
+    name: "Bakery",
+    tagline: "Flavor systems for baked goods that stay expressive through process and shelf life.",
+    summary: "Built for cakes, fillings, icings, mixes, and premium baked concepts.",
+    heroImage: "/images/flavor-factory/industry-bakery-hero.jpg",
+    applications: ["Cake and muffin mixes", "Icings and fillings", "Cookies and bars", "Frozen bakery"],
+    strengths: ["Heat-stable systems", "Sweet brown notes", "Clean label direction"],
+  },
+  {
+    slug: "confectionery",
+    name: "Confectionery",
+    tagline: "High-impact sweetness and top-note clarity for candy, chews, and chocolate systems.",
+    summary: "Fruit, mint, and indulgent profiles for confectionery manufacturing.",
+    heroImage: "/images/flavor-factory/industry-confectionery-hero.jpg",
+    applications: ["Hard candy", "Chews", "Chocolate centers", "Gummies"],
+    strengths: ["Oil/water soluble options", "Masking support", "High intensity profiles"],
+  },
+  {
+    slug: "dairy",
+    name: "Dairy",
+    tagline: "Cream-forward and fruit-forward dairy profiles with balanced finish.",
+    summary: "Flavors for cultured dairy, ice cream, shakes, and dairy-based beverages.",
+    heroImage: "/images/flavor-factory/application-dairy.jpg",
+    applications: ["Yogurt", "Frozen desserts", "Flavored milk", "Creamers"],
+    strengths: ["Cream compatibility", "Acid stability support", "Mouthfeel aligned profiles"],
+  },
+  {
+    slug: "nutraceutical",
+    name: "Nutraceutical",
+    tagline: "Practical flavor architecture for active formulas and functional delivery formats.",
+    summary: "Taste-forward support for powders, gummies, shots, and stick packs.",
+    heroImage: "/images/flavor-factory/industry-nutraceutical-hero.jpg",
+    applications: ["Drink mixes", "Chewables", "Shots", "Stick packs"],
+    strengths: ["Bitterness masking", "Fast prototyping", "Powder and liquid options"],
+  },
+  {
+    slug: "oral-care",
+    name: "Oral Care",
+    tagline: "Freshness and cooling systems built for repeat daily use.",
+    summary: "Flavor profiles for toothpaste, mouthwash, breath strips, and oral solutions.",
+    heroImage: "/images/flavor-factory/industry-oral-care-hero.jpg",
+    applications: ["Mouthwash", "Toothpaste", "Breath strips", "Whitening support"],
+    strengths: ["Mint modulation", "Long finish control", "Clean cooling profile"],
+  },
+  {
+    slug: "pharmaceutical",
+    name: "Pharmaceutical",
+    tagline: "Consistent flavor support for regulated liquid and powder delivery systems.",
+    summary: "Reliable profiles for syrups, suspensions, sachets, and chewables.",
+    heroImage: "/images/flavor-factory/industry-pharmaceutical-hero.jpg",
+    applications: ["Liquid syrups", "Suspensions", "Powder sachets", "Chewables"],
+    strengths: ["Batch consistency", "Documentation-ready approach", "Taste optimization support"],
+  },
+  {
+    slug: "popcorn",
+    name: "Popcorn",
+    tagline: "Savory and sweet signature notes engineered for coatings and seasonings.",
+    summary: "Profiles for kettle, caramel, cheese, and custom popcorn programs.",
+    heroImage: "/images/flavor-factory/application-popcorn.jpg",
+    applications: ["Kettle corn", "Caramel corn", "Savory seasoning", "Premium snack blends"],
+    strengths: ["Dry blend friendly", "Coating performance", "Bold top notes"],
+  },
+  {
+    slug: "syrup",
+    name: "Syrup",
+    tagline: "High-character flavor systems for beverage syrups and toppings.",
+    summary: "Fruit, dessert, and indulgent profiles designed for concentrated systems.",
+    heroImage: "/images/flavor-factory/path-food-beverage.jpg",
+    applications: ["Beverage syrups", "Dessert toppings", "Coffee syrups", "Concentrates"],
+    strengths: ["Concentrate performance", "Layered flavor curves", "Low-dose impact"],
+  },
 ];
 
-export const whyCards: ValueCard[] = [
-  { title: "Low Minimum Orders", text: "Flexible order sizes for early and growing product lines.", icon: Beaker },
-  { title: "Fast Delivery", text: "Typical lead times are 3–5 business days for standard orders.", icon: Clock3 },
-  { title: "Customer Satisfaction", text: "Our mission is bringing customer service back to the flavor industry.", icon: Handshake },
-  { title: "Custom Flavor Development", text: "Our development team creates flavors around your formula and process.", icon: Sparkles },
-  { title: "Flavor Matching", text: "We match current flavors with a focus on quality and cost savings.", icon: Layers },
-  { title: "Liquid & Powder Capabilities", text: "We support production-ready liquid and powder systems.", icon: Truck },
-];
-
-export const flavorFamilies = [
-  { name: "Vanilla", family: "Extract", tags: ["French Vanilla", "Vanilla Bean", "Cream Vanilla"] },
-  { name: "Chocolate", family: "Concentrate", tags: ["Milk Chocolate", "Dark Cocoa", "Fudge"] },
-  { name: "Strawberry", family: "Emulsion", tags: ["Fresh Strawberry", "Ripe Berry", "Strawberry Cream"] },
-  { name: "Lemon", family: "Oil", tags: ["Lemon Zest", "Lemonade", "Citrus Punch"] },
-  { name: "Orange", family: "Emulsion", tags: ["Orange Cream", "Citrus Blend", "Blood Orange"] },
-  { name: "Mint", family: "Oil", tags: ["Peppermint", "Spearmint", "Cooling Mint"] },
-  { name: "Caramel", family: "Concentrate", tags: ["Salted Caramel", "Burnt Sugar", "Toffee"] },
-  { name: "Coffee", family: "Extract", tags: ["Roasted Coffee", "Mocha", "Espresso"] },
-  { name: "Apple", family: "Powder", tags: ["Green Apple", "Apple Pie", "Baked Apple"] },
-  { name: "Watermelon", family: "Powder", tags: ["Watermelon Candy", "Juicy Melon", "Watermelon Lime"] },
-  { name: "Cinnamon", family: "Extract", tags: ["Sweet Cinnamon", "Red Hot", "Cinnamon Roll"] },
-  { name: "Grape", family: "Concentrate", tags: ["Concord Grape", "Grape Candy", "Mixed Berry Grape"] },
-] as const;
-
-export const qualityBadges = ["GMP", "ISO 22000", "Halal", "Kosher", "FDA Registered"];
+export const certificationItems = ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility"];

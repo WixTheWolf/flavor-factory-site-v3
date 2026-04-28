@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { navLinks } from "./site-data";
 
@@ -11,7 +12,7 @@ export function Footer() {
             <div className="large">FlavorFactory</div>
           </div>
           <p className="footer-copy">
-            Family-owned custom manufacturer of high quality liquid and powder flavor solutions.
+            Custom manufacturer of high quality liquid and powder flavor solutions for modern product teams.
           </p>
         </div>
 
@@ -19,7 +20,7 @@ export function Footer() {
           <div className="eyebrow">Explore</div>
           <div className="footer-links">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href}>{link.label}</a>
+              <Link key={link.href} href={link.href}>{link.label}</Link>
             ))}
           </div>
         </div>
@@ -32,16 +33,8 @@ export function Footer() {
             <div><Mail size={16} style={{ flexShrink: 0 }} /> <span>samples@flavorfactory.net</span></div>
           </div>
         </div>
-
-        <div>
-          <div className="eyebrow">Need samples?</div>
-          <p className="footer-copy" style={{ maxWidth: 320 }}>
-            Tell us your application and target profile. We can send library samples or build a custom match.
-          </p>
-          <a href="/contact" className="dark-btn">Request Samples</a>
-        </div>
       </div>
-      <div className="copyright">© 2026 The Flavor Factory. All rights reserved.</div>
+      <div className="copyright">© 2026 The Flavor Factory, Inc.</div>
     </footer>
   );
 }

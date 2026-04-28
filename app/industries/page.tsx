@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { industries } from "@/components/site-data";
-import { SectionEyebrow, SectionHeading } from "@/components/ui";
 
 export default function IndustriesPage() {
   return (
@@ -10,23 +10,21 @@ export default function IndustriesPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
-            <SectionEyebrow>Industries</SectionEyebrow>
-            <SectionHeading>Practical flavor support across industries.</SectionHeading>
-            <p className="section-subtext" style={{ marginTop: 16, maxWidth: 880 }}>
-              We serve food & beverage, confectionery, nutraceutical, oral care, personal care, bakery,
-              popcorn, animal food, and more.
-            </p>
-          </div>
-        </section>
-
-        <section className="section" style={{ paddingTop: 8, paddingBottom: 80 }}>
-          <div className="container strength-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
-            {industries.map((industry) => (
-              <article key={industry.slug} className="strength-card">
-                <h3 style={{ fontSize: "1.2rem" }}>{industry.name}</h3>
-                <p>{industry.summary}</p>
-              </article>
-            ))}
+            <div className="eyebrow">Industries We Serve</div>
+            <h1 className="section-title">Category expertise from bakery through pharma.</h1>
+            <p className="section-subtext" style={{ marginTop: 16 }}>From sensory-led innovation to production-ready execution, we support flavor work across high-volume and specialty categories.</p>
+            <div className="path-grid" style={{ marginTop: 30 }}>
+              {industries.map((item) => (
+                <Link key={item.slug} href={`/industries/${item.slug}`} className="path-card">
+                  <img src={item.heroImage} alt={item.name} />
+                  <div className="path-overlay" />
+                  <div className="path-content">
+                    <h3>{item.name}</h3>
+                    <p>{item.tagline}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>
