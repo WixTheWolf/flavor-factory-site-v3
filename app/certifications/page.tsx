@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteCopy } from "@/data/site-copy";
+import { siteImages } from "@/data/site-images";
+import { AppImage } from "@/components/ui/AppImage";
 
 export default function CertificationsPage() {
   return (
@@ -9,6 +11,10 @@ export default function CertificationsPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container quality">
+            <div className="editorial-hero" style={{ marginBottom: 22 }}>
+              <AppImage src={siteImages.certificationsHero} alt="Quality and compliance lab documentation setup" style={{ objectPosition: "center 42%" }} />
+              <div className="editorial-overlay" />
+            </div>
             <div className="eyebrow" style={{ color: "#f59e0b" }}>
               Certifications
             </div>

@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { siteCopy } from "@/data/site-copy";
 import { siteImages } from "@/data/site-images";
+import { AppImage } from "@/components/ui/AppImage";
 
 const processSteps = [
   {
@@ -22,24 +22,12 @@ const processSteps = [
   },
 ];
 
-const processSteps = [
-  {
-    title: "1) Scope",
-    copy: "Share your target profile, application, format, and timeline.",
-  },
-  {
-    title: "2) Sample",
-    copy: "We propose profile options and submit practical starting points quickly.",
-  },
-  {
-    title: "3) Refine",
-    copy: "Feedback cycles focus on sensory fit, processing performance, and cost reality.",
-  },
-  {
-    title: "4) Produce",
-    copy: "Approved profiles transition to reliable production support.",
-  },
-];
+const differentiators = [
+  "Custom, proprietary, and exclusive flavor development",
+  "Liquid and powder capabilities aligned to commercial production",
+  "Responsive sample workflow with practical iteration support",
+  "Programs across bakery, confectionery, dairy, nutraceutical, oral care, pharmaceutical, popcorn, and syrup",
+] as const;
 
 export default function CompanyInfoPage() {
   return (
@@ -55,7 +43,7 @@ export default function CompanyInfoPage() {
             </p>
 
             <div className="strength-grid two-col" style={{ marginTop: 22 }}>
-              {siteCopy.companyInfoBullets.map((item) => (
+              {differentiators.map((item) => (
                 <article key={item} className="strength-card" style={{ minHeight: 150 }}>
                   <h3 style={{ margin: 0, fontSize: "1.2rem" }}>{item}</h3>
                 </article>
@@ -83,7 +71,7 @@ export default function CompanyInfoPage() {
                   </p>
                 </div>
                 <div className="sample-right">
-                  <img src={siteImages.companyInfoHero} alt="Quality-focused flavor production setup" />
+                  <AppImage src={siteImages.companyInfoHero} alt="Quality-focused flavor production setup" style={{ objectPosition: "center 40%" }} />
                   <div className="sample-overlay" />
                 </div>
               </div>

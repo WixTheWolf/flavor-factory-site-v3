@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
 import { Button } from "@/components/ui/Button";
+import { AppImage } from "@/components/ui/AppImage";
 
 export default function AboutPage() {
   return (
@@ -38,7 +39,7 @@ export default function AboutPage() {
                 </Button>
               </div>
               <div className="sample-right">
-                <img src={siteImages.aboutHero} alt="Premium ingredient and formulation setup" />
+                <AppImage src={siteImages.aboutHero} alt="Premium ingredient and formulation setup" style={{ objectPosition: "center 35%" }} />
                 <div className="sample-overlay" />
               </div>
             </div>

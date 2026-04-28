@@ -1,6 +1,7 @@
 import { siteCopy } from "@/data/site-copy";
 import { siteImages } from "@/data/site-images";
 import { Button } from "@/components/ui/Button";
+import { AppImage } from "@/components/ui/AppImage";
 
 export function TrustSection() {
   return (
@@ -19,7 +20,7 @@ export function TrustSection() {
             <Button href="/request-samples" className="mt-24" >Request Samples</Button>
           </div>
           <div className="sample-right">
-            <img src={siteImages.homeCta} alt="ingredients macro" />
+            <AppImage src={siteImages.homeCta} alt="ingredients macro" style={{ objectPosition: "center 45%" }} />
             <div className="sample-overlay" />
           </div>
         </div>

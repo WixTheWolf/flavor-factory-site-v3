@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SampleRequestForm } from "@/components/sample-request-form";
 import { siteImages } from "@/data/site-images";
+import { AppImage } from "@/components/ui/AppImage";
 
 export default function RequestSamplesPage() {
   return (
@@ -22,7 +23,7 @@ export default function RequestSamplesPage() {
                 <SampleRequestForm />
               </div>
               <div className="sample-right">
-                <img src={siteImages.requestSamplesHero} alt="Premium flavor sample preparation visuals" />
+                <AppImage src={siteImages.requestSamplesHero} alt="Premium flavor sample preparation visuals" style={{ objectPosition: "center 35%" }} />
                 <div className="sample-overlay" />
               </div>
             </div>

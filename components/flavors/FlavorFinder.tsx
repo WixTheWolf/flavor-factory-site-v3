@@ -10,7 +10,20 @@ import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { Button } from "@/components/ui/Button";
 import { recommendedByIndustry } from "@/lib/recommendations";
 
-const quickIndustry: IndustryKey[] = ["bakery", "oral-care", "nutraceutical", "dairy", "syrup", "popcorn"];
+const shortcutIndustries: IndustryKey[] = ["bakery", "oral-care", "nutraceutical", "dairy", "syrup", "popcorn"];
+
+const formatComparison = {
+  Liquid: "Best for syrups, beverages, dairy systems, and applications needing rapid incorporation.",
+  Powder: "Best for dry blends, nutraceutical formats, and shelf-stable systems.",
+};
+
+const quickFilters = ["Liquid Explorer", "Powder Explorer"] as const;
+const flavorHighlights = ["Grouped variants", "Industry recommendations", "Technical traceability"] as const;
+const storyPoints = ["Search by clean name or raw alias", "Filter by format and declaration", "Request samples from shortlisted matches"] as const;
+
+function industryLabel(value: IndustryKey) {
+  return value.replace("-", " ");
+}
 
 const formatGuidance = {
   Liquid: "Best for syrups, beverages, dairy systems, and applications needing rapid incorporation.",
@@ -59,16 +72,25 @@ export function FlavorFinder() {
         />
 
         <div className="showcase-pills" style={{ marginTop: 14 }}>
-          <button className={`soft-pill ${filters.format === "Liquid" ? "active-chip" : ""}`} onClick={() => setFilters((p) => ({ ...p, format: "Liquid" }))}>
-            Liquid Explorer
-          </button>
-          <button className={`soft-pill ${filters.format === "Powder" ? "active-chip" : ""}`} onClick={() => setFilters((p) => ({ ...p, format: "Powder" }))}>
-            Powder Explorer
-          </button>
-          {quickIndustry.map((item) => (
+          {quickFilters.map((item) => (
+            <button
+              key={item}
+              className={`soft-pill ${(item === "Liquid Explorer" ? filters.format === "Liquid" : filters.format === "Powder") ? "active-chip" : ""}`}
+              onClick={() => setFilters((p) => ({ ...p, format: item === "Liquid Explorer" ? "Liquid" : "Powder" }))}
+            >
+              {item}
+            </button>
+          ))}
+          {shortcutIndustries.map((item) => (
             <button key={item} className={`soft-pill ${filters.industry === item ? "active-chip" : ""}`} onClick={() => setFilters((prev) => ({ ...prev, industry: item }))}>
               {industryLabel(item)}
             </button>
+          ))}
+        </div>
+
+        <div className="showcase-pills" style={{ marginTop: 10 }}>
+          {flavorHighlights.map((item) => (
+            <span key={item} className="soft-pill">{item}</span>
           ))}
         </div>
 
@@ -87,13 +109,18 @@ export function FlavorFinder() {
         <div className="guidance-grid">
           <article className="guidance-card">
             <h3>Liquid guidance</h3>
-            <p>{formatGuidance.Liquid}</p>
+            <p>{formatComparison.Liquid}</p>
           </article>
           <article className="guidance-card">
             <h3>Powder guidance</h3>
-            <p>{formatGuidance.Powder}</p>
+            <p>{formatComparison.Powder}</p>
           </article>
         </div>
+        <ul style={{ margin: "10px 0 0", opacity: 0.78, paddingLeft: 20 }}>
+          {storyPoints.map((point) => (
+            <li key={point}>{point}</li>
+          ))}
+        </ul>
       </div>
 
       {recommended.length > 0 && (
