@@ -11,11 +11,7 @@ export default function ContactPage() {
     company: "",
     email: "",
     phone: "",
-    industry: "",
-    format: "",
-    flavor: "",
-    application: "",
-    timeline: "",
+    product: "",
     message: "",
   });
 
@@ -25,38 +21,33 @@ export default function ContactPage() {
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48 }}>
+        <section className="section" style={{ paddingTop: 48, paddingBottom: 80 }}>
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
                 <SectionEyebrow>Contact / Request Samples</SectionEyebrow>
-                <SectionHeading>Start your flavor project.</SectionHeading>
-                <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  Tell us your market, format, and target flavor. We will follow up with recommended sample directions.
+                <SectionHeading>Request flavor samples for your product.</SectionHeading>
+                <p className="section-subtext" style={{ marginTop: 16 }}>
+                  Tell us what you are developing and our team will guide the next step.
                 </p>
                 <div className="form-grid">
-                  <input value={form.name} onChange={(e) => update("name", e.target.value)} aria-label="Name" className="input" />
-                  <input value={form.company} onChange={(e) => update("company", e.target.value)} aria-label="Company" className="input" />
-                  <input value={form.email} onChange={(e) => update("email", e.target.value)} aria-label="Email" className="input" />
-                  <input value={form.phone} onChange={(e) => update("phone", e.target.value)} aria-label="Phone" className="input" />
-                  <input value={form.industry} onChange={(e) => update("industry", e.target.value)} aria-label="Market" className="input" />
-                  <input value={form.format} onChange={(e) => update("format", e.target.value)} aria-label="Liquid or powder" className="input" />
-                  <input value={form.flavor} onChange={(e) => update("flavor", e.target.value)} aria-label="Target flavor" className="input" />
-                  <input value={form.application} onChange={(e) => update("application", e.target.value)} aria-label="Product format" className="input" />
-                  <input value={form.timeline} onChange={(e) => update("timeline", e.target.value)} aria-label="Timeline" className="input" />
-                  <textarea value={form.message} onChange={(e) => update("message", e.target.value)} aria-label="Project notes" className="textarea" />
+                  <input value={form.name} onChange={(e) => update("name", e.target.value)} aria-label="Name" className="input" placeholder="Name" />
+                  <input value={form.company} onChange={(e) => update("company", e.target.value)} aria-label="Company" className="input" placeholder="Company" />
+                  <input value={form.email} onChange={(e) => update("email", e.target.value)} aria-label="Email" className="input" placeholder="Email" />
+                  <input value={form.phone} onChange={(e) => update("phone", e.target.value)} aria-label="Phone" className="input" placeholder="Phone" />
+                  <input value={form.product} onChange={(e) => update("product", e.target.value)} aria-label="Product type" className="input" placeholder="Product type" />
+                  <textarea value={form.message} onChange={(e) => update("message", e.target.value)} aria-label="Message" className="textarea" placeholder="Project notes" />
                 </div>
                 <div className="sample-utility">
                   <button className="cta-btn">Submit Request</button>
-                  <div style={{ fontSize: 14, color: "rgba(17,17,17,.5)" }}>Fast response from a real team.</div>
                 </div>
               </div>
               <div className="sample-right">
-                <img src="/images/flavor-factory/cta-background.jpg" alt="Flavor project planning background" />
-                <div className="sample-overlay" />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, #1f2937 0%, #111827 100%)" }} />
                 <div className="bottom-copy">
-                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Reach out</div>
-                  <h3>Custom flavors. Low minimums. Real manufacturing support.</h3>
+                  <h3>samples@flavorfactory.net</h3>
+                  <p>2058 Second Street, Norco, CA 92860</p>
+                  <p>(951) 273-9877</p>
                 </div>
               </div>
             </div>

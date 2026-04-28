@@ -1,356 +1,120 @@
-"use client";
-
-import { ArrowRight, ChevronRight, Search } from "lucide-react";
-import { useMemo, useState } from "react";
+import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import {
-  applications,
-  applicationOptions,
-  flavorTiles,
-  formatOptions,
-  goalOptions,
-  pathways,
-  qualityBadges,
-  strengths,
-} from "@/components/site-data";
+import { industries, proofItems, whyCards } from "@/components/site-data";
 import { SectionEyebrow, SectionHeading } from "@/components/ui";
 
 export default function HomePage() {
-  const [selectedFormat, setSelectedFormat] = useState("Liquid");
-  const [selectedGoal, setSelectedGoal] = useState("Top Notes");
-  const [selectedApplication, setSelectedApplication] = useState("RTD Beverages");
-  const [sampleForm, setSampleForm] = useState({
-    industry: "",
-    format: "",
-    flavor: "",
-    application: "",
-    timeline: "",
-    message: "",
-  });
-
-  const finderResult = useMemo(() => {
-    const lines: Record<string, Record<string, string>> = {
-      Liquid: {
-        "Top Notes": "Bright liquid flavor systems that open quickly and stay clean through shelf life.",
-        "Sweetness Support": "Rounded flavor support to improve sweetness perception without a heavy finish.",
-        Cooling: "Cooling systems for mint and freshness-focused products, including oral care and confectionery.",
-        Masking: "Practical masking options for challenging actives and off-notes in liquid formats.",
-        "Creamy Body": "Fuller mouthfeel support for dairy-style beverages, sauces, and dessert profiles.",
-        "Fruit Profiles": "Fruit-forward systems with clear top notes and stable character.",
-      },
-      Powder: {
-        "Top Notes": "Powder systems tuned for dry blending, so aroma remains present in finished products.",
-        "Sweetness Support": "Dry-format flavor balancing to smooth edges and improve finish.",
-        Cooling: "Powder cooling systems for mints, chewables, and dry functional products.",
-        Masking: "Targeted masking support for nutraceutical and pharmaceutical powder formats.",
-        "Creamy Body": "Creamy profile support for shake bases, bakery mixes, and powdered nutrition.",
-        "Fruit Profiles": "Impactful fruit profiles for stick packs, powders, and functional blends.",
-      },
-    };
-
-    return {
-      title: `${selectedFormat} + ${selectedApplication}`,
-      body: lines[selectedFormat][selectedGoal],
-      next: `Recommended next step: request a ${selectedFormat.toLowerCase()} sample for ${selectedApplication.toLowerCase()}.`,
-    };
-  }, [selectedApplication, selectedFormat, selectedGoal]);
-
-  const updateField = (key: keyof typeof sampleForm, value: string) => {
-    setSampleForm((prev) => ({ ...prev, [key]: value }));
-  };
-
   return (
     <>
       <Header />
       <main>
         <section className="hero">
-          <div className="container hero-grid">
-            <div>
-              <div className="hero-kicker">
-                <span className="hero-dot" /> Family-Owned Flavor Manufacturing • Norco, California
-              </div>
-              <h1 className="hero-title">
-                Custom flavors for products that need to launch <span className="accent serif">on schedule.</span>
-              </h1>
-              <p className="hero-text">
-                The Flavor Factory develops liquid and powder flavors for brands and manufacturers. We support fast sample cycles,
-                low minimums, and production-ready quality.
-              </p>
-              <div className="hero-actions">
-                <a href="/contact" className="dark-btn">Request Samples</a>
-                <a href="/industries" className="light-btn">View Markets</a>
-              </div>
-              <div className="stat-grid">
-                {[
-                  { value: "3-5", label: "business days for samples" },
-                  { value: "Low", label: "minimum order options" },
-                  { value: "2", label: "formats: liquid + powder" },
-                  { value: "100%", label: "family-owned operation" },
-                ].map((item) => (
-                  <div key={item.label} className="stat-card">
-                    <div className="stat-value">{item.value}</div>
-                    <div className="stat-label">{item.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="hero-media">
-              <img src="/images/flavor-factory/hero-main.jpg" alt="Flavor development and manufacturing workspace" />
-              <div className="floating-tags">
-                {["citrus systems", "vanilla profiles", "cooling mint", "berry blends", "caramel depth", "masking support"].map((item, i) => (
-                  <div key={item} className={`floating-tag ${i % 2 === 0 ? "light" : "brand"}`}>{item}</div>
-                ))}
-              </div>
-              <div className="hero-bottom-cards">
-                {["Fast sample turnaround", "Liquid and powder capabilities", "Direct communication"].map((item) => (
-                  <div key={item} className="glass-card">{item}</div>
-                ))}
-              </div>
+          <div className="container" style={{ padding: "56px 0 40px" }}>
+            <SectionEyebrow>Family-Owned Flavor Manufacturer • Southern California</SectionEyebrow>
+            <h1 className="hero-title" style={{ maxWidth: 960, marginTop: 20 }}>
+              High Quality Liquid & Powder Flavor Solutions
+            </h1>
+            <p className="hero-text" style={{ maxWidth: 900 }}>
+              The Flavor Factory is a family-owned custom manufacturer serving food, beverage, bakery, confectionery,
+              nutraceutical, oral care, pharmaceutical, popcorn, syrup, and more.
+            </p>
+            <div className="hero-actions">
+              <Link href="/contact" className="cta-btn">Request Samples</Link>
+              <Link href="/industries" className="light-btn">View Industries</Link>
             </div>
           </div>
         </section>
 
         <section className="section" style={{ paddingTop: 20 }}>
-          <div className="container banner-grid">
-            {[
-              ["Family-Owned Team", "Work directly with people who manage flavor development and production every day."],
-              ["Custom Flavor Matching", "Share your target profile and we will build toward your product goals."],
-              ["Low Minimums", "Start with practical order sizes while you validate your formula and market."],
-              ["Production Focus", "From sample to scale, we plan for dependable manufacturing performance."],
-            ].map(([title, text]) => (
-              <div key={title} className="banner-card">
-                <h3>{title}</h3>
-                <p>{text}</p>
+          <div className="container banner-grid" style={{ gridTemplateColumns: "repeat(4, minmax(0,1fr))" }}>
+            {proofItems.map((item) => (
+              <div key={item} className="banner-card">
+                <h3 style={{ fontSize: "1.05rem" }}>{item}</h3>
               </div>
             ))}
           </div>
         </section>
 
-        <section id="pathways" className="section">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <SectionEyebrow>Markets</SectionEyebrow>
-                <SectionHeading>Industries we support every week.</SectionHeading>
-              </div>
-              <p className="section-subtext">Select your market to review priorities, common product lines, and how we support development.</p>
-            </div>
-
-            <div className="path-grid">
-              {pathways.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <a key={item.title} href={item.href} className="path-card">
-                    <img src={item.image} alt={item.title} />
-                    <div className="path-overlay" />
-                    <div className="path-tag"><Icon size={14} /> {item.tag}</div>
-                    <div className="path-content">
-                      <h3>{item.title}</h3>
-                      <p>{item.subtitle}</p>
-                      <div className="mini-link">View Market <ChevronRight size={14} /></div>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="finder" className="section">
-          <div className="container finder">
-            <div className="finder-grid">
-              <div>
-                <SectionEyebrow>Flavor Finder</SectionEyebrow>
-                <h2 className="section-title" style={{ color: "white", marginTop: 16 }}>Find a starting direction in seconds.</h2>
-                <p className="section-subtext" style={{ color: "rgba(255,255,255,.75)", marginTop: 20 }}>
-                  Choose your format, technical goal, and application format. We will show a practical starting point for samples.
-                </p>
-                <div className="finder-card" style={{ marginTop: 24 }}>
-                  <div className="filter-group-title" style={{ display: "flex", alignItems: "center", gap: 8 }}><Search size={14} /> Quick setup</div>
-                  <div style={{ fontSize: "1.2rem", fontWeight: 700 }}>Set your needs, review the suggested direction, then contact our team.</div>
-                </div>
-              </div>
-
-              <div className="finder-card">
-                <div className="filter-grid">
-                  <div>
-                    <div className="filter-group-title">Format</div>
-                    <div className="filter-pills">
-                      {formatOptions.map((item) => (
-                        <button key={item} className={`filter-pill ${selectedFormat === item ? "active" : ""}`} onClick={() => setSelectedFormat(item)}>{item}</button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="filter-group-title">Goal</div>
-                    <div className="filter-pills">
-                      {goalOptions.map((item) => (
-                        <button key={item} className={`filter-pill ${selectedGoal === item ? "active" : ""}`} onClick={() => setSelectedGoal(item)}>{item}</button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="filter-group-title">Application</div>
-                    <div className="filter-pills">
-                      {applicationOptions.map((item) => (
-                        <button key={item} className={`filter-pill ${selectedApplication === item ? "active" : ""}`} onClick={() => setSelectedApplication(item)}>{item}</button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="result-card">
-                  <div className="result-title">Result Preview</div>
-                  <div className="result-main">Suggested path: {finderResult.title}</div>
-                  <p className="result-text">{finderResult.body}</p>
-                  <div className="result-next">{finderResult.next} <ArrowRight size={16} /></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="strengths" className="section">
-          <div className="container">
-            <div className="section-head" style={{ marginBottom: 24 }}>
-              <div>
-                <SectionEyebrow>Why customers stay</SectionEyebrow>
-                <SectionHeading>Built around quality, speed, and follow-through.</SectionHeading>
-              </div>
-            </div>
-
-            <div className="strength-grid">
-              {strengths.map((item, idx) => {
-                const Icon = item.icon;
-                const background = idx % 2 === 0 ? "#fef2f2" : "#fff7ed";
-                const ring = idx % 2 === 0 ? "rgba(213,43,30,.15)" : "rgba(245,158,11,.20)";
-                return (
-                  <div key={item.title} className="strength-card">
-                    <div className="strength-icon" style={{ background, boxShadow: `0 0 0 1px ${ring} inset` }}>
-                      <Icon size={22} color="#0f172a" />
-                    </div>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="flavors" className="section">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <SectionEyebrow>Flavor Library</SectionEyebrow>
-                <SectionHeading>Popular flavor families.</SectionHeading>
-              </div>
-              <p className="section-subtext">Browse by family, then visit the full library for filtering, search, and sample requests.</p>
-            </div>
-
-            <div className="flavor-grid">
-              {flavorTiles.map((tile) => (
-                <a key={tile.name} href="/flavors" className="flavor-card">
-                  <img src={tile.image} alt={tile.name} />
-                  <div className="flavor-overlay" />
-                  <div className="flavor-family">
-                    <div className="flavor-badge">{tile.family}</div>
-                  </div>
-                  <div className="flavor-content">
-                    <h3>{tile.name}</h3>
-                    <div className="mini-link">View Library <ChevronRight size={14} /></div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
+        <section className="section" style={{ paddingTop: 30 }}>
           <div className="container showcase">
-            <div className="showcase-grid">
-              <div>
-                <SectionEyebrow>Applications</SectionEyebrow>
-                <SectionHeading>Formats we flavor.</SectionHeading>
-                <p className="section-subtext" style={{ marginTop: 16 }}>
-                  Our application work is format-specific: RTD beverages, gummies, syrups, powders, seasonings, and more.
-                </p>
-                <div className="showcase-pills">
-                  {applicationOptions.map((item) => (
-                    <span key={item} className="soft-pill">{item}</span>
-                  ))}
-                </div>
-                <a href="/applications" className="cta-btn" style={{ marginTop: 22 }}>View Applications</a>
-              </div>
-
-              <div className="application-grid">
-                {applications.map((item) => (
-                  <div key={item.name} className="application-card">
-                    <img src={item.image} alt={item.name} />
-                    <div>{item.name}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <SectionEyebrow>Custom Flavor Manufacturing</SectionEyebrow>
+            <SectionHeading>Built around practical product support.</SectionHeading>
+            <p className="section-subtext" style={{ marginTop: 16, maxWidth: 900 }}>
+              We provide flavor samples from our extensive library, create new flavors customized for your product,
+              and match existing flavors with a focus on quality, consistency, and cost savings.
+            </p>
           </div>
         </section>
 
-        <section id="quality" className="section">
-          <div className="container quality">
-            <div className="quality-top">
+        <section className="section" style={{ paddingTop: 8 }}>
+          <div className="container">
+            <div className="section-head">
               <div>
-                <SectionEyebrow>Quality standards</SectionEyebrow>
-                <h2 className="section-title" style={{ color: "white" }}>Quality systems built for dependable production.</h2>
-                <p className="section-subtext" style={{ color: "rgba(255,255,255,.72)", marginTop: 16, maxWidth: 760 }}>
-                  We keep documentation, process controls, and manufacturing discipline in place so flavors stay consistent from batch to batch.
-                </p>
+                <SectionEyebrow>Industries We Serve</SectionEyebrow>
+                <SectionHeading>Experienced across major product categories.</SectionHeading>
               </div>
-              <a href="/contact" className="light-btn">Ask About Certifications</a>
             </div>
-            <div className="quality-grid">
-              {qualityBadges.map((item) => (
-                <div key={item} className="quality-badge">{item}</div>
+            <div className="strength-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
+              {industries.map((industry) => (
+                <Link key={industry.slug} href="/industries" className="strength-card" style={{ transition: "transform .2s ease" }}>
+                  <h3 style={{ fontSize: "1.2rem" }}>{industry.name}</h3>
+                  <p>{industry.summary}</p>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="samples" className="section" style={{ paddingBottom: 80 }}>
+        <section className="section" style={{ paddingTop: 8 }}>
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <SectionEyebrow>Why The Flavor Factory</SectionEyebrow>
+                <SectionHeading>Reliable service from sample through production.</SectionHeading>
+              </div>
+            </div>
+            <div className="strength-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
+              {whyCards.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title} className="strength-card">
+                    <div className="strength-icon"><Icon size={20} /></div>
+                    <h3 style={{ fontSize: "1.2rem" }}>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="section" style={{ paddingTop: 8 }}>
+          <div className="container showcase">
+            <SectionEyebrow>Our Flavor Capabilities</SectionEyebrow>
+            <SectionHeading>Extracts, concentrates, emulsions, oils, powders, and more.</SectionHeading>
+            <p className="section-subtext" style={{ marginTop: 16, maxWidth: 820 }}>
+              We offer flavors in many forms, including extracts, concentrates, emulsions, oils, powders, and more.
+            </p>
+          </div>
+        </section>
+
+        <section className="section" style={{ paddingTop: 8, paddingBottom: 80 }}>
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
                 <SectionEyebrow>Request Samples</SectionEyebrow>
-                <SectionHeading>Tell us what you are making. We will recommend next samples.</SectionHeading>
-                <p className="section-subtext" style={{ marginTop: 16, maxWidth: 560 }}>
-                  Share your market, target flavor, and timeline. Our team will follow up with practical sample options.
+                <SectionHeading>Tell us what you’re working on and we’ll help guide the next step.</SectionHeading>
+                <p className="section-subtext" style={{ marginTop: 14 }}>
+                  We provide flavor samples from our extensive library and custom development for proprietary and exclusive products.
                 </p>
-                <div className="form-grid">
-                  <input value={sampleForm.industry} onChange={(e) => updateField("industry", e.target.value)} aria-label="Market" className="input" />
-                  <input value={sampleForm.format} onChange={(e) => updateField("format", e.target.value)} aria-label="Liquid or powder" className="input" />
-                  <input value={sampleForm.flavor} onChange={(e) => updateField("flavor", e.target.value)} aria-label="Target flavor" className="input" />
-                  <input value={sampleForm.application} onChange={(e) => updateField("application", e.target.value)} aria-label="Product format" className="input" />
-                  <input value={sampleForm.timeline} onChange={(e) => updateField("timeline", e.target.value)} aria-label="Timeline" className="input" />
-                  <textarea value={sampleForm.message} onChange={(e) => updateField("message", e.target.value)} aria-label="Project notes" className="textarea" />
-                </div>
-                <div className="sample-utility">
-                  <button className="cta-btn">Send Sample Request</button>
-                  <div style={{ fontSize: 14, color: "rgba(17,17,17,.5)" }}>Fast response from a real team.</div>
-                </div>
+                <Link href="/contact" className="cta-btn" style={{ marginTop: 24 }}>Request Samples</Link>
               </div>
-
               <div className="sample-right">
-                <img src="/images/flavor-factory/cta-background.jpg" alt="Flavor ingredients and formulation background" />
+                <img src="/images/flavor-factory/cta-background.jpg" alt="Flavor ingredients" />
                 <div className="sample-overlay" />
-                <div className="top-tags">
-                  {["Low minimums", "Custom flavor matching", "Production-ready quality"].map((tag) => (
-                    <div key={tag} className="flavor-badge">{tag}</div>
-                  ))}
-                </div>
                 <div className="bottom-copy">
-                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Start your sample request</div>
-                  <h3>Let’s build your next flavor profile.</h3>
+                  <h3>Family-owned service, fast lead times, dependable quality.</h3>
                 </div>
               </div>
             </div>
