@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 
 export function SampleRequestForm() {
   const [submitted, setSubmitted] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitted(true);
   }
@@ -14,7 +14,7 @@ export function SampleRequestForm() {
     <form className="form-grid" style={{ marginTop: 18 }} onSubmit={onSubmit}>
       <input className="input" required placeholder="Name" />
       <input className="input" required placeholder="Company" />
-      <input className="input" type="email" required placeholder="Email" />
+      <input className="input" required type="email" placeholder="Email" />
       <input className="input" placeholder="Phone" />
       <input className="input" placeholder="Industry" />
       <input className="input" placeholder="Flavor target" />
@@ -22,7 +22,7 @@ export function SampleRequestForm() {
       <input className="input" placeholder="Timeline" />
       <textarea className="textarea" placeholder="Application and profile notes" />
       <div className="sample-utility">
-        <button className="cta-btn" type="submit">Submit Request</button>
+        <button type="submit" className="cta-btn">Submit Request</button>
         {submitted && <span style={{ fontSize: 13, opacity: 0.8 }}>Thanks — we&apos;ll follow up soon.</span>}
       </div>
     </form>

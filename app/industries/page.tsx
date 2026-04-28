@@ -1,7 +1,6 @@
-import Link from "next/link";
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { industries } from "@/components/site-data";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { industries } from "@/data/industries";
 
 export default function IndustriesPage() {
   return (
@@ -10,19 +9,18 @@ export default function IndustriesPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
-            <div className="eyebrow">Industries We Serve</div>
-            <h1 className="section-title">Category expertise from bakery through pharma.</h1>
-            <p className="section-subtext" style={{ marginTop: 16 }}>From sensory-led innovation to production-ready execution, we support flavor work across high-volume and specialty categories.</p>
-            <div className="path-grid" style={{ marginTop: 30 }}>
+            <div className="eyebrow">Industries</div>
+            <h1 className="section-title">Flavor support across key markets.</h1>
+            <div className="path-grid" style={{ marginTop: 24 }}>
               {industries.map((item) => (
-                <Link key={item.slug} href={`/industries/${item.slug}`} className="path-card">
+                <article key={item.key} className="path-card">
                   <img src={item.heroImage} alt={item.name} />
                   <div className="path-overlay" />
                   <div className="path-content">
                     <h3>{item.name}</h3>
-                    <p>{item.tagline}</p>
+                    <p>{item.summary}</p>
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
           </div>

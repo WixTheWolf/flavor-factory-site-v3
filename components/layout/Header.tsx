@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { navLinks } from "./site-data";
+import { navigation } from "@/data/site-copy";
 
 export function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="site-header">
@@ -17,23 +17,23 @@ export function Header() {
         </Link>
 
         <nav className="nav" aria-label="Primary">
-          {navLinks.slice(0, 7).map((link) => (
-            <Link key={link.href} href={link.href}>{link.label}</Link>
+          {navigation.slice(0, 7).map((item) => (
+            <Link href={item.href} key={item.href}>{item.label}</Link>
           ))}
         </nav>
 
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <button className="mobile-toggle" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          <button className="mobile-toggle" aria-label="Toggle menu" onClick={() => setOpen((v) => !v)}>
+            {open ? <X size={20} /> : <Menu size={20} />}
           </button>
           <Link href="/request-samples" className="cta-btn">Request Samples</Link>
         </div>
       </div>
 
-      <div className={`mobile-panel ${mobileOpen ? "open" : ""}`}>
+      <div className={`mobile-panel ${open ? "open" : ""}`}>
         <div className="container mobile-links">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>{link.label}</Link>
+          {navigation.map((item) => (
+            <Link href={item.href} key={item.href} onClick={() => setOpen(false)}>{item.label}</Link>
           ))}
         </div>
       </div>

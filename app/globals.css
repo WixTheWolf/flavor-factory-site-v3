@@ -416,3 +416,5 @@ button, input, textarea, select { font: inherit; }
   .path-grid, .strength-grid { grid-template-columns: 1fr !important; }
   .cta-btn { padding: 12px 18px; }
 }
+
+.mt-24{margin-top:24px;display:inline-flex;}

@@ -1,5 +1,5 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export default function AboutPage() {
   return (
@@ -9,12 +9,9 @@ export default function AboutPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container showcase">
             <div className="eyebrow">About Us</div>
-            <h1 className="section-title">A custom flavor partner built on service, speed, and quality.</h1>
-            <p className="section-subtext" style={{ marginTop: 16 }}>
-              The Flavor Factory is a family-owned Southern California manufacturer of high quality liquid and powder flavor solutions. Our team supports customers from early R&D through repeat production.
-            </p>
-            <p className="section-subtext" style={{ marginTop: 12 }}>
-              We’re known for low minimum orders, responsive communication, and practical flavor development that aligns with your process and timeline.
+            <h1 className="section-title">A family-owned custom flavor manufacturer.</h1>
+            <p className="section-subtext" style={{ marginTop: 14 }}>
+              The Flavor Factory develops high quality liquid and powder flavor solutions for customers who need fast, practical support from sample to production.
             </p>
           </div>
         </section>
