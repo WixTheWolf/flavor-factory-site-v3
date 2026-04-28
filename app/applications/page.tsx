@@ -8,34 +8,32 @@ export default function ApplicationsPage() {
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48 }}>
-          <div className="container">
+        <section className="section">
+          <div className="container simple-panel">
             <SectionEyebrow>Applications</SectionEyebrow>
-            <SectionHeading>Practical product formats we support.</SectionHeading>
-            <p className="section-subtext" style={{ marginTop: 16, maxWidth: 840 }}>
-              Start with the product format. We can help with liquid, powder, beverage, gummy, bakery, dairy, oral care,
-              pharmaceutical, savory, and more.
+            <SectionHeading>Application formats we support</SectionHeading>
+            <p className="section-subtext" style={{ marginTop: 16 }}>
+              We develop custom liquid and powder flavors for a wide range of applications.
             </p>
           </div>
         </section>
 
-        <section className="section" style={{ paddingTop: 8 }}>
-          <div className="container application-grid">
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="container application-grid simple-grid">
             {applications.map((item) => (
-              <div key={item.name} className="application-card application-card-tight">
-                <img src={item.image} alt={item.name} />
+              <div key={item.name} className="application-card placeholder-card">
+                <div className="placeholder-box">Image Placeholder</div>
                 <div>{item.name}</div>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="section" style={{ paddingTop: 8, paddingBottom: 80 }}>
-          <div className="container showcase">
-            <SectionEyebrow>Next step</SectionEyebrow>
-            <SectionHeading>Tell us your format, then we can match flavor direction.</SectionHeading>
-            <p className="section-subtext" style={{ marginTop: 16, maxWidth: 760 }}>
-              We help teams choose liquid or powder systems based on process, taste target, and shelf-life needs.
+        <section className="section" style={{ paddingTop: 16, paddingBottom: 80 }}>
+          <div className="container simple-panel">
+            <SectionHeading>Need samples for a specific format?</SectionHeading>
+            <p className="section-subtext" style={{ marginTop: 14 }}>
+              Tell us your product type, target profile, and timeline. We&apos;ll recommend the right sample direction.
             </p>
             <a href="/contact" className="cta-btn" style={{ marginTop: 22 }}>Request Samples</a>
           </div>

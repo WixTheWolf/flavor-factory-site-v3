@@ -26,7 +26,7 @@ export function Header() {
           <button className="mobile-toggle" onClick={() => setMobileOpen((v) => !v)} aria-label="Toggle menu">
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <a href="/contact" className="cta-btn">Start a Project</a>
+          <a href="/contact" className="cta-btn">Request Samples</a>
         </div>
       </div>
 
@@ -35,9 +35,6 @@ export function Header() {
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>{link.label}</a>
           ))}
-          <a href="/contact" className="cta-btn" onClick={() => setMobileOpen(false)} style={{ marginTop: 16, width: "fit-content" }}>
-            Start a Project
-          </a>
         </div>
       </div>
     </header>
