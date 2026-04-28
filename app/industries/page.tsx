@@ -30,6 +30,7 @@ export default function IndustriesPage() {
                     <div className="path-tag">{item.applications.slice(0, 2).join(" • ")}</div>
                     <h3>{item.name}</h3>
                     <p>{item.summary}</p>
+                    <div className="mini-link">{item.applications.slice(0, 3).join(" • ")}</div>
                   </div>
                 </article>
               ))}

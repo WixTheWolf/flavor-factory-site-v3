@@ -13,20 +13,16 @@ export function HeroSection() {
             <Button href="/flavors">Explore Flavors</Button>
             <Button href="/request-samples" variant="secondary">Request Samples</Button>
           </div>
+          <div className="showcase-pills" style={{ marginTop: 18 }}>
+            <span className="soft-pill">Liquid & Powder</span>
+            <span className="soft-pill">Low MOQ</span>
+            <span className="soft-pill">Fast Lead Times</span>
+          </div>
         </div>
 
         <div className="hero-media">
-          <img src="/images/flavor-factory/hero-main.jpg" alt="Glossy flavor ingredients and formulation lab tools" />
-          <div className="floating-tags">
-            <div className="floating-tag light">Liquid & Powder</div>
-            <div className="floating-tag brand">Low MOQ</div>
-            <div className="floating-tag light">Fast Lead Times</div>
-          </div>
-          <div className="hero-bottom-cards">
-            <div className="glass-card">Bakery • Confectionery • Dairy</div>
-            <div className="glass-card">Nutraceutical • Oral Care • Pharma</div>
-            <div className="glass-card">Popcorn • Syrup • Custom Programs</div>
-          </div>
+          <img src="/images/flavor-factory/hero-main.jpg" alt="Premium ingredient and flavor lab visuals" />
+          <div className="hero-media-badge">Built for Bakery • Confectionery • Nutraceutical • Oral Care • Pharmaceutical</div>
         </div>
       </div>
     </section>
