@@ -25,6 +25,15 @@ function industryLabel(value: IndustryKey) {
   return value.replace("-", " ");
 }
 
+const formatGuidance = {
+  Liquid: "Best for syrups, beverages, dairy systems, and applications needing rapid incorporation.",
+  Powder: "Best for dry blends, nutraceutical formats, and shelf-stable systems.",
+};
+
+function industryLabel(value: IndustryKey) {
+  return value.replace("-", " ");
+}
+
 export function FlavorFinder() {
   const [filters, setFilters] = useState<FlavorFilters>({
     search: "",
