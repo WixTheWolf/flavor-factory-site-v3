@@ -30,7 +30,7 @@ export const navigation = [
   { label: "About", href: "/about" },
   { label: "Company Info", href: "/company-info" },
   { label: "Industries", href: "/industries" },
-  { label: "Flavors", href: "/flavors" },
+  { label: "Our Flavors", href: "/flavors" },
   { label: "Certifications", href: "/certifications" },
   { label: "Contact", href: "/contact" },
   { label: "Request Samples", href: "/request-samples" },
