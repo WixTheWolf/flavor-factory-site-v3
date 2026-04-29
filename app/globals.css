@@ -465,8 +465,6 @@ button, input, textarea, select { font: inherit; }
   .finder-meta { flex-direction: column; align-items: flex-start; }
   .editorial-content { left: 24px; right: 24px; bottom: 24px; }
 }
-<<<<<<< HEAD
-=======
 
 .finder-surface {
   border: 1px solid var(--border);
@@ -524,4 +522,3 @@ button, input, textarea, select { font: inherit; }
   }
   .finder-meta { gap: 8px; }
 }
->>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
