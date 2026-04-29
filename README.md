@@ -20,6 +20,6 @@ Open http://localhost:3000
 
 ## Notes
 
-- Images live in `public/images/flavor-factory/`.
+- Images live in 'C:\Users\Matt\flavor-factory-site-v3-main\public\images\flavor-factory'
 - The contact form is a front-end demo and is not wired to email yet.
 - Some copy and layout can be refined after previewing on Vercel.
