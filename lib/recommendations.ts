@@ -1,7 +1,10 @@
 import type { Flavor, IndustryKey } from "@/lib/types";
 
 export function recommendedByIndustry(flavors: Flavor[], industry: IndustryKey) {
-  return flavors.filter((flavor) => flavor.industries.includes(industry)).slice(0, 6);
+  return flavors
+    .filter((flavor) => flavor.industries.includes(industry))
+    .sort((a, b) => b.variantCount - a.variantCount)
+    .slice(0, 6);
 }
 
 export function splitByFormat(flavors: Flavor[]) {
