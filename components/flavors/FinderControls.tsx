@@ -5,6 +5,7 @@ type Props = {
   filters: FlavorFilters;
   families: string[];
   industries: IndustryKey[];
+<<<<<<< HEAD
   onChange: (next: FlavorFilters) => void;
 };
 
@@ -16,11 +17,39 @@ export function FinderControls({ filters, families, industries, onChange }: Prop
         <SelectBox value={filters.family} onChange={(e) => onChange({ ...filters, family: e.target.value })}>
           <option>All</option>
           {families.map((item) => <option key={item}>{item}</option>)}
+=======
+  useCases: string[];
+  onChange: (next: FlavorFilters) => void;
+};
+
+function industryLabel(value: IndustryKey) {
+  return value.replace("-", " ");
+}
+
+export function FinderControls({ filters, families, industries, useCases, onChange }: Props) {
+  return (
+    <div className="finder-controls-grid">
+      <label>
+        <div className="eyebrow" style={{ marginBottom: 8 }}>
+          Family
+        </div>
+        <SelectBox value={filters.family} onChange={(e) => onChange({ ...filters, family: e.target.value })}>
+          <option>All</option>
+          {families.map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
         </SelectBox>
       </label>
 
       <label>
+<<<<<<< HEAD
         <div className="eyebrow" style={{ marginBottom: 8 }}>Format</div>
+=======
+        <div className="eyebrow" style={{ marginBottom: 8 }}>
+          Format
+        </div>
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
         <SelectBox value={filters.format} onChange={(e) => onChange({ ...filters, format: e.target.value as FlavorFilters["format"] })}>
           <option>All</option>
           <option>Liquid</option>
@@ -29,10 +58,37 @@ export function FinderControls({ filters, families, industries, onChange }: Prop
       </label>
 
       <label>
+<<<<<<< HEAD
         <div className="eyebrow" style={{ marginBottom: 8 }}>Industry</div>
         <SelectBox value={filters.industry} onChange={(e) => onChange({ ...filters, industry: e.target.value as FlavorFilters["industry"] })}>
           <option value="All">All</option>
           {industries.map((item) => <option key={item} value={item}>{item}</option>)}
+=======
+        <div className="eyebrow" style={{ marginBottom: 8 }}>
+          Industry
+        </div>
+        <SelectBox value={filters.industry} onChange={(e) => onChange({ ...filters, industry: e.target.value as FlavorFilters["industry"] })}>
+          <option value="All">All</option>
+          {industries.map((item) => (
+            <option key={item} value={item}>
+              {industryLabel(item)}
+            </option>
+          ))}
+        </SelectBox>
+      </label>
+
+      <label>
+        <div className="eyebrow" style={{ marginBottom: 8 }}>
+          Application
+        </div>
+        <SelectBox value={filters.useCase} onChange={(e) => onChange({ ...filters, useCase: e.target.value })}>
+          <option value="All">All</option>
+          {useCases.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
         </SelectBox>
       </label>
     </div>

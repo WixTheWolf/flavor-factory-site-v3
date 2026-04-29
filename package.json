@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "lint": "next lint"
+=======
+    "lint": "next lint",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "playwright:install": "playwright install chromium"
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
   },
   "dependencies": {
     "lucide-react": "^0.511.0",
@@ -16,9 +23,19 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@types/node": "22.10.1",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+=======
+    "@playwright/test": "^1.59.1",
+    "@types/node": "22.10.1",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "playwright": "^1.59.1",
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
     "typescript": "5.6.3"
   }
 }

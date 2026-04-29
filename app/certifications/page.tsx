@@ -1,6 +1,11 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteCopy } from "@/data/site-copy";
+<<<<<<< HEAD
+=======
+import { siteImages } from "@/data/site-images";
+import { AppImage } from "@/components/ui/AppImage";
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
 
 export default function CertificationsPage() {
   return (
@@ -9,10 +14,32 @@ export default function CertificationsPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container quality">
+<<<<<<< HEAD
             <div className="eyebrow" style={{ color: "#f59e0b" }}>Certifications</div>
             <h1 className="section-title" style={{ color: "white" }}>Quality systems that support customer trust.</h1>
             <div className="quality-grid" style={{ marginTop: 20 }}>
               {siteCopy.certifications.map((item) => <div className="quality-badge" key={item}>{item}</div>)}
+=======
+            <div className="editorial-hero" style={{ marginBottom: 22 }}>
+              <AppImage src={siteImages.certificationsHero} alt="Quality and compliance lab documentation setup" style={{ objectPosition: "center 42%" }} />
+              <div className="editorial-overlay" />
+            </div>
+            <div className="eyebrow" style={{ color: "#f59e0b" }}>
+              Certifications
+            </div>
+            <h1 className="section-title" style={{ color: "white" }}>
+              Quality standards that support confidence.
+            </h1>
+            <p className="section-subtext" style={{ marginTop: 14, color: "rgba(255,255,255,.8)", maxWidth: 840 }}>
+              Quality matters beyond flavor. Our standards support consistency, documentation, and trust throughout the process.
+            </p>
+            <div className="quality-grid" style={{ marginTop: 20 }}>
+              {siteCopy.certifications.map((item) => (
+                <div className="quality-badge" key={item}>
+                  {item}
+                </div>
+              ))}
+>>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
             </div>
           </div>
         </section>
