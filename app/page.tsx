@@ -6,6 +6,7 @@ import { RecommendationSection } from "@/components/home/RecommendationSection";
 import { FormatSection } from "@/components/home/FormatSection";
 import { IndustriesSection } from "@/components/home/IndustriesSection";
 import { TrustSection } from "@/components/home/TrustSection";
+import { ProofBandSection } from "@/components/home/ProofBandSection";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         <HeroSection />
         <ShortcutSection />
         <RecommendationSection />
+        <ProofBandSection />
         <FormatSection />
         <IndustriesSection />
         <TrustSection />
