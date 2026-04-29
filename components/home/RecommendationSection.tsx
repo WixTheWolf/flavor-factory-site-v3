@@ -11,16 +11,11 @@ export function RecommendationSection() {
       <div className="container">
         <div className="section-head">
           <div>
-<<<<<<< HEAD
-            <div className="eyebrow">Recommended for Bakery</div>
-            <h2 className="section-title">Fast paths to likely matches.</h2>
-=======
             <div className="eyebrow">Flavor Finder</div>
             <h2 className="section-title">Find a flavor. Or start with an idea.</h2>
             <p className="section-subtext" style={{ marginTop: 10, maxWidth: 760 }}>
               Browse flavor families, explore by industry, or search for something specific.
             </p>
->>>>>>> 548318da6fb1b74bff62dc150768c36fe33e7b33
           </div>
           <Link href="/flavors" className="light-btn">Open Flavor Finder</Link>
         </div>
