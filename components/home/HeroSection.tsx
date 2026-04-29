@@ -21,6 +21,11 @@ export function HeroSection() {
             <Button href="/request-samples" variant="secondary">Request Samples</Button>
             <Button href="/flavors">Explore Flavors</Button>
           </div>
+          <div className="showcase-pills" style={{ marginTop: 18 }}>
+            <span className="soft-pill">Liquid & Powder</span>
+            <span className="soft-pill">Low MOQ</span>
+            <span className="soft-pill">Fast Lead Times</span>
+          </div>
         </div>
 
         <div className="hero-media">
