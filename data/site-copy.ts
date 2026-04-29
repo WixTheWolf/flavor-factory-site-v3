@@ -1,14 +1,14 @@
 export const siteCopy = {
   brand: "The Flavor Factory",
   heroKicker: "Southern California Flavor Manufacturing",
-  heroTitle: "High quality liquid & powder flavor solutions that move at production speed.",
+  heroTitle: "Custom liquid and powder flavors for ambitious products.",
   heroText:
-    "We help product teams formulate, sample, and scale flavor systems with practical guidance at every step. From bakery and confectionery to nutraceutical and oral care, we focus on profiles that perform in real-world processing.",
+    "From concept to production, we help teams build bold, precise flavor profiles across food, beverage, wellness, and oral care.",
   trustPoints: [
-    "Custom liquid and powder flavor manufacturing",
-    "Low minimum order quantities for pilot and launch phases",
-    "Standard order lead times: 3–5 business days",
-    "Flavor matching, reformulation, and net-new development",
+    "Massive flavor range across liquid and powder",
+    "Match, refine, or create any profile you need",
+    "Fast sampling and practical development support",
+    "Built for bakery, confectionery, dairy, wellness, and more",
   ],
   companyInfoBullets: [
     "Custom, proprietary, and exclusive flavor development",

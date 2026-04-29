@@ -37,9 +37,9 @@ export default function CompanyInfoPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
             <div className="eyebrow">Company Info</div>
-            <h1 className="section-title">Operational credibility built for repeatable flavor programs.</h1>
+            <h1 className="section-title">Built to develop quickly and produce reliably.</h1>
             <p className="section-subtext" style={{ marginTop: 14, maxWidth: 860 }}>
-              The Flavor Factory combines custom development with disciplined manufacturing support so your team can launch faster and scale with confidence.
+              We combine creative flavor development with production-ready execution so teams can move from trial to launch without delay.
             </p>
 
             <div className="strength-grid two-col" style={{ marginTop: 22 }}>
@@ -67,7 +67,7 @@ export default function CompanyInfoPage() {
                     Low MOQ. Fast turnaround. High responsiveness.
                   </h2>
                   <p className="section-subtext" style={{ marginTop: 10 }}>
-                    Standard lead times are typically 3–5 business days. We keep communication direct and timelines visible so product teams can make decisions quickly.
+                    Clear communication, practical timelines, and disciplined follow-through from first sample to production.
                   </p>
                 </div>
                 <div className="sample-right">

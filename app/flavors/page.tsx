@@ -16,9 +16,9 @@ export default function FlavorsPage() {
               <div className="editorial-overlay" />
             </div>
             <div className="eyebrow">Flavor Finder</div>
-            <h1 className="section-title">Discover profiles by flavor family, format, and application context.</h1>
+            <h1 className="section-title">Browse curated flavor families. Then ask for exactly what you want.</h1>
             <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900 }}>
-              Explore normalized product data from The Flavor Factory catalog, then request samples for the profiles that best fit your product goals.
+              Our catalog is intentionally consolidated for faster discovery. If you do not see a flavor, ask us — we can likely create it.
             </p>
             <FlavorFinder />
           </div>

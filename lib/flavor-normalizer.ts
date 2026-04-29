@@ -21,15 +21,21 @@ const productTypeMatchers = [
 const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
   { family: "Citrus", patterns: [/ORANGE|LEMON|LIME|GRAPEFRUIT|CITRUS/i] },
   { family: "Berry", patterns: [/STRAWBERRY|BLUEBERRY|RASPBERRY|BLACKBERRY|BERRY|CHERRY/i] },
-  { family: "Vanilla", patterns: [/VANILLA|VANILLIN/i] },
-  { family: "Chocolate", patterns: [/CHOCOLATE|COCOA|MOCHA/i] },
-  { family: "Mint", patterns: [/MINT|PEPPERMINT|SPEARMINT/i] },
   { family: "Tropical", patterns: [/MANGO|PINEAPPLE|COCONUT|TROPICAL|BANANA|PASSION ?FRUIT/i] },
-  { family: "Nut", patterns: [/ALMOND|HAZELNUT|PECAN|NUT/i] },
-  { family: "Spice", patterns: [/CINNAMON|SPICE|GINGER|CLOVE/i] },
-  { family: "Savory", patterns: [/CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH/i] },
-  { family: "Dessert", patterns: [/CARAMEL|BROWN SUGAR|BUTTERSCOTCH|MARSHMALLOW|CHEESECAKE|CUSTARD|CREAM/i] },
-  { family: "Beverage", patterns: [/COLA|SODA|ROOT BEER|FRUIT PUNCH|PUNCH|ENERGY DRINK/i] },
+  { family: "Orchard Fruit", patterns: [/APPLE|PEAR/i] },
+  { family: "Stone Fruit", patterns: [/PEACH|APRICOT|PLUM/i] },
+  { family: "Melons", patterns: [/WATERMELON|CANTALOUPE|HONEYDEW|MELON/i] },
+  { family: "Vanilla & Cream", patterns: [/VANILLA|VANILLIN|CREAM|YOGURT|CUSTARD|CHEESECAKE/i] },
+  { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE/i] },
+  { family: "Coffee & Beverage", patterns: [/COFFEE|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH/i] },
+  { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|COOL/i] },
+  { family: "Nut & Praline", patterns: [/ALMOND|HAZELNUT|PECAN|NUT/i] },
+  { family: "Spice & Warmth", patterns: [/CINNAMON|SPICE|GINGER|CLOVE/i] },
+  { family: "Dessert & Bakery", patterns: [/MARSHMALLOW|BAKERY|PANCAKE|BUTTER/i] },
+  { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|CANDY|CONFECTION/i] },
+  { family: "Savory & Culinary", patterns: [/CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH/i] },
+  { family: "Botanical & Tea", patterns: [/TEA|BOTANICAL|HERBAL|CITRUS PEEL/i] },
+  { family: "Custom / Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
 ];
 
 type ParsedFlavor = {
@@ -206,7 +212,7 @@ export function buildFlavorCatalog(rawRows = rawFlavorProducts): Flavor[] {
       aliases: variants.map((item) => item.displayName.toLowerCase()),
       variantCount: variants.length,
       profile: [family.toLowerCase(), format.toLowerCase(), ...productTypes.map((p) => p.toLowerCase())].slice(0, 4),
-      notes: `${name} in ${format.toLowerCase()} format with ${declarationType.toLowerCase()} declaration${strengths.length ? ` and ${strengths.join(", ")} strengths` : ""}.`,
+      notes: "Broad profile family with multiple variants available. If you do not see an exact match, ask us to create it.",
     } satisfies Flavor;
   }).sort((a, b) => a.name.localeCompare(b.name));
 }
