@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { industries } from "@/data/industries";
+import { AppImage } from "@/components/ui/AppImage";
 
 export function IndustriesSection() {
   return (
@@ -19,7 +20,7 @@ export function IndustriesSection() {
         <div className="path-grid">
           {industries.map((item) => (
             <article className="path-card" key={item.key}>
-              <img src={item.heroImage} alt={item.name} />
+              <AppImage src={item.heroImage} alt={item.name} />
               <div className="path-overlay" />
               <div className="path-content">
                 <div className="path-tag">{item.applications[0]}</div>
