@@ -9,9 +9,9 @@ export function IndustriesSection() {
         <div className="section-head">
           <div>
             <div className="eyebrow">Industries</div>
-            <h2 className="section-title">Built for real production categories.</h2>
+            <h2 className="section-title">Flavor solutions across categories.</h2>
             <p className="section-subtext" style={{ marginTop: 12, maxWidth: 720 }}>
-              From high-volume food programs to regulated wellness and pharma formats, we shape profiles for how products are actually processed and consumed.
+              Every application has different demands. We build flavors with the end product in mind.
             </p>
           </div>
           <Link className="light-btn" href="/industries">View all industries</Link>

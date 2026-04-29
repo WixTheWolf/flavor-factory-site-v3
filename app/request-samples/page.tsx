@@ -15,10 +15,10 @@ export default function RequestSamplesPage() {
               <div className="sample-left">
                 <div className="eyebrow">Request Samples</div>
                 <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
-                  Tell us your target profile, format, and application.
+                  Tell us what you are building, what it should taste like, and what format you need.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
-                  Share key details and timelines. We’ll recommend practical sample options for your category and usage conditions.
+                  Whether you need library samples, a custom flavor profile, or support matching an existing product, we can help direct the next step.
                 </p>
                 <SampleRequestForm />
               </div>

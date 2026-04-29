@@ -14,12 +14,12 @@ export default function AboutPage() {
             <div className="sample-grid">
               <div className="sample-left">
                 <div className="eyebrow">About</div>
-                <h1 className="section-title">Flavor expertise, without the friction.</h1>
+                <h1 className="section-title">Flavor development with a practical point of view.</h1>
                 <p className="section-subtext" style={{ marginTop: 14 }}>
-                  The Flavor Factory is a Southern California custom manufacturer of premium liquid and powder flavors. We are family-owned and built for responsive, high-quality execution.
+                  The Flavor Factory develops liquid and powder flavor solutions for a wide range of products and applications. Clients come to us for custom development, flavor matching, responsive service, and a process that moves from idea to execution without unnecessary friction.
                 </p>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
-                  Customers trust us to match, refine, and create flavor systems that perform in real products.
+                  We’ve built the business around doing the work well, communicating clearly, and helping clients find the right flavor solution for the product they are actually making.
                 </p>
 
                 <div className="showcase-pills" style={{ marginTop: 16 }}>

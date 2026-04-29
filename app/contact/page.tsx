@@ -16,9 +16,9 @@ export default function ContactPage() {
               <div className="editorial-overlay" />
             </div>
             <div className="eyebrow">Contact</div>
-            <h1 className="section-title">Talk directly with our flavor team.</h1>
+            <h1 className="section-title">Talk with a flavor partner that can move quickly and communicate clearly.</h1>
             <p className="section-subtext" style={{ marginTop: 14, maxWidth: 760 }}>
-              Whether you are evaluating flavor options, troubleshooting an existing profile, or launching a new product, we’ll route you to the right person quickly.
+              Whether you need a sample, a custom flavor, a match, or help choosing the right next step, we’re ready to help.
             </p>
             <div className="showcase-pills" style={{ marginTop: 14 }}>
               <span className="soft-pill">samples@flavorfactory.net</span>

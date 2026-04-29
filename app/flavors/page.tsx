@@ -15,10 +15,13 @@ export default function FlavorsPage() {
               <AppImage src={siteImages.flavorsHero} alt="Premium citrus and liquid flavor composition" style={{ objectPosition: "center 35%" }} />
               <div className="editorial-overlay" />
             </div>
-            <div className="eyebrow">Flavor Finder</div>
-            <h1 className="section-title">Browse curated flavor families. Then ask for exactly what you want.</h1>
+            <div className="eyebrow">Our Flavors</div>
+            <h1 className="section-title">A broader flavor library, cleaned up.</h1>
             <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900 }}>
-              Our catalog is intentionally consolidated for faster discovery. If you do not see a flavor, ask us — we can likely create it.
+              Explore flavor families, representative profiles, and application-friendly directions. If you have something specific in mind, search for it.
+            </p>
+            <p className="section-subtext" style={{ marginTop: 8, maxWidth: 900 }}>
+              Not seeing it? That does not mean we don’t make it. Our searchable library is a starting point—not the limit.
             </p>
             <FlavorFinder />
           </div>

@@ -19,10 +19,10 @@ export default function CertificationsPage() {
               Certifications
             </div>
             <h1 className="section-title" style={{ color: "white" }}>
-              Compliance and quality systems that help teams move with confidence.
+              Quality standards that support confidence.
             </h1>
             <p className="section-subtext" style={{ marginTop: 14, color: "rgba(255,255,255,.8)", maxWidth: 840 }}>
-              We maintain recognized standards to support customer qualification, quality documentation, and long-term partnership requirements.
+              Quality matters beyond flavor. Our standards support consistency, documentation, and trust throughout the process.
             </p>
             <div className="quality-grid" style={{ marginTop: 20 }}>
               {siteCopy.certifications.map((item) => (

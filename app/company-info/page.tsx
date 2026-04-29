@@ -37,9 +37,9 @@ export default function CompanyInfoPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
             <div className="eyebrow">Company Info</div>
-            <h1 className="section-title">Built to develop quickly and produce reliably.</h1>
+            <h1 className="section-title">Built to support development, sampling, and production.</h1>
             <p className="section-subtext" style={{ marginTop: 14, maxWidth: 860 }}>
-              We combine creative flavor development with production-ready execution so teams can move from trial to launch without delay.
+              We work across multiple industries to create flavor systems that fit both the product vision and the application reality.
             </p>
 
             <div className="strength-grid two-col" style={{ marginTop: 22 }}>

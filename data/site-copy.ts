@@ -1,14 +1,16 @@
 export const siteCopy = {
   brand: "The Flavor Factory",
   heroKicker: "Southern California Flavor Manufacturing",
-  heroTitle: "Custom liquid and powder flavors for ambitious products.",
+  heroTitle: "Flavor, made to fit.",
   heroText:
-    "From concept to production, we help teams build bold, precise flavor profiles across food, beverage, wellness, and oral care.",
+    "Custom liquid and powder flavor solutions for brands that care how their products taste.",
   trustPoints: [
-    "Massive flavor range across liquid and powder",
-    "Match, refine, or create any profile you need",
-    "Fast sampling and practical development support",
-    "Built for bakery, confectionery, dairy, wellness, and more",
+    "Custom flavor development",
+    "Flavor matching and reformulation",
+    "Liquid and powder formats",
+    "Fast sample turnaround",
+    "Flexible order minimums",
+    "Practical support from concept to production",
   ],
   companyInfoBullets: [
     "Custom, proprietary, and exclusive flavor development",
@@ -18,11 +20,8 @@ export const siteCopy = {
   ],
   certifications: ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility"],
   shortcuts: [
-    "Heat-stable bakery profiles",
-    "Cooling oral care systems",
-    "Masking support for nutraceuticals",
-    "Dairy-ready fruit & cream notes",
-    "Syrup-focused concentrated systems",
+    "Not seeing it? Ask us—we can likely create it.",
+    "Our searchable library is a starting point, not the limit.",
   ],
 };
 

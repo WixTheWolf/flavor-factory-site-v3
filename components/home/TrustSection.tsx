@@ -9,10 +9,10 @@ export function TrustSection() {
       <div className="container sample-panel">
         <div className="sample-grid">
           <div className="sample-left">
-            <div className="eyebrow">Why The Flavor Factory</div>
-            <h2 className="section-title" style={{ marginTop: 10 }}>Practical support from sample through scale.</h2>
+            <div className="eyebrow">Built for brands that need more than a catalog</div>
+            <h2 className="section-title" style={{ marginTop: 10 }}>Responsive, capable, and built for real production.</h2>
             <p className="section-subtext" style={{ marginTop: 14 }}>
-              We blend flavor development capability with responsive service so your team can move from trial to production without friction.
+              We combine flavor development flexibility with manufacturing practicality so the path from sample to scale stays clear.
             </p>
             <div className="showcase-pills" style={{ marginTop: 16 }}>
               {siteCopy.trustPoints.map((item) => <span className="soft-pill" key={item}>{item}</span>)}
