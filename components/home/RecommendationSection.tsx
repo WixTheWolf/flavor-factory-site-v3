@@ -1,32 +1,47 @@
 import Link from "next/link";
-import { demoFlavors } from "@/data/demo-flavors";
-import { recommendedByIndustry } from "@/lib/recommendations";
-import { Card } from "@/components/ui/Card";
+
+const discoveryPaths = [
+  {
+    title: "Start with a flavor family",
+    copy: "Explore citrus, berry, tropical, vanilla, brown notes, mint, botanical, savory, and custom directions.",
+    action: "Open flavor finder",
+    href: "/flavors",
+  },
+  {
+    title: "Build around the application",
+    copy: "Tell us whether the profile needs to work in bakery, confectionery, dairy, oral care, nutraceutical, syrup, popcorn, or another system.",
+    action: "View industries",
+    href: "/industries",
+  },
+  {
+    title: "Move from sample to scale",
+    copy: "Use our team for custom development, matching, reformulation, and practical production support.",
+    action: "Request samples",
+    href: "/request-samples",
+  },
+] as const;
 
 export function RecommendationSection() {
-  const picks = recommendedByIndustry(demoFlavors, "bakery");
-
   return (
-    <section className="section" style={{ paddingTop: 8 }}>
+    <section className="section home-discovery-section" style={{ paddingTop: 8 }}>
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">Flavor Finder</div>
-            <h2 className="section-title">Find a flavor. Or start with an idea.</h2>
+            <div className="eyebrow">How Buyers Start</div>
+            <h2 className="section-title">Find the right profile without getting lost in a catalog.</h2>
             <p className="section-subtext" style={{ marginTop: 10, maxWidth: 760 }}>
-              Browse flavor families, explore by industry, or search for something specific.
+              A flavor brief can start from a taste, a product format, a benchmark, or a finished-product problem. We built the site around those real paths.
             </p>
           </div>
-          <Link href="/flavors" className="light-btn">Open Flavor Finder</Link>
         </div>
 
-        <div className="strength-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
-          {picks.map((item) => (
-            <Card key={item.id}>
-              <div className="eyebrow">{item.format}</div>
-              <h3>{item.name}</h3>
-              <p>{item.notes}</p>
-            </Card>
+        <div className="home-discovery-grid">
+          {discoveryPaths.map((item) => (
+            <article key={item.title} className="home-discovery-card">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+              <Link href={item.href}>{item.action}</Link>
+            </article>
           ))}
         </div>
       </div>

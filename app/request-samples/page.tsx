@@ -23,7 +23,13 @@ export default function RequestSamplesPage() {
                 <SampleRequestForm />
               </div>
               <div className="sample-right">
-                <AppImage src={siteImages.requestSamplesHero} alt="Premium flavor sample preparation visuals" style={{ objectPosition: "center 35%" }} />
+                <AppImage
+                  src={siteImages.requestSamplesHero}
+                  alt="Premium flavor sample preparation visuals"
+                  priority
+                  sizes="(max-width: 1200px) calc(100vw - 48px), 50vw"
+                  style={{ objectPosition: "center 35%" }}
+                />
                 <div className="sample-overlay" />
               </div>
             </div>

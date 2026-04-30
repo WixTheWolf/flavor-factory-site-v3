@@ -20,7 +20,11 @@ export function IndustriesSection() {
         <div className="path-grid">
           {industries.map((item) => (
             <article className="path-card" key={item.key}>
-              <AppImage src={item.heroImage} alt={item.name} />
+              <AppImage
+                src={item.heroImage}
+                alt={item.name}
+                sizes="(max-width: 900px) calc(100vw - 32px), (max-width: 1200px) calc((100vw - 68px) / 2), 504px"
+              />
               <div className="path-overlay" />
               <div className="path-content">
                 <h3>{item.name}</h3>

@@ -11,10 +11,12 @@ export default function IndustriesPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
-            <div className="editorial-hero">
+            <div className="editorial-hero editorial-hero-compact">
               <AppImage
                 src={siteImages.industriesHero}
                 alt="Ingredient and lab atmosphere"
+                priority
+                sizes="min(1600px, calc(100vw - 48px))"
                 style={{ objectPosition: "center 42%" }}
               />
               <div className="editorial-overlay" />
@@ -48,6 +50,7 @@ export default function IndustriesPage() {
                       src={item.heroImage}
                       alt={item.name}
                       className="industry-clean-image"
+                      sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 56px) / 2), 504px"
                     />
                   </div>
 

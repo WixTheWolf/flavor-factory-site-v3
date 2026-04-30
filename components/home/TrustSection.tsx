@@ -9,10 +9,10 @@ export function TrustSection() {
       <div className="container sample-panel">
         <div className="sample-grid">
           <div className="sample-left">
-            <div className="eyebrow">Built for brands that need more than a catalog</div>
-            <h2 className="section-title" style={{ marginTop: 10 }}>Responsive, capable, and built for real production.</h2>
+            <div className="eyebrow">The Brief Gets Better Here</div>
+            <h2 className="section-title" style={{ marginTop: 10 }}>Bring the idea, benchmark, or product challenge.</h2>
             <p className="section-subtext" style={{ marginTop: 14 }}>
-              We combine flavor development flexibility with manufacturing practicality so the path from sample to scale stays clear.
+              We help turn taste goals into flavor profiles that make sense for the product, the label, the process, and the customer experience.
             </p>
             <div className="showcase-pills" style={{ marginTop: 16 }}>
               {siteCopy.trustPoints.map((item) => <span className="soft-pill" key={item}>{item}</span>)}
@@ -20,7 +20,12 @@ export function TrustSection() {
             <Button href="/request-samples" className="mt-24" >Request Samples</Button>
           </div>
           <div className="sample-right">
-            <AppImage src={siteImages.homeCta} alt="ingredients macro" style={{ objectPosition: "center 45%" }} />
+            <AppImage
+              src={siteImages.homeCta}
+              alt="ingredients macro"
+              sizes="(max-width: 1200px) calc(100vw - 48px), 50vw"
+              style={{ objectPosition: "center 45%" }}
+            />
             <div className="sample-overlay" />
           </div>
         </div>

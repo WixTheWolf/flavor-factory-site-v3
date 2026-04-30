@@ -1,18 +1,66 @@
 import type { Flavor, FlavorFilters } from "@/lib/types";
 
+const industryLabels: Record<string, string> = {
+  bakery: "bakery baked goods",
+  confectionery: "confectionery candy sweets",
+  dairy: "dairy yogurt ice cream milk",
+  nutraceutical: "nutraceutical functional protein vitamin electrolyte supplement",
+  "oral-care": "oral care oralcare mouthwash mouth wash toothpaste breath",
+  pharmaceutical: "pharmaceutical pharma medicated cough syrup",
+  popcorn: "popcorn kettle corn snack",
+  syrup: "syrup beverage drinks soda fountain",
+  savory: "savory culinary seasoning sauce snack",
+};
+
+const queryAliases: Record<string, string[]> = {
+  mouthwash: ["mouth wash", "oral care", "toothpaste", "mint"],
+  oralcare: ["oral care", "mouthwash", "toothpaste"],
+  gummy: ["gummies", "gummy bear"],
+  gummies: ["gummy", "gummy bear"],
+  syrup: ["beverage", "soda", "cola", "root beer", "fountain"],
+  custom: ["signature", "match", "masking", "proprietary"],
+  berry: ["strawberry", "blueberry", "raspberry", "blackberry", "black currant", "cranberry"],
+  citrus: ["orange", "lemon", "lime", "grapefruit", "yuzu", "mandarin"],
+};
+
+function normalizeSearch(value: string) {
+  return value.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function compact(value: string) {
+  return normalizeSearch(value).replace(/\s+/g, "");
+}
+
+function searchableText(flavor: Flavor) {
+  return normalizeSearch(
+    [
+      flavor.name,
+      flavor.family,
+      flavor.format,
+      flavor.declarationType,
+      flavor.notes,
+      ...flavor.rawNames,
+      ...flavor.aliases,
+      ...flavor.productTypes,
+      ...flavor.profile,
+      ...flavor.applications,
+      ...flavor.industries,
+      ...flavor.industries.map((industry) => industryLabels[industry] ?? industry),
+    ].join(" "),
+  );
+}
+
 export function filterFlavors(flavors: Flavor[], filters: FlavorFilters) {
-  const query = filters.search.trim().toLowerCase();
+  const query = normalizeSearch(filters.search);
+  const compactQuery = compact(filters.search);
+  const expandedQueries = query
+    ? [query, ...(queryAliases[compactQuery] ?? []), ...(queryAliases[query] ?? [])].map(normalizeSearch)
+    : [];
 
   return flavors.filter((flavor) => {
-    const queryMatch =
-      !query ||
-      flavor.name.toLowerCase().includes(query) ||
-      flavor.family.toLowerCase().includes(query) ||
-      flavor.rawNames.some((item) => item.toLowerCase().includes(query)) ||
-      flavor.aliases.some((item) => item.includes(query)) ||
-      flavor.productTypes.some((item) => item.toLowerCase().includes(query)) ||
-      flavor.profile.some((item) => item.toLowerCase().includes(query)) ||
-      flavor.notes.toLowerCase().includes(query);
+    const text = searchableText(flavor);
+    const compactText = text.replace(/\s+/g, "");
+    const queryMatch = !query || expandedQueries.some((item) => text.includes(item) || compactText.includes(compact(item)));
 
     const familyMatch = filters.family === "All" || flavor.family === filters.family;
     const formatMatch = filters.format === "All" || flavor.format === filters.format;

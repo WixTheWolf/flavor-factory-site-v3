@@ -2,33 +2,66 @@ import type { Flavor } from "@/lib/types";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 
+function industryLabel(value: string) {
+  return value.replace("-", " ");
+}
+
 export function FlavorCard({ flavor }: { flavor: Flavor }) {
+  const fit = [...flavor.applications, ...flavor.industries.map(industryLabel)].slice(0, 4);
+  const metadata = Array.from(new Set([flavor.format, flavor.declarationType, ...flavor.productTypes])).slice(0, 4);
+
   return (
-    <Card className="finder-card-polish">
+    <Card className="flavor-result-card finder-card-polish">
       <div className="finder-card-top" />
-      <div className="eyebrow">{flavor.family}</div>
-      <h3>{flavor.name}</h3>
-      <p>{flavor.notes}</p>
-      <div className="showcase-pills" style={{ marginTop: 12 }}>
-        {flavor.applications.slice(0, 3).map((item) => (
-          <span className="soft-pill" key={item}>
-            {item}
-          </span>
-        ))}
+      <div className="flavor-card-head">
+        <div>
+          <div className="eyebrow">{flavor.family}</div>
+          <h3>{flavor.name}</h3>
+        </div>
+        <span className="flavor-variant-count">{flavor.variantCount} option{flavor.variantCount === 1 ? "" : "s"}</span>
       </div>
-      <p style={{ marginTop: 10, opacity: 0.75, fontSize: 13 }}>Available in liquid and powder. Custom profiles available.</p>
-      <details style={{ marginTop: 10 }}>
-        <summary style={{ cursor: "pointer", fontSize: 13 }}>Technical details ({flavor.variantCount} variants)</summary>
-        <ul style={{ marginTop: 8, paddingLeft: 18, fontSize: 13, opacity: 0.75 }}>
-          {flavor.rawNames.slice(0, 6).map((raw) => (
+      <p className="flavor-card-note">{flavor.notes}</p>
+
+      <div className="flavor-card-section">
+        <div className="flavor-card-label">Best fit</div>
+        <div className="showcase-pills">
+          {fit.map((item) => (
+            <span className="soft-pill" key={item}>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="flavor-card-section">
+        <div className="flavor-card-label">Format / declaration</div>
+        <div className="flavor-meta-row">
+          {metadata.map((item) => (
+            <span className="flavor-meta-chip" key={item}>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <details className="flavor-card-details">
+        <summary>Technical aliases</summary>
+        <ul>
+          {flavor.rawNames.slice(0, 5).map((raw) => (
             <li key={raw}>{raw}</li>
           ))}
-          {flavor.rawNames.length > 6 && <li>+{flavor.rawNames.length - 6} more raw variants</li>}
+          {flavor.rawNames.length > 5 && <li>+{flavor.rawNames.length - 5} more variants</li>}
         </ul>
       </details>
-      <Button href="/request-samples" variant="secondary" className="mt-24">
-        Request sample for this profile
-      </Button>
+
+      <div className="flavor-card-actions">
+        <Button href="/request-samples" variant="secondary">
+          Request sample
+        </Button>
+        <Button href="/contact">
+          Ask about this profile
+        </Button>
+      </div>
     </Card>
   );
 }

@@ -11,8 +11,16 @@ export default function CertificationsPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container quality">
-            <div className="editorial-hero" style={{ marginBottom: 22 }}>
-              <AppImage src={siteImages.certificationsHero} alt="Quality and compliance lab documentation setup" style={{ objectPosition: "center 42%" }} />
+            <div className="editorial-hero editorial-hero-certifications" style={{ marginBottom: 22 }}>
+              <AppImage
+                src={siteImages.certificationsHero}
+                alt="Flavor Factory certification badges"
+                fill={false}
+                width={1536}
+                height={214}
+                priority
+                sizes="min(1600px, calc(100vw - 48px))"
+              />
               <div className="editorial-overlay" />
             </div>
             <div className="eyebrow" style={{ color: "#f59e0b" }}>

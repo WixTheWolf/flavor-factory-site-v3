@@ -5,7 +5,7 @@ type Props = {
   filters: FlavorFilters;
   families: string[];
   industries: IndustryKey[];
-  useCases: string[];
+  applications: string[];
   onChange: (next: FlavorFilters) => void;
 };
 
@@ -13,12 +13,12 @@ function industryLabel(value: IndustryKey) {
   return value.replace("-", " ");
 }
 
-export function FinderControls({ filters, families, industries, useCases, onChange }: Props) {
+export function FinderControls({ filters, families, industries, applications, onChange }: Props) {
   return (
-    <div className="finder-controls-grid">
+    <div className="flavor-filter-grid">
       <label>
         <div className="eyebrow" style={{ marginBottom: 8 }}>
-          Family
+          Family / Collection
         </div>
         <SelectBox value={filters.family} onChange={(e) => onChange({ ...filters, family: e.target.value })}>
           <option>All</option>
@@ -59,11 +59,24 @@ export function FinderControls({ filters, families, industries, useCases, onChan
         </div>
         <SelectBox value={filters.useCase} onChange={(e) => onChange({ ...filters, useCase: e.target.value })}>
           <option value="All">All</option>
-          {useCases.map((item) => (
+          {applications.map((item) => (
             <option key={item} value={item}>
               {item}
             </option>
           ))}
+        </SelectBox>
+      </label>
+
+      <label>
+        <div className="eyebrow" style={{ marginBottom: 8 }}>
+          Declaration
+        </div>
+        <SelectBox value={filters.declarationType} onChange={(e) => onChange({ ...filters, declarationType: e.target.value as FlavorFilters["declarationType"] })}>
+          <option>All</option>
+          <option>Natural</option>
+          <option>Natural &amp; Artificial</option>
+          <option>Artificial</option>
+          <option>Mixed</option>
         </SelectBox>
       </label>
     </div>

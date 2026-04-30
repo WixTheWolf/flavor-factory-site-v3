@@ -11,18 +11,23 @@ export default function FlavorsPage() {
       <main>
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
-            <div className="editorial-hero" style={{ marginBottom: 22 }}>
-              <AppImage src={siteImages.flavorsHero} alt="Premium citrus and liquid flavor composition" style={{ objectPosition: "center 35%" }} />
+            <div className="editorial-hero editorial-hero-compact" style={{ marginBottom: 22 }}>
+              <AppImage
+                src={siteImages.flavorsHero}
+                alt="Premium citrus and liquid flavor composition"
+                priority
+                sizes="min(1600px, calc(100vw - 48px))"
+                style={{ objectPosition: "center 35%" }}
+              />
               <div className="editorial-overlay" />
+              <div className="editorial-content">
+                <div className="eyebrow" style={{ color: "#f59e0b" }}>Our Flavors</div>
+                <h1 className="section-title" style={{ color: "white" }}>Find the right flavor direction faster.</h1>
+                <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900, color: "rgba(255,255,255,.84)" }}>
+                  Start with a flavor family, narrow by application, then request samples. Search by flavor name, product type, industry, declaration, or use case.
+                </p>
+              </div>
             </div>
-            <div className="eyebrow">Our Flavors</div>
-            <h1 className="section-title">If you can dream it, we can make it</h1>
-            <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900 }}>
-              Explore flavor families, representative profiles, and application-friendly directions. If you have something specific in mind, search for it.
-            </p>
-            <p className="section-subtext" style={{ marginTop: 8, maxWidth: 900 }}>
-              Not seeing it? That does not mean we don’t make it. Our searchable library is a starting point—not the limit.
-            </p>
             <FlavorFinder />
           </div>
         </section>

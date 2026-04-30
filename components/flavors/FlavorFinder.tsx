@@ -1,199 +1,225 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { demoFlavors } from "@/data/demo-flavors";
 import type { FlavorFilters, IndustryKey } from "@/lib/types";
 import { filterFlavors } from "@/lib/filter-flavors";
-import { StickySearchBar } from "@/components/layout/StickySearchBar";
 import { FinderControls } from "@/components/flavors/FinderControls";
 import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { Button } from "@/components/ui/Button";
 import { recommendedByIndustry } from "@/lib/recommendations";
 
-const shortcutIndustries: IndustryKey[] = ["bakery", "oral-care", "nutraceutical", "dairy", "syrup", "popcorn"];
-
-const formatComparison = {
-  Liquid: "Best for syrups, beverages, dairy systems, and applications needing rapid incorporation.",
-  Powder: "Best for dry blends, nutraceutical formats, and shelf-stable systems.",
+type Collection = {
+  name: string;
+  direction: string;
+  examples: string[];
 };
 
-const quickFilters = ["Liquid Explorer", "Powder Explorer"] as const;
-const flavorHighlights = ["Grouped variants", "Industry recommendations", "Technical traceability"] as const;
-const storyPoints = ["Search by clean name or raw alias", "Filter by family, format, and application", "Request samples from shortlisted matches"] as const;
-const familyDescriptors: Record<string, string> = {
-  Citrus: "Bright, juicy, and high-impact top notes.",
-  Berry: "Ripe red and dark berry profiles for bold fruit character.",
-  Tropical: "Lush, vibrant fruit notes with modern beverage appeal.",
-  "Orchard Fruit": "Crisp apple-and-pear style profiles with clean finish.",
-  "Stone Fruit": "Soft, aromatic peach/apricot/plum style flavor direction.",
-  Melons: "Fresh melon profiles with sweet, cooling lift.",
-  "Vanilla & Cream": "Round, indulgent, creamy foundations for bakery and dairy.",
-  "Chocolate & Brown Notes": "Cocoa, caramel, and roasted sweetness for depth.",
-  "Coffee & Beverage": "Coffeehouse, cola, soda, and beverage-ready profiles.",
-  "Mint & Cooling": "Cooling mint systems for oral care and refreshment.",
-  "Nut & Praline": "Toasted nut and praline styles with warm richness.",
-  "Spice & Warmth": "Comforting spice notes for bakery and seasonal profiles.",
-  "Dessert & Bakery": "Dessert-forward profiles built for indulgence.",
-  "Candy & Confectionery": "Playful confectionery direction for gummies and sweets.",
-  "Savory & Culinary": "Savory systems for culinary and snack applications.",
-  "Botanical & Tea": "Herbal, tea-inspired, and aromatic botanical notes.",
-  "Custom / Signature": "Match, create, and signature briefs tailored to your brand.",
+const collections: Collection[] = [
+  { name: "Citrus", direction: "Bright, juicy, refreshing top notes.", examples: ["Orange", "Lemon Lime", "Yuzu"] },
+  { name: "Berry", direction: "Sweet-tart red and dark berry impact.", examples: ["Strawberry", "Black Currant", "Raspberry"] },
+  { name: "Tropical", direction: "Ripe, sunny fruit for modern beverage and candy concepts.", examples: ["Pineapple", "Mango", "Passion Fruit"] },
+  { name: "Orchard Fruit", direction: "Fresh, candied, or baked apple and pear directions.", examples: ["Green Apple", "Pear", "Apple Pie"] },
+  { name: "Stone Fruit", direction: "Soft, rounded fruit with light tart balance.", examples: ["Peach", "Apricot", "Dark Sweet Cherry"] },
+  { name: "Vanilla & Cream", direction: "Smooth creamy sweetness for indulgent systems.", examples: ["Vanilla Bean", "Custard", "Sweet Cream"] },
+  { name: "Chocolate & Brown Notes", direction: "Cocoa, caramel, toffee, maple, and roasted depth.", examples: ["Chocolate", "Caramel", "Brownie Batter"] },
+  { name: "Mint & Cooling", direction: "Clean cooling profiles for oral care and refreshment.", examples: ["Peppermint", "Spearmint", "Wintergreen"] },
+  { name: "Coffee & Beverage", direction: "Coffeehouse, soda, punch, and syrup-ready profiles.", examples: ["Cold Brew", "Cola", "Root Beer"] },
+  { name: "Nut & Praline", direction: "Toasted, creamy, and praline-like nut character.", examples: ["Almond", "Hazelnut", "Peanut Butter"] },
+  { name: "Botanical & Tea", direction: "Herbal, tea, floral, and wellness-positioned notes.", examples: ["Matcha", "Hibiscus", "Lavender"] },
+  { name: "Candy & Confectionery", direction: "High-impact playful profiles for gummies and sweets.", examples: ["Blue Raspberry", "Cotton Candy", "Sour Apple"] },
+  { name: "Savory & Culinary", direction: "Snack, sauce, seasoning, and culinary flavor systems.", examples: ["BBQ", "Ranch", "Jalapeno Lime"] },
+  { name: "Custom & Signature", direction: "Matching, masking, and proprietary brand profiles.", examples: ["Custom Fruit", "Masking", "Profile Match"] },
+];
+
+const initialFilters: FlavorFilters = {
+  search: "",
+  family: "All",
+  format: "All",
+  industry: "All",
+  declarationType: "All",
+  productType: "All",
+  useCase: "All",
 };
+
+const quickSearches = ["vanilla", "strawberry", "citrus", "mint", "mouthwash", "gummy", "syrup", "popcorn", "custom"];
 
 function industryLabel(value: IndustryKey) {
   return value.replace("-", " ");
 }
 
+function filterLabels(filters: FlavorFilters) {
+  return [
+    filters.search ? `Search: ${filters.search}` : null,
+    filters.family !== "All" ? `Family: ${filters.family}` : null,
+    filters.industry !== "All" ? `Industry: ${industryLabel(filters.industry)}` : null,
+    filters.useCase !== "All" ? `Application: ${filters.useCase}` : null,
+    filters.format !== "All" ? `Format: ${filters.format}` : null,
+    filters.declarationType !== "All" ? `Declaration: ${filters.declarationType}` : null,
+  ].filter(Boolean) as string[];
+}
+
 export function FlavorFinder() {
-  const [filters, setFilters] = useState<FlavorFilters>({
-    search: "",
-    family: "All",
-    format: "All",
-    industry: "All",
-    declarationType: "All",
-    productType: "All",
-    useCase: "All",
-  });
+  const [filters, setFilters] = useState<FlavorFilters>(initialFilters);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const families = useMemo(() => Array.from(new Set(demoFlavors.map((item) => item.family))).sort(), []);
   const industries = useMemo(() => Array.from(new Set(demoFlavors.flatMap((item) => item.industries))).sort(), []);
-  const useCases = useMemo(() => Array.from(new Set([...demoFlavors.flatMap((item) => item.industries), ...demoFlavors.flatMap((item) => item.applications)])).sort(), []);
+  const applications = useMemo(() => Array.from(new Set(demoFlavors.flatMap((item) => item.applications))).sort(), []);
   const results = useMemo(() => filterFlavors(demoFlavors, filters), [filters]);
-  const curatedFamilies = useMemo(
-    () =>
-      families.map((family) => {
-        const inFamily = demoFlavors.filter((item) => item.family === family);
-        const representatives = Array.from(new Set(inFamily.map((item) => item.name))).slice(0, 6);
-        return {
-          family,
-          descriptor: familyDescriptors[family] ?? "Curated profiles with custom options available.",
-          count: inFamily.length,
-          representatives,
-        };
-      }),
-    [families],
-  );
+  const activeFilters = useMemo(() => filterLabels(filters), [filters]);
   const recommended = useMemo(
     () => (filters.industry === "All" ? [] : recommendedByIndustry(demoFlavors, filters.industry).slice(0, 3)),
     [filters.industry],
   );
 
-  return (
-    <section>
-      <StickySearchBar value={filters.search} onChange={(search) => setFilters((prev) => ({ ...prev, search }))} />
+  function focusResults() {
+    window.setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }
 
-      <div className="finder-surface" style={{ marginTop: 12 }}>
-        <div className="section-head" style={{ marginBottom: 14 }}>
+  function updateFilters(next: FlavorFilters, shouldFocus = false) {
+    setFilters(next);
+    if (shouldFocus) focusResults();
+  }
+
+  function exploreCollection(family: string) {
+    updateFilters({ ...filters, search: "", family }, true);
+  }
+
+  function handleSearch(search: string) {
+    updateFilters({ ...filters, search }, search.trim().length > 0);
+  }
+
+  function clearFilters() {
+    updateFilters(initialFilters);
+  }
+
+  return (
+    <section className="flavor-finder">
+      <div className="flavor-intro-panel">
+        <div>
+          <div className="eyebrow">Flavor Discovery</div>
+          <h2>Start with a flavor family, narrow by application, then request samples.</h2>
+          <p>
+            Search familiar profiles, explore curated collections, or filter by the way the flavor needs to perform in your finished product.
+          </p>
+        </div>
+        <p className="flavor-format-note">
+          Most profiles can be developed in liquid, powder, natural, natural & artificial, or custom formats depending on the project.
+        </p>
+      </div>
+
+      <div className="flavor-search-panel">
+        <label className="flavor-search-label" htmlFor="flavor-search">
+          Search flavors
+        </label>
+        <input
+          id="flavor-search"
+          className="input flavor-search-input"
+          placeholder="Try vanilla, strawberry, mouthwash, gummy, syrup, popcorn, or custom"
+          value={filters.search}
+          onChange={(event) => handleSearch(event.target.value)}
+        />
+        <div className="flavor-quick-row">
+          {quickSearches.map((item) => (
+            <button type="button" className="soft-pill" key={item} onClick={() => updateFilters({ ...filters, search: item }, true)}>
+              {item}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="flavor-collections">
+        <div className="section-head flavor-section-head">
           <div>
             <div className="eyebrow">Flavor Collections</div>
-            <h3 style={{ margin: "8px 0 0", fontSize: "1.4rem" }}>Start with a family. Then narrow quickly.</h3>
+            <h3>Curated starting points</h3>
           </div>
+          <p>Pick a direction and the matching profiles will move into view.</p>
         </div>
-        <div className="strength-grid three-col" style={{ marginBottom: 18 }}>
-          {curatedFamilies.map((collection) => (
-            <article key={collection.family} className="strength-card" style={{ minHeight: 220 }}>
-              <div className="eyebrow">{collection.count} grouped profiles</div>
-              <h3 style={{ marginTop: 8 }}>{collection.family}</h3>
-              <p style={{ marginTop: 8 }}>{collection.descriptor}</p>
-              <div className="showcase-pills" style={{ marginTop: 8 }}>
-                {collection.representatives.slice(0, 3).map((item) => (
-                  <span className="soft-pill" key={item}>{item}</span>
-                ))}
-              </div>
-              <button className="light-btn" style={{ marginTop: 12 }} onClick={() => setFilters((prev) => ({ ...prev, family: collection.family }))}>
-                Explore {collection.family}
+        <div className="flavor-collection-grid">
+          {collections.map((collection) => (
+            <article key={collection.name} className={`flavor-collection-card ${filters.family === collection.name ? "is-active" : ""}`}>
+              <h4>{collection.name}</h4>
+              <p>{collection.direction}</p>
+              <div className="flavor-example-line">{collection.examples.join(" / ")}</div>
+              <button type="button" className="light-btn" onClick={() => exploreCollection(collection.name)}>
+                Explore {collection.name}
               </button>
             </article>
           ))}
         </div>
+      </div>
 
+      <div className="flavor-controls-panel">
         <FinderControls
           filters={filters}
           families={families}
           industries={industries}
-          useCases={useCases}
-          onChange={setFilters}
+          applications={applications}
+          onChange={(next) => updateFilters(next)}
         />
 
-        <div className="showcase-pills" style={{ marginTop: 14 }}>
-          {quickFilters.map((item) => (
-            <button
-              key={item}
-              className={`soft-pill ${(item === "Liquid Explorer" ? filters.format === "Liquid" : filters.format === "Powder") ? "active-chip" : ""}`}
-              onClick={() => setFilters((p) => ({ ...p, format: item === "Liquid Explorer" ? "Liquid" : "Powder" }))}
-            >
-              {item}
-            </button>
-          ))}
-          {shortcutIndustries.map((item) => (
-            <button key={item} className={`soft-pill ${filters.industry === item ? "active-chip" : ""}`} onClick={() => setFilters((prev) => ({ ...prev, industry: item }))}>
-              {industryLabel(item)}
-            </button>
-          ))}
-        </div>
-
-        <div className="showcase-pills" style={{ marginTop: 10 }}>
-          {flavorHighlights.map((item) => (
-            <span key={item} className="soft-pill">{item}</span>
-          ))}
-        </div>
-
-        <div className="finder-meta">
-          <span>{results.length} matching flavors</span>
-          <button
-            className="light-btn"
-            onClick={() =>
-              setFilters({ search: "", family: "All", format: "All", industry: "All", declarationType: "All", productType: "All", useCase: "All" })
-            }
-          >
-            Reset filters
+        <div className="flavor-filter-footer">
+          <div className="flavor-active-filters">
+            {activeFilters.length === 0 ? (
+              <span className="flavor-muted">No filters active</span>
+            ) : (
+              activeFilters.map((item) => (
+                <span className="flavor-active-chip" key={item}>
+                  {item}
+                </span>
+              ))
+            )}
+          </div>
+          <button type="button" className="light-btn" onClick={clearFilters}>
+            Clear filters
           </button>
         </div>
-
-        <div className="guidance-grid">
-          <article className="guidance-card">
-            <h3>Liquid guidance</h3>
-            <p>{formatComparison.Liquid}</p>
-          </article>
-          <article className="guidance-card">
-            <h3>Powder guidance</h3>
-            <p>{formatComparison.Powder}</p>
-          </article>
-        </div>
-        <ul style={{ margin: "10px 0 0", opacity: 0.78, paddingLeft: 20 }}>
-          {storyPoints.map((point) => (
-            <li key={point}>{point}</li>
-          ))}
-        </ul>
       </div>
 
       {recommended.length > 0 && (
-        <section className="section" style={{ paddingTop: 18, paddingBottom: 12 }}>
-          <div className="showcase">
-            <div className="eyebrow">Recommended for your industry</div>
-            <div className="strength-grid three-col" style={{ marginTop: 12 }}>
-              {recommended.map((item) => (
-                <article key={item.id} className="strength-card">
-                  <div className="eyebrow">{item.family}</div>
-                  <h3 style={{ fontSize: "1.25rem" }}>{item.name}</h3>
-                  <p>{item.notes}</p>
-                </article>
-              ))}
-            </div>
+        <div className="flavor-recommendation-strip">
+          <div>
+            <div className="eyebrow">Recommended for {industryLabel(filters.industry as IndustryKey)}</div>
+            <p>Useful starting points for this industry.</p>
           </div>
-        </section>
+          <div className="flavor-recommendation-list">
+            {recommended.map((item) => (
+              <button type="button" key={item.id} onClick={() => updateFilters({ ...filters, search: item.name }, true)}>
+                {item.name}
+              </button>
+            ))}
+          </div>
+        </div>
       )}
 
-      <div className="section" style={{ paddingTop: 18 }}>
-        <div className="strength-grid three-col">{results.map((item) => <FlavorCard key={item.id} flavor={item} />)}</div>
+      <div className="flavor-results" ref={resultsRef}>
+        <div className="flavor-results-head">
+          <div>
+            <div className="eyebrow">Matching Profiles</div>
+            <h3>{results.length} result{results.length === 1 ? "" : "s"}</h3>
+          </div>
+          <Button href="/request-samples" variant="secondary">
+            Request samples
+          </Button>
+        </div>
 
-        {results.length === 0 && (
-          <div className="showcase" style={{ marginTop: 18 }}>
-            <h3>No exact match found yet.</h3>
-            <p className="section-subtext">
-              Try broadening filters, changing format, or selecting an industry chip above. If you have a specific target, submit a sample request and we’ll recommend the fastest path.
+        {results.length > 0 ? (
+          <div className="flavor-result-grid">
+            {results.map((item) => (
+              <FlavorCard key={item.id} flavor={item} />
+            ))}
+          </div>
+        ) : (
+          <div className="flavor-empty-state">
+            <h3>Not seeing the exact profile? We can likely create it.</h3>
+            <p>
+              Share the target flavor, application, format, and any benchmark product. We can recommend a close starting point or build a custom profile.
             </p>
-            <Button href="/request-samples">Request Samples</Button>
+            <Button href="/request-samples">Request a custom flavor</Button>
           </div>
         )}
       </div>
