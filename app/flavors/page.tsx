@@ -16,7 +16,7 @@ export default function FlavorsPage() {
               <div className="editorial-overlay" />
             </div>
             <div className="eyebrow">Our Flavors</div>
-            <h1 className="section-title">A broader flavor library, cleaned up.</h1>
+            <h1 className="section-title">If you can dream it, we can make it</h1>
             <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900 }}>
               Explore flavor families, representative profiles, and application-friendly directions. If you have something specific in mind, search for it.
             </p>

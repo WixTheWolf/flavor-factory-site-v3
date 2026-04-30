@@ -19,7 +19,7 @@ export const industries: Industry[] = [
   {
     key: "dairy",
     name: "Dairy",
-    heroImage: flavorFactoryImages.applicationDairy,
+    heroImage: flavorFactoryImages.industryDairy,
     summary: "Cream-forward and fruit-forward flavor support for dairy products.",
     applications: ["Yogurt", "Ice cream", "Milk drinks", "Creamers"],
   },
@@ -47,15 +47,22 @@ export const industries: Industry[] = [
   {
     key: "popcorn",
     name: "Popcorn",
-    heroImage: flavorFactoryImages.applicationPopcorn,
+    heroImage: flavorFactoryImages.industryPopcorn,
     summary: "Savory and sweet flavor direction built for seasoning and coating systems.",
     applications: ["Kettle", "Caramel", "Savory", "Premium blends"],
   },
   {
     key: "syrup",
     name: "Syrup",
-    heroImage: flavorFactoryImages.pathFoodBeverage,
+    heroImage: flavorFactoryImages.industryBeverage,
     summary: "High-impact concentrated flavor systems for syrup and topping programs.",
     applications: ["Coffee syrups", "Beverage bases", "Dessert toppings", "Concentrates"],
+  },
+  {
+    key: "savory",
+    name: "Savory",
+    heroImage: flavorFactoryImages.industrySavory,
+    summary: "Savory flavor profiles for a wide range of applications.",
+    applications: ["Snacks", "Seasonings", "Sauces", "Marinades"],
   },
 ];

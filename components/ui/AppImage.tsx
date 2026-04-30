@@ -10,7 +10,7 @@ type Props = {
   style?: CSSProperties;
 };
 
-const FALLBACK_SRC = "/images/flavor-factory/hero-main.jpg";
+const FALLBACK_SRC = "/images/flavor-factory/hero-main-v3.jpg";
 
 export function AppImage({ src, alt, className, style }: Props) {
   const [currentSrc, setCurrentSrc] = useState(src);

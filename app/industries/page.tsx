@@ -12,27 +12,54 @@ export default function IndustriesPage() {
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="container">
             <div className="editorial-hero">
-              <AppImage src={siteImages.industriesHero} alt="Ingredient and lab atmosphere" style={{ objectPosition: "center 42%" }} />
+              <AppImage
+                src={siteImages.industriesHero}
+                alt="Ingredient and lab atmosphere"
+                style={{ objectPosition: "center 42%" }}
+              />
               <div className="editorial-overlay" />
               <div className="editorial-content">
-                <div className="eyebrow" style={{ color: "#f59e0b" }}>Industries</div>
-                <h1 className="section-title" style={{ color: "white" }}>Flavor systems tailored to real applications.</h1>
-                <p className="section-subtext" style={{ color: "rgba(255,255,255,.82)", marginTop: 12, maxWidth: 760 }}>
-                  From bakery and beverage to nutraceutical, oral care, and pharmaceutical programs, we formulate for how products are actually made and consumed.
+                <div className="eyebrow" style={{ color: "#f59e0b" }}>
+                  Industries
+                </div>
+                <h1 className="section-title" style={{ color: "white" }}>
+                  Flavor systems tailored to real applications.
+                </h1>
+                <p
+                  className="section-subtext"
+                  style={{
+                    color: "rgba(255,255,255,.82)",
+                    marginTop: 12,
+                    maxWidth: 760,
+                  }}
+                >
+                  Different products ask different things from a flavor. Heat,
+                  pH, sweetness, bitterness, masking, solubility, dosage form,
+                  and finished-product experience all matter.
                 </p>
               </div>
             </div>
 
-            <div className="path-grid" style={{ marginTop: 24 }}>
+            <div className="industry-clean-grid" style={{ marginTop: 32 }}>
               {industries.map((item) => (
-                <article key={item.key} className="path-card">
-                  <AppImage src={item.heroImage} alt={item.name} />
-                  <div className="path-overlay" />
-                  <div className="path-content">
-                    <div className="path-tag">{item.applications.slice(0, 2).join(" • ")}</div>
+                <article key={item.key} className="industry-clean-card">
+                  <div className="industry-clean-image-wrap">
+                    <AppImage
+                      src={item.heroImage}
+                      alt={item.name}
+                      className="industry-clean-image"
+                    />
+                  </div>
+
+                  <div className="industry-clean-body">
                     <h3>{item.name}</h3>
                     <p>{item.summary}</p>
-                    <div className="mini-link">{item.applications.slice(0, 3).join(" • ")}</div>
+
+                    <div className="industry-clean-tags">
+                      {item.applications.slice(0, 5).map((tag) => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
                   </div>
                 </article>
               ))}
