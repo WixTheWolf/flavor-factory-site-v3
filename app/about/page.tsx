@@ -27,31 +27,31 @@ const managementTeam = [
   {
     name: "Dan Wixted",
     title: "President",
-    initials: "DW",
+    focus: "Leadership",
     note: "Leadership, customer relationships, and company standards.",
   },
   {
     name: "Alex Wixted",
     title: "Operations",
-    initials: "AW",
+    focus: "Operations",
     note: "Project flow, operations, and customer coordination.",
   },
   {
     name: "Kelly Ziegler",
     title: "Office Manager",
-    initials: "KZ",
+    focus: "Customer Care",
     note: "Customer communication, coordination, and project details.",
   },
   {
     name: "Ryan Wixted",
     title: "Quality / Regulatory",
-    initials: "RW",
+    focus: "Quality",
     note: "Quality systems, regulatory support, and documentation.",
   },
   {
     name: "Matt Wixted",
     title: "Production Manager",
-    initials: "MW",
+    focus: "Production",
     note: "Production planning, execution, and sample-to-production support.",
   },
 ] as const;
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 {managementTeam.map((member) => (
                   <article className="management-card" key={member.name}>
                     <div className="management-avatar" aria-hidden="true">
-                      <span>{member.initials}</span>
+                      <span>{member.focus}</span>
                     </div>
                     <div className="management-body">
                       <h3>{member.name}</h3>

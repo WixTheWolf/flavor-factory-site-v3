@@ -3,11 +3,25 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 
 function industryLabel(value: string) {
-  return value.replace("-", " ");
+  return value
+    .replace("-", " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function uniqueLabels(items: string[]) {
+  const seen = new Set<string>();
+
+  return items.filter((item) => {
+    const key = item.toLowerCase().replace(/[^a-z0-9]+/g, "");
+
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 export function FlavorCard({ flavor }: { flavor: Flavor }) {
-  const fit = [...flavor.applications, ...flavor.industries.map(industryLabel)].slice(0, 4);
+  const fit = uniqueLabels([...flavor.applications, ...flavor.industries.map(industryLabel)]).slice(0, 4);
   const metadata = Array.from(new Set([flavor.format, flavor.declarationType, ...flavor.productTypes])).slice(0, 4);
 
   return (
@@ -45,7 +59,7 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
       </div>
 
       <details className="flavor-card-details">
-        <summary>Technical aliases</summary>
+        <summary>View technical names</summary>
         <ul>
           {flavor.rawNames.slice(0, 5).map((raw) => (
             <li key={raw}>{raw}</li>

@@ -1,8 +1,30 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { siteCopy } from "@/data/site-copy";
 import { siteImages } from "@/data/site-images";
 import { AppImage } from "@/components/ui/AppImage";
+
+const certificationNotes = [
+  {
+    name: "SQF",
+    note: "Supports customer quality reviews with recognized food safety program documentation where applicable.",
+  },
+  {
+    name: "GMP",
+    note: "Manufacturing practices are organized around consistent handling, production, and recordkeeping.",
+  },
+  {
+    name: "Kosher",
+    note: "Kosher documentation can be reviewed for qualifying flavor projects and customer requirements.",
+  },
+  {
+    name: "Halal",
+    note: "Halal status and documentation can be confirmed for applicable flavors and applications.",
+  },
+  {
+    name: "FDA Registered Facility",
+    note: "Facility registration supports food manufacturing documentation without replacing product-specific review.",
+  },
+] as const;
 
 export default function CertificationsPage() {
   return (
@@ -32,11 +54,12 @@ export default function CertificationsPage() {
             <p className="section-subtext" style={{ marginTop: 14, color: "rgba(255,255,255,.8)", maxWidth: 840 }}>
               Flavor work needs more than a good profile. It needs repeatable manufacturing, clear documentation, and practical support when a formula moves from sample bench to commercial production.
             </p>
-            <div className="quality-grid" style={{ marginTop: 20 }}>
-              {siteCopy.certifications.map((item) => (
-                <div className="quality-badge" key={item}>
-                  {item}
-                </div>
+            <div className="quality-grid quality-card-grid" style={{ marginTop: 20 }}>
+              {certificationNotes.map((item) => (
+                <article className="quality-badge quality-note-card" key={item.name}>
+                  <h2>{item.name}</h2>
+                  <p>{item.note}</p>
+                </article>
               ))}
             </div>
             <div className="quality-explain-grid">

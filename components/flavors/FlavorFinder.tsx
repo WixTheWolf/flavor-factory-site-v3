@@ -11,25 +11,60 @@ import { recommendedByIndustry } from "@/lib/recommendations";
 
 type Collection = {
   name: string;
-  direction: string;
+  description: string;
   examples: string[];
+  terms: string[];
 };
 
 const collections: Collection[] = [
-  { name: "Citrus", direction: "Clean, bright directions for beverage, confectionery, bakery, and functional products.", examples: ["Orange", "Lemon Lime", "Yuzu"] },
-  { name: "Berry", direction: "Sweet, tart, jammy, or candy-style berry profiles for a wide range of applications.", examples: ["Strawberry", "Black Currant", "Raspberry"] },
-  { name: "Tropical", direction: "Ripe fruit directions for beverages, gummies, syrups, and application-specific blends.", examples: ["Pineapple", "Mango", "Passion Fruit"] },
-  { name: "Orchard Fruit", direction: "Fresh, baked, candied, or beverage-style apple and pear profiles.", examples: ["Green Apple", "Pear", "Apple Pie"] },
-  { name: "Stone Fruit", direction: "Peach, apricot, and cherry directions with room for natural, candy, or baked profiles.", examples: ["Peach", "Apricot", "Dark Sweet Cherry"] },
-  { name: "Vanilla & Cream", direction: "Vanilla, cream, custard, and sweet dairy notes for indulgent products.", examples: ["Vanilla Bean", "Custard", "Sweet Cream"] },
-  { name: "Chocolate & Brown Notes", direction: "Cocoa, caramel, toffee, maple, cookie, and roasted profiles.", examples: ["Chocolate", "Caramel", "Brownie Batter"] },
-  { name: "Mint & Cooling", direction: "Mint, cooling, and freshness systems for oral care, candy, and refreshment.", examples: ["Peppermint", "Spearmint", "Wintergreen"] },
-  { name: "Coffee & Beverage", direction: "Coffeehouse, soda, punch, root beer, and syrup-ready directions.", examples: ["Cold Brew", "Cola", "Root Beer"] },
-  { name: "Nut & Praline", direction: "Toasted, creamy, roasted, and praline-style nut character.", examples: ["Almond", "Hazelnut", "Peanut Butter"] },
-  { name: "Botanical & Tea", direction: "Tea, floral, herbal, and functional-product flavor directions.", examples: ["Matcha", "Hibiscus", "Lavender"] },
-  { name: "Candy & Confectionery", direction: "High-impact profiles for gummies, hard candy, chews, and novelty sweets.", examples: ["Blue Raspberry", "Cotton Candy", "Sour Apple"] },
-  { name: "Savory & Culinary", direction: "Snack, sauce, seasoning, coating, and culinary-style profiles.", examples: ["BBQ", "Ranch", "Jalapeno Lime"] },
-  { name: "Custom & Signature", direction: "Custom, matching, masking, reformulation, and proprietary profile work.", examples: ["Custom Fruit", "Masking", "Profile Match"] },
+  {
+    name: "Citrus",
+    description: "Bright, zesty, and juicy citrus profiles.",
+    examples: ["Lemon", "Lime", "Orange", "Grapefruit", "Key Lime"],
+    terms: ["citrus", "lemon", "lime", "orange", "grapefruit", "key lime", "yuzu", "mandarin"],
+  },
+  {
+    name: "Berry",
+    description: "Sweet, tart, and naturally vibrant berry profiles.",
+    examples: ["Strawberry", "Raspberry", "Blueberry", "Blackberry", "Mixed Berry"],
+    terms: ["berry", "strawberry", "raspberry", "blueberry", "blackberry", "mixed berry", "black currant", "cranberry", "cherry"],
+  },
+  {
+    name: "Vanilla",
+    description: "Classic, creamy, warm vanilla profiles for sweet applications.",
+    examples: ["Vanilla", "French Vanilla", "Vanilla Cream", "Vanilla Bean"],
+    terms: ["vanilla", "french vanilla", "vanilla cream", "vanilla bean", "cream", "custard"],
+  },
+  {
+    name: "Chocolate",
+    description: "Rich, smooth, and indulgent chocolate and cocoa profiles.",
+    examples: ["Chocolate", "Cocoa", "Fudge", "Brownie"],
+    terms: ["chocolate", "cocoa", "fudge", "brownie", "mocha"],
+  },
+  {
+    name: "Tropical",
+    description: "Exotic, juicy fruit profiles with bright top notes.",
+    examples: ["Mango", "Pineapple", "Passion Fruit", "Guava", "Coconut"],
+    terms: ["tropical", "mango", "pineapple", "passion fruit", "guava", "coconut", "pina colada", "dragon fruit", "banana"],
+  },
+  {
+    name: "Nutty",
+    description: "Warm, roasted, and naturally rich nut profiles.",
+    examples: ["Almond", "Hazelnut", "Peanut", "Pistachio", "Butter Pecan"],
+    terms: ["nut", "nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan"],
+  },
+  {
+    name: "Beverage",
+    description: "Refreshing profiles for drinks, syrups, and beverage bases.",
+    examples: ["Cola", "Coffee", "Energy Drink", "Lemonade", "Tea"],
+    terms: ["beverage", "syrup", "cola", "coffee", "energy drink", "lemonade", "tea", "cold brew", "root beer", "soda", "punch"],
+  },
+  {
+    name: "Sweet",
+    description: "Dessert-style sweetness, brown notes, and confectionery profiles.",
+    examples: ["Caramel", "Butterscotch", "Marshmallow", "Pancake Syrup"],
+    terms: ["sweet", "dessert", "caramel", "butterscotch", "marshmallow", "pancake syrup", "toffee", "maple", "cotton candy", "gummy"],
+  },
 ];
 
 const initialFilters: FlavorFilters = {
@@ -43,13 +78,48 @@ const initialFilters: FlavorFilters = {
 };
 
 const quickSearches = ["vanilla", "strawberry", "citrus", "mint", "mouthwash", "gummy", "syrup", "popcorn", "custom"];
+const initialVisibleResults = 18;
+const visibleResultsStep = 18;
 
 function industryLabel(value: IndustryKey) {
   return value.replace("-", " ");
 }
 
-function filterLabels(filters: FlavorFilters) {
+function normalizeCategoryText(value: string) {
+  return value.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+function flavorCategoryText(flavor: (typeof demoFlavors)[number]) {
+  return normalizeCategoryText(
+    [
+      flavor.name,
+      flavor.family,
+      flavor.notes,
+      ...flavor.rawNames,
+      ...flavor.aliases,
+      ...flavor.productTypes,
+      ...flavor.profile,
+      ...flavor.applications,
+      ...flavor.industries,
+    ].join(" "),
+  );
+}
+
+function matchesCategory(flavor: (typeof demoFlavors)[number], category: Collection | null) {
+  if (!category) return true;
+
+  const text = flavorCategoryText(flavor);
+  const compactText = text.replace(/\s+/g, "");
+
+  return category.terms.some((term) => {
+    const normalizedTerm = normalizeCategoryText(term);
+    return text.includes(normalizedTerm) || compactText.includes(normalizedTerm.replace(/\s+/g, ""));
+  });
+}
+
+function filterLabels(filters: FlavorFilters, category: Collection | null) {
   return [
+    category ? `Category: ${category.name}` : null,
     filters.search ? `Search: ${filters.search}` : null,
     filters.family !== "All" ? `Family: ${filters.family}` : null,
     filters.industry !== "All" ? `Industry: ${industryLabel(filters.industry)}` : null,
@@ -61,13 +131,17 @@ function filterLabels(filters: FlavorFilters) {
 
 export function FlavorFinder() {
   const [filters, setFilters] = useState<FlavorFilters>(initialFilters);
+  const [activeCategoryName, setActiveCategoryName] = useState<string | null>(null);
+  const [visibleResults, setVisibleResults] = useState(initialVisibleResults);
   const resultsRef = useRef<HTMLDivElement>(null);
 
+  const activeCategory = useMemo(() => collections.find((item) => item.name === activeCategoryName) ?? null, [activeCategoryName]);
   const families = useMemo(() => Array.from(new Set(demoFlavors.map((item) => item.family))).sort(), []);
   const industries = useMemo(() => Array.from(new Set(demoFlavors.flatMap((item) => item.industries))).sort(), []);
   const applications = useMemo(() => Array.from(new Set(demoFlavors.flatMap((item) => item.applications))).sort(), []);
-  const results = useMemo(() => filterFlavors(demoFlavors, filters), [filters]);
-  const activeFilters = useMemo(() => filterLabels(filters), [filters]);
+  const results = useMemo(() => filterFlavors(demoFlavors, filters).filter((item) => matchesCategory(item, activeCategory)), [activeCategory, filters]);
+  const shownResults = useMemo(() => results.slice(0, visibleResults), [results, visibleResults]);
+  const activeFilters = useMemo(() => filterLabels(filters, activeCategory), [activeCategory, filters]);
   const recommended = useMemo(
     () => (filters.industry === "All" ? [] : recommendedByIndustry(demoFlavors, filters.industry).slice(0, 3)),
     [filters.industry],
@@ -81,11 +155,14 @@ export function FlavorFinder() {
 
   function updateFilters(next: FlavorFilters, shouldFocus = false) {
     setFilters(next);
+    setVisibleResults(initialVisibleResults);
     if (shouldFocus) focusResults();
   }
 
-  function exploreCollection(family: string) {
-    updateFilters({ ...filters, search: "", family }, true);
+  function exploreCollection(categoryName: string) {
+    setActiveCategoryName(categoryName);
+    setVisibleResults(initialVisibleResults);
+    focusResults();
   }
 
   function handleSearch(search: string) {
@@ -93,7 +170,13 @@ export function FlavorFinder() {
   }
 
   function clearFilters() {
+    setActiveCategoryName(null);
     updateFilters(initialFilters);
+  }
+
+  function clearCategory() {
+    setActiveCategoryName(null);
+    setVisibleResults(initialVisibleResults);
   }
 
   return (
@@ -109,6 +192,36 @@ export function FlavorFinder() {
         <p className="flavor-format-note">
           Flavors can be developed in liquid or powder formats, with natural, natural and artificial, artificial, or custom requirements depending on the project.
         </p>
+      </div>
+
+      <div className="flavor-collections">
+        <div className="section-head flavor-section-head">
+          <div>
+            <div className="eyebrow">Flavor Collections</div>
+            <h3>Start with a flavor family, then narrow by application, format, or declaration type.</h3>
+          </div>
+          <button type="button" className={`light-btn ${activeCategory ? "" : "is-active"}`} onClick={clearCategory}>
+            View All Flavors
+          </button>
+        </div>
+        <div className="flavor-collection-grid">
+          {collections.map((collection) => (
+            <button
+              type="button"
+              key={collection.name}
+              className={`flavor-collection-card ${activeCategoryName === collection.name ? "is-active" : ""}`}
+              onClick={() => exploreCollection(collection.name)}
+            >
+              <span className="flavor-collection-title">{collection.name}</span>
+              <span className="flavor-collection-description">{collection.description}</span>
+              <span className="flavor-example-chips">
+                {collection.examples.map((example) => (
+                  <span key={example}>{example}</span>
+                ))}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="flavor-search-panel">
@@ -127,28 +240,6 @@ export function FlavorFinder() {
             <button type="button" className="soft-pill" key={item} onClick={() => updateFilters({ ...filters, search: item }, true)}>
               {item}
             </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="flavor-collections">
-        <div className="section-head flavor-section-head">
-          <div>
-            <div className="eyebrow">Flavor Collections</div>
-            <h3>Common starting points</h3>
-          </div>
-          <p>Pick a direction and the matching profiles move into view.</p>
-        </div>
-        <div className="flavor-collection-grid">
-          {collections.map((collection) => (
-            <article key={collection.name} className={`flavor-collection-card ${filters.family === collection.name ? "is-active" : ""}`}>
-              <h4>{collection.name}</h4>
-              <p>{collection.direction}</p>
-              <div className="flavor-example-line">{collection.examples.join(" / ")}</div>
-              <button type="button" className="light-btn" onClick={() => exploreCollection(collection.name)}>
-                Explore {collection.name}
-              </button>
-            </article>
           ))}
         </div>
       </div>
@@ -201,18 +292,32 @@ export function FlavorFinder() {
           <div>
             <div className="eyebrow">Matching Profiles</div>
             <h3>{results.length} result{results.length === 1 ? "" : "s"}</h3>
+            {results.length > 0 && (
+              <p className="flavor-results-count">
+                Showing {shownResults.length} of {results.length}
+              </p>
+            )}
           </div>
           <Button href="/request-samples" variant="secondary">
-            Request samples
+            Request Samples
           </Button>
         </div>
 
         {results.length > 0 ? (
-          <div className="flavor-result-grid">
-            {results.map((item) => (
-              <FlavorCard key={item.id} flavor={item} />
-            ))}
-          </div>
+          <>
+            <div className="flavor-result-grid">
+              {shownResults.map((item) => (
+                <FlavorCard key={item.id} flavor={item} />
+              ))}
+            </div>
+            {shownResults.length < results.length && (
+              <div className="flavor-load-more">
+                <button type="button" className="light-btn" onClick={() => setVisibleResults((current) => current + visibleResultsStep)}>
+                  Load More
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <div className="flavor-empty-state">
             <h3>Not seeing the exact profile? Ask us.</h3>

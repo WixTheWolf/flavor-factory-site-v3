@@ -4,6 +4,24 @@ import { Button } from "@/components/ui/Button";
 import { siteImages } from "@/data/site-images";
 import { AppImage } from "@/components/ui/AppImage";
 
+const contactDetails = [
+  {
+    label: "Email",
+    value: "samples@flavorfactory.net",
+    href: "mailto:samples@flavorfactory.net",
+  },
+  {
+    label: "Phone",
+    value: "(951) 273-9877",
+    href: "tel:+19512739877",
+  },
+  {
+    label: "Address",
+    value: "2058 Second Street, Norco, CA 92860",
+    href: "https://maps.google.com/?q=2058%20Second%20Street%2C%20Norco%2C%20CA%2092860",
+  },
+] as const;
+
 export default function ContactPage() {
   return (
     <>
@@ -30,10 +48,13 @@ export default function ContactPage() {
             </div>
 
             <div className="eyebrow">Direct Lines</div>
-            <div className="showcase-pills" style={{ marginTop: 14 }}>
-              <span className="soft-pill">samples@flavorfactory.net</span>
-              <span className="soft-pill">(951) 273-9877</span>
-              <span className="soft-pill">2058 Second Street, Norco, CA 92860</span>
+            <div className="contact-direct-grid">
+              {contactDetails.map((item) => (
+                <a className="contact-direct-card" href={item.href} key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </a>
+              ))}
             </div>
             <div className="contact-choice-grid" style={{ marginTop: 22 }}>
               <article>
@@ -49,12 +70,12 @@ export default function ContactPage() {
                 <p>Share the product goal. We can develop around sweetness, dosage, processing, masking, mouthfeel, cooling, and cost.</p>
               </article>
             </div>
-            <Button href="/request-samples" className="mt-24">
-              Request Samples
-            </Button>
-            <Button href="mailto:samples@flavorfactory.net" variant="secondary" className="mt-24 contact-secondary-cta">
-              Email Samples
-            </Button>
+            <div className="contact-cta-row">
+              <Button href="/request-samples">Request Samples</Button>
+              <Button href="mailto:samples@flavorfactory.net" variant="secondary">
+                Email Samples
+              </Button>
+            </div>
           </div>
         </section>
       </main>

@@ -1034,6 +1034,46 @@ button, input, textarea, select { font: inherit; }
   gap: 14px;
 }
 
+.contact-direct-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.contact-direct-card {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  padding: 18px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.05);
+}
+
+.contact-direct-card span {
+  color: rgba(15, 23, 42, 0.52);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.contact-direct-card strong {
+  overflow-wrap: anywhere;
+  color: #111827;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.contact-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
 .contact-choice-grid article {
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 18px;
@@ -1054,6 +1094,41 @@ button, input, textarea, select { font: inherit; }
 
 .contact-secondary-cta {
   margin-left: 10px;
+}
+
+.quality-card-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.quality-note-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  text-align: left;
+  text-transform: none;
+}
+
+.quality-note-card h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.quality-note-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+@media (max-width: 1200px) {
+  .quality-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .quality-explain-grid {
@@ -1135,19 +1210,24 @@ button, input, textarea, select { font: inherit; }
 
 .management-avatar {
   display: flex;
-  width: 78px;
-  height: 78px;
+  width: 100%;
+  min-height: 88px;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: #111827;
-  color: #fff;
-  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  background:
+    linear-gradient(135deg, rgba(213, 43, 30, 0.08), rgba(245, 158, 11, 0.14)),
+    #fffaf2;
+  color: #8a1f17;
 }
 
 .management-avatar span {
-  font-size: 1.25rem;
+  font-size: .78rem;
   font-weight: 900;
+  letter-spacing: .12em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .management-body h3 {
@@ -1430,7 +1510,9 @@ button, input, textarea, select { font: inherit; }
   .about-story-grid,
   .team-role-grid,
   .about-principles,
+  .contact-direct-grid,
   .contact-choice-grid,
+  .quality-card-grid,
   .quality-explain-grid,
   .sample-guidance {
     grid-template-columns: 1fr;
@@ -1765,41 +1847,63 @@ button, input, textarea, select { font: inherit; }
   border-radius: 18px;
   background: #fff;
   padding: 18px;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
+.flavor-section-head .light-btn.is-active,
 .flavor-collection-card:hover,
+.flavor-collection-card:focus-visible,
 .flavor-collection-card.is-active {
   border-color: rgba(213, 43, 30, 0.28);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
   transform: translateY(-2px);
 }
 
-.flavor-collection-card h4 {
-  margin: 0;
-  color: #111827;
-  font-size: 1.08rem;
+.flavor-section-head .light-btn.is-active,
+.flavor-collection-card.is-active {
+  background: rgba(213, 43, 30, 0.08);
+  color: #8a1f17;
 }
 
-.flavor-collection-card p {
+.flavor-collection-card:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.32);
+  outline-offset: 2px;
+}
+
+.flavor-collection-title {
+  margin: 0;
+  color: #111827;
+  font-size: 1.12rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.flavor-collection-description {
   margin: 8px 0 0;
   color: #4b5563;
   line-height: 1.5;
   font-size: 14px;
 }
 
-.flavor-example-line {
-  margin: 12px 0 14px;
-  color: rgba(15, 23, 42, 0.66);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.45;
+.flavor-example-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 16px;
 }
 
-.flavor-collection-card .light-btn {
-  margin-top: auto;
-  padding: 10px 14px;
+.flavor-example-chips span {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  background: #f8fafc;
+  color: rgba(15, 23, 42, 0.72);
+  padding: 6px 9px;
   font-size: 12px;
+  font-weight: 800;
 }
 
 .flavor-filter-grid {
@@ -1872,6 +1976,13 @@ button, input, textarea, select { font: inherit; }
   margin-bottom: 16px;
 }
 
+.flavor-results-count {
+  margin: 7px 0 0;
+  color: rgba(15, 23, 42, 0.6);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .flavor-result-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1880,7 +1991,7 @@ button, input, textarea, select { font: inherit; }
 
 .flavor-result-card {
   display: flex;
-  min-height: 360px;
+  min-height: 340px;
   flex-direction: column;
 }
 
@@ -1939,6 +2050,16 @@ button, input, textarea, select { font: inherit; }
 .flavor-card-actions {
   margin-top: auto;
   padding-top: 18px;
+}
+
+.flavor-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.flavor-load-more .light-btn {
+  min-width: 160px;
 }
 
 .flavor-card-actions .cta-btn,
@@ -2016,7 +2137,9 @@ button, input, textarea, select { font: inherit; }
 
   .flavor-card-actions .cta-btn,
   .flavor-card-actions .light-btn,
-  .flavor-results-head .light-btn {
+  .flavor-results-head .light-btn,
+  .contact-cta-row .cta-btn,
+  .contact-cta-row .light-btn {
     width: 100%;
   }
 }

@@ -4,19 +4,19 @@ const discoveryPaths = [
   {
     title: "Browse by direction",
     copy: "Use the flavor page to find common families, examples, and search terms before asking for the exact profile.",
-    action: "Explore flavors",
+    action: "Explore Flavors",
     href: "/flavors",
   },
   {
     title: "Check the product fit",
     copy: "Different applications need different behavior. A gummy, syrup, icing, powder drink, and mouthwash do not use flavor the same way.",
-    action: "View industries",
+    action: "View Industries",
     href: "/industries",
   },
   {
     title: "Send a sharper request",
     copy: "A short brief with the target, format, label goal, and timeline helps us respond with samples that are closer from the first round.",
-    action: "Request samples",
+    action: "Request Samples",
     href: "/request-samples",
   },
 ] as const;
