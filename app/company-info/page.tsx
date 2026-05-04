@@ -11,11 +11,11 @@ const capabilities = [
   },
   {
     title: "Liquid and powder formats",
-    copy: "Project paths can be developed around use level, solubility, processing, and finished-product format.",
+    copy: "Develop around use level, solubility, processing, declaration, and finished-product format.",
   },
   {
     title: "Responsive sampling",
-    copy: "A practical sample workflow for teams that need direction, iteration, and commercial momentum.",
+    copy: "A clear sample workflow for teams that need direction, iteration, and momentum.",
   },
   {
     title: "Application breadth",
@@ -24,17 +24,17 @@ const capabilities = [
 ] as const;
 
 const processSteps = [
-  { title: "Scope", copy: "Target profile, application, format, declaration, benchmark, and timeline." },
-  { title: "Sample", copy: "Representative starting points, adjusted to the product and project constraints." },
-  { title: "Refine", copy: "Feedback cycles around taste, performance, use level, and cost reality." },
-  { title: "Produce", copy: "Approved profiles move into production support with documentation alignment." },
+  { title: "Scope", copy: "Confirm the flavor target, application, format, benchmark, label goals, and timeline." },
+  { title: "Sample", copy: "Choose starting points that make sense for the product and project constraints." },
+  { title: "Refine", copy: "Adjust taste, performance, use level, masking, and cost through focused feedback." },
+  { title: "Produce", copy: "Move approved profiles into manufacturing support and documentation." },
 ] as const;
 
 const companyFacts = [
   "Family-owned flavor manufacturer",
   "Southern California based",
   "Custom liquid and powder capabilities",
-  "Low MOQ and practical development support",
+  "Low MOQ sample and production support",
 ] as const;
 
 export default function CompanyInfoPage() {
@@ -56,10 +56,10 @@ export default function CompanyInfoPage() {
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>Company Info</div>
                 <h1 className="section-title" style={{ color: "white" }}>
-                  Built to support development, sampling, and production.
+                  Custom flavor manufacturing from first sample to production.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 14, maxWidth: 840, color: "rgba(255,255,255,.84)" }}>
-                  The Flavor Factory helps brands create flavor systems that fit the product vision and the application reality.
+                  We help brands develop liquid and powder flavor systems that fit the product, process, label, and customer experience.
                 </p>
                 <div className="hero-actions">
                   <Button href="/flavors" variant="secondary">Explore Flavors</Button>
@@ -77,9 +77,9 @@ export default function CompanyInfoPage() {
             <section className="company-layout-grid">
               <div className="company-lead-panel">
                 <div className="eyebrow">Capabilities</div>
-                <h2>Flavor manufacturing support with enough flexibility to meet real development work.</h2>
+                <h2>Manufacturing support with room for real development.</h2>
                 <p>
-                  The best flavor path depends on the finished product: heat, pH, sweetness, dosage form, solubility, masking, cost, and label goals all matter. Our role is to help make those tradeoffs clearer.
+                  The right path depends on heat, pH, sweetness, dosage form, solubility, masking, cost, and label goals. We help make those choices clearer before production.
                 </p>
               </div>
               <div className="company-capability-grid">
@@ -118,7 +118,7 @@ export default function CompanyInfoPage() {
                 <div className="eyebrow">Service Standards</div>
                 <h2>Low MOQ. Fast turnaround. High responsiveness.</h2>
                 <p>
-                  Clear communication, practical timelines, and disciplined follow-through from first sample to production.
+                  Clear communication, practical timelines, and follow-through from first sample to production.
                 </p>
               </div>
               <Button href="/contact">Talk With Us</Button>

@@ -9,10 +9,10 @@ export function TrustSection() {
       <div className="container sample-panel">
         <div className="sample-grid">
           <div className="sample-left">
-            <div className="eyebrow">The Brief Gets Better Here</div>
-            <h2 className="section-title" style={{ marginTop: 10 }}>Bring the idea, benchmark, or product challenge.</h2>
+            <div className="eyebrow">Ready To Develop</div>
+            <h2 className="section-title" style={{ marginTop: 10 }}>Bring us the flavor target.</h2>
             <p className="section-subtext" style={{ marginTop: 14 }}>
-              We help turn taste goals into flavor profiles that make sense for the product, the label, the process, and the customer experience.
+              Share the application, flavor target, format, benchmark, constraints, and timeline. We will help turn the brief into a useful sample path.
             </p>
             <div className="showcase-pills" style={{ marginTop: 16 }}>
               {siteCopy.trustPoints.map((item) => <span className="soft-pill" key={item}>{item}</span>)}

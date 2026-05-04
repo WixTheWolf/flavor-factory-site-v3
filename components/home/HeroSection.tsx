@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
 
 const differentiators = [
-  "Thousands of flavor starting points",
-  "Custom, matching, and signature profiles",
-  "Low minimums with fast sample support",
+  "Custom, matching, and reformulation",
+  "Liquid and powder manufacturing",
+  "Fast samples with flexible minimums",
 ] as const;
 
 export function HeroSection() {

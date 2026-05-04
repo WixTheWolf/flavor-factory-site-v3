@@ -17,18 +17,18 @@ type Collection = {
 
 const collections: Collection[] = [
   { name: "Citrus", direction: "Bright, juicy, refreshing top notes.", examples: ["Orange", "Lemon Lime", "Yuzu"] },
-  { name: "Berry", direction: "Sweet-tart red and dark berry impact.", examples: ["Strawberry", "Black Currant", "Raspberry"] },
-  { name: "Tropical", direction: "Ripe, sunny fruit for modern beverage and candy concepts.", examples: ["Pineapple", "Mango", "Passion Fruit"] },
-  { name: "Orchard Fruit", direction: "Fresh, candied, or baked apple and pear directions.", examples: ["Green Apple", "Pear", "Apple Pie"] },
-  { name: "Stone Fruit", direction: "Soft, rounded fruit with light tart balance.", examples: ["Peach", "Apricot", "Dark Sweet Cherry"] },
-  { name: "Vanilla & Cream", direction: "Smooth creamy sweetness for indulgent systems.", examples: ["Vanilla Bean", "Custard", "Sweet Cream"] },
+  { name: "Berry", direction: "Sweet-tart red and dark berry profiles.", examples: ["Strawberry", "Black Currant", "Raspberry"] },
+  { name: "Tropical", direction: "Ripe fruit for beverage and candy concepts.", examples: ["Pineapple", "Mango", "Passion Fruit"] },
+  { name: "Orchard Fruit", direction: "Fresh, candied, or baked apple and pear.", examples: ["Green Apple", "Pear", "Apple Pie"] },
+  { name: "Stone Fruit", direction: "Soft fruit with light tart balance.", examples: ["Peach", "Apricot", "Dark Sweet Cherry"] },
+  { name: "Vanilla & Cream", direction: "Smooth creamy sweetness for indulgent products.", examples: ["Vanilla Bean", "Custard", "Sweet Cream"] },
   { name: "Chocolate & Brown Notes", direction: "Cocoa, caramel, toffee, maple, and roasted depth.", examples: ["Chocolate", "Caramel", "Brownie Batter"] },
   { name: "Mint & Cooling", direction: "Clean cooling profiles for oral care and refreshment.", examples: ["Peppermint", "Spearmint", "Wintergreen"] },
-  { name: "Coffee & Beverage", direction: "Coffeehouse, soda, punch, and syrup-ready profiles.", examples: ["Cold Brew", "Cola", "Root Beer"] },
-  { name: "Nut & Praline", direction: "Toasted, creamy, and praline-like nut character.", examples: ["Almond", "Hazelnut", "Peanut Butter"] },
+  { name: "Coffee & Beverage", direction: "Coffeehouse, soda, punch, and syrup profiles.", examples: ["Cold Brew", "Cola", "Root Beer"] },
+  { name: "Nut & Praline", direction: "Toasted, creamy, and praline-style nut character.", examples: ["Almond", "Hazelnut", "Peanut Butter"] },
   { name: "Botanical & Tea", direction: "Herbal, tea, floral, and wellness-positioned notes.", examples: ["Matcha", "Hibiscus", "Lavender"] },
-  { name: "Candy & Confectionery", direction: "High-impact playful profiles for gummies and sweets.", examples: ["Blue Raspberry", "Cotton Candy", "Sour Apple"] },
-  { name: "Savory & Culinary", direction: "Snack, sauce, seasoning, and culinary flavor systems.", examples: ["BBQ", "Ranch", "Jalapeno Lime"] },
+  { name: "Candy & Confectionery", direction: "High-impact profiles for gummies and sweets.", examples: ["Blue Raspberry", "Cotton Candy", "Sour Apple"] },
+  { name: "Savory & Culinary", direction: "Snack, sauce, seasoning, and culinary systems.", examples: ["BBQ", "Ranch", "Jalapeno Lime"] },
   { name: "Custom & Signature", direction: "Matching, masking, and proprietary brand profiles.", examples: ["Custom Fruit", "Masking", "Profile Match"] },
 ];
 
@@ -101,13 +101,13 @@ export function FlavorFinder() {
       <div className="flavor-intro-panel">
         <div>
           <div className="eyebrow">Flavor Discovery</div>
-          <h2>Start with a flavor family, narrow by application, then request samples.</h2>
+          <h2>Use the library to get close. Use us to get exact.</h2>
           <p>
-            Search familiar profiles, explore curated collections, or filter by the way the flavor needs to perform in your finished product.
+            Narrow by taste direction, application, format, and declaration. Then request the profiles that fit the product.
           </p>
         </div>
         <p className="flavor-format-note">
-          Most profiles can be developed in liquid, powder, natural, natural & artificial, or custom formats depending on the project.
+          The library is a starting point. Matching, masking, reformulation, and custom profiles are part of the work.
         </p>
       </div>
 
@@ -137,7 +137,7 @@ export function FlavorFinder() {
             <div className="eyebrow">Flavor Collections</div>
             <h3>Curated starting points</h3>
           </div>
-          <p>Pick a direction and the matching profiles will move into view.</p>
+          <p>Pick a direction and the matching profiles move into view.</p>
         </div>
         <div className="flavor-collection-grid">
           {collections.map((collection) => (
@@ -184,7 +184,7 @@ export function FlavorFinder() {
         <div className="flavor-recommendation-strip">
           <div>
             <div className="eyebrow">Recommended for {industryLabel(filters.industry as IndustryKey)}</div>
-            <p>Useful starting points for this industry.</p>
+            <p>Common starting points for this industry.</p>
           </div>
           <div className="flavor-recommendation-list">
             {recommended.map((item) => (
@@ -215,9 +215,9 @@ export function FlavorFinder() {
           </div>
         ) : (
           <div className="flavor-empty-state">
-            <h3>Not seeing the exact profile? We can likely create it.</h3>
+            <h3>Not seeing the exact profile? That is normal.</h3>
             <p>
-              Share the target flavor, application, format, and any benchmark product. We can recommend a close starting point or build a custom profile.
+              Share the target flavor, application, format, and any benchmark product. We can recommend a close starting point, match a profile, or develop something custom.
             </p>
             <Button href="/request-samples">Request a custom flavor</Button>
           </div>

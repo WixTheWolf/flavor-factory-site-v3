@@ -9,17 +9,17 @@ const teamRoles = [
   {
     title: "Flavor Development",
     image: siteImages.aboutHero,
-    focus: "Custom profiles, matching work, sensory direction, and practical formulation choices.",
+    focus: "Custom profiles, matching work, sensory direction, and application-aware formulation.",
   },
   {
     title: "Customer Projects",
     image: siteImages.contactHero,
-    focus: "Sample coordination, project communication, timelines, and keeping the next step clear.",
+    focus: "Sample coordination, project communication, timelines, and customer follow-through.",
   },
   {
     title: "Production & Quality",
     image: flavorFactoryImages.industrySyrup,
-    focus: "Liquid and powder production support, documentation, and consistency from sample to scale.",
+    focus: "Liquid and powder production, quality documentation, and sample-to-scale consistency.",
   },
 ] as const;
 
@@ -28,39 +28,39 @@ const managementTeam = [
     name: "Dan Wixted",
     title: "President",
     initials: "DW",
-    note: "Leadership, customer relationships, and the standards behind the work.",
+    note: "Leadership, customer relationships, and company standards.",
   },
   {
     name: "Alex Wixted",
     title: "Operations",
     initials: "AW",
-    note: "Project flow, operations, and helping customer needs move through the shop.",
+    note: "Project flow, operations, and customer coordination.",
   },
   {
     name: "Kelly Ziegler",
     title: "Office Manager",
     initials: "KZ",
-    note: "Customer communication, coordination, and the details that keep projects moving.",
+    note: "Customer communication, coordination, and project details.",
   },
   {
     name: "Ryan Wixted",
     title: "Quality / Regulatory",
     initials: "RW",
-    note: "Quality systems, regulatory support, and documentation alignment.",
+    note: "Quality systems, regulatory support, and documentation.",
   },
   {
     name: "Matt Wixted",
     title: "Production Manager",
     initials: "MW",
-    note: "Production planning, practical execution, and sample-to-scale support.",
+    note: "Production planning, execution, and sample-to-scale support.",
   },
 ] as const;
 
 const principles = [
-  "Start with the product reality, not just the flavor idea.",
-  "Move quickly, but keep the sample path organized.",
-  "Build profiles that can transition into production.",
-  "Communicate clearly when a custom route makes more sense.",
+  "Start with the product reality.",
+  "Keep the sample path clear.",
+  "Build profiles with production in mind.",
+  "Recommend custom development when the project calls for it.",
 ] as const;
 
 export default function AboutPage() {
@@ -82,10 +82,10 @@ export default function AboutPage() {
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>About</div>
                 <h1 className="section-title" style={{ color: "white" }}>
-                  Practical flavor development, built around the product you are making.
+                  A flavor manufacturer built for custom work.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 14, maxWidth: 820, color: "rgba(255,255,255,.84)" }}>
-                  The Flavor Factory develops liquid and powder flavor solutions for brands that need a responsive partner, not a generic catalog.
+                  The Flavor Factory develops and manufactures liquid and powder flavors for brands that need responsive sampling, honest guidance, and a profile that can move into production.
                 </p>
                 <div className="hero-actions">
                   <Button href="/request-samples" variant="secondary">Request Samples</Button>
@@ -97,14 +97,14 @@ export default function AboutPage() {
             <section className="about-story-grid">
               <div>
                 <div className="eyebrow">How We Work</div>
-                <h2 className="section-title">A small, capable team with a clear development point of view.</h2>
+                <h2 className="section-title">Focused people. Clear development. Real manufacturing support.</h2>
               </div>
               <div className="about-story-copy">
                 <p>
-                  Clients come to us for custom development, flavor matching, responsive service, and a process that moves from idea to execution without unnecessary friction.
+                  Clients come to us for custom development, flavor matching, responsive service, and a process that keeps decisions moving.
                 </p>
                 <p>
-                  We have built the business around doing the work well, communicating clearly, and helping clients find the right flavor solution for the product they are actually making.
+                  Every project starts with the product reality: format, processing, label goals, taste target, cost, and timeline.
                 </p>
               </div>
             </section>
@@ -113,10 +113,10 @@ export default function AboutPage() {
               <div className="section-head">
                 <div>
                   <div className="eyebrow">Meet Our Management Team</div>
-                  <h2 className="section-title">The people keeping projects clear, practical, and moving.</h2>
+                  <h2 className="section-title">The team behind the samples.</h2>
                 </div>
                 <p className="section-subtext">
-                  A responsive flavor partner is only as good as the people guiding the work. These are the management roles customers connect with behind the scenes.
+                  These are the people helping customers move from first request to approved flavor.
                 </p>
               </div>
               <div className="management-grid">
@@ -153,7 +153,7 @@ export default function AboutPage() {
             <section className="about-principles">
               <div>
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>What Matters Here</div>
-                <h2>Flavor support that respects timelines, taste targets, and production realities.</h2>
+                <h2>Flavor work should feel organized, responsive, and grounded in the product.</h2>
               </div>
               <div className="about-principle-list">
                 {principles.map((item) => (

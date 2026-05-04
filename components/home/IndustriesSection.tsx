@@ -9,9 +9,9 @@ export function IndustriesSection() {
         <div className="section-head">
           <div>
             <div className="eyebrow">Industries</div>
-            <h2 className="section-title">Flavor solutions across categories.</h2>
+            <h2 className="section-title">Applications we support.</h2>
             <p className="section-subtext" style={{ marginTop: 12, maxWidth: 720 }}>
-              Every application has different demands. We build flavors with the end product in mind.
+              Each product type has different requirements. These categories show common starting points.
             </p>
           </div>
           <Link className="light-btn" href="/industries">View all industries</Link>
@@ -29,7 +29,7 @@ export function IndustriesSection() {
               <div className="path-content">
                 <h3>{item.name}</h3>
                 <p>{item.summary}</p>
-                <div className="mini-link">{item.applications.slice(0, 2).join(" • ")}</div>
+                <div className="mini-link">{item.applications.slice(0, 2).join(" / ")}</div>
               </div>
             </article>
           ))}

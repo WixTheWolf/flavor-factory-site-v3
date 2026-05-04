@@ -22,11 +22,9 @@ export default function ContactPage() {
               <div className="editorial-overlay" />
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>Contact</div>
-                <h1 className="section-title" style={{ color: "white" }}>
-                  Talk with a flavor partner that can move quickly and communicate clearly.
-                </h1>
+                <h1 className="section-title" style={{ color: "white" }}>Talk with the team that makes the flavor.</h1>
                 <p className="section-subtext" style={{ marginTop: 14, maxWidth: 760, color: "rgba(255,255,255,.84)" }}>
-                  Samples, matches, custom profiles, and practical next steps for the product you are actually building.
+                  Samples, matching, custom development, production questions, and next steps all start here.
                 </p>
               </div>
             </div>
@@ -40,15 +38,15 @@ export default function ContactPage() {
             <div className="contact-choice-grid" style={{ marginTop: 22 }}>
               <article>
                 <h3>Need samples?</h3>
-                <p>Share your application, format, target profile, and timing so we can point you toward the right starting profiles.</p>
+                <p>Send the application, format, target profile, and timing so we can recommend useful starting points.</p>
               </article>
               <article>
                 <h3>Need a match?</h3>
-                <p>Send the benchmark, constraints, and target declaration. We can help evaluate the fastest practical route.</p>
+                <p>Include the benchmark, constraints, and target declaration so we can evaluate the cleanest route.</p>
               </article>
               <article>
                 <h3>Need custom work?</h3>
-                <p>Bring the finished-product vision. We can develop around sweetness, dosage, processing, masking, and cost targets.</p>
+                <p>Share the finished-product goal. We can develop around sweetness, dosage, processing, masking, and cost.</p>
               </article>
             </div>
             <Button href="/request-samples" className="mt-24">

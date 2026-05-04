@@ -25,7 +25,7 @@ export default function IndustriesPage() {
                   Industries
                 </div>
                 <h1 className="section-title" style={{ color: "white" }}>
-                  Flavor systems tailored to real applications.
+                  Flavor manufacturing by application.
                 </h1>
                 <p
                   className="section-subtext"
@@ -35,9 +35,7 @@ export default function IndustriesPage() {
                     maxWidth: 760,
                   }}
                 >
-                  Different products ask different things from a flavor. Heat,
-                  pH, sweetness, bitterness, masking, solubility, dosage form,
-                  and finished-product experience all matter.
+                  Browse common categories, then request samples with the format, processing conditions, label goals, and flavor target in mind.
                 </p>
               </div>
             </div>

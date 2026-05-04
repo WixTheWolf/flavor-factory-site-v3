@@ -21,5 +21,6 @@ Open http://localhost:3000
 ## Notes
 
 - Images live in 'C:\Users\Matt\flavor-factory-site-v3-main\public\images\flavor-factory'
-- The contact form is a front-end demo and is not wired to email yet.
-- Some copy and layout can be refined after previewing on Vercel.
+- Sample requests post to `/api/sample-request` and send to `samples@flavorfactory.net` when `RESEND_API_KEY` is configured.
+- Optional email environment variables: `SAMPLE_REQUEST_TO` and `SAMPLE_REQUEST_FROM`.
+- Without an email provider key, the form falls back to opening an addressed email draft.

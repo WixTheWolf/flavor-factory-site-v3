@@ -22,9 +22,9 @@ export default function FlavorsPage() {
               <div className="editorial-overlay" />
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>Our Flavors</div>
-                <h1 className="section-title" style={{ color: "white" }}>Find the right flavor direction faster.</h1>
+                <h1 className="section-title" style={{ color: "white" }}>Search the flavor library. Build beyond it.</h1>
                 <p className="section-subtext" style={{ marginTop: 14, maxWidth: 900, color: "rgba(255,255,255,.84)" }}>
-                  Start with a flavor family, narrow by application, then request samples. Search by flavor name, product type, industry, declaration, or use case.
+                  Search by profile, family, application, format, declaration, or use case. If the exact profile is not listed, we can develop or match it.
                 </p>
               </div>
             </div>

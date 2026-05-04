@@ -2,20 +2,20 @@ import Link from "next/link";
 
 const discoveryPaths = [
   {
-    title: "Start with a flavor family",
-    copy: "Explore citrus, berry, tropical, vanilla, brown notes, mint, botanical, savory, and custom directions.",
-    action: "Open flavor finder",
+    title: "Find the direction",
+    copy: "Search by profile, family, application, declaration, or use case. The library is a starting point, not the limit.",
+    action: "Open finder",
     href: "/flavors",
   },
   {
-    title: "Build around the application",
-    copy: "Tell us whether the profile needs to work in bakery, confectionery, dairy, oral care, nutraceutical, syrup, popcorn, or another system.",
+    title: "Tell us the product",
+    copy: "Bakery, beverage, nutraceutical, oral care, pharma, popcorn, syrup, savory. The application changes the flavor path.",
     action: "View industries",
     href: "/industries",
   },
   {
-    title: "Move from sample to scale",
-    copy: "Use our team for custom development, matching, reformulation, and practical production support.",
+    title: "Move into samples",
+    copy: "Send the benchmark, target, format, and timeline. We will help choose the most useful starting profiles.",
     action: "Request samples",
     href: "/request-samples",
   },
@@ -27,10 +27,10 @@ export function RecommendationSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">How Buyers Start</div>
-            <h2 className="section-title">Find the right profile without getting lost in a catalog.</h2>
+            <div className="eyebrow">How To Use The Site</div>
+            <h2 className="section-title">Get from flavor idea to sample request faster.</h2>
             <p className="section-subtext" style={{ marginTop: 10, maxWidth: 760 }}>
-              A flavor brief can start from a taste, a product format, a benchmark, or a finished-product problem. We built the site around those real paths.
+              Buyers do not all start in the same place. Use whichever path matches what you know today.
             </p>
           </div>
         </div>

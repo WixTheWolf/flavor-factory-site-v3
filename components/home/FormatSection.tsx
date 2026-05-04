@@ -1,19 +1,19 @@
 const capabilities = [
   {
     title: "Liquid flavor systems",
-    copy: "Built for beverage, syrup, dairy, confectionery, and process-sensitive applications where clarity and impact matter.",
+    copy: "For beverages, syrups, dairy, confectionery, oral care, and applications where clarity, solubility, and impact matter.",
   },
   {
     title: "Powder flavor systems",
-    copy: "Designed for dry blends, nutraceuticals, pharmaceutical formats, bakery mixes, seasonings, and shelf-stable products.",
+    copy: "For dry blends, nutraceuticals, bakery mixes, seasonings, pharmaceutical formats, and shelf-stable products.",
   },
   {
     title: "Custom and matching",
-    copy: "Bring a benchmark, a flavor memory, or a rough direction. We can match, reformulate, or create a signature profile.",
+    copy: "Bring a benchmark, flavor target, or rough direction. We can match, reformulate, or create a signature profile.",
   },
   {
-    title: "Practical sample support",
-    copy: "Low minimums, fast sample help, and a development path that stays connected to the product you are launching.",
+    title: "Sample support",
+    copy: "Low minimums, clear communication, and sample work that stays tied to the product you plan to launch.",
   },
 ] as const;
 
@@ -22,10 +22,10 @@ export function FormatSection() {
     <section className="home-capability-section">
       <div className="container home-capability-layout">
         <div className="home-capability-copy">
-          <div className="eyebrow">Formats & Development</div>
-          <h2>Flavor support built around real production decisions.</h2>
+          <div className="eyebrow">Formats & Applications</div>
+          <h2>Manufactured for the way the product works.</h2>
           <p>
-            Most profiles can be developed in liquid, powder, natural, natural and artificial, or custom formats depending on the project.
+            Most profiles can be developed as liquid, powder, natural, natural and artificial, or custom formats depending on the application and label goals.
           </p>
         </div>
 
