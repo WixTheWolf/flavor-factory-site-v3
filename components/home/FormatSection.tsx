@@ -1,19 +1,19 @@
 const capabilities = [
   {
-    title: "Liquid flavor systems",
-    copy: "For beverages, syrups, dairy, confectionery, oral care, and other applications where clarity, solubility, and impact matter.",
+    title: "Liquid flavors",
+    copy: "Useful for syrups, beverages, dairy, confectionery, oral care, and other products where dispersion and impact are key.",
   },
   {
-    title: "Powder flavor systems",
-    copy: "For dry blends, nutraceuticals, bakery mixes, seasoning systems, pharmaceutical formats, and shelf-stable products.",
+    title: "Powder flavors",
+    copy: "Built for dry mixes, nutraceutical powders, bakery systems, seasonings, pharmaceutical formats, and other dry applications.",
   },
   {
-    title: "Natural, N&A, and artificial",
-    copy: "Develop around natural, natural and artificial, artificial, or custom requirements depending on the project and label goals.",
+    title: "Declaration paths",
+    copy: "Natural, natural and artificial, artificial, kosher, halal, and project-specific requirements can be reviewed early.",
   },
   {
-    title: "Custom and matching",
-    copy: "Bring a benchmark, current flavor, flavor target, or rough direction. We can match, reformulate, or create a profile for your product.",
+    title: "Library or custom",
+    copy: "Start from a common direction when it fits, or move into matching and custom development when the product needs it.",
   },
 ] as const;
 
@@ -22,10 +22,10 @@ export function FormatSection() {
     <section className="home-capability-section">
       <div className="container home-capability-layout">
         <div className="home-capability-copy">
-          <div className="eyebrow">Capabilities</div>
-          <h2>Flavor solutions built around the application.</h2>
+          <div className="eyebrow">Formats</div>
+          <h2>Choose the form before chasing the perfect note.</h2>
           <p>
-            We develop and manufacture flavors in the form, strength, and declaration that make sense for the finished product.
+            A strong flavor direction still has to be delivered in the right way. Format, carrier, strength, and declaration affect how the profile behaves.
           </p>
         </div>
 

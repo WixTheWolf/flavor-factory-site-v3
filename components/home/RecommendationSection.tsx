@@ -2,20 +2,20 @@ import Link from "next/link";
 
 const discoveryPaths = [
   {
-    title: "Start with the flavor",
-    copy: "Search common directions, browse families, or bring us a flavor target you already have in mind.",
+    title: "Browse by direction",
+    copy: "Use the flavor page to find common families, examples, and search terms before asking for the exact profile.",
     action: "Explore flavors",
     href: "/flavors",
   },
   {
-    title: "Tell us the application",
-    copy: "Bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, syrup, popcorn, or savory. The product tells us what the flavor needs to do.",
+    title: "Check the product fit",
+    copy: "Different applications need different behavior. A gummy, syrup, icing, powder drink, and mouthwash do not use flavor the same way.",
     action: "View industries",
     href: "/industries",
   },
   {
-    title: "Move into samples",
-    copy: "Send the benchmark, format, declaration, use level if known, and timeline. We will help shape the sample path.",
+    title: "Send a sharper request",
+    copy: "A short brief with the target, format, label goal, and timeline helps us respond with samples that are closer from the first round.",
     action: "Request samples",
     href: "/request-samples",
   },
@@ -28,9 +28,9 @@ export function RecommendationSection() {
         <div className="section-head">
           <div>
             <div className="eyebrow">How To Start</div>
-            <h2 className="section-title">From flavor idea to useful sample.</h2>
+            <h2 className="section-title">Find the right door into the project.</h2>
             <p className="section-subtext" style={{ marginTop: 10, maxWidth: 760 }}>
-              Some customers start with a profile name. Others start with a product problem. Either way, we help make the next step clear.
+              You do not need a finished formula to start a conversation. Use the site to narrow the direction, then bring us the product details that matter.
             </p>
           </div>
         </div>

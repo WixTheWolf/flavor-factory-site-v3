@@ -7,19 +7,19 @@ import { AppImage } from "@/components/ui/AppImage";
 
 const teamRoles = [
   {
-    title: "Flavor Development",
-    image: siteImages.aboutHero,
-    focus: "Custom profiles, matching work, reformulation, sensory direction, and application-aware formulation.",
+    title: "Listening First",
+    image: flavorFactoryImages.goldenElixirs,
+    focus: "Good flavor work starts with the customer’s product, market, target profile, and constraints.",
   },
   {
-    title: "Customer Projects",
+    title: "Clear Follow-Through",
     image: siteImages.contactHero,
-    focus: "Sample coordination, project communication, timelines, and clear customer follow-through.",
+    focus: "Samples, revisions, and questions stay organized so customers know what is happening next.",
   },
   {
-    title: "Production & Quality",
+    title: "Hands-On Work",
     image: flavorFactoryImages.industrySyrup,
-    focus: "Liquid and powder production, quality documentation, and sample-to-production consistency.",
+    focus: "The same practical mindset carries from the first conversation into approved orders and repeat work.",
   },
 ] as const;
 
@@ -57,10 +57,10 @@ const managementTeam = [
 ] as const;
 
 const principles = [
-  "Start with the product and application.",
-  "Keep sampling responsive and organized.",
-  "Build flavors with production in mind.",
-  "Use custom development when the project calls for it.",
+  "Answer quickly and keep the project moving.",
+  "Be direct about what information is needed.",
+  "Treat small and growing brands with real attention.",
+  "Keep the work practical, useful, and accountable.",
 ] as const;
 
 export default function AboutPage() {
@@ -82,10 +82,10 @@ export default function AboutPage() {
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>About</div>
                 <h1 className="section-title" style={{ color: "white" }}>
-                  A hands-on flavor manufacturer built for custom work.
+                  People you can call when the flavor needs to be right.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 14, maxWidth: 820, color: "rgba(255,255,255,.84)" }}>
-                  Based in Southern California, The Flavor Factory develops and manufactures liquid and powder flavors for businesses of all sizes. Customers come to us for responsive service, custom development, flavor matching, and practical support from sample to production.
+                  The Flavor Factory is a family-run flavor manufacturer in Southern California with a hands-on way of working. Customers come back because the team listens, responds, and understands how flavor decisions affect real products.
                 </p>
                 <div className="hero-actions">
                   <Button href="/request-samples" variant="secondary">Request Samples</Button>
@@ -97,14 +97,14 @@ export default function AboutPage() {
             <section className="about-story-grid">
               <div>
                 <div className="eyebrow">How We Work</div>
-                <h2 className="section-title">Experienced people, clear development, and real manufacturing support.</h2>
+                <h2 className="section-title">Straight answers, useful samples, and people who stay with the project.</h2>
               </div>
               <div className="about-story-copy">
                 <p>
-                  Our work starts with listening: what the product is, what it needs to taste like, how it will be used, and what constraints matter.
+                  The relationship matters here. A customer may be building a first product, replacing a flavor that no longer works, or trying to solve a problem in an existing formula.
                 </p>
                 <p>
-                  From there, we can pull from a broad library of starting points, develop something custom, or help match and reformulate an existing flavor with production in mind.
+                  Our job is to ask the right questions, move quickly, and keep the process understandable. That means clear communication, realistic next steps, and samples that reflect the product goal.
                 </p>
               </div>
             </section>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   <h2 className="section-title">The team behind the samples.</h2>
                 </div>
                 <p className="section-subtext">
-                  These are the people helping customers move from first request to approved flavor and production support.
+                  A small, involved management team keeps decisions close to the work and close to the customer.
                 </p>
               </div>
               <div className="management-grid">
@@ -153,7 +153,7 @@ export default function AboutPage() {
             <section className="about-principles">
               <div>
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>What Matters Here</div>
-                <h2>Flavor work should feel organized, responsive, and grounded in the product.</h2>
+                <h2>Service is part of the product.</h2>
               </div>
               <div className="about-principle-list">
                 {principles.map((item) => (
