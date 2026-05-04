@@ -96,15 +96,15 @@ export default function AboutPage() {
 
             <section className="about-story-grid">
               <div>
-                <div className="eyebrow">How We Work</div>
-                <h2 className="section-title">Straight answers, useful samples, and people who stay with the project.</h2>
+                <div className="eyebrow">Our Approach</div>
+                <h2 className="section-title">Practical flavor work, responsive support, and real follow-through.</h2>
               </div>
               <div className="about-story-copy">
                 <p>
-                  The relationship matters here. A customer may be building a first product, replacing a flavor that no longer works, or trying to solve a problem in an existing formula.
+                  Every request starts with the product in front of us: what it is, who it is for, how it will be processed, and what the flavor needs to accomplish.
                 </p>
                 <p>
-                  Our job is to ask the right questions, move quickly, and keep the process understandable. That means clear communication, realistic next steps, and samples that reflect the product goal.
+                  Some customers need a new profile. Some need a match. Others need help improving cost, performance, masking, or consistency. We keep the conversation clear so the next sample has a purpose.
                 </p>
               </div>
             </section>
@@ -113,10 +113,10 @@ export default function AboutPage() {
               <div className="section-head">
                 <div>
                   <div className="eyebrow">Meet Our Management Team</div>
-                  <h2 className="section-title">The team behind the samples.</h2>
+                  <h2 className="section-title">Experienced hands on every project.</h2>
                 </div>
                 <p className="section-subtext">
-                  A small, involved management team keeps decisions close to the work and close to the customer.
+                  Customers work with a team that understands flavor development, production, quality, timelines, and the details that keep a project moving.
                 </p>
               </div>
               <div className="management-grid">
