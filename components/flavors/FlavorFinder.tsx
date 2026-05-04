@@ -66,7 +66,7 @@ const collections: Collection[] = [
     examples: ["Almond", "Hazelnut", "Peanut", "Pistachio", "Butter Pecan"],
     image: "/images/flavor-factory/industry-bakery-v2.jpg",
     imagePosition: "center 44%",
-    terms: ["nut", "nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan", "walnut", "macadamia", "sesame"],
+    terms: ["nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan", "walnut", "macadamia", "sesame"],
   },
   {
     name: "Beverage",
@@ -128,11 +128,10 @@ function matchesCategory(flavor: (typeof demoFlavors)[number], category: Collect
   if (!category) return true;
 
   const text = flavorCategoryText(flavor);
-  const compactText = text.replace(/\s+/g, "");
 
   return category.terms.some((term) => {
     const normalizedTerm = normalizeCategoryText(term);
-    return text.includes(normalizedTerm) || compactText.includes(normalizedTerm.replace(/\s+/g, ""));
+    return new RegExp(`(^|\\s)${normalizedTerm.replace(/\s+/g, "\\s+")}(\\s|$)`).test(text);
   });
 }
 

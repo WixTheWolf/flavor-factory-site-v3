@@ -8,7 +8,7 @@ import { AppImage } from "@/components/ui/AppImage";
 const teamRoles = [
   {
     title: "Listening First",
-    image: flavorFactoryImages.goldenElixirs,
+    image: flavorFactoryImages.requestSamplesHero,
     focus: "Good flavor work starts with the customer’s product, market, target profile, and constraints.",
   },
   {
