@@ -22,6 +22,8 @@ function mailtoUrl(formData: FormData) {
     `Application or industry: ${field(formData, "industry") || "Not provided"}`,
     `Flavor target: ${field(formData, "flavorTarget") || "Not provided"}`,
     `Preferred format: ${field(formData, "format") || "Not provided"}`,
+    `Flavor declaration: ${field(formData, "declaration") || "Not provided"}`,
+    `Target use level: ${field(formData, "useLevel") || "Not provided"}`,
     `Timeline: ${field(formData, "timeline") || "Not provided"}`,
     "",
     "Application and profile notes:",
@@ -69,16 +71,24 @@ export function SampleRequestForm() {
       <input className="input" required name="company" autoComplete="organization" aria-label="Company" placeholder="Company" />
       <input className="input" required name="email" autoComplete="email" type="email" aria-label="Email" placeholder="Email" />
       <input className="input" name="phone" autoComplete="tel" aria-label="Phone" placeholder="Phone" />
-      <input className="input" name="industry" aria-label="Application or industry" placeholder="Application or industry" />
-      <input className="input" name="flavorTarget" aria-label="Flavor target" placeholder="Flavor target or benchmark" />
+      <input className="input" name="industry" aria-label="Application or industry" placeholder="Application or finished product" />
+      <input className="input" name="flavorTarget" aria-label="Flavor target" placeholder="Flavor direction or benchmark" />
       <select className="input" name="format" defaultValue="" aria-label="Preferred format">
         <option value="" disabled>Preferred format</option>
         <option>Liquid</option>
         <option>Powder</option>
         <option>Both</option>
       </select>
+      <select className="input" name="declaration" defaultValue="" aria-label="Flavor declaration">
+        <option value="" disabled>Flavor declaration</option>
+        <option>Natural</option>
+        <option>Natural and artificial</option>
+        <option>Artificial</option>
+        <option>Not sure yet</option>
+      </select>
+      <input className="input" name="useLevel" aria-label="Target use level" placeholder="Target use level, if known" />
       <input className="input" name="timeline" aria-label="Timeline" placeholder="Timeline or sample deadline" />
-      <textarea className="textarea" name="notes" aria-label="Application and profile notes" placeholder="Use level, label goals, process, constraints, or notes" />
+      <textarea className="textarea" name="notes" aria-label="Application and profile notes" placeholder="Special requirements, process conditions, masking needs, constraints, or project notes" />
       <div className="sample-utility">
         <button type="submit" className="cta-btn" disabled={status === "sending"}>
           {status === "sending" ? "Sending..." : "Submit Request"}

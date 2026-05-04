@@ -3,23 +3,23 @@ import { Beaker, ClipboardCheck, Factory, PackageCheck } from "lucide-react";
 const manufacturingPoints = [
   {
     icon: Beaker,
-    title: "Develop the profile",
-    copy: "Start from a flavor idea, benchmark, application challenge, or existing product that needs to be matched.",
+    title: "Develop or match",
+    copy: "Start from a flavor idea, benchmark, existing formula, or application challenge that needs a better fit.",
   },
   {
     icon: ClipboardCheck,
-    title: "Dial in the fit",
-    copy: "Refine around format, use level, declaration, solubility, processing, masking, and finished-product taste.",
+    title: "Fit the application",
+    copy: "Refine around liquid or powder format, use level, declaration, solubility, sweetness, processing, masking, and finished-product taste.",
   },
   {
     icon: Factory,
-    title: "Manufacture with control",
-    copy: "Move approved profiles into liquid or powder production with quality programs and documentation support.",
+    title: "Manufacture the flavor",
+    copy: "Move approved profiles into liquid or powder production with documentation and quality programs behind the work.",
   },
   {
     icon: PackageCheck,
-    title: "Support the next run",
-    copy: "Keep the project moving with practical sample support, flexible minimums, and clear communication.",
+    title: "Keep it moving",
+    copy: "Support the next sample, revision, or production run with responsive service and clear communication.",
   },
 ] as const;
 
@@ -29,9 +29,9 @@ export function ManufacturingSection() {
       <div className="container manufacturing-layout">
         <div className="manufacturing-copy">
           <div className="eyebrow">Flavor Manufacturing</div>
-          <h2 className="section-title">Built like a factory. Tuned like a flavor house.</h2>
+          <h2 className="section-title">Development, samples, and production under one roof.</h2>
           <p className="section-subtext">
-            The right flavor has to do more than taste good in a cup. It has to work in the product, survive the process, meet the label, and make sense at production scale.
+            A flavor has to do more than taste good on its own. It has to work in the product, hold up through the process, meet the label goal, and make sense for production.
           </p>
         </div>
 

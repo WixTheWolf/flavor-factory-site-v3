@@ -9,17 +9,17 @@ const teamRoles = [
   {
     title: "Flavor Development",
     image: siteImages.aboutHero,
-    focus: "Custom profiles, matching work, sensory direction, and application-aware formulation.",
+    focus: "Custom profiles, matching work, reformulation, sensory direction, and application-aware formulation.",
   },
   {
     title: "Customer Projects",
     image: siteImages.contactHero,
-    focus: "Sample coordination, project communication, timelines, and customer follow-through.",
+    focus: "Sample coordination, project communication, timelines, and clear customer follow-through.",
   },
   {
     title: "Production & Quality",
     image: flavorFactoryImages.industrySyrup,
-    focus: "Liquid and powder production, quality documentation, and sample-to-scale consistency.",
+    focus: "Liquid and powder production, quality documentation, and sample-to-production consistency.",
   },
 ] as const;
 
@@ -52,15 +52,15 @@ const managementTeam = [
     name: "Matt Wixted",
     title: "Production Manager",
     initials: "MW",
-    note: "Production planning, execution, and sample-to-scale support.",
+    note: "Production planning, execution, and sample-to-production support.",
   },
 ] as const;
 
 const principles = [
-  "Start with the product reality.",
-  "Keep the sample path clear.",
-  "Build profiles with production in mind.",
-  "Recommend custom development when the project calls for it.",
+  "Start with the product and application.",
+  "Keep sampling responsive and organized.",
+  "Build flavors with production in mind.",
+  "Use custom development when the project calls for it.",
 ] as const;
 
 export default function AboutPage() {
@@ -73,7 +73,7 @@ export default function AboutPage() {
             <div className="editorial-hero about-hero">
               <AppImage
                 src={siteImages.aboutHero}
-                alt="Premium ingredient and formulation setup"
+                alt="Ingredient and flavor formulation setup"
                 priority
                 sizes="min(1600px, calc(100vw - 48px))"
                 style={{ objectPosition: "center 35%" }}
@@ -82,10 +82,10 @@ export default function AboutPage() {
               <div className="editorial-content">
                 <div className="eyebrow" style={{ color: "#f59e0b" }}>About</div>
                 <h1 className="section-title" style={{ color: "white" }}>
-                  A flavor manufacturer built for custom work.
+                  A hands-on flavor manufacturer built for custom work.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 14, maxWidth: 820, color: "rgba(255,255,255,.84)" }}>
-                  The Flavor Factory develops and manufactures liquid and powder flavors for brands that need responsive sampling, honest guidance, and a profile that can move into production.
+                  Based in Southern California, The Flavor Factory develops and manufactures liquid and powder flavors for businesses of all sizes. Customers come to us for responsive service, custom development, flavor matching, and practical support from sample to production.
                 </p>
                 <div className="hero-actions">
                   <Button href="/request-samples" variant="secondary">Request Samples</Button>
@@ -97,14 +97,14 @@ export default function AboutPage() {
             <section className="about-story-grid">
               <div>
                 <div className="eyebrow">How We Work</div>
-                <h2 className="section-title">Focused people. Clear development. Real manufacturing support.</h2>
+                <h2 className="section-title">Experienced people, clear development, and real manufacturing support.</h2>
               </div>
               <div className="about-story-copy">
                 <p>
-                  Clients come to us for custom development, flavor matching, responsive service, and a process that keeps decisions moving.
+                  Our work starts with listening: what the product is, what it needs to taste like, how it will be used, and what constraints matter.
                 </p>
                 <p>
-                  Every project starts with the product reality: format, processing, label goals, taste target, cost, and timeline.
+                  From there, we can pull from a broad library of starting points, develop something custom, or help match and reformulate an existing flavor with production in mind.
                 </p>
               </div>
             </section>
@@ -116,7 +116,7 @@ export default function AboutPage() {
                   <h2 className="section-title">The team behind the samples.</h2>
                 </div>
                 <p className="section-subtext">
-                  These are the people helping customers move from first request to approved flavor.
+                  These are the people helping customers move from first request to approved flavor and production support.
                 </p>
               </div>
               <div className="management-grid">

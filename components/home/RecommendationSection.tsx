@@ -2,20 +2,20 @@ import Link from "next/link";
 
 const discoveryPaths = [
   {
-    title: "Find the direction",
-    copy: "Search by profile, family, application, declaration, or use case. The library is a starting point, not the limit.",
-    action: "Open finder",
+    title: "Start with the flavor",
+    copy: "Search common directions, browse families, or bring us a flavor target you already have in mind.",
+    action: "Explore flavors",
     href: "/flavors",
   },
   {
-    title: "Tell us the product",
-    copy: "Bakery, beverage, nutraceutical, oral care, pharma, popcorn, syrup, savory. The application changes the flavor path.",
+    title: "Tell us the application",
+    copy: "Bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, syrup, popcorn, or savory. The product tells us what the flavor needs to do.",
     action: "View industries",
     href: "/industries",
   },
   {
     title: "Move into samples",
-    copy: "Send the benchmark, target, format, and timeline. We will help choose the most useful starting profiles.",
+    copy: "Send the benchmark, format, declaration, use level if known, and timeline. We will help shape the sample path.",
     action: "Request samples",
     href: "/request-samples",
   },
@@ -27,10 +27,10 @@ export function RecommendationSection() {
       <div className="container">
         <div className="section-head">
           <div>
-            <div className="eyebrow">How To Use The Site</div>
-            <h2 className="section-title">Get from flavor idea to sample request faster.</h2>
+            <div className="eyebrow">How To Start</div>
+            <h2 className="section-title">From flavor idea to useful sample.</h2>
             <p className="section-subtext" style={{ marginTop: 10, maxWidth: 760 }}>
-              Buyers do not all start in the same place. Use whichever path matches what you know today.
+              Some customers start with a profile name. Others start with a product problem. Either way, we help make the next step clear.
             </p>
           </div>
         </div>

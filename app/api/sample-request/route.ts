@@ -10,6 +10,8 @@ type SampleRequest = {
   industry?: string;
   flavorTarget?: string;
   format?: string;
+  declaration?: string;
+  useLevel?: string;
   timeline?: string;
   notes?: string;
 };
@@ -37,6 +39,8 @@ function makeText(values: Required<SampleRequest>) {
     `Application or industry: ${values.industry || "Not provided"}`,
     `Flavor target: ${values.flavorTarget || "Not provided"}`,
     `Preferred format: ${values.format || "Not provided"}`,
+    `Flavor declaration: ${values.declaration || "Not provided"}`,
+    `Target use level: ${values.useLevel || "Not provided"}`,
     `Timeline: ${values.timeline || "Not provided"}`,
     "",
     "Application and profile notes:",
@@ -53,6 +57,8 @@ function makeHtml(values: Required<SampleRequest>) {
     ["Application or industry", values.industry || "Not provided"],
     ["Flavor target", values.flavorTarget || "Not provided"],
     ["Preferred format", values.format || "Not provided"],
+    ["Flavor declaration", values.declaration || "Not provided"],
+    ["Target use level", values.useLevel || "Not provided"],
     ["Timeline", values.timeline || "Not provided"],
   ];
 
@@ -98,6 +104,8 @@ export async function POST(request: Request) {
     industry: clean(body.industry),
     flavorTarget: clean(body.flavorTarget),
     format: clean(body.format),
+    declaration: clean(body.declaration),
+    useLevel: clean(body.useLevel),
     timeline: clean(body.timeline),
     notes: clean(body.notes),
   };

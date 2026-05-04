@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
 
 const differentiators = [
-  "Custom, matching, and reformulation",
-  "Liquid and powder manufacturing",
-  "Fast samples with flexible minimums",
+  "40+ years of combined industry experience",
+  "Low minimum order policy",
+  "3-5 business day order lead-time targets",
 ] as const;
 
 export function HeroSection() {
@@ -31,6 +31,7 @@ export function HeroSection() {
             <div className="hero-actions">
               <Button href="/request-samples" variant="secondary">Request Samples</Button>
               <Button href="/flavors">Explore Flavors</Button>
+              <Button href="/contact" variant="secondary">Talk About Your Project</Button>
             </div>
           </div>
           <div className="hero-bottom-cards">

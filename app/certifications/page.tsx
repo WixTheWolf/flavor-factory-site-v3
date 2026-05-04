@@ -27,10 +27,10 @@ export default function CertificationsPage() {
               Certifications
             </div>
             <h1 className="section-title" style={{ color: "white" }}>
-              Quality programs behind the flavor.
+              Quality and documentation customers can build on.
             </h1>
             <p className="section-subtext" style={{ marginTop: 14, color: "rgba(255,255,255,.8)", maxWidth: 840 }}>
-              Our programs support consistency, documentation, and customer confidence as flavors move from sample work into production.
+              Flavor work needs more than a good profile. It needs repeatable manufacturing, clear documentation, and practical support when a formula moves from sample bench to commercial production.
             </p>
             <div className="quality-grid" style={{ marginTop: 20 }}>
               {siteCopy.certifications.map((item) => (
@@ -38,6 +38,26 @@ export default function CertificationsPage() {
                   {item}
                 </div>
               ))}
+            </div>
+            <div className="quality-explain-grid">
+              <article>
+                <h3>Plain-English support</h3>
+                <p>
+                  Tell us the certification, label, allergen, or customer documentation needs tied to your project. We will confirm what applies to the flavor and the intended application.
+                </p>
+              </article>
+              <article>
+                <h3>Built for repeat orders</h3>
+                <p>
+                  Our quality programs support consistent liquid and powder flavor manufacturing, from approved samples through production lots.
+                </p>
+              </article>
+              <article>
+                <h3>Factual claims</h3>
+                <p>
+                  Certification and facility information is handled directly and kept specific to the product, customer requirement, and available documentation.
+                </p>
+              </article>
             </div>
           </div>
         </section>

@@ -10,9 +10,9 @@ export function TrustSection() {
         <div className="sample-grid">
           <div className="sample-left">
             <div className="eyebrow">Ready To Develop</div>
-            <h2 className="section-title" style={{ marginTop: 10 }}>Bring us the flavor target.</h2>
+            <h2 className="section-title" style={{ marginTop: 10 }}>Tell us what you are making.</h2>
             <p className="section-subtext" style={{ marginTop: 14 }}>
-              Share the application, flavor target, format, benchmark, constraints, and timeline. We will help turn the brief into a useful sample path.
+              Send the application, flavor direction, format, declaration needs, target use level if known, and timeline. We will help turn the brief into a useful sample path.
             </p>
             <div className="showcase-pills" style={{ marginTop: 16 }}>
               {siteCopy.trustPoints.map((item) => <span className="soft-pill" key={item}>{item}</span>)}

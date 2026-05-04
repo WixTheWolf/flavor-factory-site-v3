@@ -1,8 +1,8 @@
 const proofPoints = [
   { value: "40+", label: "years of combined industry experience" },
-  { value: "1000s", label: "starting flavor profiles" },
+  { value: "1000s", label: "flavor directions and starting points" },
   { value: "3-5", label: "business day order lead-time targets" },
-  { value: "Low", label: "minimum order support" },
+  { value: "Low", label: "minimum order policy" },
 ] as const;
 
 export function ShortcutSection() {

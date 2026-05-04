@@ -16,20 +16,20 @@ type Collection = {
 };
 
 const collections: Collection[] = [
-  { name: "Citrus", direction: "Bright, juicy, refreshing top notes.", examples: ["Orange", "Lemon Lime", "Yuzu"] },
-  { name: "Berry", direction: "Sweet-tart red and dark berry profiles.", examples: ["Strawberry", "Black Currant", "Raspberry"] },
-  { name: "Tropical", direction: "Ripe fruit for beverage and candy concepts.", examples: ["Pineapple", "Mango", "Passion Fruit"] },
-  { name: "Orchard Fruit", direction: "Fresh, candied, or baked apple and pear.", examples: ["Green Apple", "Pear", "Apple Pie"] },
-  { name: "Stone Fruit", direction: "Soft fruit with light tart balance.", examples: ["Peach", "Apricot", "Dark Sweet Cherry"] },
-  { name: "Vanilla & Cream", direction: "Smooth creamy sweetness for indulgent products.", examples: ["Vanilla Bean", "Custard", "Sweet Cream"] },
-  { name: "Chocolate & Brown Notes", direction: "Cocoa, caramel, toffee, maple, and roasted depth.", examples: ["Chocolate", "Caramel", "Brownie Batter"] },
-  { name: "Mint & Cooling", direction: "Clean cooling profiles for oral care and refreshment.", examples: ["Peppermint", "Spearmint", "Wintergreen"] },
-  { name: "Coffee & Beverage", direction: "Coffeehouse, soda, punch, and syrup profiles.", examples: ["Cold Brew", "Cola", "Root Beer"] },
-  { name: "Nut & Praline", direction: "Toasted, creamy, and praline-style nut character.", examples: ["Almond", "Hazelnut", "Peanut Butter"] },
-  { name: "Botanical & Tea", direction: "Herbal, tea, floral, and wellness-positioned notes.", examples: ["Matcha", "Hibiscus", "Lavender"] },
-  { name: "Candy & Confectionery", direction: "High-impact profiles for gummies and sweets.", examples: ["Blue Raspberry", "Cotton Candy", "Sour Apple"] },
-  { name: "Savory & Culinary", direction: "Snack, sauce, seasoning, and culinary systems.", examples: ["BBQ", "Ranch", "Jalapeno Lime"] },
-  { name: "Custom & Signature", direction: "Matching, masking, and proprietary brand profiles.", examples: ["Custom Fruit", "Masking", "Profile Match"] },
+  { name: "Citrus", direction: "Clean, bright directions for beverage, confectionery, bakery, and functional products.", examples: ["Orange", "Lemon Lime", "Yuzu"] },
+  { name: "Berry", direction: "Sweet, tart, jammy, or candy-style berry profiles for a wide range of applications.", examples: ["Strawberry", "Black Currant", "Raspberry"] },
+  { name: "Tropical", direction: "Ripe fruit directions for beverages, gummies, syrups, and application-specific blends.", examples: ["Pineapple", "Mango", "Passion Fruit"] },
+  { name: "Orchard Fruit", direction: "Fresh, baked, candied, or beverage-style apple and pear profiles.", examples: ["Green Apple", "Pear", "Apple Pie"] },
+  { name: "Stone Fruit", direction: "Peach, apricot, and cherry directions with room for natural, candy, or baked profiles.", examples: ["Peach", "Apricot", "Dark Sweet Cherry"] },
+  { name: "Vanilla & Cream", direction: "Vanilla, cream, custard, and sweet dairy notes for indulgent products.", examples: ["Vanilla Bean", "Custard", "Sweet Cream"] },
+  { name: "Chocolate & Brown Notes", direction: "Cocoa, caramel, toffee, maple, cookie, and roasted profiles.", examples: ["Chocolate", "Caramel", "Brownie Batter"] },
+  { name: "Mint & Cooling", direction: "Mint, cooling, and freshness systems for oral care, candy, and refreshment.", examples: ["Peppermint", "Spearmint", "Wintergreen"] },
+  { name: "Coffee & Beverage", direction: "Coffeehouse, soda, punch, root beer, and syrup-ready directions.", examples: ["Cold Brew", "Cola", "Root Beer"] },
+  { name: "Nut & Praline", direction: "Toasted, creamy, roasted, and praline-style nut character.", examples: ["Almond", "Hazelnut", "Peanut Butter"] },
+  { name: "Botanical & Tea", direction: "Tea, floral, herbal, and functional-product flavor directions.", examples: ["Matcha", "Hibiscus", "Lavender"] },
+  { name: "Candy & Confectionery", direction: "High-impact profiles for gummies, hard candy, chews, and novelty sweets.", examples: ["Blue Raspberry", "Cotton Candy", "Sour Apple"] },
+  { name: "Savory & Culinary", direction: "Snack, sauce, seasoning, coating, and culinary-style profiles.", examples: ["BBQ", "Ranch", "Jalapeno Lime"] },
+  { name: "Custom & Signature", direction: "Custom, matching, masking, reformulation, and proprietary profile work.", examples: ["Custom Fruit", "Masking", "Profile Match"] },
 ];
 
 const initialFilters: FlavorFilters = {
@@ -101,13 +101,13 @@ export function FlavorFinder() {
       <div className="flavor-intro-panel">
         <div>
           <div className="eyebrow">Flavor Discovery</div>
-          <h2>Use the library to get close. Use us to get exact.</h2>
+          <h2>Start with a family, narrow by application, then request samples.</h2>
           <p>
-            Narrow by taste direction, application, format, and declaration. Then request the profiles that fit the product.
+            This page shows common flavor directions and searchable starting points. If you do not see the exact profile, we can likely develop or match it.
           </p>
         </div>
         <p className="flavor-format-note">
-          The library is a starting point. Matching, masking, reformulation, and custom profiles are part of the work.
+          Flavors can be developed in liquid or powder formats, with natural, natural and artificial, artificial, or custom requirements depending on the project.
         </p>
       </div>
 
@@ -135,7 +135,7 @@ export function FlavorFinder() {
         <div className="section-head flavor-section-head">
           <div>
             <div className="eyebrow">Flavor Collections</div>
-            <h3>Curated starting points</h3>
+            <h3>Common starting points</h3>
           </div>
           <p>Pick a direction and the matching profiles move into view.</p>
         </div>
@@ -215,9 +215,9 @@ export function FlavorFinder() {
           </div>
         ) : (
           <div className="flavor-empty-state">
-            <h3>Not seeing the exact profile? That is normal.</h3>
+            <h3>Not seeing the exact profile? Ask us.</h3>
             <p>
-              Share the target flavor, application, format, and any benchmark product. We can recommend a close starting point, match a profile, or develop something custom.
+              Share the target flavor, application, format, declaration needs, and any benchmark product. We can recommend a close starting point, match a current flavor, or develop something custom.
             </p>
             <Button href="/request-samples">Request a custom flavor</Button>
           </div>

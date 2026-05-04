@@ -15,11 +15,29 @@ export default function RequestSamplesPage() {
               <div className="sample-left">
                 <div className="eyebrow">Request Samples</div>
                 <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
-                  Send the brief. We will help shape the sample path.
+                  Tell us what you are making. We will help you get to a useful sample.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
-                  Tell us the application, flavor target, preferred format, timeline, and any benchmark. Your request goes directly to samples@flavorfactory.net.
+                  Share the product application, flavor direction, preferred format, declaration goal, timeline, and any benchmark you want us to match. Your request goes directly to samples@flavorfactory.net.
                 </p>
+                <div className="sample-guidance" aria-label="Helpful details to include">
+                  <div>
+                    <span>Application</span>
+                    Beverage, gummy, bakery filling, oral care, seasoning, syrup, or another finished product.
+                  </div>
+                  <div>
+                    <span>Flavor direction</span>
+                    Target profile, benchmark, sweetness level, masking need, cooling effect, or flavor family.
+                  </div>
+                  <div>
+                    <span>Format and label</span>
+                    Liquid or powder, plus natural, natural and artificial, artificial, kosher, halal, or other needs.
+                  </div>
+                  <div>
+                    <span>Production context</span>
+                    Use level if known, process conditions, timeline, and any cost or ingredient constraints.
+                  </div>
+                </div>
                 <SampleRequestForm />
               </div>
               <div className="sample-right">

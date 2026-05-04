@@ -1,22 +1,22 @@
 export const siteCopy = {
   brand: "The Flavor Factory",
-  heroKicker: "Custom Liquid & Powder Flavor Manufacturing",
-  heroTitle: "Make flavor the reason they come back.",
+  heroKicker: "Custom Flavor Manufacturer",
+  heroTitle: "Custom liquid and powder flavors for real products.",
   heroText:
-    "The Flavor Factory develops and manufactures liquid and powder flavor systems for brands that need the taste right, the samples moving, and the production path clear.",
+    "The Flavor Factory develops and manufactures high-quality flavor solutions for food, beverage, confectionery, bakery, dairy, nutraceutical, oral care, pharmaceutical, and related applications.",
   trustPoints: [
     "Custom flavor development",
     "Flavor matching and reformulation",
     "Liquid and powder manufacturing",
-    "Fast sample support",
+    "Responsive sample support",
     "Flexible minimums",
-    "Production-minded development",
+    "Natural, natural & artificial, and artificial capabilities",
   ],
   companyInfoBullets: [
-    "Custom, proprietary, and exclusive flavor profiles",
-    "Liquid and powder capabilities for commercial production",
-    "Responsive sampling and clear project communication",
-    "Programs across bakery, confectionery, dairy, nutraceutical, oral care, pharmaceutical, popcorn, and syrup",
+    "Flavor samples from an extensive library of common directions",
+    "New flavors customized around the product and application",
+    "Matching and reformulation work with attention to cost and performance",
+    "Liquid and powder manufacturing for commercial production",
   ],
   certifications: ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility"],
   shortcuts: [
