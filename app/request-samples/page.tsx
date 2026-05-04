@@ -43,10 +43,10 @@ export default function RequestSamplesPage() {
               <div className="sample-right">
                 <AppImage
                   src={siteImages.requestSamplesHero}
-                  alt="Premium flavor sample preparation visuals"
+                  alt="Flavor project brief with sample bottles and pipette"
                   priority
                   sizes="(max-width: 1200px) calc(100vw - 48px), 50vw"
-                  style={{ objectPosition: "center 35%" }}
+                  style={{ objectPosition: "58% center" }}
                 />
                 <div className="sample-overlay" />
               </div>

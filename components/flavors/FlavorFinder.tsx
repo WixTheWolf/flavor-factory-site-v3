@@ -7,12 +7,15 @@ import { filterFlavors } from "@/lib/filter-flavors";
 import { FinderControls } from "@/components/flavors/FinderControls";
 import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { Button } from "@/components/ui/Button";
+import { AppImage } from "@/components/ui/AppImage";
 import { recommendedByIndustry } from "@/lib/recommendations";
 
 type Collection = {
   name: string;
   description: string;
   examples: string[];
+  image: string;
+  imagePosition?: string;
   terms: string[];
 };
 
@@ -21,48 +24,64 @@ const collections: Collection[] = [
     name: "Citrus",
     description: "Bright, zesty, and juicy citrus profiles.",
     examples: ["Lemon", "Lime", "Orange", "Grapefruit", "Key Lime"],
+    image: "/images/flavor-factory/media%20options/flavor-citrus.jpg",
+    imagePosition: "center 45%",
     terms: ["citrus", "lemon", "lime", "orange", "grapefruit", "key lime", "yuzu", "mandarin"],
   },
   {
     name: "Berry",
     description: "Sweet, tart, and naturally vibrant berry profiles.",
     examples: ["Strawberry", "Raspberry", "Blueberry", "Blackberry", "Mixed Berry"],
+    image: "/images/flavor-factory/media%20options/flavor-berry.jpg",
+    imagePosition: "center 42%",
     terms: ["berry", "strawberry", "raspberry", "blueberry", "blackberry", "mixed berry", "black currant", "cranberry", "cherry"],
   },
   {
     name: "Vanilla",
     description: "Classic, creamy, warm vanilla profiles for sweet applications.",
     examples: ["Vanilla", "French Vanilla", "Vanilla Cream", "Vanilla Bean"],
+    image: "/images/flavor-factory/media%20options/flavor-vanilla.jpg",
+    imagePosition: "center 48%",
     terms: ["vanilla", "french vanilla", "vanilla cream", "vanilla bean", "cream", "custard"],
   },
   {
     name: "Chocolate",
     description: "Rich, smooth, and indulgent chocolate and cocoa profiles.",
     examples: ["Chocolate", "Cocoa", "Fudge", "Brownie"],
+    image: "/images/flavor-factory/media%20options/flavor-chocolate.jpg",
+    imagePosition: "center 50%",
     terms: ["chocolate", "cocoa", "fudge", "brownie", "mocha"],
   },
   {
     name: "Tropical",
     description: "Exotic, juicy fruit profiles with bright top notes.",
     examples: ["Mango", "Pineapple", "Passion Fruit", "Guava", "Coconut"],
+    image: "/images/flavor-factory/media%20options/flavor-mango.png",
+    imagePosition: "center 48%",
     terms: ["tropical", "mango", "pineapple", "passion fruit", "guava", "coconut", "pina colada", "dragon fruit", "banana"],
   },
   {
     name: "Nutty",
     description: "Warm, roasted, and naturally rich nut profiles.",
     examples: ["Almond", "Hazelnut", "Peanut", "Pistachio", "Butter Pecan"],
+    image: "/images/flavor-factory/industry-bakery-v2.jpg",
+    imagePosition: "center 44%",
     terms: ["nut", "nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan"],
   },
   {
     name: "Beverage",
     description: "Refreshing profiles for drinks, syrups, and beverage bases.",
     examples: ["Cola", "Coffee", "Energy Drink", "Lemonade", "Tea"],
+    image: "/images/flavor-factory/media%20options/application-beverage.jpg",
+    imagePosition: "center 45%",
     terms: ["beverage", "syrup", "cola", "coffee", "energy drink", "lemonade", "tea", "cold brew", "root beer", "soda", "punch"],
   },
   {
     name: "Sweet",
     description: "Dessert-style sweetness, brown notes, and confectionery profiles.",
     examples: ["Caramel", "Butterscotch", "Marshmallow", "Pancake Syrup"],
+    image: "/images/flavor-factory/media%20options/flavor-caramel.jpg",
+    imagePosition: "center 45%",
     terms: ["sweet", "dessert", "caramel", "butterscotch", "marshmallow", "pancake syrup", "toffee", "maple", "cotton candy", "gummy"],
   },
 ];
@@ -212,12 +231,22 @@ export function FlavorFinder() {
               className={`flavor-collection-card ${activeCategoryName === collection.name ? "is-active" : ""}`}
               onClick={() => exploreCollection(collection.name)}
             >
-              <span className="flavor-collection-title">{collection.name}</span>
-              <span className="flavor-collection-description">{collection.description}</span>
-              <span className="flavor-example-chips">
-                {collection.examples.map((example) => (
-                  <span key={example}>{example}</span>
-                ))}
+              <span className="flavor-collection-image" aria-hidden="true">
+                <AppImage
+                  src={collection.image}
+                  alt=""
+                  sizes="(max-width: 640px) calc(100vw - 64px), (max-width: 1180px) 30vw, 22vw"
+                  style={{ objectPosition: collection.imagePosition }}
+                />
+              </span>
+              <span className="flavor-collection-copy">
+                <span className="flavor-collection-title">{collection.name}</span>
+                <span className="flavor-collection-description">{collection.description}</span>
+                <span className="flavor-example-chips">
+                  {collection.examples.map((example) => (
+                    <span key={example}>{example}</span>
+                  ))}
+                </span>
               </span>
             </button>
           ))}

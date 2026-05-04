@@ -13,12 +13,12 @@ const certificationNotes = [
     note: "Manufacturing practices are organized around consistent handling, production, and recordkeeping.",
   },
   {
-    name: "Kosher",
-    note: "Kosher documentation can be reviewed for qualifying flavor projects and customer requirements.",
-  },
-  {
     name: "Halal",
     note: "Halal status and documentation can be confirmed for applicable flavors and applications.",
+  },
+  {
+    name: "Kosher",
+    note: "Kosher documentation can be reviewed for qualifying flavor projects and customer requirements.",
   },
   {
     name: "FDA Registered Facility",

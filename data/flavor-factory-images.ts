@@ -19,7 +19,7 @@ export const flavorFactoryImages = {
   amberPour: "/images/flavor-factory/amber_pour_berries_spices.png",
   goldenElixirs: "/images/flavor-factory/golden-elixirs-citrus-slices.png",
   goldenMacro: "/images/flavor-factory/golden-amber-macro-swirl.png",
-  requestSamplesHero: "/images/flavor-factory/custom-flavors.jpg",
+  requestSamplesHero: "/images/flavor-factory/About-Your-Project.png",
   certificationsHero: "/images/flavor-factory/certifications-hero.jpg",
   contactHero: "/images/flavor-factory/cta-flavor-support.jpg",
   flavorsHero: "/images/flavor-factory/hero-flavors-clean.jpg",

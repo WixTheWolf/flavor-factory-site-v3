@@ -1840,13 +1840,14 @@ button, input, textarea, select { font: inherit; }
 
 .flavor-collection-card {
   display: flex;
-  min-height: 216px;
+  min-height: 286px;
   flex-direction: column;
   align-items: flex-start;
+  overflow: hidden;
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 18px;
   background: #fff;
-  padding: 18px;
+  padding: 0;
   color: inherit;
   cursor: pointer;
   text-align: left;
@@ -1871,6 +1872,31 @@ button, input, textarea, select { font: inherit; }
 .flavor-collection-card:focus-visible {
   outline: 3px solid rgba(245, 158, 11, 0.32);
   outline-offset: 2px;
+}
+
+.flavor-collection-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 112px;
+  overflow: hidden;
+  background: #f7f5f1;
+}
+
+.flavor-collection-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.16), transparent 58%);
+  pointer-events: none;
+}
+
+.flavor-collection-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
 }
 
 .flavor-collection-title {
@@ -2141,5 +2167,13 @@ button, input, textarea, select { font: inherit; }
   .contact-cta-row .cta-btn,
   .contact-cta-row .light-btn {
     width: 100%;
+  }
+
+  .flavor-collection-card {
+    min-height: 0;
+  }
+
+  .flavor-collection-image {
+    height: 150px;
   }
 }
