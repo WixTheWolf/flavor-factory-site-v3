@@ -19,22 +19,22 @@ const productTypeMatchers = [
 ] as const;
 
 const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
-  { family: "Citrus", patterns: [/ORANGE|LEMON|LIME|GRAPEFRUIT|CITRUS|YUZU|MANDARIN/i] },
-  { family: "Berry", patterns: [/STRAWBERRY|BLUEBERRY|RASPBERRY|BLACKBERRY|BLACK CURRANT|CRANBERRY|BERRY|CHERRY/i] },
-  { family: "Tropical", patterns: [/MANGO|PINEAPPLE|COCONUT|TROPICAL|BANANA|PASSION ?FRUIT|GUAVA|PINA|PIÑA|DRAGON FRUIT/i] },
+  { family: "Citrus", patterns: [/ORANGE|LEMON|LIME|GRAPEFRUIT|CITRUS|YUZU|MANDARIN|CALAMANSI|TANGERINE/i] },
+  { family: "Berry", patterns: [/STRAWBERRY|BLUEBERRY|RASPBERRY|BLACKBERRY|BLACK CURRANT|CRANBERRY|BERRY|CHERRY|ACAI|POMEGRANATE/i] },
+  { family: "Tropical", patterns: [/MANGO|PINEAPPLE|COCONUT|TROPICAL|BANANA|PASSION ?FRUIT|GUAVA|PINA|PIÑA|DRAGON FRUIT|LYCHEE|KIWI|PAPAYA|TAMARIND/i] },
   { family: "Orchard Fruit", patterns: [/APPLE|PEAR/i] },
   { family: "Stone Fruit", patterns: [/PEACH|APRICOT|PLUM/i] },
   { family: "Melons", patterns: [/WATERMELON|CANTALOUPE|HONEYDEW|MELON/i] },
   { family: "Vanilla & Cream", patterns: [/VANILLA|VANILLIN|CREAM|YOGURT|CUSTARD|CHEESECAKE|BAVARIAN|COOKIES/i] },
-  { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE|BUTTERSCOTCH|TOFFEE|BROWNIE/i] },
-  { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH/i] },
+  { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE|BUTTERSCOTCH|TOFFEE|BROWNIE|HONEY/i] },
+  { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH|GINGER BEER|HORCHATA/i] },
   { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|WINTERGREEN|COOL|MOUTH ?WASH/i] },
-  { family: "Nut & Praline", patterns: [/ALMOND|HAZELNUT|PECAN|PEANUT|PISTACHIO|PRALINE|NUT/i] },
+  { family: "Nut & Praline", patterns: [/ALMOND|HAZELNUT|PECAN|PEANUT|PISTACHIO|PRALINE|WALNUT|MACADAMIA|SESAME|NUT/i] },
   { family: "Spice & Warmth", patterns: [/CINNAMON|SPICE|GINGER|CLOVE|CHAI/i] },
-  { family: "Dessert & Bakery", patterns: [/MARSHMALLOW|BAKERY|PANCAKE|BUTTER/i] },
+  { family: "Dessert & Bakery", patterns: [/MARSHMALLOW|BAKERY|PANCAKE|BUTTER|COOKIE|TIRAMISU|RED VELVET|BIRTHDAY CAKE/i] },
   { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION/i] },
-  { family: "Savory & Culinary", patterns: [/CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|JALAPENO|CHEDDAR|CHEESE|NACHO/i] },
-  { family: "Botanical & Tea", patterns: [/TEA|MATCHA|BOTANICAL|HERBAL|HIBISCUS|LAVENDER|CITRUS PEEL/i] },
+  { family: "Savory & Culinary", patterns: [/CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO/i] },
+  { family: "Botanical & Tea", patterns: [/TEA|MATCHA|BOTANICAL|HERBAL|HIBISCUS|LAVENDER|JASMINE|ROSE|ELDERFLOWER|CITRUS PEEL/i] },
   { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
 ];
 
@@ -135,7 +135,7 @@ function getAliases(displayName: string, rawNames: string[], family: string, app
 
   if (/mouth ?wash/.test(source)) aliases.add("mouthwash");
   if (/oral care|toothpaste|mint|wintergreen/.test(source)) aliases.add("oral care");
-  if (/syrup|cola|soda|punch|beverage|lemonade|cold brew|espresso/.test(source)) aliases.add("beverage");
+  if (/syrup|cola|soda|punch|beverage|lemonade|cold brew|espresso|tea|ginger beer|horchata/.test(source)) aliases.add("beverage");
   if (/gummy/.test(source)) aliases.add("gummy");
   if (/popcorn|kettle corn|cheddar/.test(source)) aliases.add("popcorn");
   if (/masking|custom|match|signature/.test(source)) aliases.add("custom");
@@ -155,7 +155,7 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
   const industries = new Set<IndustryKey>();
   const applications = new Set<string>();
 
-  if (/(bakery|cheesecake|pancake|brown sugar|vanilla|cinnamon)/.test(source)) {
+  if (/(bakery|cheesecake|pancake|brown sugar|vanilla|cinnamon|cookie|tiramisu|red velvet|birthday cake)/.test(source)) {
     industries.add("bakery");
     applications.add("Bakery");
   }
@@ -183,11 +183,11 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     industries.add("popcorn");
     applications.add("Popcorn");
   }
-  if (/(syrup|cola|root beer|cream soda|energy drink|beverage|punch|lemonade|cold brew|espresso)/.test(source)) {
+  if (/(syrup|cola|root beer|cream soda|energy drink|beverage|punch|lemonade|cold brew|espresso|tea|ginger beer|horchata|hibiscus|elderflower)/.test(source)) {
     industries.add("syrup");
     applications.add("Beverage & Syrup");
   }
-  if (/(savory|bbq|chicken|beef|ranch|tomato|garlic|jalapeno|cheese|nacho)/.test(source)) {
+  if (/(savory|bbq|chicken|beef|ranch|tomato|garlic|jalapeno|cheese|nacho|basil|wasabi|paprika|miso)/.test(source)) {
     industries.add("savory");
     applications.add("Savory");
   }

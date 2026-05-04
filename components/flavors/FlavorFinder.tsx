@@ -26,7 +26,7 @@ const collections: Collection[] = [
     examples: ["Lemon", "Lime", "Orange", "Grapefruit", "Key Lime"],
     image: "/images/flavor-factory/media%20options/flavor-citrus.jpg",
     imagePosition: "center 45%",
-    terms: ["citrus", "lemon", "lime", "orange", "grapefruit", "key lime", "yuzu", "mandarin"],
+    terms: ["citrus", "lemon", "lime", "orange", "grapefruit", "key lime", "yuzu", "mandarin", "calamansi", "tangerine"],
   },
   {
     name: "Berry",
@@ -34,7 +34,7 @@ const collections: Collection[] = [
     examples: ["Strawberry", "Raspberry", "Blueberry", "Blackberry", "Mixed Berry"],
     image: "/images/flavor-factory/media%20options/flavor-berry.jpg",
     imagePosition: "center 42%",
-    terms: ["berry", "strawberry", "raspberry", "blueberry", "blackberry", "mixed berry", "black currant", "cranberry", "cherry"],
+    terms: ["berry", "strawberry", "raspberry", "blueberry", "blackberry", "mixed berry", "black currant", "cranberry", "cherry", "boysenberry", "acai", "pomegranate"],
   },
   {
     name: "Vanilla",
@@ -58,7 +58,7 @@ const collections: Collection[] = [
     examples: ["Mango", "Pineapple", "Passion Fruit", "Guava", "Coconut"],
     image: "/images/flavor-factory/media%20options/flavor-mango.png",
     imagePosition: "center 48%",
-    terms: ["tropical", "mango", "pineapple", "passion fruit", "guava", "coconut", "pina colada", "dragon fruit", "banana"],
+    terms: ["tropical", "mango", "pineapple", "passion fruit", "guava", "coconut", "pina colada", "dragon fruit", "banana", "lychee", "kiwi", "papaya", "tamarind"],
   },
   {
     name: "Nutty",
@@ -66,7 +66,7 @@ const collections: Collection[] = [
     examples: ["Almond", "Hazelnut", "Peanut", "Pistachio", "Butter Pecan"],
     image: "/images/flavor-factory/industry-bakery-v2.jpg",
     imagePosition: "center 44%",
-    terms: ["nut", "nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan"],
+    terms: ["nut", "nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan", "walnut", "macadamia", "sesame"],
   },
   {
     name: "Beverage",
@@ -74,7 +74,7 @@ const collections: Collection[] = [
     examples: ["Cola", "Coffee", "Energy Drink", "Lemonade", "Tea"],
     image: "/images/flavor-factory/media%20options/application-beverage.jpg",
     imagePosition: "center 45%",
-    terms: ["beverage", "syrup", "cola", "coffee", "energy drink", "lemonade", "tea", "cold brew", "root beer", "soda", "punch"],
+    terms: ["beverage", "syrup", "cola", "coffee", "energy drink", "lemonade", "tea", "cold brew", "root beer", "soda", "punch", "ginger beer", "horchata"],
   },
   {
     name: "Sweet",
@@ -82,7 +82,7 @@ const collections: Collection[] = [
     examples: ["Caramel", "Butterscotch", "Marshmallow", "Pancake Syrup"],
     image: "/images/flavor-factory/media%20options/flavor-caramel.jpg",
     imagePosition: "center 45%",
-    terms: ["sweet", "dessert", "caramel", "butterscotch", "marshmallow", "pancake syrup", "toffee", "maple", "cotton candy", "gummy"],
+    terms: ["sweet", "dessert", "caramel", "butterscotch", "marshmallow", "pancake syrup", "toffee", "maple", "cotton candy", "gummy", "honey", "cookie", "tiramisu", "red velvet", "birthday cake"],
   },
 ];
 
