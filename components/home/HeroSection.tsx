@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
 
 const differentiators = [
-  "40+ years of combined industry experience",
-  "Low minimum order policy",
-  "3-5 business day order lead-time targets",
+  "Custom development, matching, and reformulation",
+  "Liquid and powder flavors for real applications",
+  "Responsive sample support from a hands-on team",
 ] as const;
 
 export function HeroSection() {
