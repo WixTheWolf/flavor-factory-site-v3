@@ -1,25 +1,29 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { HeroSection } from "@/components/home/HeroSection";
-import { ShortcutSection } from "@/components/home/ShortcutSection";
-import { RecommendationSection } from "@/components/home/RecommendationSection";
-import { ManufacturingSection } from "@/components/home/ManufacturingSection";
-import { FormatSection } from "@/components/home/FormatSection";
-import { IndustriesSection } from "@/components/home/IndustriesSection";
-import { TrustSection } from "@/components/home/TrustSection";
+import { Hero } from "@/components/Hero";
+import { ProofStrip } from "@/components/ProofStrip";
+import { Pillars } from "@/components/Pillars";
+import { Process } from "@/components/Process";
+import { Industries } from "@/components/Industries";
+import { Capabilities } from "@/components/Capabilities";
+import { WhyUs } from "@/components/WhyUs";
+import { Work } from "@/components/Work";
+import { CTA } from "@/components/CTA";
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
-        <HeroSection />
-        <ShortcutSection />
-        <RecommendationSection />
-        <ManufacturingSection />
-        <FormatSection />
-        <IndustriesSection />
-        <TrustSection />
+      <main className="new-home">
+        <Hero />
+        <ProofStrip />
+        <Pillars />
+        <Process />
+        <Industries />
+        <Capabilities />
+        <WhyUs />
+        <Work />
+        <CTA />
       </main>
       <Footer />
     </>
