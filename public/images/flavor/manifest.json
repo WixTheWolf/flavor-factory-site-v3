@@ -1,0 +1,392 @@
+{
+  "hero-amber-pour.webp": {
+    "src": "/images/flavor/hero-amber-pour.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      365,
+      622,
+      447,
+      760
+    ]
+  },
+  "hero-golden-splash.webp": {
+    "src": "/images/flavor/hero-golden-splash.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      448,
+      622,
+      529,
+      760
+    ]
+  },
+  "hero-dark-production.webp": {
+    "src": "/images/flavor/hero-dark-production.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      531,
+      622,
+      608,
+      760
+    ]
+  },
+  "hero-lab-ambient.webp": {
+    "src": "/images/flavor/hero-lab-ambient.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      609,
+      622,
+      685,
+      760
+    ]
+  },
+  "ingredients-citrus-vanilla.webp": {
+    "src": "/images/flavor/ingredients-citrus-vanilla.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      689,
+      622,
+      762,
+      760
+    ]
+  },
+  "ingredients-berries-botanicals.webp": {
+    "src": "/images/flavor/ingredients-berries-botanicals.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      764,
+      622,
+      838,
+      760
+    ]
+  },
+  "ingredients-powder-bowls.webp": {
+    "src": "/images/flavor/ingredients-powder-bowls.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      840,
+      622,
+      920,
+      760
+    ]
+  },
+  "ingredients-spice-grid.webp": {
+    "src": "/images/flavor/ingredients-spice-grid.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      922,
+      622,
+      998,
+      760
+    ]
+  },
+  "production-tanks-clean.webp": {
+    "src": "/images/flavor/production-tanks-clean.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      1005,
+      622,
+      1100,
+      760
+    ]
+  },
+  "production-lab-filling.webp": {
+    "src": "/images/flavor/production-lab-filling.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      1103,
+      622,
+      1220,
+      760
+    ]
+  },
+  "production-machinery-close.webp": {
+    "src": "/images/flavor/production-machinery-close.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      1222,
+      622,
+      1362,
+      760
+    ]
+  },
+  "production-warehouse-totes.webp": {
+    "src": "/images/flavor/production-warehouse-totes.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      1365,
+      622,
+      1530,
+      760
+    ]
+  },
+  "industry-beverage.webp": {
+    "src": "/images/flavor/industry-beverage.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      4,
+      788,
+      107,
+      920
+    ]
+  },
+  "industry-nutraceutical.webp": {
+    "src": "/images/flavor/industry-nutraceutical.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      110,
+      788,
+      199,
+      920
+    ]
+  },
+  "industry-confectionery.webp": {
+    "src": "/images/flavor/industry-confectionery.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      203,
+      788,
+      296,
+      920
+    ]
+  },
+  "industry-dairy.webp": {
+    "src": "/images/flavor/industry-dairy.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      300,
+      788,
+      389,
+      920
+    ]
+  },
+  "industry-savory.webp": {
+    "src": "/images/flavor/industry-savory.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      392,
+      788,
+      524,
+      920
+    ]
+  },
+  "process-glassware-clear.webp": {
+    "src": "/images/flavor/process-glassware-clear.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      534,
+      788,
+      641,
+      920
+    ]
+  },
+  "process-flasks-amber.webp": {
+    "src": "/images/flavor/process-flasks-amber.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      644,
+      788,
+      759,
+      920
+    ]
+  },
+  "process-pipette.webp": {
+    "src": "/images/flavor/process-pipette.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      762,
+      788,
+      880,
+      920
+    ]
+  },
+  "process-whisk-liquid.webp": {
+    "src": "/images/flavor/process-whisk-liquid.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      883,
+      788,
+      997,
+      920
+    ]
+  },
+  "texture-amber-ripple.webp": {
+    "src": "/images/flavor/texture-amber-ripple.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      1005,
+      788,
+      1098,
+      920
+    ]
+  },
+  "texture-powder-pile.webp": {
+    "src": "/images/flavor/texture-powder-pile.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      1102,
+      788,
+      1187,
+      920
+    ]
+  },
+  "texture-golden-bubbles.webp": {
+    "src": "/images/flavor/texture-golden-bubbles.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      1191,
+      788,
+      1278,
+      920
+    ]
+  },
+  "detail-lab-glass.webp": {
+    "src": "/images/flavor/detail-lab-glass.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      1282,
+      788,
+      1367,
+      920
+    ]
+  },
+  "texture-brushed-steel.webp": {
+    "src": "/images/flavor/texture-brushed-steel.webp",
+    "size": [
+      1200,
+      1200
+    ],
+    "source_box": [
+      1371,
+      788,
+      1532,
+      920
+    ]
+  },
+  "about-lab-bottles-wide.webp": {
+    "src": "/images/flavor/about-lab-bottles-wide.webp",
+    "size": [
+      1600,
+      900
+    ],
+    "source_box": [
+      498,
+      96,
+      656,
+      198
+    ]
+  },
+  "capabilities-tank-hero-wide.webp": {
+    "src": "/images/flavor/capabilities-tank-hero-wide.webp",
+    "size": [
+      1600,
+      900
+    ],
+    "source_box": [
+      761,
+      96,
+      922,
+      198
+    ]
+  },
+  "contact-shelf-lab-wide.webp": {
+    "src": "/images/flavor/contact-shelf-lab-wide.webp",
+    "size": [
+      1600,
+      1000
+    ],
+    "source_box": [
+      1400,
+      133,
+      1530,
+      300
+    ]
+  },
+  "process-pipette-tall.webp": {
+    "src": "/images/flavor/process-pipette-tall.webp",
+    "size": [
+      900,
+      1400
+    ],
+    "source_box": [
+      1231,
+      151,
+      1329,
+      501
+    ]
+  }
+}

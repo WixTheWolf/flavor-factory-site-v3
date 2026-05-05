@@ -14,13 +14,15 @@ const requiredFiles = [
   "/components/SectionShell.tsx",
   "/components/PageHero.tsx",
   "/components/CTA.tsx",
-  "/components/VisualBlock.tsx",
+  "/components/ImagePanel.tsx",
+  "/components/Card.tsx",
+  "/components/Button.tsx",
   "/components/Field.tsx",
 ];
 
 describe("Flavor Factory site file pack", () => {
   it("defines every required route and shared component", () => {
-    expect(requiredFiles).toHaveLength(15);
+    expect(requiredFiles).toHaveLength(17);
     expect(new Set(requiredFiles).size).toBe(requiredFiles.length);
   });
 

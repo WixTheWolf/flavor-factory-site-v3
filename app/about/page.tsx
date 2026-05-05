@@ -1,36 +1,50 @@
+import { Card } from "@/components/Card";
 import { CTA } from "@/components/CTA";
+import { ImagePanel } from "@/components/ImagePanel";
 import { PageHero } from "@/components/PageHero";
 import { SectionShell } from "@/components/SectionShell";
-import { VisualBlock } from "@/components/VisualBlock";
+
+const principles = [
+  ["Listen first", "Good flavor work starts with the product, market, target profile, and constraints."],
+  ["Develop with purpose", "Every sample should answer a question and move the formula forward."],
+  ["Carry it through", "The same practical mindset continues into production, documentation, and repeat orders."],
+] as const;
 
 export default function AboutPage() {
   return (
     <main className="bg-[#f7f4ee] text-[#14251c]">
       <PageHero
         eyebrow="About"
-        title="A practical flavor partner for products that need to work."
-        body="The Flavor Factory builds custom flavor systems with a grounded, hands-on approach. We listen first, develop with purpose, and carry the work through production."
+        title="A practical flavor partner with a premium standard."
+        body="The Flavor Factory builds custom flavor systems with a grounded, hands-on approach. Clean development. Clear communication. Production-aware decisions."
+        image="/images/flavor/about-lab-bottles-wide.webp"
+        imageAlt="Organized flavor bottles in a modern formulation lab"
       />
 
-      <SectionShell eyebrow="Our Approach" title="Good flavor work starts before the first sample." intro="The real work is understanding the product, the customer, the constraints, and the path to repeatable production.">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
-          <VisualBlock label="Use a real facility or lab-detail image here. Clean, quiet, no people required." />
+      <SectionShell
+        eyebrow="Point of View"
+        title="Good flavor work starts before the first sample."
+        intro="The real work is understanding the product, the customer, the constraints, and the path to repeatable production."
+      >
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+          <ImagePanel src="/images/flavor/detail-lab-glass.webp" alt="Glassware and amber flavor liquid in controlled light" className="min-h-[560px]" tone="amber" />
           <div className="grid gap-5">
-            {[
-              ["Listening First", "Good flavor work starts with the customer's product, market, target profile, and constraints."],
-              ["Clear Follow-Through", "Samples, revisions, and questions stay organized, so customers know what is happening next."],
-              ["Hands-On Work", "The same practical mindset carries from the first conversation into approved orders and repeat work."],
-            ].map(([title, body]) => (
-              <article key={title} className="rounded-[1.75rem] border border-[#14251c]/10 bg-white/70 p-8">
+            {principles.map(([title, body]) => (
+              <Card key={title}>
                 <h3 className="text-2xl font-semibold tracking-[-0.035em]">{title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#4f5d54]">{body}</p>
-              </article>
+                <p className="mt-4 text-base leading-7 text-[#566257]">{body}</p>
+              </Card>
             ))}
           </div>
         </div>
       </SectionShell>
 
-      <SectionShell dark eyebrow="The Standard" title="No theater. No black box. Just disciplined flavor work." intro="Customers need more than creative ideas. They need organized samples, clear revisions, production-ready formulas, and a partner that knows how to keep the thread intact.">
+      <SectionShell
+        dark
+        eyebrow="The Standard"
+        title="No theater. No black box. Just disciplined flavor work."
+        intro="Customers need organized samples, clear revisions, production-ready formulas, and a partner that keeps the thread intact."
+      >
         <div className="grid gap-5 md:grid-cols-3">
           {[
             "Practical formulation",
@@ -40,9 +54,9 @@ export default function AboutPage() {
             "Real application thinking",
             "Repeatable batch execution",
           ].map((item) => (
-            <div key={item} className="rounded-[1.5rem] border border-white/10 bg-white/[0.055] p-6">
+            <Card dark key={item} className="p-6">
               <p className="font-semibold text-white">{item}</p>
-            </div>
+            </Card>
           ))}
         </div>
       </SectionShell>

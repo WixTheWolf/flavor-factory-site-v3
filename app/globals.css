@@ -5,6 +5,11 @@
 :root {
   --background: #f7f4ee;
   --foreground: #14251c;
+  --green: #102218;
+  --green-soft: #172b21;
+  --amber: #b98745;
+  --stone: #e9e0d2;
+  --muted: #657166;
 }
 
 * {
@@ -17,8 +22,12 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(185, 135, 69, 0.09), transparent 32rem),
+    var(--background);
   color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  text-rendering: geometricPrecision;
 }
 
 a {
@@ -31,4 +40,42 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+::selection {
+  background: rgba(185, 135, 69, 0.28);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .premium-shell {
+    @apply mx-auto w-full max-w-[1320px] px-6 md:px-10 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-[#9b6b2f];
+  }
+
+  .display-title {
+    @apply font-semibold tracking-[-0.055em] text-[#102218];
+  }
+
+  .body-copy {
+    @apply text-base leading-7 text-[#566257] md:text-lg md:leading-8;
+  }
+
+  .soft-ring {
+    @apply border border-[#14251c]/10;
+  }
 }
