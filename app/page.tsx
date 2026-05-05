@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { CTA } from "@/components/CTA";
@@ -17,20 +15,14 @@ const pillars = [
   {
     title: "Built for Real Formulas",
     body: "We work inside the actual product: sweeteners, acids, proteins, fats, heat, processing, and shelf life.",
-    image: "/images/flavor/process-whisk-liquid.webp",
-    alt: "Amber liquid being mixed in a controlled formulation setting",
   },
   {
     title: "Controlled Iteration",
     body: "Tight development loops. Clear adjustments. Every sample version has a purpose.",
-    image: "/images/flavor/ingredients-powder-bowls.webp",
-    alt: "Powder ingredients arranged for flavor formulation",
   },
   {
     title: "Production-Ready",
     body: "What works in the lab has to translate to the floor: repeatable, stable, scalable.",
-    image: "/images/flavor/production-tanks-clean.webp",
-    alt: "Clean stainless production tanks for flavor manufacturing",
   },
 ] as const;
 
@@ -42,12 +34,12 @@ const process = [
 ] as const;
 
 const industries = [
-  ["Beverages", "/images/flavor/industry-beverage.webp"],
-  ["Nutraceuticals", "/images/flavor/industry-nutraceutical.webp"],
-  ["Confectionery", "/images/flavor/industry-confectionery.webp"],
-  ["Dairy & Alternatives", "/images/flavor/industry-dairy.webp"],
-  ["Savory", "/images/flavor/industry-savory.webp"],
-  ["Custom Applications", "/images/flavor/ingredients-berries-botanicals.webp"],
+  ["Beverages", "Off-note masking", "Sweetener interaction", "Heat / pH stability"],
+  ["Nutraceuticals", "Protein and active masking", "Aftertaste control", "Functional compatibility"],
+  ["Confectionery", "Flavor impact vs sweetness", "Top-note retention", "Heat processing performance"],
+  ["Dairy & Alternatives", "Fat interaction", "Cream profile balance", "Processing stability"],
+  ["Savory", "Depth and roundness", "Salt interaction", "Cook / process stability"],
+  ["Custom Applications", "Customer-specific formulation", "Process constraints", "Production readiness"],
 ] as const;
 
 const capabilities = [
@@ -63,6 +55,12 @@ const why = [
   ["Practical First", "Everything is built around how the product is actually made."],
   ["Clear Communication", "No black box. You know what is happening and what is next."],
   ["Follow-Through", "Samples, revisions, and production stay organized and on track."],
+] as const;
+
+const outcomes = [
+  "Neutral base -> bright citrus profile with reduced bitterness",
+  "Protein drink -> masked off-notes with a cleaner finish",
+  "Heat-processed sauce -> stable flavor through cook cycle",
 ] as const;
 
 export default function HomePage() {
@@ -91,7 +89,7 @@ export default function HomePage() {
             src="/images/flavor/hero-amber-pour.webp"
             alt="Amber liquid flavor being poured in cinematic light"
             className="min-h-[520px] lg:min-h-[700px]"
-            imageClassName="scale-105 object-[52%_center]"
+            imageClassName="scale-110 blur-[1px] object-[52%_center]"
             priority
             tone="amber"
           />
@@ -116,15 +114,10 @@ export default function HomePage() {
       >
         <div className="grid gap-6 md:grid-cols-3">
           {pillars.map((item) => (
-            <Card key={item.title} className="overflow-hidden p-0">
-              <div className="relative h-64 overflow-hidden rounded-t-[2rem] bg-[#102218]">
-                <Image src={item.image} alt={item.alt} fill sizes="(max-width: 768px) calc(100vw - 48px), 33vw" className="object-cover transition duration-700 hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#102218]/32 to-transparent" />
-              </div>
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">{item.title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#566257]">{item.body}</p>
-              </div>
+            <Card key={item.title} className="min-h-[260px] p-8">
+              <div className="mb-10 h-px w-16 bg-[#b98745]" />
+              <h3 className="text-2xl font-semibold tracking-[-0.035em]">{item.title}</h3>
+              <p className="mt-5 text-base leading-7 text-[#566257]">{item.body}</p>
             </Card>
           ))}
         </div>
@@ -136,22 +129,14 @@ export default function HomePage() {
         title="From concept to production, without losing the thread."
         intro="The process keeps samples, revisions, decisions, and scale-up aligned."
       >
-        <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr]">
-          <ImagePanel
-            src="/images/flavor/process-pipette.webp"
-            alt="Pipette placing amber flavor liquid into lab glassware"
-            className="min-h-[520px] shadow-none"
-            imageClassName="scale-110 object-[48%_center]"
-          />
-          <div className="grid gap-4 sm:grid-cols-2">
-            {process.map(([title, body], index) => (
-              <Card dark key={title}>
-                <p className="text-sm font-semibold tracking-[0.2em] text-[#d2a45d]">{String(index + 1).padStart(2, "0")}</p>
-                <h3 className="mt-8 text-2xl font-semibold tracking-[-0.035em] text-white">{title}</h3>
-                <p className="mt-4 text-sm leading-7 text-white/62">{body}</p>
-              </Card>
-            ))}
-          </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {process.map(([title, body], index) => (
+            <Card dark key={title} className="min-h-[300px]">
+              <p className="text-sm font-semibold tracking-[0.2em] text-[#d2a45d]">{String(index + 1).padStart(2, "0")}</p>
+              <h3 className="mt-12 text-2xl font-semibold tracking-[-0.035em] text-white">{title}</h3>
+              <p className="mt-4 text-sm leading-7 text-white/62">{body}</p>
+            </Card>
+          ))}
         </div>
       </SectionShell>
 
@@ -161,17 +146,18 @@ export default function HomePage() {
         intro="Different applications punish flavor in different ways. We build with those pressure points in mind."
       >
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {industries.map(([name, image]) => (
-            <Link key={name} href="/industries" className="group overflow-hidden rounded-[2rem] border border-[#14251c]/10 bg-white/55 shadow-[0_24px_70px_rgba(20,37,28,0.06)] transition duration-300 hover:-translate-y-1">
-              <div className="relative h-56 overflow-hidden">
-                <Image src={image} alt={`${name} flavor application`} fill sizes="(max-width: 768px) calc(100vw - 48px), 33vw" className="object-cover transition duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#102218]/38 to-transparent" />
-              </div>
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">{name}</h3>
-                <p className="mt-4 text-sm leading-7 text-[#566257]">Application-aware flavor systems for finished products with real constraints.</p>
-              </div>
-            </Link>
+          {industries.map(([name, first, second, third]) => (
+            <Card key={name} className="bg-[#ede5d8] p-8 shadow-none">
+              <h3 className="text-2xl font-semibold tracking-[-0.035em]">{name}</h3>
+              <ul className="mt-7 space-y-3 text-sm leading-6 text-[#566257]">
+                {[first, second, third].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b98745]" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Card>
           ))}
         </div>
       </SectionShell>
@@ -189,13 +175,16 @@ export default function HomePage() {
               </Card>
             ))}
           </div>
-          <ImagePanel
-            src="/images/flavor/capabilities-tank-hero-wide.webp"
-            alt="Clean stainless equipment for flavor production"
-            className="min-h-[520px]"
-            imageClassName="scale-105 object-[55%_center]"
-            tone="light"
-          />
+          <div className="relative min-h-[520px] overflow-hidden rounded-[2.5rem] bg-[#102218] shadow-[0_32px_90px_rgba(16,34,24,0.16)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_30%,rgba(185,135,69,0.46),transparent_24rem),radial-gradient(circle_at_28%_76%,rgba(247,244,238,0.16),transparent_20rem),linear-gradient(135deg,#102218_0%,#1b3328_100%)]" />
+            <div className="absolute inset-8 rounded-[2rem] border border-white/10 bg-white/[0.025]" />
+            <div className="absolute bottom-8 left-8 right-8 max-w-md">
+              <p className="eyebrow text-[#d2a45d]">Production Context</p>
+              <p className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.035em] text-white">
+                Built for formulas that need to move from sample bench to repeatable orders.
+              </p>
+            </div>
+          </div>
         </div>
       </SectionShell>
 
@@ -215,6 +204,20 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <SectionShell
+        eyebrow="Selected Outcomes"
+        title="Flavor work should leave evidence."
+        intro="No theatrical case studies. Just the kinds of problems that matter when a product needs to work."
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {outcomes.map((item) => (
+            <article key={item} className="rounded-[2rem] bg-[#102218] p-8 text-white shadow-[0_24px_70px_rgba(16,34,24,0.12)]">
+              <p className="text-lg font-semibold leading-8 tracking-[-0.025em]">{item}</p>
+            </article>
+          ))}
+        </div>
+      </SectionShell>
 
       <CTA />
     </main>
