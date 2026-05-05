@@ -4,6 +4,7 @@ import { siteImages } from "@/data/site-images";
 import { flavorFactoryImages } from "@/data/flavor-factory-images";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/PageHero";
 
 const capabilities = [
   {
@@ -16,7 +17,7 @@ const capabilities = [
   },
   {
     title: "Order practicalities",
-    copy: "Low minimum order policy, responsive sample support, and lead-time targets that help teams plan.",
+    copy: "Low minimum order policy, responsive sample support, and practical order conversations that help teams plan.",
   },
   {
     title: "Application range",
@@ -43,31 +44,20 @@ export default function CompanyInfoPage() {
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48 }}>
+        <section className="section clean-page">
           <div className="container">
-            <div className="editorial-hero company-hero">
-              <AppImage
-                src={siteImages.companyInfoHero}
-                alt="Quality-focused flavor production setup"
-                priority
-                sizes="min(1600px, calc(100vw - 48px))"
-                style={{ objectPosition: "center 40%" }}
-              />
-              <div className="editorial-overlay" />
-              <div className="editorial-content">
-                <div className="eyebrow" style={{ color: "#f59e0b" }}>Company Info</div>
-                <h1 className="section-title" style={{ color: "white" }}>
-                  Capabilities, formats, and order support.
-                </h1>
-                <p className="section-subtext" style={{ marginTop: 14, maxWidth: 840, color: "rgba(255,255,255,.84)" }}>
-                  This page is the practical side of The Flavor Factory: what we make, how projects move, and what customers should know before requesting samples or placing production orders.
-                </p>
-                <div className="hero-actions">
-                  <Button href="/flavors" variant="secondary">Explore Flavors</Button>
-                  <Button href="/request-samples">Request Samples</Button>
-                </div>
-              </div>
-            </div>
+            <PageHero
+              eyebrow="Company Info"
+              title="Capabilities, formats, and order support."
+              copy="This page is the practical side of The Flavor Factory: what we make, how projects move, and what customers should know before requesting samples or placing production orders."
+              image={siteImages.companyInfoHero}
+              imageAlt="Quality-focused flavor production setup"
+              primaryHref="/request-samples"
+              primaryLabel="Request Samples"
+              secondaryHref="/flavors"
+              secondaryLabel="Explore Flavors"
+              imagePosition="center 40%"
+            />
 
             <section className="company-fact-strip">
               {companyFacts.map((item) => (
@@ -96,10 +86,10 @@ export default function CompanyInfoPage() {
             <section className="company-process-panel">
               <div className="section-head">
                 <div>
-                  <div className="eyebrow" style={{ color: "#f59e0b" }}>Project Flow</div>
-                  <h2 className="section-title" style={{ color: "white" }}>How a request becomes production-ready.</h2>
+                  <div className="new-eyebrow">Project Flow</div>
+                  <h2 className="section-title">How a request becomes production-ready.</h2>
                 </div>
-                <p style={{ color: "rgba(255,255,255,.72)" }}>
+                <p>
                   The goal is to remove guesswork before time is spent on the wrong sample path.
                 </p>
               </div>
@@ -117,7 +107,7 @@ export default function CompanyInfoPage() {
             <section className="company-service-panel">
               <div>
                 <div className="eyebrow">Service Standards</div>
-                <h2>Low MOQ. Fast turnaround. Responsive project support.</h2>
+                <h2>Low MOQ. Responsive project support. Clear next steps.</h2>
                 <p>
                   Ask about minimums, sample timing, repeat orders, documentation, and the details needed to quote or produce the flavor.
                 </p>

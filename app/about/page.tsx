@@ -1,14 +1,14 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
-import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
+import { PageHero } from "@/components/PageHero";
 
 const teamRoles = [
   {
     title: "Listening First",
     image: "/images/flavor-factory/listening-first.png",
-    focus: "Good flavor work starts with the customer’s product, market, target profile, and constraints.",
+    focus: "Good flavor work starts with the customer's product, market, target profile, and constraints.",
   },
   {
     title: "Clear Follow-Through",
@@ -67,31 +67,20 @@ export default function AboutPage() {
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48 }}>
+        <section className="section clean-page">
           <div className="container">
-            <div className="editorial-hero about-hero">
-              <AppImage
-                src={siteImages.aboutHero}
-                alt="Ingredient and flavor formulation setup"
-                priority
-                sizes="min(1600px, calc(100vw - 48px))"
-                style={{ objectPosition: "center 35%" }}
-              />
-              <div className="editorial-overlay" />
-              <div className="editorial-content">
-                <div className="eyebrow" style={{ color: "#f59e0b" }}>About</div>
-                <h1 className="section-title" style={{ color: "white" }}>
-                  People you can call when the flavor needs to be right.
-                </h1>
-                <p className="section-subtext" style={{ marginTop: 14, maxWidth: 820, color: "rgba(255,255,255,.84)" }}>
-                  The Flavor Factory is a family-run flavor manufacturer in Southern California with a hands-on way of working. Customers come back because the team listens, responds, and understands how flavor decisions affect real products.
-                </p>
-                <div className="hero-actions">
-                  <Button href="/request-samples" variant="secondary">Request Samples</Button>
-                  <Button href="/company-info">Company Info</Button>
-                </div>
-              </div>
-            </div>
+            <PageHero
+              eyebrow="About"
+              title="People you can call when the flavor needs to be right."
+              copy="The Flavor Factory is a family-run flavor manufacturer in Southern California with a hands-on way of working. Customers come back because the team listens, responds, and understands how flavor decisions affect real products."
+              image={siteImages.aboutHero}
+              imageAlt="Ingredient and flavor formulation setup"
+              primaryHref="/request-samples"
+              primaryLabel="Request Samples"
+              secondaryHref="/company-info"
+              secondaryLabel="Company Info"
+              imagePosition="center 35%"
+            />
 
             <section className="about-story-grid">
               <div>
@@ -151,7 +140,7 @@ export default function AboutPage() {
 
             <section className="about-principles">
               <div>
-                <div className="eyebrow" style={{ color: "#f59e0b" }}>What Matters Here</div>
+                <div className="new-eyebrow">What Matters Here</div>
                 <h2>Service is part of the product.</h2>
               </div>
               <div className="about-principle-list">

@@ -3,42 +3,27 @@ import { Footer } from "@/components/layout/Footer";
 import { industries } from "@/data/industries";
 import { siteImages } from "@/data/site-images";
 import { AppImage } from "@/components/ui/AppImage";
+import { PageHero } from "@/components/PageHero";
 
 export default function IndustriesPage() {
   return (
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48 }}>
+        <section className="section clean-page">
           <div className="container">
-            <div className="editorial-hero editorial-hero-compact">
-              <AppImage
-                src={siteImages.industriesHero}
-                alt="Ingredient and lab atmosphere"
-                priority
-                sizes="min(1600px, calc(100vw - 48px))"
-                style={{ objectPosition: "center 42%" }}
-              />
-              <div className="editorial-overlay" />
-              <div className="editorial-content">
-                <div className="eyebrow" style={{ color: "#f59e0b" }}>
-                  Industries
-                </div>
-                <h1 className="section-title" style={{ color: "white" }}>
-                  Flavor support for the way your product is made.
-                </h1>
-                <p
-                  className="section-subtext"
-                  style={{
-                    color: "rgba(255,255,255,.82)",
-                    marginTop: 12,
-                    maxWidth: 760,
-                  }}
-                >
-                  Every application asks something different from a flavor. Browse common product categories, then request samples with your format, process, label goals, and target profile in mind.
-                </p>
-              </div>
-            </div>
+            <PageHero
+              eyebrow="Industries"
+              title="Flavor support for the way your product is made."
+              copy="Every application asks something different from a flavor. Browse common product categories, then request samples with your format, process, label goals, and target profile in mind."
+              image={siteImages.industriesHero}
+              imageAlt="Ingredient and lab atmosphere"
+              primaryHref="/request-samples"
+              primaryLabel="Request Samples"
+              secondaryHref="/flavors"
+              secondaryLabel="Explore Flavors"
+              imagePosition="center 42%"
+            />
 
             <div className="industry-clean-grid" style={{ marginTop: 32 }}>
               {industries.map((item) => (

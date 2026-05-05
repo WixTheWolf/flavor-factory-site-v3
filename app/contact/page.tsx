@@ -2,7 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { siteImages } from "@/data/site-images";
-import { AppImage } from "@/components/ui/AppImage";
+import { PageHero } from "@/components/PageHero";
 
 const contactDetails = [
   {
@@ -27,25 +27,20 @@ export default function ContactPage() {
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48 }}>
-          <div className="container showcase">
-            <div className="editorial-hero editorial-hero-compact" style={{ marginBottom: 22 }}>
-              <AppImage
-                src={siteImages.contactHero}
-                alt="Flavor team collaboration and formulation workspace"
-                priority
-                sizes="min(1600px, calc(100vw - 48px))"
-                style={{ objectPosition: "center 30%" }}
-              />
-              <div className="editorial-overlay" />
-              <div className="editorial-content">
-                <div className="eyebrow" style={{ color: "#f59e0b" }}>Contact</div>
-                <h1 className="section-title" style={{ color: "white" }}>Talk with the people developing and manufacturing the flavor.</h1>
-                <p className="section-subtext" style={{ marginTop: 14, maxWidth: 760, color: "rgba(255,255,255,.84)" }}>
-                  Reach out for custom flavor development, matching, samples, production questions, or application-specific support.
-                </p>
-              </div>
-            </div>
+        <section className="section clean-page">
+          <div className="container">
+            <PageHero
+              eyebrow="Contact"
+              title="Talk with the people developing and manufacturing the flavor."
+              copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
+              image={siteImages.contactHero}
+              imageAlt="Flavor team collaboration and formulation workspace"
+              primaryHref="/request-samples"
+              primaryLabel="Request Samples"
+              secondaryHref="mailto:samples@flavorfactory.net"
+              secondaryLabel="Email Samples"
+              imagePosition="center 30%"
+            />
 
             <div className="eyebrow">Direct Lines</div>
             <div className="contact-direct-grid">

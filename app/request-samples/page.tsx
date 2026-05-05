@@ -9,7 +9,7 @@ export default function RequestSamplesPage() {
     <>
       <Header />
       <main>
-        <section className="section" style={{ paddingTop: 48, paddingBottom: 88 }}>
+        <section className="section clean-page request-page">
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
