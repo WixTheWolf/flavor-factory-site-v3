@@ -1,7 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
-import { flavorFactoryImages } from "@/data/flavor-factory-images";
 import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
 
@@ -13,12 +12,12 @@ const teamRoles = [
   },
   {
     title: "Clear Follow-Through",
-    image: siteImages.contactHero,
+    image: "/images/flavor-factory/clear-follow-through.png",
     focus: "Samples, revisions, and questions stay organized so customers know what is happening next.",
   },
   {
     title: "Hands-On Work",
-    image: flavorFactoryImages.industrySyrup,
+    image: "/images/flavor-factory/hands-on-work.png",
     focus: "The same practical mindset carries from the first conversation into approved orders and repeat work.",
   },
 ] as const;
