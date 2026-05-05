@@ -1,7 +1,6 @@
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { CTA } from "@/components/CTA";
-import { ImagePanel } from "@/components/ImagePanel";
 import { SectionShell } from "@/components/SectionShell";
 
 const proof = [
@@ -75,7 +74,7 @@ export default function HomePage() {
               Flavor That Carries the Product
             </h1>
             <p className="mt-8 max-w-2xl text-xl leading-8 text-[#405045] md:text-2xl md:leading-9">
-              Built for real formulas. Scaled for real production. From first concept to repeat orders: clean, controlled, predictable.
+              Built for real formulas. Scaled for real production. From first concept to repeat orders—clean, controlled, predictable.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button href="/contact">Start a Project</Button>
@@ -85,14 +84,17 @@ export default function HomePage() {
             </div>
           </div>
 
-          <ImagePanel
-            src="/images/flavor/hero-amber-pour.webp"
-            alt="Amber liquid flavor being poured in cinematic light"
-            className="min-h-[520px] lg:min-h-[700px]"
-            imageClassName="scale-110 blur-[1px] object-[52%_center]"
-            priority
-            tone="amber"
-          />
+          <div className="relative min-h-[520px] overflow-hidden rounded-[2.75rem] bg-[#102218] shadow-[0_34px_100px_rgba(16,34,24,0.2)] lg:min-h-[700px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_28%,rgba(185,135,69,0.58),transparent_23rem),radial-gradient(circle_at_26%_72%,rgba(247,244,238,0.16),transparent_19rem),linear-gradient(135deg,#08120d_0%,#102218_45%,#1c372b_100%)]" />
+            <div className="absolute inset-8 rounded-[2rem] border border-white/10 bg-white/[0.025]" />
+            <div className="absolute left-8 right-8 top-8 h-px bg-gradient-to-r from-white/30 via-[#d2a45d]/45 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8 max-w-md">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d2a45d]">Luxury Food Science</p>
+              <p className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.035em] text-white md:text-3xl">
+                Controlled flavor systems for products that need to hold up.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
