@@ -1,81 +1,58 @@
-import { Card } from "@/components/Card";
 import { CTA } from "@/components/CTA";
 import { ImagePanel } from "@/components/ImagePanel";
 import { PageHero } from "@/components/PageHero";
-import { SectionShell } from "@/components/SectionShell";
 
-const groups = [
-  {
-    title: "Flavor Systems",
-    items: ["Liquid flavors", "Powder flavors", "Natural flavors", "Artificial flavors", "Custom flavor profiles", "Profile matching and refinement"],
-  },
-  {
-    title: "Performance Work",
-    items: ["Masking", "Modulation", "Aftertaste control", "Heat stability", "pH-aware formulation", "Sweetener interaction support"],
-  },
-  {
-    title: "Production Support",
-    items: ["Small batch development", "Scale-up support", "Repeat order consistency", "Production handoff", "Formula organization", "Sample revision tracking"],
-  },
+const capabilities = [
+  ["Flavor Development", "Custom flavor creation for any application."],
+  ["Liquid & Powder Flavors", "Versatile formats for every manufacturing need."],
+  ["Masking & Modulation", "Work with off-notes and refine taste with precision."],
+  ["Natural & Artificial Solutions", "Tailored to your label, cost, and performance needs."],
+  ["Heat-Stable & Process-Ready", "Built to withstand real-world processing conditions."],
+  ["Small Batch to Full Scale", "From lab samples to full-scale production with consistency."],
 ] as const;
 
 export default function CapabilitiesPage() {
   return (
     <main className="bg-[#f7f4ee] text-[#14251c]">
       <PageHero
-        eyebrow="Capabilities"
-        title="Custom flavor systems built for real production."
-        body="Flavor has to survive the product, the process, the shelf, and the customer's expectations. That is the job."
+        eyebrow="Our Capabilities"
+        title="Built for your product."
+        body="From concept to production, we deliver flavor systems that are structured, scalable, and built for your product."
         image="/images/flavor/capabilities-tank-hero-wide.webp"
-        imageAlt="Stainless production equipment in a clean flavor facility"
+        imageAlt="Stainless tanks in a clean production environment"
       />
 
-      <SectionShell
-        eyebrow="Core Capabilities"
-        title="Development, performance, and scale under one roof."
-        intro="The work is not just creating flavor. It is controlling how flavor behaves inside a real product system."
-      >
-        <div className="grid gap-5 lg:grid-cols-3">
-          {groups.map((group) => (
-            <Card key={group.title} className="p-8">
-              <h3 className="text-2xl font-semibold tracking-[-0.035em]">{group.title}</h3>
-              <ul className="mt-6 space-y-3 text-sm leading-6 text-[#566257]">
-                {group.items.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b98745]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell
-        dark
-        eyebrow="Built To Hold Up"
-        title="A flavor is only premium if it performs outside the sample cup."
-        intro="We think through acids, proteins, fats, sweeteners, heat, processing conditions, and how the profile changes after first impression."
-      >
-        <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
-          <ImagePanel src="/images/flavor/production-lab-filling.webp" alt="Flavor production filling equipment in a controlled lab" className="min-h-[540px] shadow-none" />
-          <div className="grid gap-5">
-            {[
-              ["Application-first thinking", "Flavor decisions are tied to the product format and the conditions it will face."],
-              ["Clean iteration", "Each sample version should answer a question and move the project forward."],
-              ["Production-ready handoff", "Approved work needs to translate cleanly into repeatable batch execution."],
-            ].map(([title, body]) => (
-              <Card dark key={title}>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em] text-white">{title}</h3>
-                <p className="mt-4 text-base leading-7 text-white/62">{body}</p>
-              </Card>
+      <section className="bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="eyebrow">What We Make</p>
+            <h2 className="display-title mt-4 text-4xl md:text-5xl">Precise systems, clean handoff.</h2>
+          </div>
+          <div className="divide-y divide-[#102218]/10 border-y border-[#102218]/10">
+            {capabilities.map(([title, body]) => (
+              <article key={title} className="grid gap-4 py-7 md:grid-cols-[0.42fr_1fr]">
+                <h3 className="text-base font-semibold text-[#102218]">{title}</h3>
+                <p className="text-sm leading-6 text-[#566257]">{body}</p>
+              </article>
             ))}
           </div>
         </div>
-      </SectionShell>
+      </section>
 
-      <CTA />
+      <section className="bg-[#102218] px-6 py-20 text-white md:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-10 lg:grid-cols-[1fr_1fr]">
+          <ImagePanel src="/images/flavor/production-lab-filling.webp" alt="Flavor filling equipment in controlled light" className="min-h-[440px] rounded-none shadow-none" />
+          <div>
+            <p className="eyebrow text-[#d2a45d]">From Lab to Scale</p>
+            <h2 className="mt-4 font-serif text-4xl font-normal tracking-[-0.035em] md:text-5xl">No black box. No loose handoff.</h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-white/68">
+              Development, sample review, and production planning stay connected so approved work can move cleanly into repeatable orders.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <CTA eyebrow="Have a Unique Challenge?" title="We can help solve the flavor problem." />
     </main>
   );
 }

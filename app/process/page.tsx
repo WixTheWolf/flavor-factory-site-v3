@@ -1,90 +1,48 @@
-import { Card } from "@/components/Card";
+import Image from "next/image";
 import { CTA } from "@/components/CTA";
-import { ImagePanel } from "@/components/ImagePanel";
-import { PageHero } from "@/components/PageHero";
-import { SectionShell } from "@/components/SectionShell";
 
 const steps = [
-  {
-    number: "01",
-    title: "Define",
-    body: "Product type, target flavor, market goal, label needs, processing conditions, budget, and formula constraints.",
-    outputs: ["Target profile", "Application details", "Constraints", "Initial direction"],
-  },
-  {
-    number: "02",
-    title: "Build",
-    body: "Bench samples are developed with intention. Each version should move the product closer to the target.",
-    outputs: ["Sample versions", "Adjustment notes", "Profile direction", "Internal review"],
-  },
-  {
-    number: "03",
-    title: "Validate",
-    body: "The flavor is evaluated inside the real application whenever possible: stability, aftertaste, processing, and finish.",
-    outputs: ["Application feedback", "Revision plan", "Performance checks", "Approval path"],
-  },
-  {
-    number: "04",
-    title: "Scale",
-    body: "Approved flavor work moves into production with clean documentation, organized handoff, and batch discipline.",
-    outputs: ["Production handoff", "Batch readiness", "Repeat order path", "Ongoing support"],
-  },
+  ["Define", "We define the target flavor profile, application, and constraints."],
+  ["Build", "We create initial concepts and refine through structured iteration."],
+  ["Validate", "We test in your application for performance, stability, and taste."],
+  ["Scale", "We approach with precision for consistent, repeatable results."],
 ] as const;
 
 export default function ProcessPage() {
   return (
     <main className="bg-[#f7f4ee] text-[#14251c]">
-      <PageHero
-        eyebrow="Process"
-        title="A clear path from first conversation to repeat production."
-        body="Flavor development gets messy when the thread is lost. Our process keeps direction, samples, revisions, and production aligned."
-        image="/images/flavor/process-pipette-tall.webp"
-        imageAlt="Pipette working with amber liquid flavor in glassware"
-      />
+      <section className="relative overflow-hidden bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.78fr_0.72fr]">
+          <div>
+            <p className="eyebrow">Our Process</p>
+            <h1 className="display-title mt-5 text-5xl md:text-6xl">A proven process that turns ideas into flavors that work.</h1>
+            <div className="mt-14 space-y-12">
+              {steps.map(([title, body], index) => (
+                <article key={title} className="grid grid-cols-[4rem_1fr] gap-7">
+                  <p className="font-serif text-5xl font-normal leading-none text-[#102218]">{index + 1}</p>
+                  <div>
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9b6b2f]">{title}</h2>
+                    <p className="mt-3 max-w-md text-sm leading-6 text-[#566257]">{body}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
 
-      <SectionShell dark eyebrow="How It Works" title="Four stages. One controlled thread." intro="The process keeps creative work connected to practical execution.">
-        <div className="grid gap-5 lg:grid-cols-4">
-          {steps.map((step) => (
-            <Card dark key={step.title} className="p-7">
-              <p className="text-sm font-semibold tracking-[0.2em] text-[#d2a45d]">{step.number}</p>
-              <h3 className="mt-8 text-2xl font-semibold tracking-[-0.035em] text-white">{step.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-white/62">{step.body}</p>
-              <div className="mt-6 border-t border-white/10 pt-5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">Outputs</p>
-                <ul className="mt-4 space-y-2 text-sm text-white/62">
-                  {step.outputs.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell
-        eyebrow="Why It Matters"
-        title="Discipline saves time, money, and sanity."
-        intro="A good process prevents scattered revisions, unclear expectations, and samples that cannot survive production."
-      >
-        <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <ImagePanel src="/images/flavor/process-glassware-clear.webp" alt="Clear glassware arranged for controlled flavor evaluation" className="min-h-[520px]" tone="light" />
-          <div className="grid gap-5">
-            {[
-              ["Fewer blind revisions", "Every version should have a clear purpose and a clear next step."],
-              ["Better product fit", "The flavor is judged against the actual base, not a fantasy sample environment."],
-              ["Cleaner scale-up", "Approval means less if production cannot repeat it cleanly."],
-            ].map(([title, body]) => (
-              <Card key={title}>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">{title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#566257]">{body}</p>
-              </Card>
-            ))}
+          <div className="relative min-h-[680px] overflow-hidden">
+            <Image
+              src="/images/flavor/process-pipette-tall.webp"
+              alt="Gold pipette with amber liquid over glassware"
+              fill
+              priority
+              sizes="(max-width: 1024px) calc(100vw - 48px), 42vw"
+              className="object-contain object-center drop-shadow-[0_30px_55px_rgba(16,34,24,0.22)]"
+            />
           </div>
         </div>
-      </SectionShell>
+      </section>
 
-      <CTA />
+      <CTA eyebrow="Ready to Begin?" title="Let's build a flavor that performs from start to finish." />
     </main>
   );
 }

@@ -68,7 +68,7 @@ select {
   }
 
   .display-title {
-    @apply font-semibold tracking-[-0.055em] text-[#102218];
+    @apply font-serif font-normal tracking-[-0.035em] text-[#102218];
   }
 
   .body-copy {

@@ -29,7 +29,7 @@ export function ImagePanel({
         : "from-[#06120d]/55 via-[#06120d]/10 to-[#06120d]/30";
 
   return (
-    <figure className={`relative overflow-hidden rounded-[2.5rem] bg-[#17281f] shadow-[0_32px_90px_rgba(16,34,24,0.18)] ${className}`.trim()}>
+    <figure className={`relative overflow-hidden rounded-[2px] bg-[#17281f] shadow-[0_32px_90px_rgba(16,34,24,0.18)] ${className}`.trim()}>
       <Image
         src={src}
         alt={alt}

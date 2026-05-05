@@ -1,67 +1,64 @@
-import { Card } from "@/components/Card";
+import Image from "next/image";
 import { CTA } from "@/components/CTA";
-import { ImagePanel } from "@/components/ImagePanel";
 import { PageHero } from "@/components/PageHero";
-import { SectionShell } from "@/components/SectionShell";
 
-const principles = [
-  ["Listen first", "Good flavor work starts with the product, market, target profile, and constraints."],
-  ["Develop with purpose", "Every sample should answer a question and move the formula forward."],
-  ["Carry it through", "The same practical mindset continues into production, documentation, and repeat orders."],
+const approach = [
+  ["Listen First", "We start by understanding your product, challenge, and goals.", "/images/flavor-factory/what-we-do-1.jpg"],
+  ["Hands-On", "We get into the details: ingredients, application, and performance.", "/images/flavor-factory/what-we-do-2.jpg"],
+  ["Follow Through", "We stay with it through production and beyond.", "/images/flavor-factory/what-we-do-3.jpg"],
+] as const;
+
+const difference = [
+  ["Real Experience", "Deep knowledge across industries and applications."],
+  ["Technical Excellence", "Advanced trials and precise execution."],
+  ["Reliable Partner", "Clear communication and consistent results."],
 ] as const;
 
 export default function AboutPage() {
   return (
     <main className="bg-[#f7f4ee] text-[#14251c]">
       <PageHero
-        eyebrow="About"
-        title="A practical flavor partner with a premium standard."
-        body="The Flavor Factory builds custom flavor systems with a grounded, hands-on approach. Clean development. Clear communication. Production-aware decisions."
+        eyebrow="About Us"
+        title="We build flavor that performs."
+        body="The Flavor Factory is a full-service flavor house built for innovation, precision, and production. We partner with brands to create flavors that taste exceptional and perform in the real world."
         image="/images/flavor/about-lab-bottles-wide.webp"
-        imageAlt="Organized flavor bottles in a modern formulation lab"
+        imageAlt="Glass flavor bottles in a clean formulation lab"
       />
 
-      <SectionShell
-        eyebrow="Point of View"
-        title="Good flavor work starts before the first sample."
-        intro="The real work is understanding the product, the customer, the constraints, and the path to repeatable production."
-      >
-        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
-          <ImagePanel src="/images/flavor/detail-lab-glass.webp" alt="Glassware and amber flavor liquid in controlled light" className="min-h-[560px]" tone="amber" />
-          <div className="grid gap-5">
-            {principles.map(([title, body]) => (
-              <Card key={title}>
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">{title}</h3>
-                <p className="mt-4 text-base leading-7 text-[#566257]">{body}</p>
-              </Card>
+      <section className="bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-[1320px]">
+          <h2 className="text-center font-serif text-4xl font-normal tracking-[-0.035em] text-[#102218]">Our Approach</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {approach.map(([title, body, image]) => (
+              <article key={title}>
+                <div className="relative aspect-[1.6] overflow-hidden bg-[#102218]">
+                  <Image src={image} alt={`${title} at Flavor Factory`} fill sizes="(max-width: 768px) calc(100vw - 48px), 33vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#102218]/18 to-transparent" />
+                </div>
+                <h3 className="mt-5 text-sm font-semibold text-[#102218]">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#566257]">{body}</p>
+              </article>
             ))}
           </div>
         </div>
-      </SectionShell>
+      </section>
 
-      <SectionShell
-        dark
-        eyebrow="The Standard"
-        title="No theater. No black box. Just disciplined flavor work."
-        intro="Customers need organized samples, clear revisions, production-ready formulas, and a partner that keeps the thread intact."
-      >
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            "Practical formulation",
-            "Controlled revision paths",
-            "Production-aware decisions",
-            "Clear sample communication",
-            "Real application thinking",
-            "Repeatable batch execution",
-          ].map((item) => (
-            <Card dark key={item} className="p-6">
-              <p className="font-semibold text-white">{item}</p>
-            </Card>
-          ))}
+      <section className="bg-[#f0e8da] px-6 py-20 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-[1320px]">
+          <h2 className="text-center font-serif text-4xl font-normal tracking-[-0.035em] text-[#102218]">Our Difference</h2>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {difference.map(([title, body]) => (
+              <article key={title} className="text-center">
+                <div className="mx-auto mb-5 h-9 w-9 rounded-full border border-[#b98745]/70" />
+                <h3 className="text-base font-semibold text-[#102218]">{title}</h3>
+                <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-[#566257]">{body}</p>
+              </article>
+            ))}
+          </div>
         </div>
-      </SectionShell>
+      </section>
 
-      <CTA />
+      <CTA title="Let's build something that lasts." body="We are in it for the long run." />
     </main>
   );
 }

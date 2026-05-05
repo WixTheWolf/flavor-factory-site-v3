@@ -2,16 +2,16 @@ import Link from "next/link";
 import { Button } from "@/components/Button";
 
 const navItems = [
-  { label: "About", href: "/about" },
   { label: "Capabilities", href: "/capabilities" },
   { label: "Industries", href: "/industries" },
   { label: "Process", href: "/process" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-[#14251c]/10 bg-[#f7f4ee]/82 px-6 py-4 backdrop-blur-2xl md:px-10 lg:px-16">
+    <header className="sticky top-0 z-50 border-b border-[#14251c]/10 bg-[#f7f4ee]/88 px-6 py-4 backdrop-blur-2xl md:px-10 lg:px-16">
       <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-8">
         <Link href="/" className="text-xs font-bold uppercase tracking-[0.28em] text-[#102218]">
           The Flavor Factory
@@ -19,7 +19,7 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-[#405045] transition duration-300 hover:text-[#102218]">
+            <Link key={item.href} href={item.href} className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#405045] transition duration-300 hover:text-[#102218]">
               {item.label}
             </Link>
           ))}

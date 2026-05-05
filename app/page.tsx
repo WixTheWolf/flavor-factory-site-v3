@@ -1,44 +1,50 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
 import { CTA } from "@/components/CTA";
 import { SectionShell } from "@/components/SectionShell";
 
 const proof = [
-  ["10,000+", "batches produced"],
-  ["6,000+", "raw materials handled"],
-  ["Multi-category", "production"],
-  ["Repeatable", "batch performance"],
+  ["10,000+", "Batches Produced"],
+  ["6,000+", "Raw Materials Handled"],
+  ["Multi-Category", "Beverage, Nutraceutical, Confectionery, Dairy, Savory"],
+  ["Repeat Production", "Consistent Quality Every Time"],
 ] as const;
 
 const pillars = [
   {
     title: "Built for Real Formulas",
-    body: "We work inside the actual product: sweeteners, acids, proteins, fats, heat, processing, and shelf life.",
+    body: "We work inside the actual product: sweeteners, acids, proteins, fats, heat. Not just ideal conditions.",
+    image: "/images/flavor-factory/what-we-do-1.jpg",
+    alt: "Amber liquid flavor detail",
   },
   {
     title: "Controlled Iteration",
-    body: "Tight development loops. Clear adjustments. Every sample version has a purpose.",
+    body: "Tight development loops. Clear adjustments. No guessing between versions.",
+    image: "/images/flavor-factory/what-we-do-2.jpg",
+    alt: "Powder ingredient detail",
   },
   {
     title: "Production-Ready",
-    body: "What works in the lab has to translate to the floor: repeatable, stable, scalable.",
+    body: "What works in the lab translates to the floor: repeatable, stable, scalable.",
+    image: "/images/flavor-factory/what-we-do-3.jpg",
+    alt: "Production equipment detail",
   },
 ] as const;
 
 const process = [
-  ["Define", "Product type, target profile, constraints, format, label, and process."],
-  ["Build", "Bench samples with structured iteration and direct feedback loops."],
-  ["Validate", "Application checks for stability, use level, performance, and taste."],
-  ["Scale", "Consistent batching, clean handoff, and reliable repeat orders."],
+  ["Define", "We align on profile, application, constraints, and production needs."],
+  ["Build", "We create initial concepts and refine through structured iteration."],
+  ["Validate", "We test in your application for performance, stability, and taste."],
+  ["Scale", "We approach with precision for consistent, repeatable results."],
 ] as const;
 
 const industries = [
-  ["Beverages", "Off-note masking", "Sweetener interaction", "Heat / pH stability"],
-  ["Nutraceuticals", "Protein and active masking", "Aftertaste control", "Functional compatibility"],
-  ["Confectionery", "Flavor impact vs sweetness", "Top-note retention", "Heat processing performance"],
-  ["Dairy & Alternatives", "Fat interaction", "Cream profile balance", "Processing stability"],
-  ["Savory", "Depth and roundness", "Salt interaction", "Cook / process stability"],
-  ["Custom Applications", "Customer-specific formulation", "Process constraints", "Production readiness"],
+  ["Beverages", "/images/flavor/industry-beverage.webp"],
+  ["Nutraceuticals", "/images/flavor/industry-nutraceutical.webp"],
+  ["Confectionery", "/images/flavor/industry-confectionery.webp"],
+  ["Dairy & Alternatives", "/images/flavor/industry-dairy.webp"],
+  ["Savory", "/images/flavor/industry-savory.webp"],
 ] as const;
 
 const capabilities = [
@@ -65,142 +71,131 @@ const outcomes = [
 export default function HomePage() {
   return (
     <main className="bg-[#f7f4ee] text-[#14251c]">
-      <section className="relative overflow-hidden px-6 py-20 md:px-10 md:py-24 lg:px-16 lg:py-28">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_18%,rgba(185,135,69,0.2),transparent_34rem),linear-gradient(135deg,#f7f4ee_0%,#eee5d8_100%)]" />
-        <div className="relative mx-auto grid max-w-[1320px] items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="max-w-3xl">
-            <p className="eyebrow">The Flavor Factory</p>
-            <h1 className="display-title mt-6 text-6xl md:text-8xl lg:text-[7.7rem] lg:leading-[0.86]">
+      <section className="relative overflow-hidden bg-[#050806] px-6 py-24 text-white md:px-10 lg:px-16 lg:py-32">
+        <Image
+          src="/images/flavor-factory/homepage-hero.jpg"
+          alt="Amber liquid flavor poured into a beaker with citrus and vanilla"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center opacity-82"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.68)_42%,rgba(0,0,0,0.22)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_73%_32%,rgba(210,164,93,0.16),transparent_28rem)]" />
+
+        <div className="relative mx-auto max-w-[1320px]">
+          <div className="max-w-2xl py-16 md:py-24 lg:py-32">
+            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-[#d2a45d]">Flavor Factory</p>
+            <h1 className="font-serif text-5xl font-normal leading-[0.95] tracking-[-0.035em] md:text-7xl">
               Flavor That Carries the Product
             </h1>
-            <p className="mt-8 max-w-2xl text-xl leading-8 text-[#405045] md:text-2xl md:leading-9">
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/82 md:text-lg">
               Built for real formulas. Scaled for real production. From first concept to repeat orders—clean, controlled, predictable.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button href="/contact">Start a Project</Button>
-              <Button href="/capabilities" variant="secondary">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="/contact" variant="light">
+                Start a Project
+              </Button>
+              <Button href="/capabilities" variant="light">
                 View Capabilities
               </Button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="relative min-h-[520px] overflow-hidden rounded-[2.75rem] bg-[#102218] shadow-[0_34px_100px_rgba(16,34,24,0.2)] lg:min-h-[700px]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_28%,rgba(185,135,69,0.58),transparent_23rem),radial-gradient(circle_at_26%_72%,rgba(247,244,238,0.16),transparent_19rem),linear-gradient(135deg,#08120d_0%,#102218_45%,#1c372b_100%)]" />
-            <div className="absolute inset-8 rounded-[2rem] border border-white/10 bg-white/[0.025]" />
-            <div className="absolute left-8 right-8 top-8 h-px bg-gradient-to-r from-white/30 via-[#d2a45d]/45 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8 max-w-md">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#d2a45d]">Luxury Food Science</p>
-              <p className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.035em] text-white md:text-3xl">
-                Controlled flavor systems for products that need to hold up.
-              </p>
+      <section className="bg-[#0d2b1b] px-6 py-8 text-white md:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] gap-6 md:grid-cols-4">
+          {proof.map(([value, label]) => (
+            <div key={value} className="border-white/15 md:border-r md:pr-6 last:md:border-r-0">
+              <p className="font-serif text-3xl font-normal tracking-[-0.035em]">{value}</p>
+              <p className="mt-2 text-xs leading-5 text-white/66">{label}</p>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[#f7f4ee] px-6 py-20 md:px-10 md:py-24 lg:px-16">
+        <div className="mx-auto max-w-[1320px]">
+          <h2 className="text-center font-serif text-4xl font-normal tracking-[-0.035em] text-[#102218] md:text-5xl">What We Do</h2>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {pillars.map((item) => (
+              <article key={item.title}>
+                <div className="relative aspect-[1.35] overflow-hidden bg-[#102218]">
+                  <Image src={item.image} alt={item.alt} fill sizes="(max-width: 768px) calc(100vw - 48px), 33vw" className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#102218]/24 to-transparent" />
+                </div>
+                <h3 className="mt-5 text-base font-semibold tracking-[-0.02em] text-[#102218]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#566257]">{item.body}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-[#14251c]/10 bg-[#102218] px-6 py-8 text-white md:px-10 lg:px-16">
-        <div className="mx-auto grid max-w-[1320px] gap-6 md:grid-cols-4">
-          {proof.map(([value, label]) => (
-            <div key={value} className="border-white/10 md:border-r md:pr-6 last:md:border-r-0">
-              <p className="text-2xl font-semibold tracking-[-0.035em]">{value}</p>
-              <p className="mt-2 text-sm leading-6 text-white/62">{label}</p>
-            </div>
-          ))}
+      <section className="bg-[#f7f4ee] px-6 py-16 md:px-10 md:py-20 lg:px-16">
+        <div className="mx-auto max-w-[1320px]">
+          <h2 className="text-center font-serif text-4xl font-normal tracking-[-0.035em] text-[#102218] md:text-5xl">How It Works</h2>
+          <div className="mt-12 grid gap-8 md:grid-cols-4">
+            {process.map(([title, body], index) => (
+              <article key={title} className="border-t border-[#102218]/18 pt-6">
+                <p className="font-serif text-4xl font-normal text-[#102218]">{index + 1}</p>
+                <h3 className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-[#9b6b2f]">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#566257]">{body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <SectionShell
-        eyebrow="What We Do"
-        title="Flavor development with production discipline."
-        intro="A good profile has to survive the product, the process, the shelf, and the repeat order."
-      >
-        <div className="grid gap-6 md:grid-cols-3">
-          {pillars.map((item) => (
-            <Card key={item.title} className="min-h-[260px] p-8">
-              <div className="mb-10 h-px w-16 bg-[#b98745]" />
-              <h3 className="text-2xl font-semibold tracking-[-0.035em]">{item.title}</h3>
-              <p className="mt-5 text-base leading-7 text-[#566257]">{item.body}</p>
-            </Card>
-          ))}
+      <section className="bg-[#f7f4ee] px-6 py-20 md:px-10 md:py-24 lg:px-16">
+        <div className="mx-auto max-w-[1320px]">
+          <div className="flex items-end justify-between gap-8">
+            <h2 className="font-serif text-4xl font-normal tracking-[-0.035em] text-[#102218] md:text-5xl">Industries We Serve</h2>
+            <Link href="/industries" className="hidden text-[11px] font-semibold uppercase tracking-[0.18em] text-[#9b6b2f] md:inline-flex">
+              View All Industries
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-5">
+            {industries.map(([name, image]) => (
+              <Link key={name} href="/industries" className="group block">
+                <div className="relative aspect-[1.1] overflow-hidden bg-[#ede5d8]">
+                  <Image src={image} alt={`${name} application`} fill sizes="(max-width: 768px) calc(100vw - 48px), 20vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#102218]/18 to-transparent" />
+                </div>
+                <h3 className="mt-4 text-center text-sm font-semibold text-[#102218]">{name}</h3>
+              </Link>
+            ))}
+          </div>
         </div>
-      </SectionShell>
-
-      <SectionShell
-        dark
-        eyebrow="Process Preview"
-        title="From concept to production, without losing the thread."
-        intro="The process keeps samples, revisions, decisions, and scale-up aligned."
-      >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {process.map(([title, body], index) => (
-            <Card dark key={title} className="min-h-[300px]">
-              <p className="text-sm font-semibold tracking-[0.2em] text-[#d2a45d]">{String(index + 1).padStart(2, "0")}</p>
-              <h3 className="mt-12 text-2xl font-semibold tracking-[-0.035em] text-white">{title}</h3>
-              <p className="mt-4 text-sm leading-7 text-white/62">{body}</p>
-            </Card>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell
-        eyebrow="Industries"
-        title="Built around the problems your product actually has."
-        intro="Different applications punish flavor in different ways. We build with those pressure points in mind."
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {industries.map(([name, first, second, third]) => (
-            <Card key={name} className="bg-[#ede5d8] p-8 shadow-none">
-              <h3 className="text-2xl font-semibold tracking-[-0.035em]">{name}</h3>
-              <ul className="mt-7 space-y-3 text-sm leading-6 text-[#566257]">
-                {[first, second, third].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#b98745]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
-      </SectionShell>
+      </section>
 
       <SectionShell
         eyebrow="Capabilities"
         title="Custom flavor systems without the black box."
         intro="Clean communication, practical formulation, and controlled execution from the bench to the batch sheet."
       >
-        <div className="grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {capabilities.map((item) => (
-              <Card key={item} className="p-6">
-                <p className="text-base font-semibold leading-7 tracking-[-0.02em]">{item}</p>
-              </Card>
-            ))}
-          </div>
-          <div className="relative min-h-[520px] overflow-hidden rounded-[2.5rem] bg-[#102218] shadow-[0_32px_90px_rgba(16,34,24,0.16)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_30%,rgba(185,135,69,0.46),transparent_24rem),radial-gradient(circle_at_28%_76%,rgba(247,244,238,0.16),transparent_20rem),linear-gradient(135deg,#102218_0%,#1b3328_100%)]" />
-            <div className="absolute inset-8 rounded-[2rem] border border-white/10 bg-white/[0.025]" />
-            <div className="absolute bottom-8 left-8 right-8 max-w-md">
-              <p className="eyebrow text-[#d2a45d]">Production Context</p>
-              <p className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.035em] text-white">
-                Built for formulas that need to move from sample bench to repeatable orders.
-              </p>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((item) => (
+            <div key={item} className="border border-[#102218]/10 bg-white/45 p-6">
+              <p className="text-sm font-semibold leading-6 text-[#102218]">{item}</p>
             </div>
-          </div>
+          ))}
         </div>
       </SectionShell>
 
-      <section className="bg-[#f7f4ee] px-6 py-24 md:px-10 md:py-28 lg:px-16 lg:py-32">
-        <div className="mx-auto grid max-w-[1320px] gap-12 rounded-[2.75rem] bg-white/70 p-8 shadow-[0_34px_100px_rgba(20,37,28,0.08)] backdrop-blur md:p-12 lg:grid-cols-[0.9fr_1.1fr] lg:p-16">
+      <section className="bg-[#f0e8da] px-6 py-20 md:px-10 md:py-24 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="eyebrow">Why The Flavor Factory</p>
-            <h2 className="display-title mt-5 text-4xl md:text-6xl">Discipline is the luxury.</h2>
+            <p className="eyebrow">Our Difference</p>
+            <h2 className="display-title mt-4 text-4xl md:text-5xl">Quiet discipline. Real follow-through.</h2>
           </div>
-          <div className="grid gap-6">
+          <div className="grid gap-6 md:grid-cols-3">
             {why.map(([title, body]) => (
-              <article key={title} className="border-b border-[#14251c]/10 pb-6 last:border-b-0 last:pb-0">
-                <h3 className="text-2xl font-semibold tracking-[-0.035em]">{title}</h3>
-                <p className="mt-3 text-base leading-7 text-[#566257]">{body}</p>
+              <article key={title}>
+                <div className="mb-5 h-8 w-8 rounded-full border border-[#b98745]/60" />
+                <h3 className="text-base font-semibold text-[#102218]">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#566257]">{body}</p>
               </article>
             ))}
           </div>
@@ -214,7 +209,7 @@ export default function HomePage() {
       >
         <div className="grid gap-5 md:grid-cols-3">
           {outcomes.map((item) => (
-            <article key={item} className="rounded-[2rem] bg-[#102218] p-8 text-white shadow-[0_24px_70px_rgba(16,34,24,0.12)]">
+            <article key={item} className="bg-[#102218] p-8 text-white">
               <p className="text-lg font-semibold leading-8 tracking-[-0.025em]">{item}</p>
             </article>
           ))}
