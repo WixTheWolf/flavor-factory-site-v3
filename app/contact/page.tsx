@@ -1,10 +1,7 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/Button";
-import { siteImages } from "@/data/site-images";
-import { PageHero } from "@/components/PageHero";
+import { Button } from "@/components/Button";
+import { ProjectContactForm } from "@/components/ProjectContactForm";
 
-const contactDetails = [
+const contactRows = [
   {
     label: "Email",
     value: "samples@flavorfactory.net",
@@ -18,63 +15,50 @@ const contactDetails = [
   {
     label: "Address",
     value: "2058 Second Street, Norco, CA 92860",
-    href: "https://maps.google.com/?q=2058%20Second%20Street%2C%20Norco%2C%20CA%2092860",
+    href: undefined,
   },
 ] as const;
 
 export default function ContactPage() {
   return (
-    <>
-      <Header />
-      <main>
-        <section className="section clean-page">
-          <div className="container">
-            <PageHero
-              eyebrow="Contact"
-              title="Talk with the people developing and manufacturing the flavor."
-              copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
-              image={siteImages.contactHero}
-              imageAlt="Flavor team collaboration and formulation workspace"
-              primaryHref="/request-samples"
-              primaryLabel="Request Samples"
-              secondaryHref="mailto:samples@flavorfactory.net"
-              secondaryLabel="Email Samples"
-              imagePosition="center 30%"
-            />
+    <main className="bg-[#F4EFE5] text-[#1E1E1A]">
+      <section className="px-6 py-20 md:px-10 md:py-24 lg:px-16 lg:py-28">
+        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.82fr_1fr]">
+          <div>
+            <p className="eyebrow">Contact</p>
+            <h1 className="display-title mt-5 text-5xl leading-[1] md:text-7xl">
+              Tell us about the product.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-[#645f55] md:text-lg">
+              Share the application, target profile, and timeline. We will help you find the right starting point for sample development or production support.
+            </p>
 
-            <div className="eyebrow">Direct Lines</div>
-            <div className="contact-direct-grid">
-              {contactDetails.map((item) => (
-                <a className="contact-direct-card" href={item.href} key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </a>
-              ))}
-            </div>
-            <div className="contact-choice-grid" style={{ marginTop: 22 }}>
-              <article>
-                <h3>Need samples?</h3>
-                <p>Send the finished product, flavor direction, liquid or powder preference, and timing so we can recommend useful starting points.</p>
-              </article>
-              <article>
-                <h3>Need a match?</h3>
-                <p>Include the benchmark, current challenges, target declaration, and any cost or ingredient constraints.</p>
-              </article>
-              <article>
-                <h3>Need custom work?</h3>
-                <p>Share the product goal. We can develop around sweetness, dosage, processing, masking, mouthfeel, cooling, and cost.</p>
-              </article>
-            </div>
-            <div className="contact-cta-row">
-              <Button href="/request-samples">Request Samples</Button>
-              <Button href="mailto:samples@flavorfactory.net" variant="secondary">
-                Email Samples
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button href="mailto:samples@flavorfactory.net?subject=Sample%20Request">Email Samples</Button>
+              <Button href="#project-form" variant="secondary">
+                Start a Project
               </Button>
             </div>
+
+            <div className="mt-12 grid gap-4">
+              {contactRows.map((item) => (
+                <div key={item.label} className="rounded-[1.5rem] border border-[#12382B]/10 bg-white/62 p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C6843A]">{item.label}</p>
+                  {item.href ? (
+                    <a href={item.href} className="mt-3 block text-base font-semibold text-[#12382B] transition hover:text-[#C6843A]">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="mt-3 text-base font-semibold text-[#12382B]">{item.value}</p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+
+          <ProjectContactForm />
+        </div>
+      </section>
+    </main>
   );
 }
