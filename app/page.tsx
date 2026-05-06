@@ -4,7 +4,7 @@ import { Hero } from "@/components/Hero";
 import { ProofStrip } from "@/components/ProofStrip";
 import { Industries } from "@/components/Industries";
 import { CTA } from "@/components/CTA";
-import { siteCopy } from "@/data/site-copy";
+import { AppImage } from "@/components/ui/AppImage";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -22,10 +22,15 @@ export default function HomePage() {
         <Industries />
         <section className="new-cert-row-section">
           <div className="home-shell">
-            <div className="new-cert-row" aria-label="Certifications and facility programs">
-              {siteCopy.certifications.map((item) => (
-                <span key={item}>{item}</span>
-              ))}
+            <div className="new-cert-image" aria-label="Certifications and facility programs">
+              <AppImage
+                src="/images/flavor-factory/certifications-hero-transparent.png"
+                alt="GMP, ISO 22000, Halal, Kosher, and FDA Registered Facility badges"
+                fill={false}
+                width={1536}
+                height={214}
+                sizes="(max-width: 900px) calc(100vw - 32px), 900px"
+              />
             </div>
             <Link className="new-inline-cta" href="/certifications">View certifications</Link>
           </div>

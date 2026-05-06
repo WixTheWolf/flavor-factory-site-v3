@@ -48,18 +48,19 @@ export default function CertificationsPage() {
                   </Button>
                 </div>
               </div>
-              <div className="clean-cert-badges">
-                <AppImage
-                  src={siteImages.certificationsHero}
-                  alt="Flavor Factory certification badges"
-                  fill={false}
-                  width={1536}
-                  height={214}
-                  priority
-                  sizes="(max-width: 980px) calc(100vw - 40px), 48vw"
-                />
-              </div>
             </section>
+
+            <div className="clean-cert-badges">
+              <AppImage
+                src={siteImages.certificationsHero}
+                alt="Flavor Factory certification badges"
+                fill={false}
+                width={1536}
+                height={214}
+                priority
+                sizes="(max-width: 980px) calc(100vw - 40px), 1040px"
+              />
+            </div>
 
             <section className="quality clean-quality-panel">
               <div className="section-head">

@@ -1,8 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
-import { siteImages } from "@/data/site-images";
-import { PageHero } from "@/components/PageHero";
 
 const contactDetails = [
   {
@@ -29,18 +27,17 @@ export default function ContactPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Contact"
-              title="Talk with the people developing and manufacturing the flavor."
-              copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
-              image={siteImages.contactHero}
-              imageAlt="Flavor team collaboration and formulation workspace"
-              primaryHref="/request-samples"
-              primaryLabel="Request Samples"
-              secondaryHref="mailto:samples@flavorfactory.net"
-              secondaryLabel="Email Samples"
-              imagePosition="center 30%"
-            />
+            <div className="clean-page-intro">
+              <div className="new-eyebrow">Contact</div>
+              <h1>Talk with the people developing and manufacturing the flavor.</h1>
+              <p>Reach out for custom flavor development, matching, samples, production questions, or application-specific support.</p>
+              <div className="new-actions">
+                <Button href="/request-samples">Request Samples</Button>
+                <Button href="mailto:samples@flavorfactory.net" variant="secondary">
+                  Email Samples
+                </Button>
+              </div>
+            </div>
 
             <div className="eyebrow">Direct Lines</div>
             <div className="contact-direct-grid">
@@ -51,7 +48,7 @@ export default function ContactPage() {
                 </a>
               ))}
             </div>
-            <div className="contact-choice-grid" style={{ marginTop: 22 }}>
+            <div className="contact-choice-grid">
               <article>
                 <h3>Need samples?</h3>
                 <p>Send the finished product, flavor direction, liquid or powder preference, and timing so we can recommend useful starting points.</p>
@@ -70,9 +67,6 @@ export default function ContactPage() {
               <Button href="mailto:samples@flavorfactory.net" variant="secondary">
                 Email Samples
               </Button>
-            </div>
-            <div className="contact-time-note">
-              For time-sensitive requests, email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> directly with the application, target flavor, and timeline.
             </div>
           </div>
         </section>
