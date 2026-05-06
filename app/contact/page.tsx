@@ -1,57 +1,62 @@
-import Image from "next/image";
 import { Button } from "@/components/Button";
-import { Field } from "@/components/Field";
+import { ProjectContactForm } from "@/components/ProjectContactForm";
 
-const contact = [
-  ["Email", "info@flavorfactory.net"],
-  ["Phone", "(951) 273-9877"],
-  ["Address", "2058 Second Street, Norco, CA 92860"],
+const contactRows = [
+  {
+    label: "Email",
+    value: "samples@flavorfactory.net",
+    href: "mailto:samples@flavorfactory.net",
+  },
+  {
+    label: "Phone",
+    value: "(951) 273-9877",
+    href: "tel:+19512739877",
+  },
+  {
+    label: "Address",
+    value: "2058 Second Street, Norco, CA 92860",
+    href: undefined,
+  },
 ] as const;
 
 export default function ContactPage() {
   return (
-    <main className="bg-[#f7f4ee] text-[#14251c]">
-      <section className="bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-16">
-        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.8fr_1fr]">
+    <main className="bg-[#F4EFE5] text-[#1E1E1A]">
+      <section className="px-6 py-20 md:px-10 md:py-24 lg:px-16 lg:py-28">
+        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.82fr_1fr]">
           <div>
-            <p className="eyebrow">Get In Touch</p>
-            <h1 className="display-title mt-5 text-5xl md:text-6xl">Let&apos;s create something great together.</h1>
-            <div className="mt-12 space-y-8">
-              {contact.map(([label, value]) => (
-                <div key={label} className="grid grid-cols-[4rem_1fr] gap-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#9b6b2f]">{label}</p>
-                  <p className="text-sm leading-6 text-[#566257]">{value}</p>
+            <p className="eyebrow">Contact</p>
+            <h1 className="display-title mt-5 text-5xl leading-[1] md:text-7xl">
+              Tell us about the product.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-[#645f55] md:text-lg">
+              Share the application, target profile, and timeline. We will help you find the right starting point for sample development or production support.
+            </p>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button href="mailto:samples@flavorfactory.net?subject=Sample%20Request">Email Samples</Button>
+              <Button href="#project-form" variant="secondary">
+                Start a Project
+              </Button>
+            </div>
+
+            <div className="mt-12 grid gap-4">
+              {contactRows.map((item) => (
+                <div key={item.label} className="rounded-[1.5rem] border border-[#12382B]/10 bg-white/62 p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#C6843A]">{item.label}</p>
+                  {item.href ? (
+                    <a href={item.href} className="mt-3 block text-base font-semibold text-[#12382B] transition hover:text-[#C6843A]">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="mt-3 text-base font-semibold text-[#12382B]">{item.value}</p>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
-          <div>
-            <div className="relative h-72 overflow-hidden bg-[#102218]">
-              <Image src="/images/flavor/contact-shelf-lab-wide.webp" alt="Flavor bottles on a clean lab shelf" fill sizes="(max-width: 1024px) calc(100vw - 48px), 50vw" className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#f7f4ee]/10" />
-            </div>
-
-            <form className="bg-white/62 p-7 shadow-[0_24px_70px_rgba(20,37,28,0.08)]">
-              <h2 className="font-serif text-3xl font-normal tracking-[-0.035em] text-[#102218]">Send us a message</h2>
-              <div className="mt-6 grid gap-4">
-                <Field label="Name" placeholder="Name" />
-                <Field label="Email" placeholder="Email" />
-                <Field label="Company" placeholder="Company" />
-                <label className="grid gap-2">
-                  <span className="text-sm font-semibold text-[#14251c]">Project Details</span>
-                  <textarea
-                    placeholder="Tell us about your project..."
-                    rows={6}
-                    className="resize-none rounded-none border border-[#14251c]/10 bg-[#f7f4ee] px-4 py-3 text-base outline-none transition placeholder:text-[#4f5d54]/45 focus:border-[#b98745]"
-                  />
-                </label>
-              </div>
-              <Button type="button" className="mt-6 w-full">
-                Send Message
-              </Button>
-            </form>
-          </div>
+          <ProjectContactForm />
         </div>
       </section>
     </main>

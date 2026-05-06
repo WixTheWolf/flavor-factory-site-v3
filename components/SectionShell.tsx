@@ -15,13 +15,13 @@ export function SectionShell({
   dark?: boolean;
   className?: string;
 }) {
-  const tone = dark ? "bg-[#102218] text-white" : "bg-[#f7f4ee] text-[#14251c]";
+  const tone = dark ? "bg-[#12382B] text-white" : "bg-[#F4EFE5] text-[#1E1E1A]";
 
   return (
     <section className={`${tone} px-6 py-24 md:px-10 md:py-28 lg:px-16 lg:py-32 ${className}`.trim()}>
       <div className="mx-auto max-w-[1320px]">
         <div className="mb-12 max-w-3xl md:mb-16">
-          {eyebrow ? <p className={dark ? "eyebrow text-[#d2a45d]" : "eyebrow"}>{eyebrow}</p> : null}
+          {eyebrow ? <p className={dark ? "eyebrow text-[#D9D1C3]" : "eyebrow"}>{eyebrow}</p> : null}
           <h2 className={dark ? "mt-5 font-serif text-4xl font-normal tracking-[-0.035em] text-white md:text-6xl" : "display-title mt-5 text-4xl md:text-6xl"}>
             {title}
           </h2>

@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #f7f4ee;
-  --foreground: #14251c;
-  --green: #102218;
-  --green-soft: #172b21;
-  --amber: #b98745;
-  --stone: #e9e0d2;
-  --muted: #657166;
+  --background: #f4efe5;
+  --foreground: #1e1e1a;
+  --green: #12382b;
+  --stone: #d9d1c3;
+  --amber: #c6843a;
+  --charcoal: #1e1e1a;
+  --white: #ffffff;
+  --muted: #645f55;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 }
 
 * {
@@ -22,11 +25,9 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 15% 0%, rgba(185, 135, 69, 0.09), transparent 32rem),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-body);
   text-rendering: geometricPrecision;
 }
 
@@ -43,7 +44,7 @@ select {
 }
 
 ::selection {
-  background: rgba(185, 135, 69, 0.28);
+  background: rgba(198, 132, 58, 0.28);
 }
 
 @layer base {
@@ -64,18 +65,19 @@ select {
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.28em] text-[#9b6b2f];
+    @apply text-xs font-semibold uppercase tracking-[0.28em] text-[#C6843A];
   }
 
   .display-title {
-    @apply font-serif font-normal tracking-[-0.035em] text-[#102218];
+    font-family: var(--font-display);
+    @apply font-normal tracking-[-0.035em] text-[#12382B];
   }
 
   .body-copy {
-    @apply text-base leading-7 text-[#566257] md:text-lg md:leading-8;
+    @apply text-base leading-7 text-[#645f55] md:text-lg md:leading-8;
   }
 
   .soft-ring {
-    @apply border border-[#14251c]/10;
+    @apply border border-[#12382B]/10;
   }
 }

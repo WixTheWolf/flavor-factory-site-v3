@@ -1,48 +1,91 @@
-import Image from "next/image";
+import { Card } from "@/components/Card";
 import { CTA } from "@/components/CTA";
+import { ImagePanel } from "@/components/ImagePanel";
+import { PageHero } from "@/components/PageHero";
+import { SectionShell } from "@/components/SectionShell";
 
 const steps = [
-  ["Define", "We define the target flavor profile, application, and constraints."],
-  ["Build", "We create initial concepts and refine through structured iteration."],
-  ["Validate", "We test in your application for performance, stability, and taste."],
-  ["Scale", "We approach with precision for consistent, repeatable results."],
+  {
+    number: "01",
+    title: "Tell Us About the Product",
+    body: "We start with the application, target profile, format, timeline, label direction, and any constraints that could shape the flavor.",
+    outputs: ["Application details", "Target profile", "Timeline and constraints"],
+  },
+  {
+    number: "02",
+    title: "Develop the First Samples",
+    body: "Initial samples are built with the real product system in mind, including sweetness, acidity, actives, processing, and finish.",
+    outputs: ["First sample set", "Development notes", "Recommended direction"],
+  },
+  {
+    number: "03",
+    title: "Review and Adjust",
+    body: "Feedback becomes focused revisions. Each version should answer a clear question and move the project closer to approval.",
+    outputs: ["Revision path", "Profile adjustments", "Approval support"],
+  },
+  {
+    number: "04",
+    title: "Prepare for Production",
+    body: "Approved work moves into manufacturing with organized handoff, scale-up thinking, and a clean path for repeat orders.",
+    outputs: ["Production handoff", "Batch readiness", "Repeat order path"],
+  },
 ] as const;
 
 export default function ProcessPage() {
   return (
-    <main className="bg-[#f7f4ee] text-[#14251c]">
-      <section className="relative overflow-hidden bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-16">
-        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.78fr_0.72fr]">
-          <div>
-            <p className="eyebrow">Our Process</p>
-            <h1 className="display-title mt-5 text-5xl md:text-6xl">A proven process that turns ideas into flavors that work.</h1>
-            <div className="mt-14 space-y-12">
-              {steps.map(([title, body], index) => (
-                <article key={title} className="grid grid-cols-[4rem_1fr] gap-7">
-                  <p className="font-serif text-5xl font-normal leading-none text-[#102218]">{index + 1}</p>
-                  <div>
-                    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#9b6b2f]">{title}</h2>
-                    <p className="mt-3 max-w-md text-sm leading-6 text-[#566257]">{body}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
+    <main className="bg-[#F4EFE5] text-[#1E1E1A]">
+      <PageHero
+        eyebrow="Process"
+        title="A clear path from idea to approved flavor."
+        body="Flavor development works best when the thread stays intact. Our process keeps product direction, samples, revisions, and production preparation connected."
+        image="/images/flavor/process-pipette.webp"
+        imageAlt="Pipette applying amber liquid during flavor development"
+      />
 
-          <div className="relative min-h-[680px] overflow-hidden">
-            <Image
-              src="/images/flavor/process-pipette-tall.webp"
-              alt="Gold pipette with amber liquid over glassware"
-              fill
-              priority
-              sizes="(max-width: 1024px) calc(100vw - 48px), 42vw"
-              className="object-contain object-center drop-shadow-[0_30px_55px_rgba(16,34,24,0.22)]"
-            />
+      <SectionShell
+        dark
+        eyebrow="How It Works"
+        title="Four stages. One controlled development path."
+        intro="The process is simple by design: understand the product, build the samples, adjust with purpose, then prepare the approved flavor for production."
+      >
+        <div className="grid gap-5 lg:grid-cols-4">
+          {steps.map((step) => (
+            <Card key={step.title} dark className="flex min-h-[390px] flex-col">
+              <p className="font-serif text-5xl text-[#D9D1C3]">{step.number}</p>
+              <h2 className="mt-8 text-xl font-semibold tracking-[-0.02em] text-white">{step.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-white/66">{step.body}</p>
+              <div className="mt-auto pt-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#D9D1C3]">Outputs</p>
+                <ul className="mt-4 grid gap-2 text-sm text-white/62">
+                  {step.outputs.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </SectionShell>
+
+      <section className="bg-[#F4EFE5] px-6 py-24 md:px-10 md:py-28 lg:px-16 lg:py-32">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <p className="eyebrow">Why It Matters</p>
+            <h2 className="display-title mt-5 text-4xl md:text-6xl">Better process creates better decisions.</h2>
+            <p className="mt-6 max-w-xl text-base leading-8 text-[#645f55]">
+              Clear stages help teams compare samples, align on adjustments, and avoid losing the details that make a flavor work inside the product.
+            </p>
           </div>
+          <ImagePanel
+            src="/images/flavor/process-whisk-liquid.webp"
+            alt="Amber flavor liquid being mixed in a controlled formulation setting"
+            className="min-h-[430px]"
+            tone="amber"
+          />
         </div>
       </section>
 
-      <CTA eyebrow="Ready to Begin?" title="Let's build a flavor that performs from start to finish." />
+      <CTA />
     </main>
   );
 }

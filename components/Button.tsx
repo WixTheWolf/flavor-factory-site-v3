@@ -7,21 +7,30 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "light";
   className?: string;
   type?: "button" | "submit";
+  disabled?: boolean;
 };
 
 const baseClass =
-  "inline-flex items-center justify-center rounded-[2px] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b98745]";
+  "inline-flex items-center justify-center rounded-full px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C6843A] disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants = {
-  primary: "bg-[#0d2b1b] text-white shadow-[0_14px_34px_rgba(16,34,24,0.18)] hover:bg-[#143923]",
-  secondary: "border border-[#102218]/22 bg-transparent text-[#102218] hover:border-[#102218]/50 hover:bg-white/40",
-  light: "border border-[#d2a45d] bg-transparent text-white hover:bg-[#d2a45d]/12",
+  primary: "bg-[#12382B] text-white shadow-[0_16px_38px_rgba(18,56,43,0.18)] hover:bg-[#0d2b21]",
+  secondary: "border border-[#12382B]/22 bg-transparent text-[#12382B] hover:border-[#12382B]/50 hover:bg-white/45",
+  light: "border border-white/35 bg-white text-[#12382B] hover:bg-[#F4EFE5]",
 };
 
-export function Button({ children, href, variant = "primary", className = "", type = "button" }: ButtonProps) {
+export function Button({ children, href, variant = "primary", className = "", type = "button", disabled = false }: ButtonProps) {
   const classes = `${baseClass} ${variants[variant]} ${className}`.trim();
 
   if (href) {
+    if (!href.startsWith("/")) {
+      return (
+        <a href={href} className={classes}>
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes}>
         {children}
@@ -30,7 +39,7 @@ export function Button({ children, href, variant = "primary", className = "", ty
   }
 
   return (
-    <button type={type} className={classes}>
+    <button type={type} className={classes} disabled={disabled}>
       {children}
     </button>
   );

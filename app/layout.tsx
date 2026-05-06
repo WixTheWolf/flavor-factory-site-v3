@@ -5,13 +5,14 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "The Flavor Factory | Custom Flavor Systems",
-  description: "Custom liquid and powder flavor systems built for real formulas, real constraints, and production scale.",
+  description:
+    "Premium B2B flavor formulation and manufacturing for beverages, nutraceuticals, confections, dairy, savory applications, oral care, and more.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-[#f7f4ee] text-[#14251c] antialiased">
+      <body className="bg-[#F4EFE5] text-[#1E1E1A] antialiased">
         <SiteHeader />
         {children}
         <SiteFooter />
