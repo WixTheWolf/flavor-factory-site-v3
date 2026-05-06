@@ -1,109 +1,113 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { siteImages } from "@/data/site-images";
-import { AppImage } from "@/components/ui/AppImage";
-import { Button } from "@/components/ui/Button";
+import Image from "next/image";
+import { CTA } from "@/components/CTA";
+import { SectionShell } from "@/components/SectionShell";
 
-const certificationNotes = [
+const certifications = [
   {
-    name: "SQF",
-    note: "Supports customer quality reviews with recognized food safety program documentation where applicable.",
+    title: "GMP",
+    note: "Good Manufacturing Practice procedures support consistent handling, production, and facility discipline.",
   },
   {
-    name: "GMP",
-    note: "Manufacturing practices are organized around consistent handling, production, and recordkeeping.",
+    title: "SQF",
+    note: "Supports a documented food safety and quality program for manufacturing environments.",
   },
   {
-    name: "Kosher",
-    note: "Kosher documentation can be reviewed for qualifying flavor projects and customer requirements.",
+    title: "Halal",
+    note: "Halal support is available when formulas and raw materials are compatible with project requirements.",
   },
   {
-    name: "Halal",
-    note: "Halal status and documentation can be confirmed for applicable flavors and applications.",
+    title: "Kosher",
+    note: "Kosher support is available for projects that require eligible ingredients and documented certification paths.",
   },
   {
-    name: "FDA Registered Facility",
-    note: "Facility registration supports food manufacturing documentation without replacing product-specific review.",
+    title: "FDA Registered Facility",
+    note: "Facility registration supports U.S. food manufacturing requirements. It is not a product approval claim.",
   },
+] as const;
+
+const trustPoints = [
+  "Document-aware formulation",
+  "Ingredient and declaration review",
+  "Production-focused quality discipline",
+  "Project-by-project confirmation",
 ] as const;
 
 export default function CertificationsPage() {
   return (
-    <>
-      <Header />
-      <main>
-        <section className="section clean-page">
-          <div className="container">
-            <section className="clean-cert-hero">
-              <div className="clean-cert-copy">
-                <div className="new-eyebrow">Certifications</div>
-                <h1>Quality and documentation customers can build on.</h1>
-                <p>
-                  Flavor work needs more than a good profile. It needs repeatable manufacturing, clear documentation, and practical support when a formula moves from sample bench to commercial production.
-                </p>
-                <div className="new-actions">
-                  <Button href="/request-samples">Request Samples</Button>
-                  <Button href="/contact" variant="secondary">
-                    Talk With Us
-                  </Button>
-                </div>
-              </div>
-              <div className="clean-cert-badges">
-                <AppImage
-                  src={siteImages.certificationsHero}
-                  alt="Flavor Factory certification badges"
-                  fill={false}
-                  width={1536}
-                  height={214}
-                  priority
-                  sizes="(max-width: 980px) calc(100vw - 40px), 48vw"
-                />
-              </div>
-            </section>
-
-            <section className="quality clean-quality-panel">
-              <div className="section-head">
-                <div>
-                  <div className="new-eyebrow">Programs</div>
-                  <h2 className="section-title">Certification support, stated plainly.</h2>
-                </div>
-                <p className="section-subtext">
-                  We keep certification and facility conversations specific to the flavor, application, and documentation available for the project.
-                </p>
-              </div>
-              <div className="quality-grid quality-card-grid">
-                {certificationNotes.map((item) => (
-                  <article className="quality-badge quality-note-card" key={item.name}>
-                    <h2>{item.name}</h2>
-                    <p>{item.note}</p>
-                  </article>
-                ))}
-              </div>
-              <div className="quality-explain-grid">
-                <article>
-                  <h3>Plain-English support</h3>
-                  <p>
-                    Tell us the certification, label, allergen, or customer documentation needs tied to your project. We will confirm what applies to the flavor and the intended application.
-                  </p>
-                </article>
-                <article>
-                  <h3>Built for repeat orders</h3>
-                  <p>
-                    Our quality programs support consistent liquid and powder flavor manufacturing, from approved samples through production lots.
-                  </p>
-                </article>
-                <article>
-                  <h3>Factual claims</h3>
-                  <p>
-                    Certification and facility information is handled directly and kept specific to the product, customer requirement, and available documentation.
-                  </p>
-                </article>
-              </div>
-            </section>
+    <main className="bg-[#F4EFE5] text-[#1E1E1A]">
+      <section className="px-6 py-20 md:px-10 md:py-24 lg:px-16 lg:py-28">
+        <div className="mx-auto max-w-[1320px]">
+          <div className="max-w-4xl">
+            <p className="eyebrow">Certifications</p>
+            <h1 className="display-title mt-5 text-5xl leading-[1] md:text-7xl">
+              Food safety and documentation support for real production.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-[#645f55] md:text-lg">
+              Certifications and facility programs matter when a flavor moves from sample approval into manufacturing. We keep the conversation practical: requirements are reviewed against the formula, raw materials, and intended application.
+            </p>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </section>
+
+      <section className="border-y border-[#12382B]/10 bg-white px-6 py-10 md:px-10 md:py-12 lg:px-16">
+        <div className="mx-auto flex max-w-[1320px] justify-center">
+          <Image
+            src="/images/flavor/certifications-transparent.png"
+            alt="GMP, SQF, Halal, Kosher, and FDA registered facility certification marks"
+            width={1045}
+            height={128}
+            priority
+            sizes="(max-width: 1120px) calc(100vw - 48px), 1045px"
+            className="h-auto w-full max-w-[1045px]"
+          />
+        </div>
+      </section>
+
+      <SectionShell
+        eyebrow="Programs"
+        title="Structured support without overclaiming."
+        intro="Each project should be confirmed against the current formula, ingredient list, and customer requirements before making finished-product claims."
+        className="pt-14 md:pt-16 lg:pt-20"
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+          {certifications.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[1.8rem] border border-[#12382B]/10 bg-white/72 p-6 shadow-[0_20px_60px_rgba(30,30,26,0.055)]"
+            >
+              <p className="font-serif text-4xl tracking-[-0.035em] text-[#12382B]">{item.title}</p>
+              <p className="mt-5 text-sm leading-7 text-[#645f55]">{item.note}</p>
+            </article>
+          ))}
+        </div>
+      </SectionShell>
+
+      <section className="bg-[#12382B] px-6 py-24 text-white md:px-10 md:py-28 lg:px-16 lg:py-32">
+        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#D9D1C3]">Documentation Mindset</p>
+            <h2 className="mt-5 font-serif text-4xl font-normal tracking-[-0.035em] md:text-6xl">
+              The right claim depends on the right formula.
+            </h2>
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/68">
+              We review certification needs as part of the development path so label, sourcing, and production requirements are considered before scale-up.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {trustPoints.map((item) => (
+              <div key={item} className="rounded-[1.6rem] border border-white/12 bg-white/[0.055] p-6">
+                <p className="text-lg font-semibold tracking-[-0.02em] text-white">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTA
+        eyebrow="Need Documentation?"
+        title="Tell Us What Your Product Requires"
+        body="Share the application, target declaration, and certification needs. We will review the best starting point for the project."
+      />
+    </main>
   );
 }

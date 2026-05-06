@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
-  title: {
-    default: "The Flavor Factory | Custom Liquid & Powder Flavors",
-    template: "%s | The Flavor Factory",
-  },
+  title: "The Flavor Factory | Custom Flavor Systems",
   description:
-    "Southern California flavor manufacturer creating custom liquid and powder flavor solutions for food, beverage, nutraceutical, oral care, and pharmaceutical brands.",
+    "Premium B2B flavor formulation and manufacturing for beverages, nutraceuticals, confections, dairy, savory applications, oral care, and more.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-[#F4EFE5] text-[#1E1E1A] antialiased">
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }
