@@ -1,4 +1,4 @@
-import { flavorFactoryImages } from "@/data/flavor-factory-images";
+import { flavorFactoryImages } from "./flavorFactoryImages";
 
 export const siteImages = {
   homeHero: flavorFactoryImages.heroMain,

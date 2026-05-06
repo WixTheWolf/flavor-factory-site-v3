@@ -14,8 +14,8 @@ export default function IndustriesPage() {
           <div className="container">
             <PageHero
               eyebrow="Industries"
-              title="Flavor support for the way your product is made."
-              copy="Every application asks something different from a flavor. Browse common product categories, then request samples with your format, process, label goals, and target profile in mind."
+              title="Ten categories. One development standard."
+              copy="The application sets the constraints. We build the flavor to meet them: base compatibility, processing conditions, label goals, and all."
               image={siteImages.industriesHero}
               imageAlt="Ingredient and lab atmosphere"
               primaryHref="/request-samples"
@@ -39,13 +39,17 @@ export default function IndustriesPage() {
 
                   <div className="industry-clean-body">
                     <h3>{item.name}</h3>
+                    <div className="industry-pressure">{item.pressurePoint}</div>
                     <p>{item.summary}</p>
 
                     <div className="industry-clean-tags">
-                      {item.applications.slice(0, 5).map((tag) => (
+                      {item.applications.map((tag) => (
                         <span key={tag}>{tag}</span>
                       ))}
                     </div>
+                    <a className="industry-card-cta" href="/request-samples">
+                      Starting a {item.name} project?
+                    </a>
                   </div>
                 </article>
               ))}

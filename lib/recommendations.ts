@@ -2,6 +2,7 @@ import type { Flavor, IndustryKey } from "@/lib/types";
 
 const industryFamilyPriority: Record<IndustryKey, string[]> = {
   bakery: ["Vanilla & Cream", "Chocolate & Brown Notes", "Orchard Fruit", "Stone Fruit", "Spice & Warmth"],
+  beverage: ["Citrus", "Berry", "Tropical", "Coffee & Beverage", "Botanical & Tea"],
   confectionery: ["Candy & Confectionery", "Berry", "Citrus", "Tropical", "Chocolate & Brown Notes"],
   dairy: ["Vanilla & Cream", "Berry", "Chocolate & Brown Notes", "Stone Fruit", "Tropical"],
   nutraceutical: ["Berry", "Citrus", "Tropical", "Vanilla & Cream", "Mint & Cooling"],

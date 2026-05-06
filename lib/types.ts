@@ -3,6 +3,7 @@ export type DeclarationType = "Natural" | "Natural & Artificial" | "Artificial" 
 
 export type IndustryKey =
   | "bakery"
+  | "beverage"
   | "confectionery"
   | "dairy"
   | "nutraceutical"
@@ -17,6 +18,7 @@ export type Industry = {
   name: string;
   heroImage: string;
   summary: string;
+  pressurePoint: string;
   applications: string[];
 };
 

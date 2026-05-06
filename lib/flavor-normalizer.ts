@@ -183,9 +183,13 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     industries.add("popcorn");
     applications.add("Popcorn");
   }
-  if (/(syrup|cola|root beer|cream soda|energy drink|beverage|punch|lemonade|cold brew|espresso|tea|ginger beer|horchata|hibiscus|elderflower)/.test(source)) {
+  if (/(cola|root beer|cream soda|energy drink|beverage|punch|lemonade|cold brew|espresso|tea|ginger beer|horchata|hibiscus|elderflower)/.test(source)) {
+    industries.add("beverage");
+    applications.add("Beverage");
+  }
+  if (/(syrup|coffee syrup|fountain)/.test(source)) {
     industries.add("syrup");
-    applications.add("Beverage & Syrup");
+    applications.add("Syrup");
   }
   if (/(savory|bbq|chicken|beef|ranch|tomato|garlic|jalapeno|cheese|nacho|basil|wasabi|paprika|miso)/.test(source)) {
     industries.add("savory");

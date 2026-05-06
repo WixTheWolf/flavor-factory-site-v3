@@ -6,13 +6,17 @@ export function Hero() {
     <section className="new-hero">
       <div className="home-shell new-hero-grid">
         <div className="new-hero-copy">
-          <div className="new-eyebrow">Custom Flavor Manufacturer</div>
-          <h1>Flavor That Carries the Product</h1>
-          <p className="new-hero-lede">Built for real formulas. Scaled for real production.</p>
-          <p className="new-hero-text">From first concept to repeat orders - clean, controlled, predictable.</p>
+          <h1>Custom Flavor Systems Built for Real Products</h1>
+          <p className="new-hero-text">
+            The Flavor Factory develops and manufactures flavor systems for beverages, nutraceuticals, confections, dairy, savory, oral care, and more.
+            First sample to production scale.
+          </p>
           <div className="new-actions">
             <Button href="/request-samples">Start a Project</Button>
-            <Button href="#capabilities" variant="secondary">View Capabilities</Button>
+            <Button href="/capabilities" variant="secondary">Explore Capabilities</Button>
+          </div>
+          <div className="new-hero-trust">
+            3-5 day sample lead times <span /> Norco, CA <span /> Kosher, Halal, GMP, FDA Registered <span /> Low minimums
           </div>
         </div>
         <div className="new-hero-image" aria-label="Liquid flavor and ingredient detail">

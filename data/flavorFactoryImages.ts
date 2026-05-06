@@ -1,0 +1,26 @@
+export const flavorFactoryImages = {
+  heroMain: "/images/flavor-factory/hero-main-v3.jpg",
+  ctaBackground: "/images/flavor-factory/cta-flavor-support.jpg",
+
+  industryBakery: "/images/flavor-factory/industry-bakery-v2.jpg",
+  industryBeverage: "/images/flavor-factory/industry-syrup-premium.jpg",
+  industryConfectionery: "/images/flavor-factory/industry-confectionery-v2.jpg",
+  industryDairy: "/images/flavor-factory/industry-dairy-v2.jpg",
+  industryNutraceutical: "/images/flavor-factory/industry-nutraceutical-v2.jpg",
+  industryOralCare: "/images/flavor-factory/industry-oral-care-v2.jpg",
+  industryPharmaceutical: "/images/flavor-factory/industry-pharma-v2.jpg",
+  industryPopcorn: "/images/flavor-factory/industry-popcorn-v2.jpg",
+  industrySyrup: "/images/flavor-factory/industry-syrup-premium.jpg",
+  industrySavory: "/images/flavor-factory/industry-savory-v2.jpg",
+
+  aboutHero: "/images/flavor-factory/about-formulation-workspace.jpg",
+  companyInfoHero: "/images/flavor-factory/modern-lab-botanical-ingredients.png",
+  companyOperationsHero: "/images/flavor-factory/hero-main-v4.jpg",
+  amberPour: "/images/flavor-factory/amber_pour_berries_spices.png",
+  goldenElixirs: "/images/flavor-factory/golden-elixirs-citrus-slices.png",
+  goldenMacro: "/images/flavor-factory/golden-amber-macro-swirl.png",
+  requestSamplesHero: "/images/flavor-factory/About-Your-Project.png",
+  certificationsHero: "/images/flavor-factory/certifications-hero.jpg",
+  contactHero: "/images/flavor-factory/cta-flavor-support.jpg",
+  flavorsHero: "/images/flavor-factory/hero-flavors-clean.jpg",
+} as const;

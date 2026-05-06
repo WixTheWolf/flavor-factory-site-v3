@@ -37,12 +37,12 @@ export default function CertificationsPage() {
             <section className="clean-cert-hero">
               <div className="clean-cert-copy">
                 <div className="new-eyebrow">Certifications</div>
-                <h1>Quality and documentation customers can build on.</h1>
+                <h1>Your label requirements are part of the brief.</h1>
                 <p>
-                  Flavor work needs more than a good profile. It needs repeatable manufacturing, clear documentation, and practical support when a formula moves from sample bench to commercial production.
+                  Certification needs are reviewed as part of the development path so label sourcing, ingredient declarations, and production requirements are considered before scale-up, not after.
                 </p>
                 <div className="new-actions">
-                  <Button href="/request-samples">Request Samples</Button>
+                  <Button href="/request-samples">Tell Us What Your Label Requires</Button>
                   <Button href="/contact" variant="secondary">
                     Talk With Us
                   </Button>
@@ -79,26 +79,17 @@ export default function CertificationsPage() {
                   </article>
                 ))}
               </div>
-              <div className="quality-explain-grid">
-                <article>
-                  <h3>Plain-English support</h3>
-                  <p>
-                    Tell us the certification, label, allergen, or customer documentation needs tied to your project. We will confirm what applies to the flavor and the intended application.
-                  </p>
-                </article>
-                <article>
-                  <h3>Built for repeat orders</h3>
-                  <p>
-                    Our quality programs support consistent liquid and powder flavor manufacturing, from approved samples through production lots.
-                  </p>
-                </article>
-                <article>
-                  <h3>Factual claims</h3>
-                  <p>
-                    Certification and facility information is handled directly and kept specific to the product, customer requirement, and available documentation.
-                  </p>
-                </article>
+            </section>
+
+            <section className="certification-claim-section">
+              <div>
+                <div className="new-eyebrow">Label Review</div>
+                <h2>The right claim depends on the right formula.</h2>
+                <p>
+                  We review certification needs as part of the development path so label sourcing, ingredient declaration, and production requirements are considered before scale-up.
+                </p>
               </div>
+              <Button href="/request-samples">Tell Us What Your Label Requires</Button>
             </section>
           </div>
         </section>

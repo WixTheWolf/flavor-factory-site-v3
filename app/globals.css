@@ -1677,10 +1677,30 @@ button, input, textarea, select { font: inherit; }
 
 .new-hero-text {
   max-width: 620px;
-  margin: 14px 0 0;
+  margin: 24px 0 0;
   color: var(--home-gray);
-  font-size: 1.1rem;
+  font-size: clamp(1.05rem, 1.5vw, 1.24rem);
   line-height: 1.65;
+}
+
+.new-hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-items: center;
+  max-width: 720px;
+  margin-top: 18px;
+  color: rgba(18, 56, 47, .64);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.new-hero-trust span {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--home-amber);
 }
 
 .new-actions {
@@ -1722,9 +1742,37 @@ button, input, textarea, select { font: inherit; }
   background: #fff;
   padding: 18px;
   color: var(--home-green);
-  font-size: 14px;
-  font-weight: 850;
   line-height: 1.35;
+}
+
+.new-proof-item strong {
+  display: block;
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
+  font-weight: 950;
+  letter-spacing: 0;
+}
+
+.new-proof-item span {
+  display: block;
+  margin-top: 6px;
+  color: var(--home-gray);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.new-isolation {
+  padding: 118px 0 92px;
+}
+
+.new-isolation p {
+  max-width: 1060px;
+  margin: 0 auto;
+  color: var(--home-green);
+  font-size: clamp(2.7rem, 6vw, 5.8rem);
+  font-weight: 950;
+  letter-spacing: 0;
+  line-height: .92;
+  text-align: center;
 }
 
 .new-pillar-grid,
@@ -1841,6 +1889,14 @@ button, input, textarea, select { font: inherit; }
   border: 1px solid var(--home-line);
   border-radius: 8px;
   background: #fff;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.new-industry-card:hover {
+  border-color: rgba(201, 133, 44, .32);
+  box-shadow: 0 20px 48px rgba(18, 56, 47, .08);
+  transform: translateY(-3px);
 }
 
 .new-industry-image {
@@ -1850,32 +1906,33 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-industry-copy {
-  padding: 20px;
+  padding: 18px;
 }
 
-.new-industry-card ul {
+.new-cert-row-section {
+  padding: 24px 0 94px;
+}
+
+.new-cert-row {
   display: grid;
-  gap: 8px;
-  margin: 14px 0 0;
-  padding: 0;
-  list-style: none;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.new-industry-card li {
-  position: relative;
-  padding-left: 16px;
-  font-size: 14px;
-}
-
-.new-industry-card li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .72em;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: var(--home-amber);
+.new-cert-row span {
+  display: flex;
+  min-height: 86px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--home-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--home-green);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .new-capabilities {
@@ -1935,13 +1992,22 @@ button, input, textarea, select { font: inherit; }
   color: #fff;
 }
 
+.new-final-cta p {
+  max-width: 620px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, .74);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
 .new-final-cta .new-eyebrow {
   color: #f0b35a;
 }
 
 @media (max-width: 1180px) {
   .new-proof-grid,
-  .new-process-grid {
+  .new-process-grid,
+  .new-cert-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1990,7 +2056,8 @@ button, input, textarea, select { font: inherit; }
 
   .new-proof-grid,
   .new-process-grid,
-  .new-industry-grid {
+  .new-industry-grid,
+  .new-cert-row {
     grid-template-columns: 1fr;
   }
 
@@ -2966,6 +3033,207 @@ button, input, textarea, select { font: inherit; }
   background: #fff;
 }
 
+.industry-pressure {
+  margin: 0 0 12px;
+  color: #c9852c;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.industry-card-cta {
+  display: inline-flex;
+  margin-top: 18px;
+  color: #12382f;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.capability-timeline-section,
+.process-customer-section {
+  margin-top: 44px;
+}
+
+.capability-timeline {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(220px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.capability-timeline article,
+.process-customer-grid article,
+.technical-grid article {
+  border: 1px solid rgba(18, 56, 47, .12);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(18, 56, 47, .06);
+}
+
+.capability-timeline article {
+  min-height: 330px;
+  padding: 22px;
+}
+
+.capability-timeline span,
+.process-customer-grid span {
+  display: inline-flex;
+  color: #c9852c;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: .14em;
+}
+
+.capability-timeline h3,
+.process-customer-grid h3,
+.technical-section h2,
+.certification-claim-section h2 {
+  margin: 18px 0 0;
+  color: #12382f;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  font-weight: 950;
+  line-height: 1.05;
+}
+
+.capability-timeline p,
+.process-customer-grid p,
+.technical-section p,
+.certification-claim-section p,
+.contact-time-note {
+  color: #65717a;
+  line-height: 1.7;
+}
+
+.capability-timeline p {
+  font-size: 14px;
+}
+
+.capability-timeline strong {
+  display: block;
+  margin-top: 18px;
+  color: #12382f;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.technical-section,
+.certification-claim-section {
+  display: grid;
+  grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+  gap: 30px;
+  align-items: start;
+  margin-top: 42px;
+  border: 1px solid rgba(18, 56, 47, .14);
+  border-radius: 8px;
+  background: #12382f;
+  padding: 34px;
+  box-shadow: 0 22px 54px rgba(18, 56, 47, .14);
+}
+
+.technical-section h2,
+.technical-section p,
+.certification-claim-section h2,
+.certification-claim-section p {
+  color: #fff;
+}
+
+.technical-section p,
+.certification-claim-section p {
+  color: rgba(255, 255, 255, .72);
+}
+
+.technical-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.technical-grid article {
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(255, 255, 255, .14);
+  box-shadow: none;
+  color: #fff;
+  font-weight: 850;
+  line-height: 1.45;
+  padding: 18px;
+}
+
+.process-customer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.process-customer-grid article {
+  padding: 24px;
+}
+
+.process-customer-grid h3 {
+  margin-top: 24px;
+}
+
+.process-customer-grid div {
+  margin-top: 14px;
+  border-top: 1px solid rgba(18, 56, 47, .1);
+  padding-top: 14px;
+  color: #65717a;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.process-customer-grid strong {
+  color: #12382f;
+}
+
+.certification-claim-section {
+  align-items: center;
+  background: #fff;
+}
+
+.certification-claim-section h2 {
+  color: #12382f;
+}
+
+.certification-claim-section p {
+  color: #65717a;
+}
+
+.about-principles p {
+  max-width: 780px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, .74);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.contact-time-note {
+  margin-top: 24px;
+  border: 1px solid rgba(18, 56, 47, .12);
+  border-radius: 8px;
+  background: #fff;
+  padding: 18px;
+  font-size: 14px;
+}
+
+.contact-time-note a,
+.about-story-copy a {
+  color: #12382f;
+  font-weight: 900;
+}
+
+.footer-grid {
+  grid-template-columns: 1.15fr .7fr .85fr .9fr .9fr;
+}
+
+.footer-industries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 16px;
+}
+
 @media (max-width: 980px) {
   .clean-page {
     padding-top: 52px;
@@ -2991,6 +3259,15 @@ button, input, textarea, select { font: inherit; }
 
   .sample-right {
     min-height: 360px;
+  }
+
+  .technical-section,
+  .certification-claim-section {
+    grid-template-columns: 1fr;
+  }
+
+  .process-customer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -3019,5 +3296,15 @@ button, input, textarea, select { font: inherit; }
 
   .sample-right {
     min-height: 300px;
+  }
+
+  .technical-grid,
+  .process-customer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .technical-section,
+  .certification-claim-section {
+    padding: 24px;
   }
 }

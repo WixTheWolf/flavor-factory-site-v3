@@ -23,7 +23,7 @@ export function Header() {
         </Link>
 
         <nav className="nav" aria-label="Primary">
-          {navigation.slice(0, 7).map((item) => {
+          {navigation.filter((item) => item.href !== "/request-samples").map((item) => {
             const active = isActive(item.href);
 
             return (

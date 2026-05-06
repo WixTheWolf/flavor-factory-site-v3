@@ -71,6 +71,9 @@ export default function ContactPage() {
                 Email Samples
               </Button>
             </div>
+            <div className="contact-time-note">
+              For time-sensitive requests, email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> directly with the application, target flavor, and timeline.
+            </div>
           </div>
         </section>
       </main>

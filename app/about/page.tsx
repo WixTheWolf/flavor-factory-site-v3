@@ -1,26 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
-import { AppImage } from "@/components/ui/AppImage";
 import { PageHero } from "@/components/PageHero";
-
-const teamRoles = [
-  {
-    title: "Listening First",
-    image: "/images/flavor-factory/listening-first.png",
-    focus: "Good flavor work starts with the customer's product, market, target profile, and constraints.",
-  },
-  {
-    title: "Clear Follow-Through",
-    image: "/images/flavor-factory/clear-follow-through.png",
-    focus: "Samples, revisions, and questions stay organized so customers know what is happening next.",
-  },
-  {
-    title: "Hands-On Work",
-    image: "/images/flavor-factory/hands-on-work.png",
-    focus: "The same practical mindset carries from the first conversation into approved orders and repeat work.",
-  },
-] as const;
 
 const managementTeam = [
   {
@@ -55,13 +36,6 @@ const managementTeam = [
   },
 ] as const;
 
-const principles = [
-  "Answer quickly and keep the project moving.",
-  "Be direct about what information is needed.",
-  "Treat small and growing brands with real attention.",
-  "Keep the work practical, useful, and accountable.",
-] as const;
-
 export default function AboutPage() {
   return (
     <>
@@ -71,8 +45,8 @@ export default function AboutPage() {
           <div className="container">
             <PageHero
               eyebrow="About"
-              title="People you can call when the flavor needs to be right."
-              copy="The Flavor Factory is a family-run flavor manufacturer in Southern California with a hands-on way of working. Customers come back because the team listens, responds, and understands how flavor decisions affect real products."
+              title="Practical flavor work. Norco, CA."
+              copy="The Flavor Factory is a custom flavor manufacturer based in Norco, California. We develop liquid and powder flavor systems for brands that need flavors to work inside real products, not just taste good in a sample cup."
               image={siteImages.aboutHero}
               imageAlt="Ingredient and flavor formulation setup"
               primaryHref="/request-samples"
@@ -84,15 +58,18 @@ export default function AboutPage() {
 
             <section className="about-story-grid">
               <div>
-                <div className="eyebrow">Our Approach</div>
-                <h2 className="section-title">Practical flavor work, responsive support, and real follow-through.</h2>
+                <div className="eyebrow">Why We Work This Way</div>
+                <h2 className="section-title">The details are the relationship.</h2>
               </div>
               <div className="about-story-copy">
                 <p>
-                  Every request starts with the product in front of us: what it is, who it is for, how it will be processed, and what the flavor needs to accomplish.
+                  Customers do not need theater. They need someone to listen carefully, understand the real product, and keep the sample path clear enough that each version teaches something.
                 </p>
                 <p>
-                  Some customers need a new profile. Some need a match. Others need help improving cost, performance, masking, or consistency. We keep the conversation clear so the next sample has a purpose.
+                  That is the work here: warm service, technical control, and manufacturing credibility. A flavor has to become a product order without losing the details that made it worth approving.
+                </p>
+                <p>
+                  Ready to start a project? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>. We will help you find the right starting point.
                 </p>
               </div>
             </section>
@@ -123,31 +100,14 @@ export default function AboutPage() {
               </div>
             </section>
 
-            <section className="team-role-grid">
-              {teamRoles.map((role) => (
-                <article className="team-role-card" key={role.title}>
-                  <div className="team-role-image">
-                    <AppImage src={role.image} alt={`${role.title} at The Flavor Factory`} sizes="(max-width: 900px) calc(100vw - 56px), 480px" />
-                  </div>
-                  <div className="team-role-body">
-                    <div className="eyebrow">Team Focus</div>
-                    <h3>{role.title}</h3>
-                    <p>{role.focus}</p>
-                  </div>
-                </article>
-              ))}
-            </section>
-
             <section className="about-principles">
               <div>
                 <div className="new-eyebrow">What Matters Here</div>
-                <h2>Service is part of the product.</h2>
+                <h2>Warm service. Technical control. Manufacturing credibility.</h2>
               </div>
-              <div className="about-principle-list">
-                {principles.map((item) => (
-                  <div key={item}>{item}</div>
-                ))}
-              </div>
+              <p>
+                Customers need more than a good-tasting sample. They need a partner who can hold the thread from concept to approval to repeat production.
+              </p>
             </section>
           </div>
         </section>

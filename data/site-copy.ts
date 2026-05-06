@@ -27,10 +27,11 @@ export const siteCopy = {
 
 export const navigation = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Company Info", href: "/company-info" },
-  { label: "Industries", href: "/industries" },
   { label: "Flavors", href: "/flavors" },
+  { label: "Industries", href: "/industries" },
+  { label: "Capabilities", href: "/capabilities" },
+  { label: "Process", href: "/process" },
+  { label: "About", href: "/about" },
   { label: "Certifications", href: "/certifications" },
   { label: "Contact", href: "/contact" },
   { label: "Request Samples", href: "/request-samples" },
