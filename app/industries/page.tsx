@@ -40,6 +40,30 @@ const industries = [
     image: "/images/flavor-factory/industry-oral-care-v2.jpg",
     items: ["Fresh profiles", "Cooling balance", "Impact and finish", "Application-specific support"],
   },
+  {
+    title: "Bakery",
+    body: "Heat-stable liquid and powder flavors for baked goods, fillings, frostings, and snack formats.",
+    image: "/images/flavor-factory/industry-bakery-v2.jpg",
+    items: ["Baked goods", "Fillings and frostings", "Heat stability", "Shelf-life requirements"],
+  },
+  {
+    title: "Popcorn",
+    body: "Bold, consistent flavor coatings for ready-to-eat and retail popcorn.",
+    image: "/images/flavor-factory/industry-popcorn-v2.jpg",
+    items: ["Ready-to-eat popcorn", "Retail coatings", "Oil-soluble formats", "Powder seasoning formats"],
+  },
+  {
+    title: "Pharmaceutical",
+    body: "Flavor masking and palatability solutions for oral dosage forms where taste compliance matters.",
+    image: "/images/flavor-factory/industry-pharma-v2.jpg",
+    items: ["Chewables", "Liquids and suspensions", "Lozenges", "Palatability support"],
+  },
+  {
+    title: "Syrup",
+    body: "Clean, concentrated flavor systems for coffee syrups, cocktail mixers, fountain applications, and specialty beverages.",
+    image: "/images/flavor-factory/industry-syrup-premium.jpg",
+    items: ["Coffee syrups", "Cocktail mixers", "Fountain applications", "Cold and hot systems"],
+  },
 ] as const;
 
 export default function IndustriesPage() {

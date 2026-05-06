@@ -3,7 +3,7 @@ import { Button } from "@/components/Button";
 export function CTA({
   eyebrow = "Start Your Project",
   title = "Tell Us About Your Product",
-  body = "Share the application, target profile, and timeline. We'll help you find the right starting point.",
+  body = "Share the application, target profile, and timeline. Samples are typically supported within 3-5 business days whenever possible.",
 }: {
   eyebrow?: string;
   title?: string;

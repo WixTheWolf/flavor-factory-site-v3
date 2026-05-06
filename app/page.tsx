@@ -6,26 +6,32 @@ import { CTA } from "@/components/CTA";
 import { ImagePanel } from "@/components/ImagePanel";
 import { SectionShell } from "@/components/SectionShell";
 
-const trustItems = [
-  "Custom Formulation",
-  "Sample Development",
-  "Production Scale-Up",
-  "Flavor Manufacturing",
-  "Food & Beverage Applications",
+const heroTrustItems = [
+  "Typical 3-5 day sample support",
+  "Norco, CA",
+  "Kosher, Halal, GMP & FDA registered facility programs",
+  "Low minimums",
+] as const;
+
+const stats = [
+  ["3-5 Days", "Typical Sample Support"],
+  ["10 Industries", "Applications Served"],
+  ["Liquid & Powder", "Both Formats In-House"],
+  ["Low MOQ", "No Massive Minimums"],
 ] as const;
 
 const whatWeDo = [
   {
     title: "Flavor Development",
-    body: "Custom profiles built around the product base, label goals, cost targets, and processing realities.",
+    body: "Custom liquid and powder profiles built around your product base, label goals, cost targets, and processing conditions. We develop to the application, not around it.",
   },
   {
     title: "Application Support",
-    body: "Sample work, adjustments, masking, modulation, and practical testing inside the application whenever possible.",
+    body: "Iteration, masking, modulation, and testing in the actual application, not a lab proxy. Adjustments are driven by the product, not guesswork.",
   },
   {
     title: "Manufacturing",
-    body: "Liquid and powder flavor production with organized handoff from approved sample to repeatable order.",
+    body: "Liquid and powder production with a clean handoff from approved sample to repeatable production order. Fast turnaround, consistent output.",
   },
 ] as const;
 
@@ -60,15 +66,53 @@ const industries = [
     body: "Fresh, clean profiles for oral care applications where impact and finish matter.",
     image: "/images/flavor-factory/industry-oral-care-v2.jpg",
   },
+  {
+    title: "Bakery",
+    body: "Heat-stable liquid and powder flavors for baked goods, fillings, frostings, and snack formats.",
+    image: "/images/flavor-factory/industry-bakery-v2.jpg",
+  },
+  {
+    title: "Popcorn",
+    body: "Bold, consistent flavor coatings for ready-to-eat and retail popcorn in oil-soluble and powder formats.",
+    image: "/images/flavor-factory/industry-popcorn-v2.jpg",
+  },
+  {
+    title: "Pharmaceutical",
+    body: "Flavor masking and palatability support for chewables, liquids, lozenges, and suspensions.",
+    image: "/images/flavor-factory/industry-pharma-v2.jpg",
+  },
+  {
+    title: "Syrup",
+    body: "Clean, concentrated flavor systems for coffee syrups, cocktail mixers, fountain, and specialty beverage formats.",
+    image: "/images/flavor-factory/industry-syrup-premium.jpg",
+  },
 ] as const;
 
 const capabilities = [
-  "Concept Development",
-  "Sample Creation",
-  "Flavor Adjustment",
-  "Scale-Up Support",
-  "Manufacturing",
-  "Customer Follow-Through",
+  {
+    title: "Concept Development",
+    body: "Direction setting based on your application, target flavor profile, label requirements, and cost parameters. We gather what we need to build samples that start close.",
+  },
+  {
+    title: "Sample Creation",
+    body: "First-round samples built in-house with quick turnaround. Liquid and powder formats are both available depending on the application.",
+  },
+  {
+    title: "Flavor Adjustment",
+    body: "Focused revisions based on your feedback. Each round moves toward a clear target, with documentation of what changed and why.",
+  },
+  {
+    title: "Scale-Up Support",
+    body: "Approved samples transition to manufacturing specs with documentation that keeps the flavor consistent at production volume.",
+  },
+  {
+    title: "Manufacturing",
+    body: "Liquid and powder flavor production from our Norco, CA facility with consistent batch quality and organized documentation.",
+  },
+  {
+    title: "Customer Follow-Through",
+    body: "Responsive support after approval. Reorders, reformulations, questions, and long-term account management stay organized.",
+  },
 ] as const;
 
 const process = [
@@ -97,6 +141,11 @@ export default function HomePage() {
                 Explore Capabilities
               </Button>
             </div>
+            <div className="mt-6 flex max-w-2xl flex-wrap gap-x-4 gap-y-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#12382B]/58">
+              {heroTrustItems.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
           </div>
 
           <ImagePanel
@@ -110,12 +159,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-[#12382B]/10 bg-white/42 px-6 py-5 md:px-10 lg:px-16">
-        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          {trustItems.map((item) => (
-            <p key={item} className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#12382B]">
-              {item}
-            </p>
+      <section className="border-y border-[#12382B]/10 bg-white/42 px-6 py-8 md:px-10 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] gap-4 md:grid-cols-4">
+          {stats.map(([value, label]) => (
+            <div key={value} className="rounded-[1.5rem] border border-[#12382B]/10 bg-[#F4EFE5]/70 p-5">
+              <p className="font-serif text-3xl tracking-[-0.035em] text-[#12382B]">{value}</p>
+              <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C6843A]">{label}</p>
+            </div>
           ))}
         </div>
       </section>
@@ -179,10 +229,13 @@ export default function HomePage() {
             imageClassName="object-center"
           />
           <div className="grid gap-4 sm:grid-cols-2">
-            {capabilities.map((item) => (
-              <Card key={item} dark className="min-h-[150px]">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D9D1C3]">Capability</p>
-                <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-white">{item}</h3>
+            {capabilities.map((item, index) => (
+              <Card key={item.title} dark className="min-h-[240px]">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#D9D1C3]">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-5 text-xl font-semibold tracking-[-0.02em] text-white">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-white/64">{item.body}</p>
               </Card>
             ))}
           </div>
@@ -203,9 +256,37 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+        <div className="mt-10 flex flex-col gap-4 rounded-[2rem] border border-[#12382B]/10 bg-white/62 p-6 md:flex-row md:items-center md:justify-between">
+          <p className="text-sm leading-7 text-[#645f55]">
+            <span className="font-semibold text-[#12382B]">It only takes a few details to get started.</span> Share the product, target profile, and timeline.
+          </p>
+          <Button href="/contact#project-form">Request Your First Sample</Button>
+        </div>
       </SectionShell>
 
-      <CTA />
+      <section className="bg-[#F4EFE5] px-6 pb-20 md:px-10 md:pb-24 lg:px-16">
+        <div className="mx-auto grid max-w-[1320px] items-center gap-10 rounded-[2.5rem] border border-[#12382B]/10 bg-white/72 p-8 shadow-[0_24px_80px_rgba(30,30,26,0.06)] md:p-10 lg:grid-cols-[0.86fr_1.14fr]">
+          <div>
+            <p className="eyebrow">Certifications & Trust</p>
+            <h2 className="display-title mt-4 text-4xl md:text-5xl">Documentation support belongs on the first conversation.</h2>
+            <p className="mt-5 text-sm leading-7 text-[#645f55] md:text-base">
+              Certification needs are reviewed against the formula, raw materials, and intended application before production claims are made.
+            </p>
+          </div>
+          <div className="rounded-[2rem] border border-[#12382B]/10 bg-white p-6">
+            <Image
+              src="/images/flavor/certifications-transparent.png"
+              alt="GMP, SQF, Halal, Kosher, and FDA registered facility certification marks"
+              width={1045}
+              height={128}
+              sizes="(max-width: 1024px) calc(100vw - 96px), 620px"
+              className="h-auto w-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      <CTA body="Share the application, target profile, and timeline. Samples are typically supported within 3-5 business days whenever possible." />
     </main>
   );
 }
