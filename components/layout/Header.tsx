@@ -39,7 +39,7 @@ export function Header() {
           })}
         </nav>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div className="header-actions">
           <button
             className="mobile-toggle"
             aria-label="Toggle menu"

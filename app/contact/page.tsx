@@ -39,7 +39,6 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="eyebrow">Direct Lines</div>
             <div className="contact-direct-grid">
               {contactDetails.map((item) => (
                 <a className="contact-direct-card" href={item.href} key={item.label}>
@@ -61,12 +60,6 @@ export default function ContactPage() {
                 <h3>Need custom work?</h3>
                 <p>Share the product goal. We can develop around sweetness, dosage, processing, masking, mouthfeel, cooling, and cost.</p>
               </article>
-            </div>
-            <div className="contact-cta-row">
-              <Button href="/request-samples">Request Samples</Button>
-              <Button href="mailto:samples@flavorfactory.net" variant="secondary">
-                Email Samples
-              </Button>
             </div>
           </div>
         </section>

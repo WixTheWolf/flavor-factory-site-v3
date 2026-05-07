@@ -25,7 +25,7 @@ export default function IndustriesPage() {
               imagePosition="center 42%"
             />
 
-            <div className="industry-clean-grid" style={{ marginTop: 32 }}>
+            <div className="industry-clean-grid">
               {industries.map((item) => (
                 <article key={item.key} className="industry-clean-card">
                   <div className="industry-clean-image-wrap">

@@ -34,21 +34,19 @@ export default function CertificationsPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
-            <section className="clean-cert-hero">
-              <div className="clean-cert-copy">
-                <div className="new-eyebrow">Certifications</div>
-                <h1>Your label requirements are part of the brief.</h1>
-                <p>
-                  Certification needs are reviewed as part of the development path so label sourcing, ingredient declarations, and production requirements are considered before scale-up, not after.
-                </p>
-                <div className="new-actions">
-                  <Button href="/request-samples">Tell Us What Your Label Requires</Button>
-                  <Button href="/contact" variant="secondary">
-                    Talk With Us
-                  </Button>
-                </div>
+            <div className="clean-page-intro">
+              <div className="new-eyebrow">Certifications</div>
+              <h1>Your label requirements are part of the brief.</h1>
+              <p>
+                Certification needs are reviewed as part of the development path so label sourcing, ingredient declarations, and production requirements are considered before scale-up, not after.
+              </p>
+              <div className="new-actions">
+                <Button href="/request-samples">Tell Us What Your Label Requires</Button>
+                <Button href="/contact" variant="secondary">
+                  Talk With Us
+                </Button>
               </div>
-            </section>
+            </div>
 
             <div className="clean-cert-badges">
               <AppImage

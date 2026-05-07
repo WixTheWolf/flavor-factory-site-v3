@@ -104,6 +104,7 @@ button, input, textarea, select { font: inherit; }
 
 .mobile-toggle { display: none; }
 .mobile-panel { display: none; }
+.header-actions { display: flex; align-items: center; gap: 12px; }
 
 .hero {
   position: relative;
@@ -2749,7 +2750,7 @@ button, input, textarea, select { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 8px;
+  padding: 8px 0 42px;
   background: transparent;
 }
 
@@ -3536,7 +3537,7 @@ button, input, textarea, select { font: inherit; }
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  padding: 0;
+  padding: 0 0 48px;
 }
 
 .clean-cert-badges img {
@@ -3610,6 +3611,7 @@ button, input, textarea, select { font: inherit; }
 .industry-clean-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
+  margin-top: 32px;
 }
 
 .industry-clean-card {
