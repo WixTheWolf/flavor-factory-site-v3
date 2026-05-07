@@ -54,6 +54,15 @@
   --shadow-hero:   0 36px 90px rgba(18, 56, 47, 0.16);
   --shadow-dark:   0 30px 80px rgba(18, 56, 47, 0.22);
 
+  /* Type scale */
+  --text-hero:    clamp(3rem, 6vw, 5.5rem);
+  --text-display: clamp(2rem, 4vw, 3.5rem);
+  --text-h2:      clamp(1.75rem, 3vw, 2.5rem);
+  --text-h3:      1.25rem;
+  --text-body:    1.0625rem;
+  --text-small:   0.875rem;
+  --text-eyebrow: 0.6875rem;
+
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-std: 0.22s ease;
@@ -71,6 +80,8 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.7;
   background: var(--bg);
   color: var(--text);
 }
@@ -82,12 +93,13 @@ button, input, textarea, select { font: inherit; }
 .display { font-family: var(--font-display); font-feature-settings: "liga" 1, "onum" 1; }
 .pull-quote {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  font-size: var(--text-display);
   font-weight: 900;
   font-style: italic;
-  letter-spacing: -0.02em;
-  line-height: 1.0;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
   color: var(--brand);
+  font-feature-settings: "liga" 1, "onum" 1;
 }
 .eyebrow-gold {
   color: var(--gold-light);
@@ -104,19 +116,19 @@ button, input, textarea, select { font: inherit; }
 
 .serif { font-family: Georgia, 'Times New Roman', serif; }
 .eyebrow {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--gold);
 }
 .section-title {
   margin: 12px 0 0;
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  line-height: .98;
+  font-size: var(--text-h2);
+  line-height: 1.15;
   font-weight: 900;
-  letter-spacing: 0;
-  color: #0f172a;
+  letter-spacing: -0.01em;
+  color: var(--brand);
 }
 .section-subtext {
   color: var(--muted);
@@ -1697,9 +1709,9 @@ button, input, textarea, select { font: inherit; }
 
 .new-eyebrow {
   color: var(--gold);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -1713,11 +1725,11 @@ button, input, textarea, select { font: inherit; }
 .new-capabilities h2,
 .new-final-cta h2 {
   margin: 10px 0 0;
-  color: var(--home-green);
-  font-size: clamp(2rem, 4vw, 3.45rem);
+  color: var(--brand);
+  font-size: var(--text-h2);
   font-weight: 900;
-  letter-spacing: 0;
-  line-height: 1;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
 
 .new-hero {
@@ -1734,10 +1746,10 @@ button, input, textarea, select { font: inherit; }
 .new-hero-copy h1 {
   margin: 14px 0 0;
   color: var(--brand);
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: var(--text-hero);
   font-weight: 900;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.0;
   font-feature-settings: "liga" 1, "onum" 1;
 }
 
@@ -1751,11 +1763,11 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-hero-text {
-  max-width: 620px;
+  max-width: 560px;
   margin: 24px 0 0;
   color: var(--home-gray);
-  font-size: clamp(1.05rem, 1.5vw, 1.24rem);
-  line-height: 1.65;
+  font-size: var(--text-body);
+  line-height: 1.7;
 }
 
 .new-hero-trust {
@@ -1827,6 +1839,7 @@ button, input, textarea, select { font: inherit; }
   font-size: clamp(1.35rem, 2.1vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.01em;
+  font-feature-settings: "liga" 1, "onum" 1, "kern" 1;
 }
 
 .new-proof-item span {
@@ -2897,11 +2910,11 @@ button, input, textarea, select { font: inherit; }
 .clean-cert-copy h1 {
   margin: 12px 0 0;
   max-width: 780px;
-  color: var(--page-green);
-  font-size: clamp(2.75rem, 5.5vw, 5.65rem);
-  font-weight: 950;
-  letter-spacing: 0;
-  line-height: .92;
+  color: var(--brand);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
 }
 
 .clean-page-hero-copy p,
@@ -2943,19 +2956,19 @@ button, input, textarea, select { font: inherit; }
 
 .clean-page-intro h1 {
   margin: 12px 0 0;
-  color: var(--page-green);
-  font-size: clamp(2.75rem, 4.8vw, 5rem);
-  font-weight: 950;
-  letter-spacing: -.035em;
-  line-height: .94;
+  color: var(--brand);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
 }
 
 .clean-page-intro p {
   max-width: 620px;
   margin: 20px 0 0;
-  color: rgba(18, 56, 47, .66);
-  font-size: 1.08rem;
-  line-height: 1.65;
+  color: var(--text-muted);
+  font-size: var(--text-body);
+  line-height: 1.7;
 }
 
 .clean-quality-panel,
