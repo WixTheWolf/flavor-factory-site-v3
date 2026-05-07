@@ -16,12 +16,12 @@ export default function FlavorsPage() {
               title="Find a starting point. We'll build the rest."
               copy="The library gives you something to react to. Custom development, flavor matching, and reformulation are part of every conversation."
               image={siteImages.flavorsHero}
-              imageAlt="Citrus and liquid flavor composition"
+              imageAlt="Amber liquid being poured into a round glass flask — warm studio light"
+              imagePosition="center 30%"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="/industries"
               secondaryLabel="View Industries"
-              imagePosition="center 42%"
             />
             <FlavorFinder />
           </div>

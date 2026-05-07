@@ -1,7 +1,8 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
-import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/PageHero";
+import { siteImages } from "@/data/site-images";
 
 const steps = [
   {
@@ -41,15 +42,18 @@ export default function ProcessPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
-            <div className="clean-page-intro">
-              <div className="new-eyebrow">Process</div>
-              <h1>Here is what we need from you.</h1>
-              <p>Development works best when the brief is specific. Application, base, processing conditions, label goals, and timeline shape the first sample.</p>
-              <div className="new-actions">
-                <Button href="/request-samples">Send Us a Brief</Button>
-                <Button href="/contact" variant="secondary">Talk With Us</Button>
-              </div>
-            </div>
+            <PageHero
+              eyebrow="Process"
+              title="Here is what we need from you."
+              copy="Development works best when the brief is specific. Application, base, processing conditions, label goals, and timeline shape the first sample."
+              image={siteImages.processHero}
+              imageAlt="Row of stainless steel manufacturing vessels at The Flavor Factory"
+              primaryHref="/request-samples"
+              primaryLabel="Send Us a Brief"
+              secondaryHref="/contact"
+              secondaryLabel="Talk With Us"
+              imagePosition="center center"
+            />
 
             <section className="process-customer-section">
               <div className="section-head">

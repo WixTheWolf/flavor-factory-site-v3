@@ -2134,14 +2134,35 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-final-cta-inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
   border: 1px solid rgba(18, 56, 47, 0.14);
   border-radius: 8px;
-  background: var(--home-green-2);
+  background: var(--brand-deep);
   padding: 42px;
+  overflow: hidden;
+}
+
+.new-final-cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.28;
+}
+
+.new-final-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.new-final-cta-inner > a,
+.new-final-cta-inner > button {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
 }
 
 .new-final-cta h2 {

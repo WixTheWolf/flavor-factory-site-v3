@@ -17,12 +17,12 @@ export default function IndustriesPage() {
               title="Ten categories. One development standard."
               copy="Application constraints shape every flavor we develop — not just the profile, but the base, the processing, and the label."
               image={siteImages.industriesHero}
-              imageAlt="Ingredient and lab atmosphere"
+              imageAlt="Editorial arrangement of food and beverage products across ten flavor categories"
+              imagePosition="center center"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
-              imagePosition="center 42%"
             />
 
             <div className="industry-clean-grid">

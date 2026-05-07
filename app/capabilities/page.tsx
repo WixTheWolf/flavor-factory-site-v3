@@ -57,13 +57,13 @@ export default function CapabilitiesPage() {
               eyebrow="Capabilities"
               title="Built for the finished product. Not just the sample."
               copy="Formulation decisions happen long before a sample ships. Processing conditions, base compatibility, label requirements, cost targets, and format shape every direction we build."
-              image={siteImages.companyInfoHero}
-              imageAlt="Controlled flavor formulation workspace"
+              image={siteImages.capabilitiesHero}
+              imageAlt="Single amber drop falling from a pipette into a glass beaker"
+              imagePosition="center 38%"
               primaryHref="/request-samples"
               primaryLabel="Request Your First Sample"
               secondaryHref="/industries"
               secondaryLabel="Explore Industries"
-              imagePosition="center 42%"
             />
 
             <section className="capability-timeline-section">

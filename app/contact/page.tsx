@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/Button";
+import { PageHero } from "@/components/PageHero";
+import { siteImages } from "@/data/site-images";
 
 const contactDetails = [
   {
@@ -27,17 +28,18 @@ export default function ContactPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
-            <div className="clean-page-intro">
-              <div className="new-eyebrow">Contact</div>
-              <h1>Talk with the people developing and manufacturing the flavor.</h1>
-              <p>Reach out for custom flavor development, matching, samples, production questions, or application-specific support.</p>
-              <div className="new-actions">
-                <Button href="/request-samples">Request Samples</Button>
-                <Button href="mailto:samples@flavorfactory.net" variant="secondary">
-                  Email Samples
-                </Button>
-              </div>
-            </div>
+            <PageHero
+              eyebrow="Contact"
+              title="Talk with the people developing and manufacturing the flavor."
+              copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
+              image={siteImages.contactHero}
+              imageAlt="California citrus grove at golden hour — Norco, CA"
+              primaryHref="/request-samples"
+              primaryLabel="Request Samples"
+              secondaryHref="mailto:samples@flavorfactory.net"
+              secondaryLabel="Email Samples"
+              imagePosition="center 40%"
+            />
 
             <div className="contact-direct-grid">
               {contactDetails.map((item) => (

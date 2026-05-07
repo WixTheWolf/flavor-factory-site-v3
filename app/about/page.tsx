@@ -40,25 +40,28 @@ const managementTeam = [
 
 const approachCards = [
   {
-    image: "/images/flavor-factory/listening-first.png",
-    alt: "Listening first — understanding the product before building the flavor",
+    image: "/images/flavor-factory/Hands%20on%20specs.png",
+    alt: "Two people reviewing a flavor spec sheet with amber sample bottles on a desk",
     eyebrow: "Listening First",
     title: "The brief shapes the direction.",
     copy: "We start with the product system, not a flavor list. Application, base, processing, label goals, and real constraints inform every sample before it ships.",
+    position: "center 50%",
   },
   {
-    image: "/images/flavor-factory/hands-on-work.png",
-    alt: "Hands-on flavor development and manufacturing in-house",
+    image: "/images/flavor-factory/1.%20About%20%E2%80%94%20Hands-On%20Work.png",
+    alt: "Hands using a glass pipette to fill amber glass vials on a dark slate bench",
     eyebrow: "Hands-On Work",
     title: "Development done in-house, start to finish.",
     copy: "Formulation, samples, revisions, and manufacturing all happen at our Norco facility. One team, one thread — no hand-offs to third parties.",
+    position: "center center",
   },
   {
-    image: "/images/flavor-factory/clear-follow-through.png",
-    alt: "Clear follow-through from first sample to repeat production",
+    image: "/images/flavor-factory/2.%20About%20%E2%80%94%20Clear%20Follow-Through.png",
+    alt: "Overhead flat-lay of a printed flavor spec sheet with amber sample bottles and a gold pen",
     eyebrow: "Clear Follow-Through",
     title: "From first sample to repeat production.",
     copy: "Approved work moves into production specs. Reorders stay consistent. The thread from concept to first approval to repeat order is held every time.",
+    position: "center center",
   },
 ] as const;
 
@@ -115,6 +118,7 @@ export default function AboutPage() {
                         src={card.image}
                         alt={card.alt}
                         sizes="(max-width: 720px) calc(100vw - 40px), 430px"
+                        style={{ objectPosition: card.position }}
                       />
                     </div>
                     <div className="team-role-body">

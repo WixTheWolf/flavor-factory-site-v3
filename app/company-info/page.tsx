@@ -51,12 +51,12 @@ export default function CompanyInfoPage() {
               title="What we make, how it works, and what to expect."
               copy="This page is the practical side of The Flavor Factory: what we make, how projects move, and what customers should know before requesting samples or placing production orders."
               image={siteImages.companyInfoHero}
-              imageAlt="Quality-focused flavor production setup"
+              imageAlt="Clean laboratory bench with amber flavor liquids in glass beakers and bottles"
+              imagePosition="center 55%"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
-              imagePosition="center 40%"
             />
 
             <section className="company-fact-strip">
