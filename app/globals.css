@@ -1797,7 +1797,7 @@ button, input, textarea, select { font: inherit; }
   min-height: 420px;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--home-soft, #f4f1ea);
+  background: var(--bg, #f7f5f1);
   box-shadow: 0 22px 60px rgba(18, 56, 47, .07);
 }
 
@@ -1808,7 +1808,7 @@ button, input, textarea, select { font: inherit; }
   margin: 52px 0;
   border-radius: 18px;
   overflow: hidden;
-  background: var(--page-soft, #f4f1ea);
+  background: var(--bg, #f7f5f1);
   box-shadow: 0 22px 60px rgba(18, 56, 47, .07);
 }
 
@@ -2805,7 +2805,7 @@ button, input, textarea, select { font: inherit; }
   overflow: hidden;
   border: 1px solid var(--page-line);
   border-radius: 8px;
-  background: #e8e3d8;
+  background: var(--bg, #f7f5f1);
   box-shadow: 0 24px 60px rgba(18, 56, 47, .12);
   min-height: clamp(360px, 42vw, 560px);
 }
