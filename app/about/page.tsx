@@ -77,12 +77,12 @@ export default function AboutPage() {
               title="Precise work. Real people. Norco, CA."
               copy="The Flavor Factory is a family-owned custom flavor manufacturer based in Norco, California. We develop liquid and powder flavor systems for brands that need flavors to work inside real products, not just taste good in a sample cup."
               image={siteImages.aboutHero}
-              imageAlt="Ingredient and flavor formulation setup"
+              imageAlt="Row of amber flavor liquids in beakers and flasks on a stainless lab bench"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="/company-info"
               secondaryLabel="Company Info"
-              imagePosition="center 35%"
+              imagePosition="40% center"
             />
 
             <section className="about-story-grid">

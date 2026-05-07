@@ -37,7 +37,7 @@ export const flavorFactoryImages = {
   approachFollowThrough:   "/images/flavor-factory/2.%20About%20%E2%80%94%20Clear%20Follow-Through.png",
 
   // ── Page hero images ──────────────────────────────────────────────
-  aboutHero:             "/images/flavor-factory/about-formulation-workspace.jpg",
+  aboutHero:             "/images/flavor-factory/about-hero.png",
   capabilitiesHero:      "/images/flavor-factory/Lab%20precision%20macro.png",
   companyInfoHero:       "/images/flavor-factory/11.%20Company%20Info%20%E2%80%94%20Lab%20Workspace.png",
   companyOperationsHero: "/images/flavor-factory/hero-main-v4.jpg",
