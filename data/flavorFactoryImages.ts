@@ -8,17 +8,17 @@ export const flavorFactoryImages = {
   // ── Industry hero images ──────────────────────────────────────────
   industriesHero: "/images/flavor-factory/9.%20Industries%20%E2%80%94%20Hero.png",
 
-  // Industry cards — application food photography (cover fill)
-  industryBakery:         "/images/flavor-factory/application-bakery.jpg",
-  industryBeverage:       "/images/flavor-factory/application-beverage.jpg",
-  industryConfectionery:  "/images/flavor-factory/application-confectionery.jpg",
-  industryDairy:          "/images/flavor-factory/application-dairy.jpg",
-  industryNutraceutical:  "/images/flavor-factory/Nutraceutical%20editorial.png",
-  industryOralCare:       "/images/flavor-factory/application-oral-care.jpg",
-  industryPharmaceutical: "/images/flavor-factory/application-pharmaceutical.jpg",
-  industryPopcorn:        "/images/flavor-factory/application-popcorn.jpg",
-  industrySyrup:          "/images/flavor-factory/10.%20Industries%20%E2%80%94%20Syrup.png",
-  industrySavory:         "/images/flavor-factory/application-sauces-savory.jpg",
+  // Industry cards — dark studio photography (consistent style)
+  industryBakery:         "/images/flavor-factory/industry-bakery-new.png",
+  industryBeverage:       "/images/flavor-factory/industry-beverage-new.png",
+  industryConfectionery:  "/images/flavor-factory/industry-confectionery-new.png",
+  industryDairy:          "/images/flavor-factory/industry-dairy-new.png",
+  industryNutraceutical:  "/images/flavor-factory/industry-nutraceutical-new.png",
+  industryOralCare:       "/images/flavor-factory/industry-oral-care-new.png",
+  industryPharmaceutical: "/images/flavor-factory/industry-pharma-new.png",
+  industryPopcorn:        "/images/flavor-factory/industry-popcorn-new.png",
+  industrySyrup:          "/images/flavor-factory/industry-syrup-new.png",
+  industrySavory:         "/images/flavor-factory/industry-savory-new.png",
   industryAll:            "/images/flavor-factory/industry-all-transparent.png",
 
   // ── Flavor collection cards (FlavorFinder) ────────────────────────
