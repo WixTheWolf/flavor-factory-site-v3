@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | The Flavor Factory",
   },
   description:
-    "Southern California flavor manufacturer creating custom liquid and powder flavor solutions for food, beverage, nutraceutical, oral care, and pharmaceutical brands.",
+    "Family-owned custom flavor manufacturer in Norco, CA. Custom liquid and powder flavor solutions for food, beverage, nutraceutical, oral care, pharmaceutical, and related applications.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

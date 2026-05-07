@@ -1,6 +1,6 @@
 const proofItems = [
   ["3-5 Days", "Sample lead time"],
-  ["10 Industries", "Applications served"],
+  ["Family-Owned", "Norco, CA"],
   ["Liquid & Powder", "Both in-house"],
   ["Low MOQ", "No massive minimums"],
 ] as const;

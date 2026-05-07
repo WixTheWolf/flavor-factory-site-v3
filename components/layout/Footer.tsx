@@ -13,7 +13,7 @@ export function Footer() {
             <div className="small">The</div>
             <div className="large">FlavorFactory</div>
           </div>
-          <p className="footer-copy">Custom liquid and powder flavor systems, from first sample to repeatable production.</p>
+          <p className="footer-copy">Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder systems, from first sample to repeatable production.</p>
         </div>
 
         <div>
