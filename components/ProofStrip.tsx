@@ -1,8 +1,8 @@
 const proofItems = [
-  ["3-5 Days", "Sample lead time"],
-  ["Family-Owned", "Norco, CA"],
-  ["Liquid & Powder", "Both in-house"],
-  ["Low MOQ", "No massive minimums"],
+  ["3–5 Days", "From brief to sample"],
+  ["Family-Owned", "Norco, CA — since day one"],
+  ["Liquid & Powder", "Both systems, one team"],
+  ["Low Minimums", "Start small. Scale fast."],
 ] as const;
 
 export function ProofStrip() {

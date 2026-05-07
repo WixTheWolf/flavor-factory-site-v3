@@ -8,7 +8,7 @@ export function Industries() {
       <div className="home-shell">
         <div className="new-section-head">
           <div className="new-eyebrow">Industries</div>
-          <h2>Find your category, then go deeper.</h2>
+          <h2>Every application has its own rules. We know them.</h2>
         </div>
         <div className="new-industry-grid">
           {industries.map((industry) => (
@@ -27,7 +27,7 @@ export function Industries() {
             </Link>
           ))}
         </div>
-        <Link className="new-inline-cta" href="/industries">See all industries</Link>
+        <Link className="new-inline-cta" href="/industries">See all industries →</Link>
       </div>
     </section>
   );

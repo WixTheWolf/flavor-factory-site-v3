@@ -16,13 +16,13 @@ export default function HomePage() {
         <ProofStrip />
         <section className="new-isolation">
           <div className="home-shell new-isolation-centered">
-            <p className="pull-quote">Good on the bench is not good enough.</p>
+            <p className="pull-quote">Most flavor houses develop to impress. We develop to perform.</p>
           </div>
         </section>
         <Industries />
         <section className="new-cert-row-section">
           <div className="home-shell">
-            <p className="new-cert-intro">Every project starts with your label in mind.</p>
+            <p className="new-cert-intro">Your label sets the rules. We work within them.</p>
             <div className="new-cert-image" aria-label="Certifications and facility programs">
               <AppImage
                 src="/images/flavor-factory/certifications-hero-transparent.png"
@@ -33,7 +33,7 @@ export default function HomePage() {
                 sizes="(max-width: 900px) calc(100vw - 32px), 900px"
               />
             </div>
-            <Link className="new-inline-cta" href="/certifications">See certifications</Link>
+            <Link className="new-inline-cta" href="/certifications">See certifications →</Link>
           </div>
         </section>
         <CTA />

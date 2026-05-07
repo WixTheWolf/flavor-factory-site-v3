@@ -11,9 +11,9 @@ export function Footer() {
         <div>
           <div className="logo serif">
             <div className="small">The</div>
-            <div className="large">FlavorFactory</div>
+            <div className="large">Flavor Factory</div>
           </div>
-          <p className="footer-copy">Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder systems, from first sample to repeatable production.</p>
+          <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors — from first sample to full production.</p>
         </div>
 
         <div>
@@ -51,11 +51,11 @@ export function Footer() {
             ))}
           </div>
           <Link href="/request-samples" className="footer-cta">
-            Start a sample request
+            Start a Sample Request
           </Link>
         </div>
       </div>
-      <div className="copyright">Copyright 2026 The Flavor Factory</div>
+      <div className="copyright">© 2026 The Flavor Factory</div>
     </footer>
   );
 }
