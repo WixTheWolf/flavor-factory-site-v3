@@ -102,8 +102,8 @@ export default function AboutPage() {
 
             <div className="page-accent-image">
               <AppImage
-                src="/images/flavor-factory/golden-elixirs-citrus-slices.png"
-                alt="Flavor ingredients — replace with final image"
+                src="/images/flavor-factory/media%20options/family-owned.png"
+                alt="Family-owned flavor manufacturing"
                 sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
                 style={{ objectFit: "contain" }}
               />

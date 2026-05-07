@@ -69,8 +69,8 @@ export default function CapabilitiesPage() {
 
             <div className="page-accent-image">
               <AppImage
-                src="/images/flavor-factory/amber_pour_berries_spices.png"
-                alt="Flavor development — replace with final image"
+                src="/images/flavor-factory/lab-glassware-transparent.png"
+                alt="Flavor formulation and lab precision"
                 sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
                 style={{ objectFit: "contain" }}
               />

@@ -1794,20 +1794,22 @@ button, input, textarea, select { font: inherit; }
 
 .new-isolation-image {
   position: relative;
-  min-height: 360px;
+  min-height: 420px;
   border-radius: 14px;
   overflow: hidden;
   background: var(--home-soft, #f4f1ea);
+  box-shadow: 0 22px 60px rgba(18, 56, 47, .07);
 }
 
 /* Reusable full-width transparent PNG accent strip for interior pages */
 .page-accent-image {
   position: relative;
-  height: clamp(200px, 26vw, 360px);
-  margin: 42px 0;
+  height: clamp(260px, 32vw, 480px);
+  margin: 52px 0;
   border-radius: 18px;
   overflow: hidden;
   background: var(--page-soft, #f4f1ea);
+  box-shadow: 0 22px 60px rgba(18, 56, 47, .07);
 }
 
 /* CTA panel: decorative image anchored inside dark panel */
@@ -1964,7 +1966,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-industry-image {
-  height: 190px;
+  height: 220px;
   border-width: 0 0 1px;
   border-radius: 0;
 }

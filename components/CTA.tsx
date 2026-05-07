@@ -21,7 +21,7 @@ export function CTA({
       <div className="home-shell new-final-cta-inner">
         <div className="cta-accent-image" aria-hidden="true">
           <AppImage
-            src="/images/flavor-factory/amber_pour_berries_spices.png"
+            src="/images/flavor-factory/flavors-liquid-splash-transparent-no-border.png"
             alt=""
             fill={false}
             width={440}

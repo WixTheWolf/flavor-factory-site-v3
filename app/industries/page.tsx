@@ -34,6 +34,7 @@ export default function IndustriesPage() {
                       alt={item.name}
                       className="industry-clean-image"
                       sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 56px) / 2), 504px"
+                      style={{ objectFit: "contain" }}
                     />
                   </div>
 
