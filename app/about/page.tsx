@@ -100,6 +100,15 @@ export default function AboutPage() {
               </div>
             </section>
 
+            <div className="page-accent-image">
+              <AppImage
+                src="/images/flavor-factory/golden-elixirs-citrus-slices.png"
+                alt="Flavor ingredients — replace with final image"
+                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
+                style={{ objectFit: "contain" }}
+              />
+            </div>
+
             <section className="about-approach">
               <div className="section-head">
                 <div>

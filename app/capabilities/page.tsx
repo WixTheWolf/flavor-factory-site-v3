@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
+import { AppImage } from "@/components/ui/AppImage";
 import { siteImages } from "@/data/site-images";
 
 const developmentStages = [
@@ -65,6 +66,15 @@ export default function CapabilitiesPage() {
               secondaryLabel="Explore Industries"
               imagePosition="center 42%"
             />
+
+            <div className="page-accent-image">
+              <AppImage
+                src="/images/flavor-factory/amber_pour_berries_spices.png"
+                alt="Flavor development — replace with final image"
+                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
+                style={{ objectFit: "contain" }}
+              />
+            </div>
 
             <section className="capability-timeline-section">
               <div className="section-head">

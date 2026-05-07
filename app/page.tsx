@@ -15,8 +15,16 @@ export default function HomePage() {
         <Hero />
         <ProofStrip />
         <section className="new-isolation">
-          <div className="home-shell">
+          <div className="home-shell new-isolation-split">
             <p>The flavor has to taste right inside the product. Not just in the sample cup.</p>
+            <div className="new-isolation-image">
+              <AppImage
+                src="/images/flavor-factory/golden-elixirs-citrus-slices.png"
+                alt="Flavor ingredients and liquid detail"
+                sizes="(max-width: 900px) calc(100vw - 40px), 44vw"
+                style={{ objectFit: "contain" }}
+              />
+            </div>
           </div>
         </section>
         <Industries />

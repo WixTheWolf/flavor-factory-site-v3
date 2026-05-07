@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
+import { AppImage } from "@/components/ui/AppImage";
 import { siteImages } from "@/data/site-images";
 
 const steps = [
@@ -54,6 +55,15 @@ export default function ProcessPage() {
               secondaryLabel="Talk With Us"
               imagePosition="58% center"
             />
+
+            <div className="page-accent-image">
+              <AppImage
+                src="/images/flavor-factory/golden-amber-macro-swirl.png"
+                alt="Flavor craft — replace with final image"
+                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
+                style={{ objectFit: "contain" }}
+              />
+            </div>
 
             <section className="process-customer-section">
               <div className="section-head">

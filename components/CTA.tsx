@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { AppImage } from "@/components/ui/AppImage";
 
 type CTAProps = {
   eyebrow?: string;
@@ -18,6 +19,17 @@ export function CTA({
   return (
     <section className="new-section new-final-cta">
       <div className="home-shell new-final-cta-inner">
+        <div className="cta-accent-image" aria-hidden="true">
+          <AppImage
+            src="/images/flavor-factory/amber_pour_berries_spices.png"
+            alt=""
+            fill={false}
+            width={440}
+            height={440}
+            sizes="220px"
+            style={{ objectFit: "contain" }}
+          />
+        </div>
         <div>
           <div className="new-eyebrow">{eyebrow}</div>
           <h2>{title}</h2>

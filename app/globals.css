@@ -1764,7 +1764,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-isolation {
-  padding: 118px 0 92px;
+  padding: 96px 0 72px;
 }
 
 .new-isolation p {
@@ -1776,6 +1776,67 @@ button, input, textarea, select { font: inherit; }
   letter-spacing: 0;
   line-height: .92;
   text-align: center;
+}
+
+/* Isolation section: becomes a split when image zone is present */
+.new-isolation-split {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, .88fr);
+  gap: clamp(34px, 5vw, 64px);
+  align-items: center;
+}
+
+.new-isolation-split > p {
+  max-width: 680px;
+  margin: 0;
+  text-align: left;
+}
+
+.new-isolation-image {
+  position: relative;
+  min-height: 360px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--home-soft, #f4f1ea);
+}
+
+/* Reusable full-width transparent PNG accent strip for interior pages */
+.page-accent-image {
+  position: relative;
+  height: clamp(200px, 26vw, 360px);
+  margin: 42px 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--page-soft, #f4f1ea);
+}
+
+/* CTA panel: decorative image anchored inside dark panel */
+.cta-accent-image {
+  position: absolute;
+  right: clamp(72px, 10%, 150px);
+  top: 0;
+  bottom: 0;
+  width: clamp(140px, 15vw, 220px);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.cta-accent-image img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .new-isolation-split {
+    grid-template-columns: 1fr;
+  }
+  .new-isolation-image {
+    min-height: 260px;
+  }
+  .cta-accent-image {
+    display: none;
+  }
 }
 
 .new-pillar-grid,
@@ -3486,6 +3547,8 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-final-cta-inner {
+  position: relative;
+  overflow: hidden;
   border: 0;
   border-radius: 18px;
   background:
