@@ -24,7 +24,7 @@ export function Hero() {
             alt="Amber liquid flavor being poured with controlled studio lighting"
             priority
             sizes="(max-width: 980px) calc(100vw - 40px), 48vw"
-            style={{ objectPosition: "center center" }}
+            style={{ objectPosition: "center 30%" }}
           />
         </div>
       </div>

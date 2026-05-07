@@ -1,5 +1,5 @@
 export const flavorFactoryImages = {
-  heroMain:     "/images/flavor-factory/Hero-main-pour.jpg",
+  heroMain:     "/images/flavor-factory/homepage-hero-pour.png",
   heroMainDark: "/images/flavor-factory/hero-main.jpg",
   heroPourPortrait: "/images/flavor-factory/Amber%20pour%20%E2%80%94%20portrait.png",
   ctaBackground: "/images/flavor-factory/cta-flavor-support.jpg",
@@ -41,7 +41,7 @@ export const flavorFactoryImages = {
   capabilitiesHero:      "/images/flavor-factory/Lab%20precision%20macro.png",
   companyInfoHero:       "/images/flavor-factory/11.%20Company%20Info%20%E2%80%94%20Lab%20Workspace.png",
   companyOperationsHero: "/images/flavor-factory/hero-main-v4.jpg",
-  processHero:           "/images/flavor-factory/Production%20tanks%20%E2%80%94%20cinematic.png",
+  processHero:           "/images/flavor-factory/The%20Application%20Moment.png",
   requestSamplesHero:    "/images/flavor-factory/Request%20Samples%20%E2%80%94%20Right%20Panel.png",
   certificationsHero:    "/images/flavor-factory/certifications-hero-transparent.png",
   contactHero:           "/images/flavor-factory/Sense%20of%20place.png",

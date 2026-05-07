@@ -47,12 +47,12 @@ export default function ProcessPage() {
               title="Here is what we need from you."
               copy="Development works best when the brief is specific. Application, base, processing conditions, label goals, and timeline shape the first sample."
               image={siteImages.processHero}
-              imageAlt="Row of stainless steel manufacturing vessels at The Flavor Factory"
+              imageAlt="Stainless steel production vessel with amber flavor liquid visible through the porthole"
               primaryHref="/request-samples"
               primaryLabel="Send Us a Brief"
               secondaryHref="/contact"
               secondaryLabel="Talk With Us"
-              imagePosition="center center"
+              imagePosition="55% center"
             />
 
             <section className="process-customer-section">
