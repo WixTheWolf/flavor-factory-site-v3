@@ -58,10 +58,9 @@ export default function ProcessPage() {
 
             <div className="page-accent-image">
               <AppImage
-                src="/images/flavor-factory/tanks-transparent.png"
-                alt="Manufacturing and production scale"
+                src="/images/flavor-factory/industry-syrup.png"
+                alt="Syrup and beverage flavor production"
                 sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
-                style={{ objectFit: "contain" }}
               />
             </div>
 

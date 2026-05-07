@@ -21,7 +21,7 @@ export default function FlavorsPage() {
               primaryLabel="Request Samples"
               secondaryHref="/industries"
               secondaryLabel="View Industries"
-              imagePosition="center 35%"
+              imagePosition="center 42%"
             />
             <FlavorFinder />
           </div>

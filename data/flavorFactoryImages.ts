@@ -1,5 +1,6 @@
 export const flavorFactoryImages = {
   heroMain: "/images/flavor-factory/hero-main-v3.jpg",
+  heroMainDark: "/images/flavor-factory/hero-main.jpg",
   ctaBackground: "/images/flavor-factory/cta-flavor-support.jpg",
 
   // Industry images — transparent PNGs float on warm sand card background
@@ -53,5 +54,5 @@ export const flavorFactoryImages = {
   requestSamplesHero: "/images/flavor-factory/About-Your-Project.png",
   certificationsHero: "/images/flavor-factory/certifications-hero-transparent.png",
   contactHero: "/images/flavor-factory/cta-flavor-support.jpg",
-  flavorsHero: "/images/flavor-factory/flavors-liquid-splash-transparent.png",
+  flavorsHero: "/images/flavor-factory/hero-main.jpg",
 } as const;

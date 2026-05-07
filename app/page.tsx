@@ -19,10 +19,9 @@ export default function HomePage() {
             <p>The flavor has to taste right inside the product. Not just in the sample cup.</p>
             <div className="new-isolation-image">
               <AppImage
-                src="/images/flavor-factory/golden%20dropper-transparent.png"
-                alt="Precision flavor development"
+                src="/images/flavor-factory/hero-main.jpg"
+                alt="Premium flavor development — craft ingredients and precision"
                 sizes="(max-width: 900px) calc(100vw - 40px), 44vw"
-                style={{ objectFit: "contain" }}
               />
             </div>
           </div>

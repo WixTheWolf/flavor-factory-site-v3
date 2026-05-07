@@ -69,10 +69,9 @@ export default function CapabilitiesPage() {
 
             <div className="page-accent-image">
               <AppImage
-                src="/images/flavor-factory/lab-glassware-transparent.png"
-                alt="Flavor formulation and lab precision"
+                src="/images/flavor-factory/industry-nutraceutical.png"
+                alt="Nutraceutical and supplement flavor applications"
                 sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
-                style={{ objectFit: "contain" }}
               />
             </div>
 
