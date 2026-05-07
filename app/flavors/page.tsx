@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FlavorFinder } from "@/components/flavors/FlavorFinder";
 import { siteImages } from "@/data/site-images";
 import { PageHero } from "@/components/PageHero";
+import { AppImage } from "@/components/ui/AppImage";
 
 export default function FlavorsPage() {
   return (
@@ -21,8 +22,15 @@ export default function FlavorsPage() {
               primaryLabel="Request Samples"
               secondaryHref="/industries"
               secondaryLabel="View Industries"
-              imagePosition="center 35%"
+              imagePosition="center 40%"
             />
+            <div className="page-accent-image">
+              <AppImage
+                src={siteImages.flavorsAccent}
+                alt="Citrus slices, berries, and botanicals in motion"
+                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
+              />
+            </div>
             <FlavorFinder />
           </div>
         </section>

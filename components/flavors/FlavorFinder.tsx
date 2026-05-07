@@ -64,7 +64,7 @@ const collections: Collection[] = [
     name: "Nutty",
     description: "Warm, roasted, and naturally rich nut profiles.",
     examples: ["Almond", "Hazelnut", "Peanut", "Pistachio", "Butter Pecan"],
-    image: "/images/flavor-factory/industry-bakery-v2.jpg",
+    image: "/images/flavor-factory/industry-bakery.png",
     imagePosition: "center 44%",
     terms: ["nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan", "walnut", "macadamia", "sesame"],
   },

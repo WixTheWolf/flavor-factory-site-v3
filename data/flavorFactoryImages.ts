@@ -1,5 +1,6 @@
 export const flavorFactoryImages = {
   heroMain: "/images/flavor-factory/hero-main-v3.jpg",
+  heroMainDark: "/images/flavor-factory/hero-main.jpg",
   ctaBackground: "/images/flavor-factory/cta-flavor-support.jpg",
 
   // Industry images — transparent PNGs float on warm sand card background
@@ -25,9 +26,21 @@ export const flavorFactoryImages = {
   liquidPour: "/images/flavor-factory/Liquid%20Pour.png",
   familyOwned: "/images/flavor-factory/media%20options/family-owned.png",
 
-  // New transparent feature images (Apr 23 2026) — use in accent zones
-  featureImageA: "/images/flavor-factory/ChatGPT%20Image%20Apr%2023%2C%202026%2C%2011_07_12%20AM.png",
-  featureImageB: "/images/flavor-factory/ChatGPT%20Image%20Apr%2023%2C%202026%2C%2011_07_17%20AM.png",
+  // Feature/accent images — full-frame photography for accent strips
+  fruitSplashDark: "/images/flavor-factory/ChatGPT%20Image%20Apr%2023%2C%202026%2C%2011_07_12%20AM.png",
+  syrupBottleMarble: "/images/flavor-factory/ChatGPT%20Image%20Apr%2023%2C%202026%2C%2011_07_17%20AM.png",
+
+  // Application images — food photography per industry application
+  appBakery: "/images/flavor-factory/application-bakery.jpg",
+  appBeverage: "/images/flavor-factory/application-beverage.jpg",
+  appConfectionery: "/images/flavor-factory/application-confectionery.jpg",
+  appDairy: "/images/flavor-factory/application-dairy.jpg",
+  appGummy: "/images/flavor-factory/application-gummy.jpg",
+  appNutraceutical: "/images/flavor-factory/application-nutraceutical.jpg",
+  appOralCare: "/images/flavor-factory/application-oral-care.jpg",
+  appPharmaceutical: "/images/flavor-factory/application-pharmaceutical.jpg",
+  appPopcorn: "/images/flavor-factory/application-popcorn.jpg",
+  appSaucesSavory: "/images/flavor-factory/application-sauces-savory.jpg",
 
   // Existing transparent/PNG images
   amberPour: "/images/flavor-factory/amber_pour_berries_spices.png",
@@ -41,5 +54,5 @@ export const flavorFactoryImages = {
   requestSamplesHero: "/images/flavor-factory/About-Your-Project.png",
   certificationsHero: "/images/flavor-factory/certifications-hero-transparent.png",
   contactHero: "/images/flavor-factory/cta-flavor-support.jpg",
-  flavorsHero: "/images/flavor-factory/flavors-liquid-splash-transparent.png",
+  flavorsHero: "/images/flavor-factory/hero-main.jpg",
 } as const;

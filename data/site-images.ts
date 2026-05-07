@@ -10,4 +10,5 @@ export const siteImages = {
   certificationsHero: flavorFactoryImages.certificationsHero,
   contactHero: flavorFactoryImages.contactHero,
   flavorsHero: flavorFactoryImages.flavorsHero,
+  flavorsAccent: flavorFactoryImages.fruitSplashDark,
 } as const;
