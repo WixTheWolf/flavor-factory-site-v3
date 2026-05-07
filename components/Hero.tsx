@@ -6,7 +6,7 @@ export function Hero() {
     <section className="new-hero">
       <div className="home-shell new-hero-grid">
         <div className="new-hero-copy">
-          <h1 className="display">Flavor Systems Built to Survive the Product.</h1>
+          <h1 className="display">The Flavor That Carries the Product.</h1>
           <p className="new-hero-text">
             Custom liquid and powder flavors developed around the application, not the flavor bench. Norco, CA. First sample to production order.
           </p>
