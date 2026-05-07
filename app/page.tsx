@@ -15,20 +15,14 @@ export default function HomePage() {
         <Hero />
         <ProofStrip />
         <section className="new-isolation">
-          <div className="home-shell new-isolation-split">
-            <p>The flavor has to taste right inside the product. Not just in the sample cup.</p>
-            <div className="new-isolation-image">
-              <AppImage
-                src="/images/flavor-factory/hero-main.jpg"
-                alt="Premium flavor development — craft ingredients and precision"
-                sizes="(max-width: 900px) calc(100vw - 40px), 44vw"
-              />
-            </div>
+          <div className="home-shell new-isolation-centered">
+            <p className="pull-quote">Good on the bench is not good enough.</p>
           </div>
         </section>
         <Industries />
         <section className="new-cert-row-section">
           <div className="home-shell">
+            <p className="new-cert-intro">Every project starts with your label in mind.</p>
             <div className="new-cert-image" aria-label="Certifications and facility programs">
               <AppImage
                 src="/images/flavor-factory/certifications-hero-transparent.png"
@@ -39,7 +33,7 @@ export default function HomePage() {
                 sizes="(max-width: 900px) calc(100vw - 32px), 900px"
               />
             </div>
-            <Link className="new-inline-cta" href="/certifications">View certifications</Link>
+            <Link className="new-inline-cta" href="/certifications">See certifications</Link>
           </div>
         </section>
         <CTA />

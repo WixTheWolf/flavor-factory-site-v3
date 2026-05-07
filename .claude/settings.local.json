@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find '/mnt/c/Users/Matt/flavor-factory-site-v3-main/app/' -type f -name '*.tsx' 2>/dev/null)",
+      "Read(//mnt/c/Users/Matt/flavor-factory-site-v3-main/**)"
+    ]
+  }
+}

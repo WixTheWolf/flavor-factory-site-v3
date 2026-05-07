@@ -15,7 +15,7 @@ export default function RequestSamplesPage() {
               <div className="sample-left">
                 <div className="eyebrow">Request Samples</div>
                 <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
-                  Tell us what you are making. We will help you get to a useful sample.
+                  Tell us what you are making.
                 </h1>
                 <p className="section-subtext" style={{ marginTop: 12 }}>
                   Share the product application, flavor direction, preferred format, declaration goal, timeline, and any benchmark you want us to match. Your request goes directly to samples@flavorfactory.net.
@@ -43,10 +43,10 @@ export default function RequestSamplesPage() {
               <div className="sample-right">
                 <AppImage
                   src={siteImages.requestSamplesHero}
-                  alt="Flavor project brief with sample bottles and pipette"
+                  alt="Amber liquid flavor being poured — precision craft"
                   priority
                   sizes="(max-width: 1200px) calc(100vw - 48px), 50vw"
-                  style={{ objectPosition: "58% center" }}
+                  style={{ objectPosition: "center 40%" }}
                 />
                 <div className="sample-overlay" />
               </div>

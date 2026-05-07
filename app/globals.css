@@ -1,16 +1,68 @@
 :root {
-  --bg: #f7f5f1;
-  --card: #ffffff;
-  --text: #111111;
-  --muted: rgba(17, 17, 17, 0.65);
-  --border: rgba(17, 17, 17, 0.08);
-  --brand: #12382f;
-  --brand-dark: #0d2b25;
-  --gold: #c9852c;
-  --shadow: 0 20px 60px rgba(17, 24, 39, 0.08);
-  --radius-xl: 28px;
-  --radius-lg: 22px;
-  --radius-md: 16px;
+  /* Palette */
+  --brand:        #12382f;
+  --brand-deep:   #0d2b25;
+  --brand-mid:    #1e4d42;
+  --gold:         #c9852c;
+  --gold-light:   #f0b35a;
+  --gold-pale:    rgba(201, 133, 44, 0.10);
+
+  /* Surfaces */
+  --bg:           #fbfaf7;
+  --bg-warm:      #f4f0e6;
+  --card:         #ffffff;
+  --card-ghost:   rgba(255, 255, 255, 0.72);
+  --surface-dark: #12382f;
+  --surface-ink:  #0d2b25;
+
+  /* Text */
+  --text:              #111111;
+  --text-secondary:    #3d4a44;
+  --text-muted:        #65717a;
+  --text-faint:        rgba(18, 56, 47, 0.50);
+  --text-invert:       #ffffff;
+  --text-invert-soft:  rgba(255, 255, 255, 0.74);
+
+  /* Borders */
+  --border:        rgba(18, 56, 47, 0.12);
+  --border-strong: rgba(18, 56, 47, 0.22);
+  --border-invert: rgba(255, 255, 255, 0.14);
+  --border-gold:   rgba(201, 133, 44, 0.32);
+
+  /* Typography */
+  --font-sans:    'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+
+  /* Spacing */
+  --section-pad:     112px;
+  --section-pad-sm:  72px;
+  --container:       min(1280px, calc(100% - 56px));
+  --container-wide:  min(1440px, calc(100% - 48px));
+  --container-narrow: min(880px, calc(100% - 48px));
+
+  /* Radius */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   22px;
+  --radius-xl:   28px;
+  --radius-2xl:  36px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card:   0 18px 48px rgba(18, 56, 47, 0.07);
+  --shadow-raised: 0 28px 72px rgba(18, 56, 47, 0.12);
+  --shadow-hero:   0 36px 90px rgba(18, 56, 47, 0.16);
+  --shadow-dark:   0 30px 80px rgba(18, 56, 47, 0.22);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-std: 0.22s ease;
+  --ease-slow: 0.7s ease;
+
+  /* Legacy aliases — keep for old CSS still referencing these */
+  --brand-dark: var(--brand-deep);
+  --muted: var(--text-muted);
+  --shadow: var(--shadow-card);
   --flavor-tag-border: rgba(255,255,255,.24);
 }
 
@@ -18,13 +70,32 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text);
 }
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 button, input, textarea, select { font: inherit; }
+
+/* ── Typography utilities ── */
+.display { font-family: var(--font-display); }
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 5.2rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  color: var(--brand);
+}
+.eyebrow-gold {
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 
 .container {
   width: min(1600px, calc(100% - 48px));
@@ -34,10 +105,10 @@ button, input, textarea, select { font: inherit; }
 .serif { font-family: Georgia, 'Times New Roman', serif; }
 .eyebrow {
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .18em;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--brand);
+  color: var(--gold);
 }
 .section-title {
   margin: 12px 0 0;
@@ -69,8 +140,8 @@ button, input, textarea, select { font: inherit; }
   min-height: 88px;
 }
 .logo { line-height: .9; }
-.logo .small { font-size: 1.05rem; font-weight: 700; }
-.logo .large { font-size: 2.8rem; font-weight: 700; letter-spacing: -0.04em; }
+.logo .small { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; }
+.logo .large { font-family: var(--font-sans); font-size: 2.8rem; font-weight: 800; letter-spacing: -0.045em; }
 .nav { display: flex; gap: 32px; align-items: center; }
 .nav a { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(17,17,17,.72); }
 .nav a:hover,
@@ -1625,10 +1696,10 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-eyebrow {
-  color: var(--home-amber);
+  color: var(--gold);
   font-size: 12px;
-  font-weight: 900;
-  letter-spacing: .14em;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -1726,6 +1797,7 @@ button, input, textarea, select { font: inherit; }
 
 .new-hero-image {
   min-height: clamp(420px, 48vw, 680px);
+  background: #1a120a;
   box-shadow: 0 28px 70px rgba(18, 56, 47, 0.16);
 }
 
@@ -1750,9 +1822,10 @@ button, input, textarea, select { font: inherit; }
 
 .new-proof-item strong {
   display: block;
+  font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.1vw, 2rem);
-  font-weight: 950;
-  letter-spacing: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .new-proof-item span {
@@ -1764,13 +1837,22 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-isolation {
-  padding: 96px 0 72px;
+  padding: 112px 0 96px;
+}
+
+.new-isolation-centered {
+  text-align: center;
+}
+
+.new-isolation-centered .pull-quote {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .new-isolation p {
   max-width: 1060px;
   margin: 0 auto;
-  color: var(--home-green);
+  color: var(--brand);
   font-size: clamp(2.7rem, 6vw, 5.8rem);
   font-weight: 950;
   letter-spacing: 0;
@@ -1977,6 +2059,15 @@ button, input, textarea, select { font: inherit; }
 
 .new-cert-row-section {
   padding: 24px 0 94px;
+}
+
+.new-cert-intro {
+  margin: 0 0 24px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
 }
 
 .new-cert-row {

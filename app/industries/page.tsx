@@ -15,7 +15,7 @@ export default function IndustriesPage() {
             <PageHero
               eyebrow="Industries"
               title="Ten categories. One development standard."
-              copy="The application sets the constraints. We build the flavor to meet them: base compatibility, processing conditions, label goals, and all."
+              copy="Application constraints shape every flavor we develop — not just the profile, but the base, the processing, and the label."
               image={siteImages.industriesHero}
               imageAlt="Ingredient and lab atmosphere"
               primaryHref="/request-samples"
@@ -34,7 +34,7 @@ export default function IndustriesPage() {
                       alt={item.name}
                       className="industry-clean-image"
                       sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 56px) / 2), 504px"
-                      style={{ objectFit: "contain" }}
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
 

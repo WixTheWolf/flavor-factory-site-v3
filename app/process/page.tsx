@@ -1,9 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
-import { PageHero } from "@/components/PageHero";
-import { AppImage } from "@/components/ui/AppImage";
-import { siteImages } from "@/data/site-images";
+import { Button } from "@/components/ui/Button";
 
 const steps = [
   {
@@ -43,25 +41,14 @@ export default function ProcessPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Process"
-              title="Here is what we need from you."
-              copy="Development works best when the brief is specific. Application, base, processing conditions, label goals, and timeline shape the first sample."
-              image={siteImages.requestSamplesHero}
-              imageAlt="Sample request details and flavor development tools"
-              primaryHref="/request-samples"
-              primaryLabel="Send Us a Brief"
-              secondaryHref="/contact"
-              secondaryLabel="Talk With Us"
-              imagePosition="58% center"
-            />
-
-            <div className="page-accent-image">
-              <AppImage
-                src="/images/flavor-factory/industry-syrup.png"
-                alt="Syrup and beverage flavor production"
-                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
-              />
+            <div className="clean-page-intro">
+              <div className="new-eyebrow">Process</div>
+              <h1>Here is what we need from you.</h1>
+              <p>Development works best when the brief is specific. Application, base, processing conditions, label goals, and timeline shape the first sample.</p>
+              <div className="new-actions">
+                <Button href="/request-samples">Send Us a Brief</Button>
+                <Button href="/contact" variant="secondary">Talk With Us</Button>
+              </div>
             </div>
 
             <section className="process-customer-section">

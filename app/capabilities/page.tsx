@@ -2,7 +2,6 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
-import { AppImage } from "@/components/ui/AppImage";
 import { siteImages } from "@/data/site-images";
 
 const developmentStages = [
@@ -56,7 +55,7 @@ export default function CapabilitiesPage() {
           <div className="container">
             <PageHero
               eyebrow="Capabilities"
-              title="The flavor has to survive the product, not just the sample cup."
+              title="Built for the finished product. Not just the sample."
               copy="Formulation decisions happen long before a sample ships. Processing conditions, base compatibility, label requirements, cost targets, and format shape every direction we build."
               image={siteImages.companyInfoHero}
               imageAlt="Controlled flavor formulation workspace"
@@ -66,14 +65,6 @@ export default function CapabilitiesPage() {
               secondaryLabel="Explore Industries"
               imagePosition="center 42%"
             />
-
-            <div className="page-accent-image">
-              <AppImage
-                src="/images/flavor-factory/industry-nutraceutical.png"
-                alt="Nutraceutical and supplement flavor applications"
-                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
-              />
-            </div>
 
             <section className="capability-timeline-section">
               <div className="section-head">
@@ -100,7 +91,7 @@ export default function CapabilitiesPage() {
             <section className="technical-section">
               <div>
                 <div className="new-eyebrow">What The Work Actually Involves</div>
-                <h2>The technical work behind a cleaner sample.</h2>
+                <h2>What it actually takes to get approval.</h2>
                 <p>
                   Formulation is shaped by the format, processing conditions, label goals, and the way the flavor behaves inside the base.
                 </p>

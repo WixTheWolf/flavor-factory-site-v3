@@ -71,7 +71,7 @@ export default function AboutPage() {
           <div className="container">
             <PageHero
               eyebrow="About"
-              title="Family-owned flavor manufacturing. Norco, CA."
+              title="Precise work. Real people. Norco, CA."
               copy="The Flavor Factory is a family-owned custom flavor manufacturer based in Norco, California. We develop liquid and powder flavor systems for brands that need flavors to work inside real products, not just taste good in a sample cup."
               image={siteImages.aboutHero}
               imageAlt="Ingredient and flavor formulation setup"
@@ -100,19 +100,11 @@ export default function AboutPage() {
               </div>
             </section>
 
-            <div className="page-accent-image">
-              <AppImage
-                src="/images/flavor-factory/industry-beverages.png"
-                alt="Flavor applications — beverages and beyond"
-                sizes="(max-width: 980px) calc(100vw - 40px), 1240px"
-              />
-            </div>
-
             <section className="about-approach">
               <div className="section-head">
                 <div>
                   <div className="eyebrow">Our Approach</div>
-                  <h2 className="section-title">How we show up for every project.</h2>
+                  <h2 className="section-title">Three things we do on every project.</h2>
                 </div>
               </div>
               <div className="team-role-grid">
@@ -123,7 +115,6 @@ export default function AboutPage() {
                         src={card.image}
                         alt={card.alt}
                         sizes="(max-width: 720px) calc(100vw - 40px), 430px"
-                        style={{ objectFit: "contain" }}
                       />
                     </div>
                     <div className="team-role-body">
@@ -140,7 +131,7 @@ export default function AboutPage() {
               <div className="section-head">
                 <div>
                   <div className="eyebrow">Meet the Team</div>
-                  <h2 className="section-title">A family-owned team on every project.</h2>
+                  <h2 className="section-title">The people on your project.</h2>
                 </div>
                 <p className="section-subtext">
                   Customers work directly with the people who develop, produce, and quality-check the flavor. No layers, no hand-offs.

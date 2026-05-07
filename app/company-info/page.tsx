@@ -48,7 +48,7 @@ export default function CompanyInfoPage() {
           <div className="container">
             <PageHero
               eyebrow="Company Info"
-              title="Capabilities, formats, and order support."
+              title="What we make, how it works, and what to expect."
               copy="This page is the practical side of The Flavor Factory: what we make, how projects move, and what customers should know before requesting samples or placing production orders."
               image={siteImages.companyInfoHero}
               imageAlt="Quality-focused flavor production setup"
@@ -68,7 +68,7 @@ export default function CompanyInfoPage() {
             <section className="company-layout-grid">
               <div className="company-lead-panel">
                 <div className="eyebrow">Capabilities</div>
-                <h2>Built for customers who need flavor work to become an order.</h2>
+                <h2>Good samples are only useful if they can repeat.</h2>
                 <p>
                   A good sample is only useful if it can become a repeatable flavor. We look at the technical and commercial details early so the project has a clearer path forward.
                 </p>

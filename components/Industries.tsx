@@ -18,7 +18,7 @@ export function Industries() {
                   src={industry.heroImage}
                   alt={`${industry.name} application detail`}
                   sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1180px) 45vw, 25vw"
-                  style={{ objectFit: "contain" }}
+                  style={{ objectPosition: "center" }}
                 />
               </div>
               <div className="new-industry-copy">
