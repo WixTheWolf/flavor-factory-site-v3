@@ -25,11 +25,11 @@ export default function HomePage() {
             <p className="new-cert-intro">Your label sets the rules. We work within them.</p>
             <div className="new-cert-image" aria-label="Certifications and facility programs">
               <AppImage
-                src="/images/flavor-factory/certifications-hero-transparent.png"
-                alt="GMP, ISO 22000, Halal, Kosher, and FDA Registered Facility badges"
+                src="/images/flavor-factory/certifications_transparent.png"
+                alt="SQF, GMP, Kosher, Halal, Organic, and FDA Registered Facility badges"
                 fill={false}
-                width={1536}
-                height={214}
+                width={2172}
+                height={724}
                 sizes="(max-width: 900px) calc(100vw - 32px), 900px"
               />
             </div>

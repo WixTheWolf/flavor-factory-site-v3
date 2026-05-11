@@ -43,7 +43,7 @@ export const flavorFactoryImages = {
   companyOperationsHero: "/images/flavor-factory/hero-main-v4.jpg",
   processHero:           "/images/flavor-factory/The%20Application%20Moment.png",
   requestSamplesHero:    "/images/flavor-factory/Request%20Samples%20%E2%80%94%20Right%20Panel.png",
-  certificationsHero:    "/images/flavor-factory/certifications-hero-transparent.png",
+  certificationsHero:    "/images/flavor-factory/certifications_transparent.png",
   contactHero:           "/images/flavor-factory/Sense%20of%20place.png",
   flavorsHero:           "/images/flavor-factory/Amber%20pour%20%E2%80%94%20portrait.png",
 

@@ -1,6 +1,8 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
+import { AppImage } from "@/components/ui/AppImage";
+import { siteImages } from "@/data/site-images";
 
 const certificationNotes = [
   {
@@ -48,6 +50,18 @@ export default function CertificationsPage() {
                   Talk With Us
                 </Button>
               </div>
+            </div>
+
+            <div className="clean-cert-badges">
+              <AppImage
+                src={siteImages.certificationsHero}
+                alt="SQF, GMP, Kosher, Halal, Organic, and FDA Registered Facility badges"
+                fill={false}
+                width={2172}
+                height={724}
+                priority
+                sizes="(max-width: 980px) calc(100vw - 40px), 1040px"
+              />
             </div>
 
             <section className="quality clean-quality-panel">
