@@ -22,12 +22,12 @@ const certificationNotes = [
     note: "Halal status and documentation can be confirmed for applicable flavors and applications.",
   },
   {
-    name: "FDA Registered Facility",
-    note: "Facility registration supports food manufacturing documentation without replacing product-specific review.",
-  },
-  {
     name: "Organic",
     note: "Organic-compliant flavors are available for qualifying applications. Certification documentation can be confirmed for eligible projects.",
+  },
+  {
+    name: "FDA Registered Facility",
+    note: "Facility registration supports food manufacturing documentation without replacing product-specific review.",
   },
 ] as const;
 
