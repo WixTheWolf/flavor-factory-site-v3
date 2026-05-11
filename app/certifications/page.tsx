@@ -1,7 +1,5 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { siteImages } from "@/data/site-images";
-import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 
 const certificationNotes = [
@@ -25,6 +23,10 @@ const certificationNotes = [
     name: "FDA Registered Facility",
     note: "Facility registration supports food manufacturing documentation without replacing product-specific review.",
   },
+  {
+    name: "Organic",
+    note: "Organic-compliant flavors are available for qualifying applications. Certification documentation can be confirmed for eligible projects.",
+  },
 ] as const;
 
 export default function CertificationsPage() {
@@ -46,18 +48,6 @@ export default function CertificationsPage() {
                   Talk With Us
                 </Button>
               </div>
-            </div>
-
-            <div className="clean-cert-badges">
-              <AppImage
-                src={siteImages.certificationsHero}
-                alt="Flavor Factory certification badges"
-                fill={false}
-                width={1536}
-                height={214}
-                priority
-                sizes="(max-width: 980px) calc(100vw - 40px), 1040px"
-              />
             </div>
 
             <section className="quality clean-quality-panel">

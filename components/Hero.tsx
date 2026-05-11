@@ -15,7 +15,7 @@ export function Hero() {
             <Button href="/capabilities" variant="secondary">See How It Works</Button>
           </div>
           <div className="new-hero-trust">
-            3–5 day samples <span /> Family-owned, Norco CA <span /> Kosher <span /> Halal <span /> GMP <span /> FDA Registered <span /> Low minimums
+            3–5 day samples <span /> Family-owned, Norco CA <span /> Kosher <span /> Halal <span /> SQF <span /> GMP <span /> Organic <span /> FDA Registered <span /> Low minimums
           </div>
         </div>
         <div className="new-hero-image" aria-label="Amber liquid flavor being poured in a controlled lab setting">

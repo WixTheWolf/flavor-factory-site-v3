@@ -18,7 +18,7 @@ export const siteCopy = {
     "Matching and reformulation work with attention to cost and performance",
     "Liquid and powder manufacturing for commercial production",
   ],
-  certifications: ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility"],
+  certifications: ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility", "Organic"],
   shortcuts: [
     "Search the library, then ask for the exact profile you need.",
     "If you do not see it, we can likely develop it.",
