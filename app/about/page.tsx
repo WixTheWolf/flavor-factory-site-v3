@@ -1,40 +1,69 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
 import { PageHero } from "@/components/PageHero";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
+import { OrganizationSchema } from "@/components/OrganizationSchema";
+
+export const metadata: Metadata = {
+  title: "Family-Owned Flavor Manufacturer in Norco, CA",
+  description:
+    "Family-owned custom flavor manufacturer in Norco, CA. Hands-on development, no hand-offs, and a team that holds every project from sample to repeat production.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    url: "/about",
+    title: "Family-Owned Flavor Manufacturer in Norco, CA | The Flavor Factory",
+    description:
+      "Family-owned custom flavor manufacturer in Norco, CA. Hands-on development, no hand-offs, and a team that holds every project from sample to repeat production.",
+    images: [
+      {
+        url: "/og?title=Family-Owned+Flavor+Manufacturer",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory team in Norco, CA",
+      },
+    ],
+  },
+  twitter: {
+    title: "Family-Owned Flavor Manufacturer in Norco, CA | The Flavor Factory",
+    description:
+      "Family-owned custom flavor manufacturer in Norco, CA. Hands-on development, no hand-offs, every project held from sample to production.",
+    images: ["/og?title=Family-Owned+Flavor+Manufacturer"],
+  },
+};
 
 const managementTeam = [
   {
     name: "Dan Wixted",
     title: "President",
     focus: "Leadership",
-    note: "Leadership, customer relationships, and company standards.",
+    note: "Sets the standards for how projects are handled and stays close to every customer relationship.",
   },
   {
     name: "Alex Wixted",
     title: "Operations",
     focus: "Operations",
-    note: "Project flow, operations, and customer coordination.",
+    note: "Keeps projects moving from first request through production, and coordinates between teams so nothing falls through.",
   },
   {
     name: "Kelly Ziegler",
     title: "Office Manager",
     focus: "Customer Care",
-    note: "Customer communication, coordination, and project details.",
+    note: "First point of contact for most customers. Handles communication, scheduling, and the coordination details that keep projects on track.",
   },
   {
     name: "Ryan Wixted",
     title: "Quality / Regulatory",
     focus: "Quality",
-    note: "Quality systems, regulatory support, and documentation.",
+    note: "Manages the quality systems and regulatory documentation that customers rely on for supplier qualification and label support.",
   },
   {
     name: "Matt Wixted",
     title: "Production Manager",
     focus: "Production",
-    note: "Production planning, execution, and sample-to-production support.",
+    note: "Bridges sample approval and production. If a sample gets approved, Matt ensures the first production batch matches it.",
   },
 ] as const;
 
@@ -52,7 +81,7 @@ const approachCards = [
     alt: "Hands using a glass pipette to fill amber glass vials on a dark slate bench",
     eyebrow: "Hands-On Work",
     title: "Development done in-house, start to finish.",
-    copy: "Formulation, samples, revisions, and manufacturing all happen at our Norco facility. One team, one thread — no hand-offs to third parties.",
+    copy: "Formulation, samples, revisions, and manufacturing all happen at our Norco facility. One team, one thread. No hand-offs to third parties.",
     position: "center center",
   },
   {
@@ -68,6 +97,7 @@ const approachCards = [
 export default function AboutPage() {
   return (
     <>
+      <OrganizationSchema />
       <Header />
       <main>
         <section className="section clean-page">
@@ -95,7 +125,7 @@ export default function AboutPage() {
                   Customers do not need theater. They need someone to listen carefully, understand the real product, and keep the sample path clear enough that each version teaches something.
                 </p>
                 <p>
-                  That is the work here: warm service, technical control, and manufacturing credibility. A flavor has to become a product order without losing the details that made it worth approving.
+                  That is the work here. A flavor has to become a product order, and then repeat, without losing the details that made it worth approving in the first place.
                 </p>
                 <p>
                   Ready to start a project? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>. We will help you find the right starting point.
@@ -164,7 +194,7 @@ export default function AboutPage() {
               </div>
               <div>
                 <p>
-                  Being family-owned means the people you work with care about the outcome the same way you do. We hold the thread from concept to approval to repeat production — every time.
+                  Being family-owned means the people you work with care about the outcome the same way you do. We hold the thread from concept to approval to repeat production, every time.
                 </p>
                 <Button href="/request-samples" variant="secondary" className="mt-24">Start a Project</Button>
               </div>

@@ -1,4 +1,32 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "Liquid & Powder Flavor Manufacturer",
+  description:
+    "Production-ready from the first sample. Liquid and powder manufacturing, low minimums, and organized sample-to-production handoff from Norco, CA.",
+  alternates: { canonical: "/company-info" },
+  openGraph: {
+    url: "/company-info",
+    title: "Liquid & Powder Flavor Manufacturer | The Flavor Factory",
+    description:
+      "Production-ready from the first sample. Liquid and powder manufacturing, low minimums, and organized sample-to-production handoff from Norco, CA.",
+    images: [
+      {
+        url: "/og?title=Liquid+%26+Powder+Flavor+Manufacturer",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory - liquid and powder flavor manufacturing",
+      },
+    ],
+  },
+  twitter: {
+    title: "Liquid & Powder Flavor Manufacturer | The Flavor Factory",
+    description:
+      "Production-ready from the first sample. Low minimums, organized handoff from sample to repeat production.",
+    images: ["/og?title=Liquid+%26+Powder+Flavor+Manufacturer"],
+  },
+};
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
 import { flavorFactoryImages } from "@/data/flavor-factory-images";
@@ -48,8 +76,8 @@ export default function CompanyInfoPage() {
           <div className="container">
             <PageHero
               eyebrow="Company Info"
-              title="What we make, how it works, and what to expect."
-              copy="This page is the practical side of The Flavor Factory: what we make, how projects move, and what customers should know before requesting samples or placing production orders."
+              title="Production-ready on the first sample."
+              copy="Most flavor suppliers separate the sample phase from production. We don't. Every sample is built with your manufacturing specs, so when you approve it, scaling is confirmation, not a new problem."
               image={siteImages.companyInfoHero}
               imageAlt="Clean laboratory bench with amber flavor liquids in glass beakers and bottles"
               imagePosition="center 55%"
@@ -70,7 +98,7 @@ export default function CompanyInfoPage() {
                 <div className="eyebrow">Capabilities</div>
                 <h2>Good samples are only useful if they can repeat.</h2>
                 <p>
-                  A good sample is only useful if it can become a repeatable flavor. We look at the technical and commercial details early so the project has a clearer path forward.
+                  That means understanding the use level, carrier, processing conditions, and label requirements before the first sample ships, not after you&apos;ve already approved something that won&apos;t scale. The brief shapes the formula. The formula shapes the production path.
                 </p>
               </div>
               <div className="company-capability-grid">
@@ -90,7 +118,7 @@ export default function CompanyInfoPage() {
                   <h2 className="section-title">How a request becomes production-ready.</h2>
                 </div>
                 <p>
-                  The goal is to remove guesswork before time is spent on the wrong sample path.
+                  Most sample delays come from misaligned expectations at the start. The goal is to remove guesswork before time is spent on the wrong path.
                 </p>
               </div>
               <div className="company-process-grid">

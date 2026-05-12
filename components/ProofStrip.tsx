@@ -1,6 +1,6 @@
 const proofItems = [
-  ["3–5 Days", "From brief to sample"],
-  ["Family-Owned", "Norco, CA — since day one"],
+  ["3-5 Days", "From brief to sample"],
+  ["Family-Owned", "Norco, CA, since day one"],
   ["Liquid & Powder", "Both systems, one team"],
   ["Low Minimums", "Start small. Scale fast."],
 ] as const;

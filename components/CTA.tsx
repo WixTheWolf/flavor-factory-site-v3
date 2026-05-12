@@ -12,7 +12,7 @@ type CTAProps = {
 export function CTA({
   eyebrow = "Ready to build?",
   title = "Tell us the application. We'll handle the rest.",
-  copy = "Share your application, base, and label goals. That's all we need. Samples ship in 3–5 days.",
+  copy = "Share your application, base, and label goals. That's all we need. Samples ship in 3-5 days.",
   href = "/request-samples",
   label = "Start a Project",
 }: CTAProps) {

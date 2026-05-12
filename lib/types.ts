@@ -20,6 +20,7 @@ export type Industry = {
   summary: string;
   pressurePoint: string;
   applications: string[];
+  ctaLabel: string;
 };
 
 export type Flavor = {

@@ -1,4 +1,32 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "Flavor Development Capabilities",
+  description:
+    "Custom development, matching, and reformulation. Liquid and powder production from Norco, CA. Heat-stable, process-ready, and label-compliant formulations.",
+  alternates: { canonical: "/capabilities" },
+  openGraph: {
+    url: "/capabilities",
+    title: "Flavor Development Capabilities | The Flavor Factory",
+    description:
+      "Custom development, matching, and reformulation. Liquid and powder production from Norco, CA. Heat-stable, process-ready, and label-compliant formulations.",
+    images: [
+      {
+        url: "/og?title=Flavor+Development+Capabilities",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory - flavor development capabilities",
+      },
+    ],
+  },
+  twitter: {
+    title: "Flavor Development Capabilities | The Flavor Factory",
+    description:
+      "Custom development, matching, and reformulation. Liquid and powder, heat-stable, process-ready formulations from Norco, CA.",
+    images: ["/og?title=Flavor+Development+Capabilities"],
+  },
+};
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
@@ -56,7 +84,7 @@ export default function CapabilitiesPage() {
             <PageHero
               eyebrow="Capabilities"
               title="Built for the finished product. Not just the sample."
-              copy="Formulation decisions happen long before a sample ships. Processing conditions, base compatibility, label requirements, cost targets, and format shape every direction we build."
+              copy="Every flavor is formulated for your base, your processing, your label. Not for the flavor bench."
               image={siteImages.capabilitiesHero}
               imageAlt="Single amber drop falling from a pipette into a glass beaker"
               imagePosition="center 38%"
@@ -90,10 +118,10 @@ export default function CapabilitiesPage() {
 
             <section className="technical-section">
               <div>
-                <div className="new-eyebrow">What The Work Actually Involves</div>
-                <h2>What it actually takes to get approval.</h2>
+                <div className="new-eyebrow">Capabilities</div>
+                <h2>What this looks like in practice.</h2>
                 <p>
-                  Formulation is shaped by the format, processing conditions, label goals, and the way the flavor behaves inside the base.
+                  Six capabilities that move every project from brief to production-ready flavor.
                 </p>
               </div>
               <div className="technical-grid">

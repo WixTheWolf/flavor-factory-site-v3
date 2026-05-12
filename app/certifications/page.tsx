@@ -1,4 +1,32 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "Flavor Certifications",
+  description:
+    "SQF, GMP, Kosher, Halal, Organic, and FDA Registered. Certification and label requirements reviewed as part of the development brief, not after scale-up.",
+  alternates: { canonical: "/certifications" },
+  openGraph: {
+    url: "/certifications",
+    title: "Flavor Certifications | The Flavor Factory",
+    description:
+      "SQF, GMP, Kosher, Halal, Organic, and FDA Registered. Certification and label requirements reviewed as part of the development brief, not after scale-up.",
+    images: [
+      {
+        url: "/og?title=Flavor+Certifications&description=SQF%2C+GMP%2C+Kosher%2C+Halal%2C+Organic%2C+FDA+Registered",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory certifications",
+      },
+    ],
+  },
+  twitter: {
+    title: "Flavor Certifications | The Flavor Factory",
+    description:
+      "SQF, GMP, Kosher, Halal, Organic, and FDA Registered. Label requirements are part of every development brief.",
+    images: ["/og?title=Flavor+Certifications&description=SQF%2C+GMP%2C+Kosher%2C+Halal%2C+Organic%2C+FDA+Registered"],
+  },
+};
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
@@ -7,27 +35,27 @@ import { siteImages } from "@/data/site-images";
 const certificationNotes = [
   {
     name: "SQF",
-    note: "Supports customer quality reviews with recognized food safety program documentation where applicable.",
+    note: "Our SQF program gives customer quality teams a recognized framework to audit against. Documentation is available on request.",
   },
   {
     name: "GMP",
-    note: "Manufacturing practices are organized around consistent handling, production, and recordkeeping.",
+    note: "Good Manufacturing Practices govern how every flavor is handled, produced, and documented, from raw material receipt through finished-goods release.",
   },
   {
     name: "Kosher",
-    note: "Kosher documentation can be reviewed for qualifying flavor projects and customer requirements.",
+    note: "Many of our flavors carry Kosher certification. If your product requires it, tell us at the start of the project and we'll confirm the status for the specific formula.",
   },
   {
     name: "Halal",
-    note: "Halal status and documentation can be confirmed for applicable flavors and applications.",
+    note: "Halal status varies by formula. Share the requirement up front and we'll confirm which directions qualify, or develop one that does.",
   },
   {
     name: "Organic",
-    note: "Organic-compliant flavors are available for qualifying applications. Certification documentation can be confirmed for eligible projects.",
+    note: "We formulate organic-compliant flavors using approved organic ingredients. If your label requires an organic claim, bring that into the brief so the formula is built to support it from the start.",
   },
   {
     name: "FDA Registered Facility",
-    note: "Facility registration supports food manufacturing documentation without replacing product-specific review.",
+    note: "Our facility is registered with the FDA as a food manufacturing operation. Registration documentation is available for supplier qualification files.",
   },
 ] as const;
 

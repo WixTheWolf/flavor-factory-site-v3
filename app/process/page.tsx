@@ -1,4 +1,32 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
+
+export const metadata: Metadata = {
+  title: "How Flavor Development Works",
+  description:
+    "Four steps from brief to production-ready flavor. Share your application and constraints. First samples typically in 3-5 business days.",
+  alternates: { canonical: "/process" },
+  openGraph: {
+    url: "/process",
+    title: "How Flavor Development Works | The Flavor Factory",
+    description:
+      "Four steps from brief to production-ready flavor. Share your application and constraints. First samples typically in 3-5 business days.",
+    images: [
+      {
+        url: "/og?title=How+Flavor+Development+Works",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory - flavor development process",
+      },
+    ],
+  },
+  twitter: {
+    title: "How Flavor Development Works | The Flavor Factory",
+    description:
+      "Four steps from brief to production-ready flavor. First samples typically in 3-5 business days.",
+    images: ["/og?title=How+Flavor+Development+Works"],
+  },
+};
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
@@ -44,8 +72,8 @@ export default function ProcessPage() {
           <div className="container">
             <PageHero
               eyebrow="Process"
-              title="Here is what we need from you."
-              copy="Development works best when the brief is specific. Application, base, processing conditions, label goals, and timeline shape the first sample."
+              title="Specifics shape faster samples."
+              copy="The more detail you share, the fewer iterations you need. Here's the conversation that gets you to approval quickly."
               image={siteImages.processHero}
               imageAlt="Stainless steel production vessel with amber flavor liquid visible through the porthole"
               primaryHref="/request-samples"

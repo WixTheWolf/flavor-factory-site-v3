@@ -8,7 +8,7 @@ export const flavorFactoryImages = {
   // ── Industry hero images ──────────────────────────────────────────
   industriesHero: "/images/flavor-factory/9.%20Industries%20%E2%80%94%20Hero.png",
 
-  // Industry cards — dark studio photography (consistent style)
+  // Industry cards, dark studio photography (consistent style)
   industryBakery:         "/images/flavor-factory/industry-bakery-new.png",
   industryBeverage:       "/images/flavor-factory/industry-beverage-new.png",
   industryConfectionery:  "/images/flavor-factory/industry-confectionery-new.png",

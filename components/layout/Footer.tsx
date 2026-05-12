@@ -13,7 +13,7 @@ export function Footer() {
             <div className="small">The</div>
             <div className="large">Flavor Factory</div>
           </div>
-          <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors — from first sample to full production.</p>
+          <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors, from first sample to full production.</p>
         </div>
 
         <div>
@@ -26,7 +26,7 @@ export function Footer() {
         <div>
           <div className="eyebrow">Industries</div>
           <div className="footer-links footer-industries">
-            {industries.map((item) => <Link href="/industries" key={item.key}>{item.name}</Link>)}
+            {industries.map((item) => <Link href={`/industries/${item.key}`} key={item.key}>{item.name}</Link>)}
           </div>
         </div>
 

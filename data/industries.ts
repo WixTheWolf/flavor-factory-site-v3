@@ -9,6 +9,7 @@ export const industries: Industry[] = [
     pressurePoint: "Heat stability is non-negotiable.",
     summary: "Heat-stable liquid and powder flavors built for oven temperatures, extended shelf life, and consistent performance across batch sizes.",
     applications: ["Baked goods", "Fillings and frostings", "Snack formats", "Heat-stable applications"],
+    ctaLabel: "Engineer for the heat",
   },
   {
     key: "beverage",
@@ -17,6 +18,7 @@ export const industries: Industry[] = [
     pressurePoint: "Clarity, pH, and sweetener system all change the profile.",
     summary: "Clean profiles that hold up through acidic environments, sweetener systems, and carbonation. Built for the finished drink, not the flavor bench.",
     applications: ["Ready-to-drink", "Concentrates", "Functional beverages", "Syrups"],
+    ctaLabel: "Build around your formulation",
   },
   {
     key: "confectionery",
@@ -25,6 +27,7 @@ export const industries: Industry[] = [
     pressurePoint: "Impact has to survive moisture migration and shelf life.",
     summary: "High-impact profiles built to hold up against sweetness, heat, texture, and processing demands. Top note retention and clean finish matter here.",
     applications: ["Gummies and hard candy", "Fillings and coatings", "Sweet applications"],
+    ctaLabel: "Create high-impact profiles",
   },
   {
     key: "dairy",
@@ -33,6 +36,7 @@ export const industries: Industry[] = [
     pressurePoint: "Fat interaction and freeze-thaw stability define the flavor.",
     summary: "Creamy, balanced profiles shaped around fat interaction, processing, and plant-based base compatibility. Profiles are developed for the full product system.",
     applications: ["Dairy products", "Frozen desserts", "Plant-based alternatives"],
+    ctaLabel: "Optimize for your process",
   },
   {
     key: "nutraceutical",
@@ -41,6 +45,7 @@ export const industries: Industry[] = [
     pressurePoint: "The actives and minerals are the flavor problem.",
     summary: "Flavor systems for products where the ingredients themselves create off-notes. Masking, modulation, and sweetener support built around the active system.",
     applications: ["Proteins and powders", "Actives and minerals", "Gummies", "Wellness formats"],
+    ctaLabel: "Mask and modulate actives",
   },
   {
     key: "oral-care",
@@ -49,6 +54,7 @@ export const industries: Industry[] = [
     pressurePoint: "Impact and finish define the experience; there is no food to compete with.",
     summary: "Clean, high-impact profiles where freshness, cooling balance, and finish are the whole product. No background flavors to hide behind.",
     applications: ["Fresh profiles", "Cooling balance", "Impact and finish", "Application-specific support"],
+    ctaLabel: "Maximize impact and finish",
   },
   {
     key: "pharmaceutical",
@@ -57,6 +63,7 @@ export const industries: Industry[] = [
     pressurePoint: "The patient has to swallow it; palatability is compliance.",
     summary: "Flavor masking and palatability solutions for oral dosage forms. Built around the active, excipient system, and compliance requirements, not just taste.",
     applications: ["Chewables", "Liquids and suspensions", "Lozenges", "Palatability support"],
+    ctaLabel: "Solve palatability challenges",
   },
   {
     key: "popcorn",
@@ -65,6 +72,7 @@ export const industries: Industry[] = [
     pressurePoint: "Coating adhesion and intensity at scale separate good from great.",
     summary: "Bold, consistent flavor coatings for ready-to-eat and retail popcorn. Oil-soluble and powder formats built for kettle, air-popped, and extruded applications.",
     applications: ["Ready-to-eat popcorn", "Retail coatings", "Oil-soluble formats", "Powder seasoning"],
+    ctaLabel: "Build bold coatings",
   },
   {
     key: "savory",
@@ -73,6 +81,7 @@ export const industries: Industry[] = [
     pressurePoint: "Depth and process stability are harder than they look.",
     summary: "Profiles built for depth, roundness, cook stability, and balance across sauces, seasonings, and prepared foods. Salt interaction and process conditions shape every direction.",
     applications: ["Sauces and seasonings", "Depth and roundness", "Salt interaction", "Cook stability"],
+    ctaLabel: "Build depth and stability",
   },
   {
     key: "syrup",
@@ -81,5 +90,6 @@ export const industries: Industry[] = [
     pressurePoint: "Concentration and dilution ratios have to be right before anything else.",
     summary: "Clean, concentrated flavor systems built to perform in both cold and hot dispensing. Developed for dilution ratios, sweetener systems, and application formats.",
     applications: ["Coffee syrups", "Cocktail mixers", "Fountain applications", "Cold and hot systems"],
+    ctaLabel: "Optimize dilution ratios",
   },
 ];
