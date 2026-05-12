@@ -18,7 +18,7 @@ export const siteCopy = {
     "Matching and reformulation work with attention to cost and performance",
     "Liquid and powder manufacturing for commercial production",
   ],
-  certifications: ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility"],
+  certifications: ["SQF", "GMP", "Kosher", "Halal", "FDA Registered Facility", "Organic"],
   shortcuts: [
     "Search the library, then ask for the exact profile you need.",
     "If you do not see it, we can likely develop it.",
@@ -27,10 +27,11 @@ export const siteCopy = {
 
 export const navigation = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Company Info", href: "/company-info" },
-  { label: "Industries", href: "/industries" },
   { label: "Flavors", href: "/flavors" },
+  { label: "Industries", href: "/industries" },
+  { label: "Capabilities", href: "/capabilities" },
+  { label: "Process", href: "/process" },
+  { label: "About", href: "/about" },
   { label: "Certifications", href: "/certifications" },
   { label: "Contact", href: "/contact" },
   { label: "Request Samples", href: "/request-samples" },

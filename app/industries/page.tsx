@@ -14,18 +14,18 @@ export default function IndustriesPage() {
           <div className="container">
             <PageHero
               eyebrow="Industries"
-              title="Flavor support for the way your product is made."
-              copy="Every application asks something different from a flavor. Browse common product categories, then request samples with your format, process, label goals, and target profile in mind."
+              title="Ten categories. One development standard."
+              copy="Application constraints shape every flavor we develop — not just the profile, but the base, the processing, and the label."
               image={siteImages.industriesHero}
-              imageAlt="Ingredient and lab atmosphere"
+              imageAlt="Editorial arrangement of food and beverage products across ten flavor categories"
+              imagePosition="center center"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
-              imagePosition="center 42%"
             />
 
-            <div className="industry-clean-grid" style={{ marginTop: 32 }}>
+            <div className="industry-clean-grid">
               {industries.map((item) => (
                 <article key={item.key} className="industry-clean-card">
                   <div className="industry-clean-image-wrap">
@@ -34,18 +34,23 @@ export default function IndustriesPage() {
                       alt={item.name}
                       className="industry-clean-image"
                       sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 56px) / 2), 504px"
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
 
                   <div className="industry-clean-body">
                     <h3>{item.name}</h3>
+                    <div className="industry-pressure">{item.pressurePoint}</div>
                     <p>{item.summary}</p>
 
                     <div className="industry-clean-tags">
-                      {item.applications.slice(0, 5).map((tag) => (
+                      {item.applications.map((tag) => (
                         <span key={tag}>{tag}</span>
                       ))}
                     </div>
+                    <a className="industry-card-cta" href="/request-samples">
+                      Starting a {item.name} project?
+                    </a>
                   </div>
                 </article>
               ))}

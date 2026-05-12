@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { navigation, siteCopy } from "@/data/site-copy";
+import { industries } from "@/data/industries";
 
 export function Footer() {
   const footerLinks = navigation.filter((item) => item.href !== "/request-samples");
@@ -10,15 +11,22 @@ export function Footer() {
         <div>
           <div className="logo serif">
             <div className="small">The</div>
-            <div className="large">FlavorFactory</div>
+            <div className="large">Flavor Factory</div>
           </div>
-          <p className="footer-copy">Custom liquid and powder flavor solutions built for responsive development, reliable samples, and real production.</p>
+          <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors — from first sample to full production.</p>
         </div>
 
         <div>
           <div className="eyebrow">Explore</div>
           <div className="footer-links">
             {footerLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+          </div>
+        </div>
+
+        <div>
+          <div className="eyebrow">Industries</div>
+          <div className="footer-links footer-industries">
+            {industries.map((item) => <Link href="/industries" key={item.key}>{item.name}</Link>)}
           </div>
         </div>
 
@@ -43,11 +51,11 @@ export function Footer() {
             ))}
           </div>
           <Link href="/request-samples" className="footer-cta">
-            Start a sample request
+            Start a Sample Request
           </Link>
         </div>
       </div>
-      <div className="copyright">Copyright 2026 The Flavor Factory</div>
+      <div className="copyright">© 2026 The Flavor Factory</div>
     </footer>
   );
 }

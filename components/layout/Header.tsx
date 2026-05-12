@@ -19,11 +19,11 @@ export function Header() {
       <div className="container header-row">
         <Link href="/" className="logo serif" aria-label="The Flavor Factory home">
           <div className="small">The</div>
-          <div className="large">FlavorFactory</div>
+          <div className="large">Flavor Factory</div>
         </Link>
 
         <nav className="nav" aria-label="Primary">
-          {navigation.slice(0, 7).map((item) => {
+          {navigation.filter((item) => item.href !== "/request-samples").map((item) => {
             const active = isActive(item.href);
 
             return (
@@ -39,7 +39,7 @@ export function Header() {
           })}
         </nav>
 
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <div className="header-actions">
           <button
             className="mobile-toggle"
             aria-label="Toggle menu"
@@ -48,7 +48,7 @@ export function Header() {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/request-samples" className="cta-btn">Request Samples</Link>
+          <Link href="/request-samples" className="cta-btn">Start a Project</Link>
         </div>
       </div>
 

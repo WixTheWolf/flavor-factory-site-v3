@@ -86,7 +86,7 @@ function makeHtml(values: Required<SampleRequest>) {
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.SAMPLE_REQUEST_TO || DEFAULT_TO;
-  const from = process.env.SAMPLE_REQUEST_FROM || "The Flavor Factory <samples@flavorfactory.net>";
+  const from = process.env.SAMPLE_REQUEST_FROM || "The Flavor Factory <onboarding@resend.dev>";
 
   let body: SampleRequest;
 

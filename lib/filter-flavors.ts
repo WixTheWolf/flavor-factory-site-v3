@@ -2,6 +2,7 @@ import type { Flavor, FlavorFilters } from "@/lib/types";
 
 const industryLabels: Record<string, string> = {
   bakery: "bakery baked goods",
+  beverage: "beverage drink soda tea coffee lemonade punch",
   confectionery: "confectionery candy sweets",
   dairy: "dairy yogurt ice cream milk",
   nutraceutical: "nutraceutical functional protein vitamin electrolyte supplement",
@@ -15,6 +16,7 @@ const industryLabels: Record<string, string> = {
 const queryAliases: Record<string, string[]> = {
   mouthwash: ["mouth wash", "oral care", "toothpaste", "mint"],
   oralcare: ["oral care", "mouthwash", "toothpaste"],
+  beverage: ["drink", "soda", "tea", "coffee", "lemonade", "punch"],
   gummy: ["gummies", "gummy bear"],
   gummies: ["gummy", "gummy bear"],
   syrup: ["beverage", "soda", "cola", "root beer", "fountain"],

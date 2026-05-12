@@ -1,8 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/Button";
-import { siteImages } from "@/data/site-images";
 import { PageHero } from "@/components/PageHero";
+import { siteImages } from "@/data/site-images";
 
 const contactDetails = [
   {
@@ -34,15 +33,14 @@ export default function ContactPage() {
               title="Talk with the people developing and manufacturing the flavor."
               copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
               image={siteImages.contactHero}
-              imageAlt="Flavor team collaboration and formulation workspace"
+              imageAlt="California citrus grove at golden hour — Norco, CA"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="mailto:samples@flavorfactory.net"
               secondaryLabel="Email Samples"
-              imagePosition="center 30%"
+              imagePosition="center 40%"
             />
 
-            <div className="eyebrow">Direct Lines</div>
             <div className="contact-direct-grid">
               {contactDetails.map((item) => (
                 <a className="contact-direct-card" href={item.href} key={item.label}>
@@ -51,7 +49,7 @@ export default function ContactPage() {
                 </a>
               ))}
             </div>
-            <div className="contact-choice-grid" style={{ marginTop: 22 }}>
+            <div className="contact-choice-grid">
               <article>
                 <h3>Need samples?</h3>
                 <p>Send the finished product, flavor direction, liquid or powder preference, and timing so we can recommend useful starting points.</p>
@@ -64,12 +62,6 @@ export default function ContactPage() {
                 <h3>Need custom work?</h3>
                 <p>Share the product goal. We can develop around sweetness, dosage, processing, masking, mouthfeel, cooling, and cost.</p>
               </article>
-            </div>
-            <div className="contact-cta-row">
-              <Button href="/request-samples">Request Samples</Button>
-              <Button href="mailto:samples@flavorfactory.net" variant="secondary">
-                Email Samples
-              </Button>
             </div>
           </div>
         </section>

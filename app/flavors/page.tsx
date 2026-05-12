@@ -13,15 +13,15 @@ export default function FlavorsPage() {
           <div className="container">
             <PageHero
               eyebrow="Our Flavors"
-              title="Explore common flavor directions."
-              copy="Start with a family, narrow by application, then request samples. The library is a helpful starting point; custom development, matching, and reformulation are part of what we do."
+              title="Find a starting point. We'll build the rest."
+              copy="The library gives you something to react to. Custom development, flavor matching, and reformulation are part of every conversation."
               image={siteImages.flavorsHero}
-              imageAlt="Citrus and liquid flavor composition"
+              imageAlt="Amber liquid being poured into a round glass flask — warm studio light"
+              imagePosition="center 30%"
               primaryHref="/request-samples"
               primaryLabel="Request Samples"
               secondaryHref="/industries"
               secondaryLabel="View Industries"
-              imagePosition="center 35%"
             />
             <FlavorFinder />
           </div>
