@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { useShortlist } from "@/lib/shortlist";
 
 const SAMPLE_REQUEST_EMAIL = "samples@flavorfactory.net";
 
@@ -35,6 +36,15 @@ function mailtoUrl(formData: FormData) {
 
 export function SampleRequestForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "fallback" | "error">("idle");
+  const { items: shortlist, clear: clearShortlist, mounted } = useShortlist();
+  const [shortlistNote, setShortlistNote] = useState("");
+
+  useEffect(() => {
+    if (mounted && shortlist.length > 0) {
+      const names = shortlist.map((i) => `${i.name} (${i.format})`).join(", ");
+      setShortlistNote(names);
+    }
+  }, [mounted, shortlist]);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,6 +52,14 @@ export function SampleRequestForm() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+
+    // Inject shortlisted flavors into the notes field
+    if (shortlist.length > 0) {
+      const shortlistLine = `Shortlisted profiles: ${shortlist.map((i) => `${i.name} (${i.format})`).join(", ")}`;
+      const existingNotes = field(formData, "notes");
+      formData.set("notes", existingNotes ? `${shortlistLine}\n\n${existingNotes}` : shortlistLine);
+    }
+
     const payload = Object.fromEntries(formData.entries());
 
     try {
@@ -54,6 +72,8 @@ export function SampleRequestForm() {
       if (response.ok) {
         setStatus("sent");
         form.reset();
+        setShortlistNote("");
+        clearShortlist();
         return;
       }
 
@@ -67,12 +87,35 @@ export function SampleRequestForm() {
 
   return (
     <form className="form-grid" style={{ marginTop: 18 }} onSubmit={onSubmit}>
+      {mounted && shortlist.length > 0 && (
+        <div className="shortlist-form-panel">
+          <div className="shortlist-form-label">
+            {shortlist.length} flavor{shortlist.length === 1 ? "" : "s"} in your request
+          </div>
+          <div className="shortlist-form-chips">
+            {shortlist.map((item) => (
+              <span className="shortlist-chip" key={item.id}>
+                {item.name}
+                <span className="shortlist-chip-format">{item.format}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       <input className="input" required name="name" autoComplete="name" aria-label="Name" placeholder="Name" />
       <input className="input" required name="company" autoComplete="organization" aria-label="Company" placeholder="Company" />
       <input className="input" required name="email" autoComplete="email" type="email" aria-label="Email" placeholder="Email" />
       <input className="input" name="phone" autoComplete="tel" aria-label="Phone" placeholder="Phone" />
       <input className="input" name="industry" aria-label="Application or industry" placeholder="Application or finished product" />
-      <input className="input" name="flavorTarget" aria-label="Flavor target" placeholder="Flavor direction or benchmark" />
+      <input
+        className="input"
+        name="flavorTarget"
+        aria-label="Flavor target"
+        placeholder="Flavor direction or benchmark"
+        defaultValue={shortlistNote}
+        key={shortlistNote}
+      />
       <select className="input" name="format" defaultValue="" aria-label="Preferred format">
         <option value="" disabled>Preferred format</option>
         <option>Liquid</option>

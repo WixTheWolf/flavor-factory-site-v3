@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { industries } from "@/data/industries";
 import { flavorFamilyDetails } from "@/data/flavor-family-details";
+import { articles } from "@/data/insights";
 
 const BASE = "https://flavor-factory-site-v3.vercel.app";
 
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/about`,                   lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/certifications`,          lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/company-info`,            lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE}/faq`,                     lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const industryRoutes: MetadataRoute.Sitemap = industries.map((ind) => ({
@@ -34,5 +36,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...industryRoutes, ...familyRoutes];
+  const insightsIndex: MetadataRoute.Sitemap = [
+    { url: `${BASE}/insights`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+  ];
+
+  const insightsRoutes: MetadataRoute.Sitemap = articles.map((a) => ({
+    url: `${BASE}/insights/${a.slug}`,
+    lastModified: new Date(a.publishDate),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
+  return [...staticRoutes, ...industryRoutes, ...familyRoutes, ...insightsIndex, ...insightsRoutes];
 }

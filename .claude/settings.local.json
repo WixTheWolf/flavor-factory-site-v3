@@ -3,7 +3,9 @@
     "allow": [
       "Bash(find '/mnt/c/Users/Matt/flavor-factory-site-v3-main/app/' -type f -name '*.tsx' 2>/dev/null)",
       "Read(//mnt/c/Users/Matt/flavor-factory-site-v3-main/**)",
-      "Bash(grep -v \"media options\\\\|team\\\\|industry-bakery$\\\\|hero-main-v4$\")"
+      "Bash(grep -v \"media options\\\\|team\\\\|industry-bakery$\\\\|hero-main-v4$\")",
+      "Bash(npx tsx --tsconfig tsconfig.json -e ' *)",
+      "Bash(npx tsx *)"
     ]
   }
 }

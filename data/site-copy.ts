@@ -31,8 +31,10 @@ export const navigation = [
   { label: "Industries", href: "/industries" },
   { label: "Capabilities", href: "/capabilities" },
   { label: "Process", href: "/process" },
+  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Certifications", href: "/certifications" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
   { label: "Request Samples", href: "/request-samples" },
 ];

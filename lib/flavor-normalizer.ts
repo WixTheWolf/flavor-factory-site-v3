@@ -1,4 +1,5 @@
 import { rawFlavorProducts } from "@/data/raw-flavor-products";
+import { flavorNotes } from "@/data/flavor-notes";
 import type { DeclarationType, Flavor, FlavorFormat, IndustryKey } from "@/lib/types";
 
 const declarationMatchers: Array<{ type: DeclarationType; patterns: RegExp[] }> = [
@@ -262,7 +263,7 @@ export function buildFlavorCatalog(rawRows: readonly string[] = rawFlavorProduct
         ...productTypes.map((p) => p.toLowerCase()),
         ...curatedApplications.map((item) => item.toLowerCase()),
       ].slice(0, 8),
-      notes: familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
+      notes: flavorNotes[slugify(`${name}-${format}`)] ?? familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
     } satisfies Flavor;
   }).sort((a, b) => a.name.localeCompare(b.name));
 }

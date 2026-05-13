@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { ShortlistWidget } from "@/components/ShortlistWidget";
 import "./globals.css";
 
 const BASE = "https://flavor-factory-site-v3.vercel.app";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <ShortlistWidget />
         <Analytics />
       </body>
     </html>

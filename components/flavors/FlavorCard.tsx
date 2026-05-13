@@ -1,6 +1,9 @@
+"use client";
+
 import type { Flavor } from "@/lib/types";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { useShortlist } from "@/lib/shortlist";
 
 function industryLabel(value: string) {
   return value
@@ -21,11 +24,22 @@ function uniqueLabels(items: string[]) {
 }
 
 export function FlavorCard({ flavor }: { flavor: Flavor }) {
+  const { add, remove, has, mounted } = useShortlist();
+  const inList = mounted && has(flavor.id);
+
   const fit = uniqueLabels([...flavor.applications, ...flavor.industries.map(industryLabel)]).slice(0, 4);
   const metadata = Array.from(new Set([flavor.format, flavor.declarationType, ...flavor.productTypes])).slice(0, 4);
 
+  function toggleShortlist() {
+    if (inList) {
+      remove(flavor.id);
+    } else {
+      add({ id: flavor.id, name: flavor.name, family: flavor.family, format: flavor.format });
+    }
+  }
+
   return (
-    <Card className="flavor-result-card finder-card-polish">
+    <Card className={`flavor-result-card finder-card-polish${inList ? " is-shortlisted" : ""}`}>
       <div className="finder-card-top" />
       <div className="flavor-card-head">
         <div>
@@ -69,10 +83,15 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
       </details>
 
       <div className="flavor-card-actions">
-        <Button href="/request-samples" variant="secondary">
-          Request sample
-        </Button>
-        <Button href="/contact">
+        <button
+          type="button"
+          className={`shortlist-btn${inList ? " is-active" : ""}`}
+          onClick={toggleShortlist}
+          aria-label={inList ? `Remove ${flavor.name} from sample request` : `Add ${flavor.name} to sample request`}
+        >
+          {inList ? "Added to request" : "+ Add to request"}
+        </button>
+        <Button href="/contact" variant="secondary">
           Ask about this profile
         </Button>
       </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
@@ -6,6 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
+import { CTA } from "@/components/CTA";
 
 export const metadata: Metadata = {
   title: "Family-Owned Flavor Manufacturer in Norco, CA",
@@ -34,36 +36,41 @@ export const metadata: Metadata = {
   },
 };
 
-const managementTeam = [
+const team = [
   {
     name: "Dan Wixted",
     title: "President",
     focus: "Leadership",
-    note: "Sets the standards for how projects are handled and stays close to every customer relationship.",
+    bio: "Dan started The Flavor Factory and has spent more than 40 years in the flavor industry. He sets the standards for how projects are handled and stays close to every customer relationship. When a project is complicated, Dan is usually the first person in the room.",
+    photoAlt: "Dan Wixted, President of The Flavor Factory",
   },
   {
     name: "Alex Wixted",
     title: "Operations",
     focus: "Operations",
-    note: "Keeps projects moving from first request through production, and coordinates between teams so nothing falls through.",
+    bio: "Alex keeps projects moving from first request through production. He coordinates between teams, manages project flow, and makes sure nothing falls through between the sample conversation and the production order.",
+    photoAlt: "Alex Wixted, Operations at The Flavor Factory",
   },
   {
     name: "Kelly Ziegler",
     title: "Office Manager",
     focus: "Customer Care",
-    note: "First point of contact for most customers. Handles communication, scheduling, and the coordination details that keep projects on track.",
+    bio: "Kelly is usually the first person a customer talks to. She handles communication, scheduling, and the coordination details that keep projects on track from the first email through the final order.",
+    photoAlt: "Kelly Ziegler, Office Manager at The Flavor Factory",
   },
   {
     name: "Ryan Wixted",
-    title: "Quality / Regulatory",
+    title: "Quality and Regulatory",
     focus: "Quality",
-    note: "Manages the quality systems and regulatory documentation that customers rely on for supplier qualification and label support.",
+    bio: "Ryan manages the quality systems and regulatory documentation that customers rely on for supplier qualification, allergen statements, COAs, and label support. If it involves a document or a certification, it goes through Ryan.",
+    photoAlt: "Ryan Wixted, Quality and Regulatory at The Flavor Factory",
   },
   {
     name: "Matt Wixted",
     title: "Production Manager",
     focus: "Production",
-    note: "Bridges sample approval and production. If a sample gets approved, Matt ensures the first production batch matches it.",
+    bio: "Matt bridges sample approval and production. If a sample gets approved, Matt is the one making sure the first production batch matches it. He owns the path from bench to batch.",
+    photoAlt: "Matt Wixted, Production Manager at The Flavor Factory",
   },
 ] as const;
 
@@ -102,6 +109,7 @@ export default function AboutPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
+
             <PageHero
               eyebrow="About"
               title="Precise work. Real people. Norco, CA."
@@ -115,6 +123,7 @@ export default function AboutPage() {
               imagePosition="40% center"
             />
 
+            {/* Story */}
             <section className="about-story-grid">
               <div>
                 <div className="eyebrow">Why We Work This Way</div>
@@ -133,6 +142,38 @@ export default function AboutPage() {
               </div>
             </section>
 
+            {/* Why family */}
+            <section className="about-family-section">
+              <div className="about-family-content">
+                <div className="new-eyebrow">Family-Owned</div>
+                <h2>Why a family business works differently for this kind of work.</h2>
+                <p>
+                  A corporate flavor house has layers between the person selling the project and the person making the samples. When something goes wrong, the handoff is where it happens. The sales rep promised something the development team does not know about. The development team approved something production cannot reproduce.
+                </p>
+                <p>
+                  We do not have those layers. The people you talk to are the people who make and produce the flavor. Dan has been doing this for over 40 years. Alex runs operations. Ryan handles quality and regulatory. Matt runs production. Kelly keeps it all coordinated. When you approve a sample, the person who made it is the same one who will make the production batch.
+                </p>
+                <p>
+                  That is not a marketing claim. It is how the company is structured, and it is why customers who have worked with larger flavor houses often tell us the experience is different here.
+                </p>
+              </div>
+              <div className="about-family-stats">
+                <div className="about-stat">
+                  <span className="about-stat-number">40+</span>
+                  <span className="about-stat-label">Years of combined flavor industry experience on the team</span>
+                </div>
+                <div className="about-stat">
+                  <span className="about-stat-number">1</span>
+                  <span className="about-stat-label">Facility. Development, production, and quality all in Norco, CA</span>
+                </div>
+                <div className="about-stat">
+                  <span className="about-stat-number">3-5</span>
+                  <span className="about-stat-label">Business days from brief to first samples</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Approach */}
             <section className="about-approach">
               <div className="section-head">
                 <div>
@@ -161,6 +202,7 @@ export default function AboutPage() {
               </div>
             </section>
 
+            {/* Team */}
             <section className="management-section">
               <div className="section-head">
                 <div>
@@ -168,25 +210,31 @@ export default function AboutPage() {
                   <h2 className="section-title">The people on your project.</h2>
                 </div>
                 <p className="section-subtext">
-                  Customers work directly with the people who develop, produce, and quality-check the flavor. No layers, no hand-offs.
+                  You work directly with the people who develop, produce, and quality-check the flavor. No layers, no hand-offs.
                 </p>
               </div>
-              <div className="management-grid">
-                {managementTeam.map((member) => (
-                  <article className="management-card" key={member.name}>
-                    <div className="management-avatar" aria-hidden="true">
-                      <span>{member.focus}</span>
+              <div className="team-card-grid">
+                {team.map((member) => (
+                  <article className="team-card" key={member.name}>
+                    <div className="team-card-photo" aria-label={member.photoAlt}>
+                      <div className="team-card-photo-placeholder">
+                        <span>{member.name.split(" ").map(n => n[0]).join("")}</span>
+                      </div>
                     </div>
-                    <div className="management-body">
+                    <div className="team-card-body">
                       <h3>{member.name}</h3>
-                      <div>{member.title}</div>
-                      <p>{member.note}</p>
+                      <div className="team-card-title">{member.title}</div>
+                      <p>{member.bio}</p>
                     </div>
                   </article>
                 ))}
               </div>
+              <p className="team-photo-note">
+                Team photos coming soon. In the meantime, <Link href="/contact">reach out directly</Link> — you will probably talk to one of these people within the day.
+              </p>
             </section>
 
+            {/* Principles */}
             <section className="about-principles">
               <div>
                 <div className="new-eyebrow">What Matters Here</div>
@@ -199,8 +247,16 @@ export default function AboutPage() {
                 <Button href="/request-samples" variant="secondary" className="mt-24">Start a Project</Button>
               </div>
             </section>
+
           </div>
         </section>
+        <CTA
+          eyebrow="Work with the team"
+          title="Talk with the people who will actually develop and produce the flavor."
+          copy="Email samples@flavorfactory.net or call (951) 273-9877. We respond to every inquiry."
+          href="/contact"
+          label="Get in Touch"
+        />
       </main>
       <Footer />
     </>
