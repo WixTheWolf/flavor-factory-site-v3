@@ -8,6 +8,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { Button } from "@/components/ui/Button";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
 import { CTA } from "@/components/CTA";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Family-Owned Flavor Manufacturer in Norco, CA",
@@ -124,54 +125,58 @@ export default function AboutPage() {
             />
 
             {/* Story */}
-            <section className="about-story-grid">
-              <div>
-                <div className="eyebrow">Why We Work This Way</div>
-                <h2 className="section-title">The details are the relationship.</h2>
-              </div>
-              <div className="about-story-copy">
-                <p>
-                  Customers do not need theater. They need someone to listen carefully, understand the real product, and keep the sample path clear enough that each version teaches something.
-                </p>
-                <p>
-                  That is the work here. A flavor has to become a product order, and then repeat, without losing the details that made it worth approving in the first place.
-                </p>
-                <p>
-                  Ready to start a project? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>. We will help you find the right starting point.
-                </p>
-              </div>
-            </section>
+            <Reveal>
+              <section className="about-story-grid">
+                <div>
+                  <div className="eyebrow">Why We Work This Way</div>
+                  <h2 className="section-title">The details are the relationship.</h2>
+                </div>
+                <div className="about-story-copy">
+                  <p>
+                    Customers do not need theater. They need someone to listen carefully, understand the real product, and keep the sample path clear enough that each version teaches something.
+                  </p>
+                  <p>
+                    That is the work here. A flavor has to become a product order, and then repeat, without losing the details that made it worth approving in the first place.
+                  </p>
+                  <p>
+                    Ready to start a project? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>. We will help you find the right starting point.
+                  </p>
+                </div>
+              </section>
+            </Reveal>
 
             {/* Why family */}
-            <section className="about-family-section">
-              <div className="about-family-content">
-                <div className="new-eyebrow">Family-Owned</div>
-                <h2>Why a family business works differently for this kind of work.</h2>
-                <p>
-                  A corporate flavor house has layers between the person selling the project and the person making the samples. When something goes wrong, the handoff is where it happens. The sales rep promised something the development team does not know about. The development team approved something production cannot reproduce.
-                </p>
-                <p>
-                  We do not have those layers. The people you talk to are the people who make and produce the flavor. Dan has been doing this for over 40 years. Alex runs operations. Ryan handles quality and regulatory. Matt runs production. Kelly keeps it all coordinated. When you approve a sample, the person who made it is the same one who will make the production batch.
-                </p>
-                <p>
-                  That is not a marketing claim. It is how the company is structured, and it is why customers who have worked with larger flavor houses often tell us the experience is different here.
-                </p>
-              </div>
-              <div className="about-family-stats">
-                <div className="about-stat">
-                  <span className="about-stat-number">40+</span>
-                  <span className="about-stat-label">Years of combined flavor industry experience on the team</span>
+            <Reveal delay={0.1}>
+              <section className="about-family-section">
+                <div className="about-family-content">
+                  <div className="new-eyebrow">Family-Owned</div>
+                  <h2>Why a family business works differently for this kind of work.</h2>
+                  <p>
+                    A corporate flavor house has layers between the person selling the project and the person making the samples. When something goes wrong, the handoff is where it happens. The sales rep promised something the development team does not know about. The development team approved something production cannot reproduce.
+                  </p>
+                  <p>
+                    We do not have those layers. The people you talk to are the people who make and produce the flavor. Dan has been doing this for over 40 years. Alex runs operations. Ryan handles quality and regulatory. Matt runs production. Kelly keeps it all coordinated. When you approve a sample, the person who made it is the same one who will make the production batch.
+                  </p>
+                  <p>
+                    That is not a marketing claim. It is how the company is structured, and it is why customers who have worked with larger flavor houses often tell us the experience is different here.
+                  </p>
                 </div>
-                <div className="about-stat">
-                  <span className="about-stat-number">1</span>
-                  <span className="about-stat-label">Facility. Development, production, and quality all in Norco, CA</span>
+                <div className="about-family-stats">
+                  <div className="about-stat">
+                    <span className="about-stat-number">40+</span>
+                    <span className="about-stat-label">Years of combined flavor industry experience on the team</span>
+                  </div>
+                  <div className="about-stat">
+                    <span className="about-stat-number">1</span>
+                    <span className="about-stat-label">Facility. Development, production, and quality all in Norco, CA</span>
+                  </div>
+                  <div className="about-stat">
+                    <span className="about-stat-number">3-5</span>
+                    <span className="about-stat-label">Business days from brief to first samples</span>
+                  </div>
                 </div>
-                <div className="about-stat">
-                  <span className="about-stat-number">3-5</span>
-                  <span className="about-stat-label">Business days from brief to first samples</span>
-                </div>
-              </div>
-            </section>
+              </section>
+            </Reveal>
 
             {/* Approach */}
             <section className="about-approach">
@@ -181,72 +186,80 @@ export default function AboutPage() {
                   <h2 className="section-title">Three things we do on every project.</h2>
                 </div>
               </div>
-              <div className="team-role-grid">
+              <RevealGroup className="team-role-grid" stagger={0.1}>
                 {approachCards.map((card) => (
-                  <article className="team-role-card" key={card.eyebrow}>
-                    <div className="team-role-image">
-                      <AppImage
-                        src={card.image}
-                        alt={card.alt}
-                        sizes="(max-width: 720px) calc(100vw - 40px), 430px"
-                        style={{ objectPosition: card.position }}
-                      />
-                    </div>
-                    <div className="team-role-body">
-                      <div className="new-eyebrow">{card.eyebrow}</div>
-                      <h3>{card.title}</h3>
-                      <p>{card.copy}</p>
-                    </div>
-                  </article>
+                  <RevealItem key={card.eyebrow}>
+                    <article className="team-role-card">
+                      <div className="team-role-image">
+                        <AppImage
+                          src={card.image}
+                          alt={card.alt}
+                          sizes="(max-width: 720px) calc(100vw - 40px), 430px"
+                          style={{ objectPosition: card.position }}
+                        />
+                      </div>
+                      <div className="team-role-body">
+                        <div className="new-eyebrow">{card.eyebrow}</div>
+                        <h3>{card.title}</h3>
+                        <p>{card.copy}</p>
+                      </div>
+                    </article>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </section>
 
             {/* Team */}
             <section className="management-section">
-              <div className="section-head">
-                <div>
-                  <div className="eyebrow">Meet the Team</div>
-                  <h2 className="section-title">The people on your project.</h2>
+              <Reveal>
+                <div className="section-head">
+                  <div>
+                    <div className="eyebrow">Meet the Team</div>
+                    <h2 className="section-title">The people on your project.</h2>
+                  </div>
+                  <p className="section-subtext">
+                    You work directly with the people who develop, produce, and quality-check the flavor. No layers, no hand-offs.
+                  </p>
                 </div>
-                <p className="section-subtext">
-                  You work directly with the people who develop, produce, and quality-check the flavor. No layers, no hand-offs.
-                </p>
-              </div>
-              <div className="team-card-grid">
+              </Reveal>
+              <RevealGroup className="team-card-grid" stagger={0.08}>
                 {team.map((member) => (
-                  <article className="team-card" key={member.name}>
-                    <div className="team-card-photo" aria-label={member.photoAlt}>
-                      <div className="team-card-photo-placeholder">
-                        <span>{member.name.split(" ").map(n => n[0]).join("")}</span>
+                  <RevealItem key={member.name}>
+                    <article className="team-card">
+                      <div className="team-card-photo" aria-label={member.photoAlt}>
+                        <div className="team-card-photo-placeholder">
+                          <span>{member.name.split(" ").map(n => n[0]).join("")}</span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="team-card-body">
-                      <h3>{member.name}</h3>
-                      <div className="team-card-title">{member.title}</div>
-                      <p>{member.bio}</p>
-                    </div>
-                  </article>
+                      <div className="team-card-body">
+                        <h3>{member.name}</h3>
+                        <div className="team-card-title">{member.title}</div>
+                        <p>{member.bio}</p>
+                      </div>
+                    </article>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
               <p className="team-photo-note">
                 Team photos coming soon. In the meantime, <Link href="/contact">reach out directly</Link> — you will probably talk to one of these people within the day.
               </p>
             </section>
 
             {/* Principles */}
-            <section className="about-principles">
-              <div>
-                <div className="new-eyebrow">What Matters Here</div>
-                <h2>Warm service. Technical control. Manufacturing credibility.</h2>
-              </div>
-              <div>
-                <p>
-                  Being family-owned means the people you work with care about the outcome the same way you do. We hold the thread from concept to approval to repeat production, every time.
-                </p>
-                <Button href="/request-samples" variant="secondary" className="mt-24">Start a Project</Button>
-              </div>
-            </section>
+            <Reveal>
+              <section className="about-principles">
+                <div>
+                  <div className="new-eyebrow">What Matters Here</div>
+                  <h2>Warm service. Technical control. Manufacturing credibility.</h2>
+                </div>
+                <div>
+                  <p>
+                    Being family-owned means the people you work with care about the outcome the same way you do. We hold the thread from concept to approval to repeat production, every time.
+                  </p>
+                  <Button href="/request-samples" variant="secondary" className="mt-24">Start a Project</Button>
+                </div>
+              </section>
+            </Reveal>
 
           </div>
         </section>

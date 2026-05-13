@@ -31,6 +31,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
 import { siteImages } from "@/data/site-images";
+import { RevealGroup, RevealItem, Reveal } from "@/components/Reveal";
 
 const developmentStages = [
   {
@@ -104,32 +105,38 @@ export default function CapabilitiesPage() {
                   Each stage gives the customer a clearer decision point: what we need, what we build, and what comes back next.
                 </p>
               </div>
-              <div className="capability-timeline">
+              <RevealGroup className="capability-timeline" stagger={0.09}>
                 {developmentStages.map((stage, index) => (
-                  <article key={stage.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <h3>{stage.title}</h3>
-                    <p>{stage.copy}</p>
-                    <strong>{stage.output}</strong>
-                  </article>
+                  <RevealItem key={stage.title}>
+                    <article>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <h3>{stage.title}</h3>
+                      <p>{stage.copy}</p>
+                      <strong>{stage.output}</strong>
+                    </article>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </section>
 
-            <section className="technical-section">
-              <div>
-                <div className="new-eyebrow">Capabilities</div>
-                <h2>What this looks like in practice.</h2>
-                <p>
-                  Six capabilities that move every project from brief to production-ready flavor.
-                </p>
-              </div>
-              <div className="technical-grid">
-                {technicalWork.map((item) => (
-                  <article key={item}>{item}</article>
-                ))}
-              </div>
-            </section>
+            <Reveal>
+              <section className="technical-section">
+                <div>
+                  <div className="new-eyebrow">Capabilities</div>
+                  <h2>What this looks like in practice.</h2>
+                  <p>
+                    Six capabilities that move every project from brief to production-ready flavor.
+                  </p>
+                </div>
+                <RevealGroup className="technical-grid" stagger={0.07}>
+                  {technicalWork.map((item) => (
+                    <RevealItem key={item}>
+                      <article>{item}</article>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+            </Reveal>
           </div>
         </section>
         <CTA

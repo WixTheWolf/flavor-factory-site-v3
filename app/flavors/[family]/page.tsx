@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { CTA } from "@/components/CTA";
 import { flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-details";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { demoFlavors } from "@/data/demo-flavors";
 
 const BASE = "https://flavor-factory-site-v3.vercel.app";
@@ -80,7 +81,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
               <span>{detail.name}</span>
             </nav>
 
-            <div className="family-hero-panel">
+            <Reveal><div className="family-hero-panel">
               <div className="new-eyebrow">Flavor Family</div>
               <h1 className="family-hero-title">{detail.name} Flavors</h1>
               <p className="family-hero-intro">{detail.intro}</p>
@@ -89,9 +90,9 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                   <strong>Formulator note:</strong> {detail.formulatorNote}
                 </p>
               )}
-            </div>
+            </div></Reveal>
 
-            <div className="family-meta-strip">
+            <Reveal><div className="family-meta-strip">
               <div className="family-meta-block">
                 <div className="new-eyebrow">Common Applications</div>
                 <div className="family-meta-pills">
@@ -108,9 +109,9 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                   ))}
                 </div>
               </div>
-            </div>
+            </div></Reveal>
 
-            <section className="industry-flavors-section">
+            <Reveal><section className="industry-flavors-section">
               <div className="section-head">
                 <div>
                   <div className="new-eyebrow">Profiles in This Family</div>
@@ -135,9 +136,9 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                   <Link href="/request-samples" className="cta-btn">Request Samples</Link>
                 </div>
               )}
-            </section>
+            </section></Reveal>
 
-            <section className="family-custom-panel">
+            <Reveal><section className="family-custom-panel">
               <div className="new-eyebrow">Not Seeing the Right Profile?</div>
               <h2>Tell us the application. We&apos;ll build from there.</h2>
               <p>
@@ -147,7 +148,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                 <Link href="/request-samples" className="cta-btn">Request Samples</Link>
                 <Link href="/contact" className="light-btn">Talk About Your Project</Link>
               </div>
-            </section>
+            </section></Reveal>
 
           </div>
         </section>

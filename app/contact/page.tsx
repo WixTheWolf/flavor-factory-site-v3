@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 
 export const metadata: Metadata = {
@@ -69,28 +70,36 @@ export default function ContactPage() {
               imagePosition="center 40%"
             />
 
-            <div className="contact-direct-grid">
+            <RevealGroup className="contact-direct-grid" stagger={0.08}>
               {contactDetails.map((item) => (
-                <a className="contact-direct-card" href={item.href} key={item.label}>
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
-                </a>
+                <RevealItem key={item.label}>
+                  <a className="contact-direct-card" href={item.href}>
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </a>
+                </RevealItem>
               ))}
-            </div>
-            <div className="contact-choice-grid">
-              <article>
-                <h3>Need samples?</h3>
-                <p>Share your product constraints and we&apos;ll build the first round around your manufacturing, not generic starting points. Most flavor suppliers work backwards from their library. We work backwards from your line.</p>
-              </article>
-              <article>
-                <h3>Need a match?</h3>
-                <p>We&apos;ll reformulate around your specific product, processing, cost, and label. Matching isn&apos;t about cloning. It&apos;s about understanding what made the reference work and building something better for your constraints.</p>
-              </article>
-              <article>
-                <h3>Need custom work?</h3>
-                <p>We develop around your specific application: the base, the temperature, the processing, the label requirements. No generic &quot;cherry flavor.&quot; The flavor that survives your product.</p>
-              </article>
-            </div>
+            </RevealGroup>
+            <RevealGroup className="contact-choice-grid" stagger={0.1}>
+              <RevealItem>
+                <article>
+                  <h3>Need samples?</h3>
+                  <p>Share your product constraints and we&apos;ll build the first round around your manufacturing, not generic starting points. Most flavor suppliers work backwards from their library. We work backwards from your line.</p>
+                </article>
+              </RevealItem>
+              <RevealItem>
+                <article>
+                  <h3>Need a match?</h3>
+                  <p>We&apos;ll reformulate around your specific product, processing, cost, and label. Matching isn&apos;t about cloning. It&apos;s about understanding what made the reference work and building something better for your constraints.</p>
+                </article>
+              </RevealItem>
+              <RevealItem>
+                <article>
+                  <h3>Need custom work?</h3>
+                  <p>We develop around your specific application: the base, the temperature, the processing, the label requirements. No generic &quot;cherry flavor.&quot; The flavor that survives your product.</p>
+                </article>
+              </RevealItem>
+            </RevealGroup>
           </div>
         </section>
       </main>

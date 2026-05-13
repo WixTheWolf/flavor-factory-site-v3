@@ -31,6 +31,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
 import { siteImages } from "@/data/site-images";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 
 const steps = [
   {
@@ -93,21 +94,23 @@ export default function ProcessPage() {
                   Clear stages help you compare versions, direct revisions, and move the approved flavor into production without losing what made it work.
                 </p>
               </div>
-              <div className="process-customer-grid">
+              <RevealGroup className="process-customer-grid" stagger={0.1}>
                 {steps.map((step, index) => (
-                  <article key={step.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <h3>{step.title}</h3>
-                    <p>{step.detail}</p>
-                    <div>
-                      <strong>What you give us:</strong> {step.give}
-                    </div>
-                    <div>
-                      <strong>What you get back:</strong> {step.get}
-                    </div>
-                  </article>
+                  <RevealItem key={step.title}>
+                    <article>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <h3>{step.title}</h3>
+                      <p>{step.detail}</p>
+                      <div>
+                        <strong>What you give us:</strong> {step.give}
+                      </div>
+                      <div>
+                        <strong>What you get back:</strong> {step.get}
+                      </div>
+                    </article>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </section>
           </div>
         </section>

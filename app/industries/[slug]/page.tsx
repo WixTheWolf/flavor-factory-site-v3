@@ -7,6 +7,7 @@ import { PageHero } from "@/components/PageHero";
 import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { CTA } from "@/components/CTA";
 import { industries } from "@/data/industries";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { industryDetails } from "@/data/industry-details";
 import { demoFlavors } from "@/data/demo-flavors";
 import type { IndustryKey } from "@/lib/types";
@@ -112,77 +113,81 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
               secondaryLabel="Talk With Us"
             />
 
-            <section className="industry-challenges-section">
-              <div className="section-head">
-                <div>
-                  <div className="new-eyebrow">Technical Challenges</div>
-                  <h2 className="section-title">What actually makes this application hard.</h2>
-                </div>
-                <p className="section-subtext">
-                  These are the formulation problems that come up in every {industry.name.toLowerCase()} flavor project.
-                </p>
-              </div>
-              <div className="industry-challenges-grid">
-                {details.challenges.map((challenge) => (
-                  <article className="challenge-card" key={challenge.title}>
-                    <h3>{challenge.title}</h3>
-                    <p>{challenge.body}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
-
-            {relatedFlavors.length > 0 && (
-              <section className="industry-flavors-section">
+            <Reveal>
+              <section className="industry-challenges-section">
                 <div className="section-head">
                   <div>
-                    <div className="new-eyebrow">Relevant Profiles</div>
-                    <h2 className="section-title">Flavors commonly used in {industry.name.toLowerCase()} applications.</h2>
+                    <div className="new-eyebrow">Technical Challenges</div>
+                    <h2 className="section-title">What actually makes this application hard.</h2>
                   </div>
-                  <Link href={`/flavors`} className="light-btn">
-                    See full library
-                  </Link>
+                  <p className="section-subtext">
+                    These are the formulation problems that come up in every {industry.name.toLowerCase()} flavor project.
+                  </p>
                 </div>
-                <div className="finder-results-grid">
-                  {relatedFlavors.map((flavor) => (
-                    <FlavorCard key={flavor.id} flavor={flavor} />
+                <RevealGroup className="industry-challenges-grid" stagger={0.09}>
+                  {details.challenges.map((challenge) => (
+                    <RevealItem key={challenge.title}>
+                      <article className="challenge-card">
+                        <h3>{challenge.title}</h3>
+                        <p>{challenge.body}</p>
+                      </article>
+                    </RevealItem>
                   ))}
-                </div>
+                </RevealGroup>
               </section>
+            </Reveal>
+
+            {relatedFlavors.length > 0 && (
+              <Reveal>
+                <section className="industry-flavors-section">
+                  <div className="section-head">
+                    <div>
+                      <div className="new-eyebrow">Relevant Profiles</div>
+                      <h2 className="section-title">Flavors commonly used in {industry.name.toLowerCase()} applications.</h2>
+                    </div>
+                    <Link href="/flavors" className="light-btn">See full library</Link>
+                  </div>
+                  <div className="finder-results-grid">
+                    {relatedFlavors.map((flavor) => (
+                      <FlavorCard key={flavor.id} flavor={flavor} />
+                    ))}
+                  </div>
+                </section>
+              </Reveal>
             )}
 
             {details.relevantCerts.length > 0 && (
-              <section className="industry-certs-section">
-                <div className="new-eyebrow">Certifications</div>
-                <p>
-                  Programs relevant to {industry.name.toLowerCase()} applications.
-                </p>
-                <div className="industry-certs-row">
-                  {details.relevantCerts.map((cert) => (
-                    <Link href="/certifications" className="industry-cert-chip" key={cert}>
-                      {cert}
-                    </Link>
+              <Reveal>
+                <section className="industry-certs-section">
+                  <div className="new-eyebrow">Certifications</div>
+                  <p>Programs relevant to {industry.name.toLowerCase()} applications.</p>
+                  <div className="industry-certs-row">
+                    {details.relevantCerts.map((cert) => (
+                      <Link href="/certifications" className="industry-cert-chip" key={cert}>{cert}</Link>
+                    ))}
+                  </div>
+                </section>
+              </Reveal>
+            )}
+
+            <Reveal>
+              <section className="industry-faq-section">
+                <div className="section-head">
+                  <div>
+                    <div className="new-eyebrow">Common Questions</div>
+                    <h2 className="section-title">Frequently asked about {industry.name.toLowerCase()} flavor development.</h2>
+                  </div>
+                </div>
+                <div className="industry-faq-list">
+                  {details.faqs.map((faq) => (
+                    <details className="faq-item" key={faq.q}>
+                      <summary>{faq.q}</summary>
+                      <p>{faq.a}</p>
+                    </details>
                   ))}
                 </div>
               </section>
-            )}
-
-            <section className="industry-faq-section">
-              <div className="section-head">
-                <div>
-                  <div className="new-eyebrow">Common Questions</div>
-                  <h2 className="section-title">Frequently asked about {industry.name.toLowerCase()} flavor development.</h2>
-                </div>
-              </div>
-              <div className="industry-faq-list">
-                {details.faqs.map((faq) => (
-                  <details className="faq-item" key={faq.q}>
-                    <summary>{faq.q}</summary>
-                    <p>{faq.a}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
+            </Reveal>
 
           </div>
         </section>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 
 export const metadata: Metadata = {
@@ -102,14 +103,16 @@ export default function CertificationsPage() {
                   We keep certification and facility conversations specific to the flavor, application, and documentation available for the project.
                 </p>
               </div>
-              <div className="quality-grid quality-card-grid">
+              <RevealGroup className="quality-grid quality-card-grid">
                 {certificationNotes.map((item) => (
-                  <article className="quality-badge quality-note-card" key={item.name}>
-                    <h2>{item.name}</h2>
-                    <p>{item.note}</p>
-                  </article>
+                  <RevealItem key={item.name}>
+                    <article className="quality-badge quality-note-card">
+                      <h2>{item.name}</h2>
+                      <p>{item.note}</p>
+                    </article>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </section>
 
             <section className="certification-claim-section">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { articles } from "@/data/insights";
@@ -43,22 +44,24 @@ export default function InsightsPage() {
               </p>
             </div>
 
-            <div className="insights-grid">
+            <RevealGroup className="insights-grid" stagger={0.08}>
               {articles.map((article) => (
-                <Link href={`/insights/${article.slug}`} className="insight-card" key={article.slug}>
-                  <div className="insight-card-meta">
-                    <span className="new-eyebrow">{article.category}</span>
-                    <span className="insight-read-time">{article.readTime} min read</span>
-                  </div>
-                  <h2>{article.title}</h2>
-                  <p>{article.description}</p>
-                  <div className="insight-card-footer">
-                    <span>{formatDate(article.publishDate)}</span>
-                    <span className="insight-read-link">Read article →</span>
-                  </div>
-                </Link>
+                <RevealItem key={article.slug}>
+                  <Link href={`/insights/${article.slug}`} className="insight-card">
+                    <div className="insight-card-meta">
+                      <span className="new-eyebrow">{article.category}</span>
+                      <span className="insight-read-time">{article.readTime} min read</span>
+                    </div>
+                    <h2>{article.title}</h2>
+                    <p>{article.description}</p>
+                    <div className="insight-card-footer">
+                      <span>{formatDate(article.publishDate)}</span>
+                      <span className="insight-read-link">Read article →</span>
+                    </div>
+                  </Link>
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </div>
         </section>
       </main>

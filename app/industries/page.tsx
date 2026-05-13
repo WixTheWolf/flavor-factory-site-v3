@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 
 export const metadata: Metadata = {
@@ -53,36 +54,36 @@ export default function IndustriesPage() {
               secondaryLabel="Explore Flavors"
             />
 
-            <div className="industry-clean-grid">
+            <RevealGroup className="industry-clean-grid" stagger={0.07}>
               {industries.map((item) => (
-                <article key={item.key} className="industry-clean-card">
-                  <div className="industry-clean-image-wrap">
-                    <AppImage
-                      src={item.heroImage}
-                      alt={item.name}
-                      className="industry-clean-image"
-                      sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 56px) / 2), 504px"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-
-                  <div className="industry-clean-body">
-                    <h3>{item.name}</h3>
-                    <div className="industry-pressure">{item.pressurePoint}</div>
-                    <p>{item.summary}</p>
-
-                    <div className="industry-clean-tags">
-                      {item.applications.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
+                <RevealItem key={item.key}>
+                  <article className="industry-clean-card">
+                    <div className="industry-clean-image-wrap">
+                      <AppImage
+                        src={item.heroImage}
+                        alt={item.name}
+                        className="industry-clean-image"
+                        sizes="(max-width: 720px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 56px) / 2), 504px"
+                        style={{ objectFit: "cover" }}
+                      />
                     </div>
-                    <a className="industry-card-cta" href={`/industries/${item.key}`}>
-                      {item.ctaLabel}
-                    </a>
-                  </div>
-                </article>
+                    <div className="industry-clean-body">
+                      <h3>{item.name}</h3>
+                      <div className="industry-pressure">{item.pressurePoint}</div>
+                      <p>{item.summary}</p>
+                      <div className="industry-clean-tags">
+                        {item.applications.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                      <a className="industry-card-cta" href={`/industries/${item.key}`}>
+                        {item.ctaLabel}
+                      </a>
+                    </div>
+                  </article>
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </div>
         </section>
       </main>

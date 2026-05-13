@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
@@ -184,21 +185,23 @@ export default function FAQPage() {
               </p>
             </div>
 
-            <div className="faq-page-body">
+            <RevealGroup className="faq-page-body" stagger={0.12}>
               {faqs.map((section) => (
-                <section className="faq-category-section" key={section.category}>
-                  <h2 className="faq-category-title">{section.category}</h2>
-                  <div className="industry-faq-list">
-                    {section.items.map((item) => (
-                      <details className="faq-item" key={item.q}>
-                        <summary>{item.q}</summary>
-                        <p>{item.a}</p>
-                      </details>
-                    ))}
-                  </div>
-                </section>
+                <RevealItem key={section.category}>
+                  <section className="faq-category-section">
+                    <h2 className="faq-category-title">{section.category}</h2>
+                    <div className="industry-faq-list">
+                      {section.items.map((item) => (
+                        <details className="faq-item" key={item.q}>
+                          <summary>{item.q}</summary>
+                          <p>{item.a}</p>
+                        </details>
+                      ))}
+                    </div>
+                  </section>
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </div>
         </section>
         <CTA

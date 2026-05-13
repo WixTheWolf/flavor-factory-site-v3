@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/Button";
-import { AppImage } from "@/components/ui/AppImage";
+import { HeroVideo } from "@/components/HeroVideo";
 
 export function Hero() {
   return (
     <section className="new-hero">
-      <div className="home-shell new-hero-grid">
+      <HeroVideo
+        src={{ type: "local", prefix: "/hero/hero" }}
+        poster="/hero/hero-poster.jpg"
+        overlayStrength="medium"
+      />
+      <div className="home-shell new-hero-content">
         <div className="new-hero-copy">
           <h1 className="display">Good on the Bench Is Not Good Enough.</h1>
           <p className="new-hero-text">
@@ -17,15 +22,6 @@ export function Hero() {
           <div className="new-hero-trust">
             3-5 day samples <span /> Family-owned, Norco CA <span /> Kosher <span /> Halal <span /> SQF <span /> GMP <span /> Organic <span /> FDA Registered <span /> Low minimums
           </div>
-        </div>
-        <div className="new-hero-image" aria-label="Amber liquid flavor being poured in a controlled lab setting">
-          <AppImage
-            src="/images/flavor-factory/Hero-main-pour.jpg"
-            alt="Amber liquid flavor being poured with controlled studio lighting"
-            priority
-            sizes="(max-width: 980px) calc(100vw - 40px), 48vw"
-            style={{ objectPosition: "center 30%" }}
-          />
         </div>
       </div>
     </section>

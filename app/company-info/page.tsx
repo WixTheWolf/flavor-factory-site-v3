@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 
 export const metadata: Metadata = {
@@ -93,43 +94,51 @@ export default function CompanyInfoPage() {
               ))}
             </section>
 
-            <section className="company-layout-grid">
-              <div className="company-lead-panel">
-                <div className="eyebrow">Capabilities</div>
-                <h2>Good samples are only useful if they can repeat.</h2>
-                <p>
-                  That means understanding the use level, carrier, processing conditions, and label requirements before the first sample ships, not after you&apos;ve already approved something that won&apos;t scale. The brief shapes the formula. The formula shapes the production path.
-                </p>
-              </div>
-              <div className="company-capability-grid">
-                {capabilities.map((item) => (
-                  <article key={item.title}>
-                    <h3>{item.title}</h3>
-                    <p>{item.copy}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
+            <Reveal>
+              <section className="company-layout-grid">
+                <div className="company-lead-panel">
+                  <div className="eyebrow">Capabilities</div>
+                  <h2>Good samples are only useful if they can repeat.</h2>
+                  <p>
+                    That means understanding the use level, carrier, processing conditions, and label requirements before the first sample ships, not after you&apos;ve already approved something that won&apos;t scale. The brief shapes the formula. The formula shapes the production path.
+                  </p>
+                </div>
+                <RevealGroup className="company-capability-grid" stagger={0.08}>
+                  {capabilities.map((item) => (
+                    <RevealItem key={item.title}>
+                      <article>
+                        <h3>{item.title}</h3>
+                        <p>{item.copy}</p>
+                      </article>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+            </Reveal>
 
             <section className="company-process-panel">
-              <div className="section-head">
-                <div>
-                  <div className="new-eyebrow">Project Flow</div>
-                  <h2 className="section-title">How a request becomes production-ready.</h2>
+              <Reveal>
+                <div className="section-head">
+                  <div>
+                    <div className="new-eyebrow">Project Flow</div>
+                    <h2 className="section-title">How a request becomes production-ready.</h2>
+                  </div>
+                  <p>
+                    Most sample delays come from misaligned expectations at the start. The goal is to remove guesswork before time is spent on the wrong path.
+                  </p>
                 </div>
-                <p>
-                  Most sample delays come from misaligned expectations at the start. The goal is to remove guesswork before time is spent on the wrong path.
-                </p>
-              </div>
-              <div className="company-process-grid">
+              </Reveal>
+              <RevealGroup className="company-process-grid" stagger={0.1}>
                 {processSteps.map((step, index) => (
-                  <article key={step.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <h3>{step.title}</h3>
-                    <p>{step.copy}</p>
-                  </article>
+                  <RevealItem key={step.title}>
+                    <article>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <h3>{step.title}</h3>
+                      <p>{step.copy}</p>
+                    </article>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </section>
 
             <section className="company-service-panel">
