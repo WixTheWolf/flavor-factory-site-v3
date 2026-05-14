@@ -2128,17 +2128,25 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-who-section {
-  padding: 88px 0 80px;
-  border-top: 1px solid var(--border);
+  background: var(--brand);
+  padding: 80px 0 88px;
+}
+
+.new-who-section .home-shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 72px;
+  align-items: center;
 }
 
 .new-who-headline {
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
-  font-weight: 600;
-  color: var(--text-primary);
-  max-width: 720px;
-  margin: 0 0 36px;
-  line-height: 1.35;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  max-width: 480px;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
 }
 
 .new-who-list {
@@ -2147,22 +2155,35 @@ button, input, textarea, select { font: inherit; }
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 0;
 }
 
 .new-who-list li {
-  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
-  color: var(--text-secondary);
-  padding-left: 20px;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 14px 0 14px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   line-height: 1.5;
 }
 
+.new-who-list li:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .new-who-list li::before {
-  content: "—";
+  content: "→";
   position: absolute;
   left: 0;
-  color: var(--accent);
+  color: #c9852c;
+  font-size: 0.85em;
+}
+
+@media (max-width: 760px) {
+  .new-who-section .home-shell {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }
 
 .new-cert-row-section {
@@ -2592,23 +2613,23 @@ button, input, textarea, select { font: inherit; }
 .flavor-collection-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .flavor-collection-card {
   display: flex;
-  min-height: 286px;
+  min-height: 300px;
   flex-direction: column;
   align-items: flex-start;
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 18px;
+  border: 1px solid rgba(18, 56, 47, 0.1);
+  border-radius: 14px;
   background: #fff;
   padding: 0;
   color: inherit;
   cursor: pointer;
   text-align: left;
-  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
 }
 
 .flavor-section-head .light-btn.is-active,
@@ -2635,7 +2656,7 @@ button, input, textarea, select { font: inherit; }
   position: relative;
   display: block;
   width: 100%;
-  height: 112px;
+  height: 148px;
   overflow: hidden;
   background: #f7f5f1;
 }
@@ -2653,40 +2674,42 @@ button, input, textarea, select { font: inherit; }
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  padding: 16px;
+  padding: 18px 16px 16px;
 }
 
 .flavor-collection-title {
   margin: 0;
   color: var(--ink);
-  font-size: 1.12rem;
-  font-weight: 900;
-  line-height: 1.1;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
 }
 
 .flavor-collection-description {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   color: var(--text-cool);
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .flavor-example-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 5px;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 14px;
 }
 
 .flavor-example-chips span {
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(18, 56, 47, 0.12);
   border-radius: 999px;
-  background: var(--bg-cool);
-  color: rgba(15, 23, 42, 0.72);
-  padding: 6px 9px;
-  font-size: 12px;
-  font-weight: 800;
+  background: rgba(18, 56, 47, 0.05);
+  color: #12382f;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .flavor-filter-grid {
@@ -4165,8 +4188,8 @@ button, input, textarea, select { font: inherit; }
 /* Team cards */
 .team-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
   margin-top: 40px;
 }
 
@@ -4179,7 +4202,7 @@ button, input, textarea, select { font: inherit; }
 
 .team-card-photo {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   background: var(--bg-warm);
   border-bottom: 1px solid var(--border);
   display: flex;
@@ -4255,13 +4278,19 @@ button, input, textarea, select { font: inherit; }
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
+  .team-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
   .team-card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .team-card-grid {
     grid-template-columns: 1fr;
   }

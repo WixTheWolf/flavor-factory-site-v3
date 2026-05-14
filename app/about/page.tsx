@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { siteImages } from "@/data/site-images";
@@ -163,7 +162,7 @@ export default function AboutPage() {
                 </div>
                 <div className="about-family-stats">
                   <div className="about-stat">
-                    <span className="about-stat-number">40+</span>
+                    <span className="about-stat-number">60+</span>
                     <span className="about-stat-label">Years of combined flavor industry experience on the team</span>
                   </div>
                   <div className="about-stat">
@@ -240,9 +239,6 @@ export default function AboutPage() {
                   </RevealItem>
                 ))}
               </RevealGroup>
-              <p className="team-photo-note">
-                Team photos coming soon. In the meantime, <Link href="/contact">reach out directly</Link> — you will probably talk to one of these people within the day.
-              </p>
             </section>
 
             {/* Principles */}

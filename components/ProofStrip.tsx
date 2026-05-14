@@ -9,9 +9,9 @@ type StatItem =
   | { kind: "text"; display: string; label: string };
 
 const stats: StatItem[] = [
-  { kind: "count", value: 40, suffix: "+", label: "Years of combined flavor industry experience" },
+  { kind: "count", value: 60, suffix: "+", label: "Years of combined flavor industry experience" },
   { kind: "range", display: "3-5", label: "Business days from brief to first sample" },
-  { kind: "count", value: 148, suffix: "", label: "Flavor profiles in the library" },
+  { kind: "count", value: 180, suffix: "+", label: "Flavor profiles in the library — can't find yours? We'll build it." },
   { kind: "text", display: "Family-Owned", label: "Norco, CA, since day one" },
 ];
 

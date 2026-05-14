@@ -1,5 +1,5 @@
 const proofPoints = [
-  { value: "40+", label: "years of combined industry experience" },
+  { value: "60+", label: "years of combined industry experience" },
   { value: "1000s", label: "flavor directions and starting points" },
   { value: "Fast", label: "sample and order support whenever possible" },
   { value: "Low", label: "minimum order policy" },
