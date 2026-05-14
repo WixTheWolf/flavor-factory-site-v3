@@ -64,7 +64,7 @@ export default function ContactPage() {
               image={siteImages.contactHero}
               imageAlt="California citrus grove at golden hour, Norco, CA"
               primaryHref="/request-samples"
-              primaryLabel="Request Samples"
+              primaryLabel="Request a Sample"
               secondaryHref="mailto:samples@flavorfactory.net"
               secondaryLabel="Email Samples"
               imagePosition="center 40%"

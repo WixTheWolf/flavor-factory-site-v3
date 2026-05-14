@@ -47,7 +47,7 @@ export default function FlavorsPage() {
               imageAlt="Amber liquid being poured into a round glass flask, warm studio light"
               imagePosition="center 30%"
               primaryHref="/request-samples"
-              primaryLabel="Request Samples"
+              primaryLabel="Request a Sample"
               secondaryHref="/industries"
               secondaryLabel="View Industries"
             />

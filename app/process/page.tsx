@@ -78,9 +78,9 @@ export default function ProcessPage() {
               image={siteImages.processHero}
               imageAlt="Stainless steel production vessel with amber flavor liquid visible through the porthole"
               primaryHref="/request-samples"
-              primaryLabel="Send Us a Brief"
+              primaryLabel="Request a Sample"
               secondaryHref="/contact"
-              secondaryLabel="Talk With Us"
+              secondaryLabel="Talk to Our Team"
               imagePosition="55% center"
             />
 
@@ -118,7 +118,7 @@ export default function ProcessPage() {
           eyebrow="Brief"
           title="Start with the product details."
           copy="Application, target profile, and timeline. That is enough to get the first samples moving."
-          label="Send Us a Brief"
+          label="Request a Sample"
         />
       </main>
       <Footer />

@@ -157,9 +157,20 @@ button, input, textarea, select { font: inherit; }
   gap: 24px;
   min-height: 88px;
 }
-.logo { line-height: .9; }
-.logo .small { font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; }
-.logo .large { font-family: var(--font-sans); font-size: 2.8rem; font-weight: 800; letter-spacing: -0.045em; }
+.logo-link { display: flex; align-items: center; }
+.logo-svg { height: 52px; width: auto; display: block; flex-shrink: 0; }
+.logo-svg-the {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+}
+.logo-svg-name {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 700;
+  font-feature-settings: "liga" 1;
+}
 .nav { display: flex; gap: 32px; align-items: center; }
 .nav a { font-size: 13px; font-weight: 500; letter-spacing: 0; color: rgba(17,17,17,.72); }
 .nav a:hover,
@@ -907,7 +918,7 @@ button, input, textarea, select { font: inherit; }
   .textarea { grid-column: span 1; }
   .textarea { grid-column: span 1; }
   .container { width: min(1600px, calc(100% - 32px)); }
-  .logo .large { font-size: 2.3rem; }
+  .logo-svg { height: 44px; }
   .home-hero-content {
     left: 28px;
     right: 28px;
@@ -1756,6 +1767,8 @@ button, input, textarea, select { font: inherit; }
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transform: scale(1.06);
+  background: #0d2b25;
   opacity: 0;
   transition: opacity 0.9s ease;
 }
@@ -1799,7 +1812,7 @@ button, input, textarea, select { font: inherit; }
   font-size: var(--text-hero);
   font-weight: 900;
   letter-spacing: -0.02em;
-  line-height: 1.0;
+  line-height: 1.05;
   font-feature-settings: "liga" 1, "onum" 1;
 }
 
@@ -2085,7 +2098,7 @@ button, input, textarea, select { font: inherit; }
 
 .new-industry-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -2112,6 +2125,44 @@ button, input, textarea, select { font: inherit; }
 
 .new-industry-copy {
   padding: 18px;
+}
+
+.new-who-section {
+  padding: 88px 0 80px;
+  border-top: 1px solid var(--border);
+}
+
+.new-who-headline {
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  max-width: 720px;
+  margin: 0 0 36px;
+  line-height: 1.35;
+}
+
+.new-who-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.new-who-list li {
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  color: var(--text-secondary);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.new-who-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
 }
 
 .new-cert-row-section {
@@ -2247,7 +2298,7 @@ button, input, textarea, select { font: inherit; }
   }
 
   .new-industry-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .new-capabilities {
@@ -3974,13 +4025,8 @@ button, input, textarea, select { font: inherit; }
   min-height: 74px;
 }
 
-.logo .small {
-  font-size: .72rem;
-}
-
-.logo .large {
-  font-size: 2rem;
-  letter-spacing: -.035em;
+.logo-svg {
+  height: 46px;
 }
 
 .nav {
@@ -4044,8 +4090,8 @@ button, input, textarea, select { font: inherit; }
 }
 
 @media (max-width: 1180px) {
-  .logo .large {
-    font-size: 1.72rem;
+  .logo-svg {
+    height: 40px;
   }
 
   .nav {

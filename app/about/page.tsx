@@ -118,7 +118,7 @@ export default function AboutPage() {
               image={siteImages.aboutHero}
               imageAlt="Row of amber flavor liquids in beakers and flasks on a stainless lab bench"
               primaryHref="/request-samples"
-              primaryLabel="Request Samples"
+              primaryLabel="Request a Sample"
               secondaryHref="/company-info"
               secondaryLabel="Company Info"
               imagePosition="40% center"
@@ -256,7 +256,7 @@ export default function AboutPage() {
                   <p>
                     Being family-owned means the people you work with care about the outcome the same way you do. We hold the thread from concept to approval to repeat production, every time.
                   </p>
-                  <Button href="/request-samples" variant="secondary" className="mt-24">Start a Project</Button>
+                  <Button href="/request-samples" variant="secondary" className="mt-24">Request a Sample</Button>
                 </div>
               </section>
             </Reveal>

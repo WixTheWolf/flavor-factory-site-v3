@@ -74,22 +74,4 @@ export const industries: Industry[] = [
     applications: ["Ready-to-eat popcorn", "Retail coatings", "Oil-soluble formats", "Powder seasoning"],
     ctaLabel: "Build bold coatings",
   },
-  {
-    key: "savory",
-    name: "Savory",
-    heroImage: flavorFactoryImages.industrySavory,
-    pressurePoint: "Depth and process stability are harder than they look.",
-    summary: "Profiles built for depth, roundness, cook stability, and balance across sauces, seasonings, and prepared foods. Salt interaction and process conditions shape every direction.",
-    applications: ["Sauces and seasonings", "Depth and roundness", "Salt interaction", "Cook stability"],
-    ctaLabel: "Build depth and stability",
-  },
-  {
-    key: "syrup",
-    name: "Syrup",
-    heroImage: flavorFactoryImages.industrySyrup,
-    pressurePoint: "Concentration and dilution ratios have to be right before anything else.",
-    summary: "Clean, concentrated flavor systems built to perform in both cold and hot dispensing. Developed for dilution ratios, sweetener systems, and application formats.",
-    applications: ["Coffee syrups", "Cocktail mixers", "Fountain applications", "Cold and hot systems"],
-    ctaLabel: "Optimize dilution ratios",
-  },
 ];

@@ -74,9 +74,9 @@ export default function CertificationsPage() {
                 Certification needs are reviewed as part of the development path so label sourcing, ingredient declarations, and production requirements are considered before scale-up, not after.
               </p>
               <div className="new-actions">
-                <Button href="/request-samples">Tell Us What Your Label Requires</Button>
+                <Button href="/request-samples">Request a Sample</Button>
                 <Button href="/contact" variant="secondary">
-                  Talk With Us
+                  Talk to Our Team
                 </Button>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function CertificationsPage() {
                   We review certification needs as part of the development path so label sourcing, ingredient declaration, and production requirements are considered before scale-up.
                 </p>
               </div>
-              <Button href="/request-samples">Tell Us What Your Label Requires</Button>
+              <Button href="/request-samples">Request a Sample</Button>
             </section>
           </div>
         </section>

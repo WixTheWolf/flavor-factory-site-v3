@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { navigation } from "@/data/site-copy";
+import { Logo } from "@/components/ui/Logo";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -17,13 +18,12 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container header-row">
-        <Link href="/" className="logo serif" aria-label="The Flavor Factory home">
-          <div className="small">The</div>
-          <div className="large">Flavor Factory</div>
+        <Link href="/" className="logo-link" aria-label="The Flavor Factory home">
+          <Logo className="logo-svg" />
         </Link>
 
         <nav className="nav" aria-label="Primary">
-          {navigation.filter((item) => item.href !== "/request-samples").map((item) => {
+          {navigation.filter((item) => item.nav).map((item) => {
             const active = isActive(item.href);
 
             return (
@@ -48,13 +48,13 @@ export function Header() {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/request-samples" className="cta-btn">Start a Project</Link>
+          <Link href="/request-samples" className="cta-btn">Request a Sample</Link>
         </div>
       </div>
 
       <div className={`mobile-panel ${open ? "open" : ""}`}>
         <div className="container mobile-links">
-          {navigation.map((item) => (
+          {navigation.filter((item) => item.nav || item.href === "/request-samples").map((item) => (
             <Link
               href={item.href}
               key={item.href}

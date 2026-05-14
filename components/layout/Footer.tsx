@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { navigation, siteCopy } from "@/data/site-copy";
 import { industries } from "@/data/industries";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const footerLinks = navigation.filter((item) => item.href !== "/request-samples");
@@ -9,10 +10,7 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <div className="logo serif">
-            <div className="small">The</div>
-            <div className="large">Flavor Factory</div>
-          </div>
+          <Logo className="logo-svg" />
           <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors, from first sample to full production.</p>
         </div>
 
@@ -51,7 +49,7 @@ export function Footer() {
             ))}
           </div>
           <Link href="/request-samples" className="footer-cta">
-            Start a Sample Request
+            Request a Sample
           </Link>
         </div>
       </div>

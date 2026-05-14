@@ -5,13 +5,13 @@ import { Header } from "@/components/layout/Header";
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "Flavor development for bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, popcorn, savory, and syrup applications. Application-specific from the first sample.",
+    "Flavor development for bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, and popcorn applications. Application-specific from the first sample.",
   alternates: { canonical: "/industries" },
   openGraph: {
     url: "/industries",
     title: "Industries We Serve | The Flavor Factory",
     description:
-      "Flavor development for bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, popcorn, savory, and syrup applications.",
+      "Flavor development for bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, and popcorn applications.",
     images: [
       {
         url: "/og?title=Industries+We+Serve",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Industries We Serve | The Flavor Factory",
     description:
-      "Flavor development for bakery, beverage, dairy, nutraceutical, oral care, pharmaceutical, popcorn, savory, and syrup.",
+      "Flavor development for bakery, beverage, dairy, nutraceutical, oral care, pharmaceutical, and popcorn.",
     images: ["/og?title=Industries+We+Serve"],
   },
 };
@@ -43,13 +43,13 @@ export default function IndustriesPage() {
           <div className="container">
             <PageHero
               eyebrow="Industries"
-              title="Ten categories. One development standard."
-              copy="Which means consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application constraints are the starting point, not a constraint to work around."
+              title="Eight categories. One development standard."
+              copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief — they're the starting point, not an obstacle to work around."
               image={siteImages.industriesHero}
               imageAlt="Editorial arrangement of food and beverage products across ten flavor categories"
               imagePosition="center center"
               primaryHref="/request-samples"
-              primaryLabel="Request Samples"
+              primaryLabel="Request a Sample"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
             />

@@ -50,7 +50,7 @@ const capabilities = [
   },
   {
     title: "Application range",
-    copy: "Support across bakery, confectionery, dairy, nutraceutical, oral care, pharmaceutical, syrup, popcorn, and savory.",
+    copy: "Support across bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, and popcorn.",
   },
 ] as const;
 
@@ -83,7 +83,7 @@ export default function CompanyInfoPage() {
               imageAlt="Clean laboratory bench with amber flavor liquids in glass beakers and bottles"
               imagePosition="center 55%"
               primaryHref="/request-samples"
-              primaryLabel="Request Samples"
+              primaryLabel="Request a Sample"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
             />
@@ -149,7 +149,7 @@ export default function CompanyInfoPage() {
                   Ask about minimums, sample timing, repeat orders, documentation, and the details needed to quote or produce the flavor.
                 </p>
               </div>
-              <Button href="/contact">Talk With Us</Button>
+              <Button href="/contact">Talk to Our Team</Button>
             </section>
 
             <section className="company-visual-panel">

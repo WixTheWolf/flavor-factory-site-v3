@@ -291,7 +291,7 @@ export function FlavorFinder() {
             )}
           </div>
           <Button href="/request-samples" variant="secondary">
-            Request Samples
+            Request a Sample
           </Button>
         </div>
 

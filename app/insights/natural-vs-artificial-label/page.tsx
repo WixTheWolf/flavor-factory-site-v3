@@ -52,7 +52,7 @@ export default function Article() {
             </div>
           </div>
         </section>
-        <CTA eyebrow="Label Goals?" title="Tell us your declaration requirement. We build around it." copy="Specify natural, N&A, or artificial at the project start. Samples in 3-5 days." href="/request-samples" label="Request Samples" />
+        <CTA eyebrow="Label Goals?" title="Tell us your declaration requirement. We build around it." copy="Specify natural, N&A, or artificial at the project start. Samples in 3-5 days." href="/request-samples" label="Request a Sample" />
       </main>
       <Footer />
     </>

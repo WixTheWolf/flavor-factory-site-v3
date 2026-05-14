@@ -110,7 +110,7 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
               primaryHref={`/request-samples?industry=${params.slug}`}
               primaryLabel={industry.ctaLabel}
               secondaryHref="/contact"
-              secondaryLabel="Talk With Us"
+              secondaryLabel="Talk to Our Team"
             />
 
             <Reveal>
@@ -196,7 +196,7 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
           title={`Start a ${industry.name.toLowerCase()} flavor project.`}
           copy={`${details.sampleNote} Samples typically ship in 3-5 business days.`}
           href="/request-samples"
-          label="Request Samples"
+          label="Request a Sample"
         />
       </main>
       <Footer />

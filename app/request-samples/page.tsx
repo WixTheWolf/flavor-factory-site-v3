@@ -41,7 +41,7 @@ export default function RequestSamplesPage() {
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
-                <div className="eyebrow">Request Samples</div>
+                <div className="eyebrow">Request a Sample</div>
                 <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
                   Tell us what you are making.
                 </h1>

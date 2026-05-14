@@ -30,7 +30,7 @@ export function Process() {
         <div className="new-split-copy">
           <div className="new-eyebrow">How It Works</div>
           <h2>Structured development from brief to batch.</h2>
-          <a className="new-inline-cta" href="/request-samples">Start a Project</a>
+          <a className="new-inline-cta" href="/request-samples">Request a Sample</a>
         </div>
         <div className="new-process-panel">
           <div className="new-process-image">

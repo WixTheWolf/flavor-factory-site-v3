@@ -133,7 +133,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
               ) : (
                 <div className="family-empty-state">
                   <p>Custom development in this family is available. Share your target profile and we&apos;ll build a direction around your application.</p>
-                  <Link href="/request-samples" className="cta-btn">Request Samples</Link>
+                  <Link href="/request-samples" className="cta-btn">Request a Sample</Link>
                 </div>
               )}
             </section></Reveal>
@@ -145,7 +145,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                 The library shows common starting points. If the exact profile you need is not listed, we can develop it custom, match a reference, or reformulate around your specific matrix and label requirements.
               </p>
               <div className="new-actions">
-                <Link href="/request-samples" className="cta-btn">Request Samples</Link>
+                <Link href="/request-samples" className="cta-btn">Request a Sample</Link>
                 <Link href="/contact" className="light-btn">Talk About Your Project</Link>
               </div>
             </section></Reveal>
@@ -157,7 +157,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
           title={`${detail.name} flavor samples in 3-5 days.`}
           copy={`Share your application, base, format, and label goals. We build first-round ${detail.name.toLowerCase()} samples around your product system.`}
           href="/request-samples"
-          label="Request Samples"
+          label="Request a Sample"
         />
       </main>
       <Footer />

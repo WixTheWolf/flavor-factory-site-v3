@@ -9,9 +9,7 @@ export type IndustryKey =
   | "nutraceutical"
   | "oral-care"
   | "pharmaceutical"
-  | "popcorn"
-  | "syrup"
-  | "savory";
+  | "popcorn";
 
 export type Industry = {
   key: IndustryKey;

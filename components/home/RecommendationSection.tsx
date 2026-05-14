@@ -16,7 +16,7 @@ const discoveryPaths = [
   {
     title: "Send a sharper request",
     copy: "A short brief with the target, format, label goal, and timeline helps us respond with samples that are closer from the first round.",
-    action: "Request Samples",
+    action: "Request a Sample",
     href: "/request-samples",
   },
 ] as const;

@@ -53,7 +53,7 @@ export default function Article() {
             </div>
           </div>
         </section>
-        <CTA eyebrow="Ready to Start?" title="First samples in 3-5 days. Production follows the same path." copy="Share your application, base, and label goals. Development and manufacturing are handled by the same team." href="/request-samples" label="Start a Project" />
+        <CTA eyebrow="Ready to Start?" title="First samples in 3-5 days. Production follows the same path." copy="Share your application, base, and label goals. Development and manufacturing are handled by the same team." href="/request-samples" label="Request a Sample" />
       </main>
       <Footer />
     </>

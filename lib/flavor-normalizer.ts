@@ -189,11 +189,10 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     applications.add("Beverage");
   }
   if (/(syrup|coffee syrup|fountain)/.test(source)) {
-    industries.add("syrup");
+    industries.add("beverage");
     applications.add("Syrup");
   }
   if (/(savory|bbq|chicken|beef|ranch|tomato|garlic|jalapeno|cheese|nacho|basil|wasabi|paprika|miso)/.test(source)) {
-    industries.add("savory");
     applications.add("Savory");
   }
 

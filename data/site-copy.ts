@@ -26,15 +26,14 @@ export const siteCopy = {
 };
 
 export const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Flavors", href: "/flavors" },
-  { label: "Industries", href: "/industries" },
-  { label: "Capabilities", href: "/capabilities" },
-  { label: "Process", href: "/process" },
-  { label: "Insights", href: "/insights" },
-  { label: "About", href: "/about" },
-  { label: "Certifications", href: "/certifications" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-  { label: "Request Samples", href: "/request-samples" },
+  { label: "Flavors", href: "/flavors", nav: true },
+  { label: "Industries", href: "/industries", nav: true },
+  { label: "Capabilities", href: "/capabilities", nav: true },
+  { label: "Process", href: "/process", nav: true },
+  { label: "About", href: "/about", nav: true },
+  { label: "Contact", href: "/contact", nav: true },
+  { label: "Certifications", href: "/certifications", nav: false },
+  { label: "FAQ", href: "/faq", nav: false },
+  { label: "Insights", href: "/insights", nav: false },
+  { label: "Request Samples", href: "/request-samples", nav: false },
 ];

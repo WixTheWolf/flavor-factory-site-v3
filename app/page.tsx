@@ -54,6 +54,20 @@ export default function HomePage() {
         </Reveal>
         <Industries />
         <Reveal>
+          <section className="new-who-section">
+            <div className="home-shell">
+              <p className="new-who-headline">Built for teams who need flavors that work in the real product.</p>
+              <ul className="new-who-list">
+                <li>Food and beverage brands developing new products</li>
+                <li>Co-packers and manufacturers needing reliable flavor supply</li>
+                <li>R&amp;D teams matching or improving an existing profile</li>
+                <li>Startups moving from prototype to first production run</li>
+                <li>Established brands needing faster sample turnaround</li>
+              </ul>
+            </div>
+          </section>
+        </Reveal>
+        <Reveal>
           <section className="new-cert-row-section">
             <div className="home-shell">
               <p className="new-cert-intro">Your label sets the rules. We work within them.</p>
