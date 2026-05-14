@@ -4,7 +4,7 @@ const schema = {
   name: "The Flavor Factory",
   description:
     "Family-owned custom liquid and powder flavor manufacturer in Norco, California.",
-  url: "https://flavor-factory-site-v3.vercel.app",
+  url: "https://flavorfactory.net",
   telephone: "+19512739877",
   email: "samples@flavorfactory.net",
   address: {

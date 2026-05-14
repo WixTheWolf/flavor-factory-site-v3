@@ -12,7 +12,7 @@ import { industryDetails } from "@/data/industry-details";
 import { demoFlavors } from "@/data/demo-flavors";
 import type { IndustryKey } from "@/lib/types";
 
-const BASE = "https://flavor-factory-site-v3.vercel.app";
+const BASE = "https://flavorfactory.net";
 
 export function generateStaticParams() {
   return industries.map((ind) => ({ slug: ind.key }));

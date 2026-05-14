@@ -3,7 +3,7 @@ import { industries } from "@/data/industries";
 import { flavorFamilyDetails } from "@/data/flavor-family-details";
 import { articles } from "@/data/insights";
 
-const BASE = "https://flavor-factory-site-v3.vercel.app";
+const BASE = "https://flavorfactory.net";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

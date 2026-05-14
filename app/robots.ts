@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://flavor-factory-site-v3.vercel.app/sitemap.xml",
+    sitemap: "https://flavorfactory.net/sitemap.xml",
   };
 }

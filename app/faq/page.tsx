@@ -144,7 +144,7 @@ const faqs = [
   },
 ];
 
-const BASE = "https://flavor-factory-site-v3.vercel.app";
+const BASE = "https://flavorfactory.net";
 
 const faqSchema = {
   "@context": "https://schema.org",
