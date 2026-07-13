@@ -4,13 +4,13 @@ import { Header } from "@/components/layout/Header";
 export const metadata: Metadata = {
   title: "How Flavor Development Works",
   description:
-    "Four steps from brief to production-ready flavor. Share your application and constraints. First samples typically in 3-5 business days.",
+    "Four steps from brief to a flavor ready for production. Share your application and constraints. First samples typically in 3-5 business days.",
   alternates: { canonical: "/process" },
   openGraph: {
     url: "/process",
     title: "How Flavor Development Works | The Flavor Factory",
     description:
-      "Four steps from brief to production-ready flavor. Share your application and constraints. First samples typically in 3-5 business days.",
+      "Four steps from brief to a flavor ready for production. Share your application and constraints. First samples typically in 3-5 business days.",
     images: [
       {
         url: "/og?title=How+Flavor+Development+Works",
@@ -23,15 +23,17 @@ export const metadata: Metadata = {
   twitter: {
     title: "How Flavor Development Works | The Flavor Factory",
     description:
-      "Four steps from brief to production-ready flavor. First samples typically in 3-5 business days.",
+      "Four steps from brief to a flavor ready for production. First samples typically in 3-5 business days.",
     images: ["/og?title=How+Flavor+Development+Works"],
   },
 };
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { AppImage } from "@/components/ui/AppImage";
 import { siteImages } from "@/data/site-images";
-import { RevealGroup, RevealItem } from "@/components/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 
 const steps = [
   {
@@ -60,13 +62,39 @@ const steps = [
     detail:
       "Approved work moves into manufacturing specs with documentation that keeps the flavor consistent from bench to batch. Repeat orders have a clean path from day one.",
     give: "Approval, order timing, and production needs.",
-    get: "A production-ready flavor path.",
+    get: "A flavor path built for production.",
   },
 ] as const;
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How Custom Flavor Development Works at The Flavor Factory",
+  description: "The custom flavor development process from brief to production-ready flavor, including sample turnaround and revision workflow.",
+  totalTime: "P7D",
+  estimatedCost: { "@type": "MonetaryAmount", currency: "USD", value: "Contact for pricing" },
+  step: steps.map((step, index) => ({
+    "@type": "HowToStep",
+    position: index + 1,
+    name: step.title,
+    text: step.detail,
+  })),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://flavorfactory.net" },
+    { "@type": "ListItem", position: 2, name: "Process", item: "https://flavorfactory.net/process" },
+  ],
+};
 
 export default function ProcessPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
         <section className="section clean-page">
@@ -78,7 +106,7 @@ export default function ProcessPage() {
               image={siteImages.processHero}
               imageAlt="Stainless steel production vessel with amber flavor liquid visible through the porthole"
               primaryHref="/request-samples"
-              primaryLabel="Request a Sample"
+              primaryLabel="Request a Custom Sample"
               secondaryHref="/contact"
               secondaryLabel="Talk to Our Team"
               imagePosition="55% center"
@@ -95,7 +123,7 @@ export default function ProcessPage() {
                 </p>
               </div>
               <RevealGroup className="process-customer-grid" stagger={0.1}>
-                {steps.map((step, index) => (
+                {steps.slice(0, 3).map((step, index) => (
                   <RevealItem key={step.title}>
                     <article>
                       <span>{String(index + 1).padStart(2, "0")}</span>
@@ -111,6 +139,37 @@ export default function ProcessPage() {
                   </RevealItem>
                 ))}
               </RevealGroup>
+
+              <Reveal delay={0.15}>
+                <article className="process-production-handoff">
+                  <div className="process-production-handoff-copy">
+                    <span>04</span>
+                    <h3>{steps[3].title}</h3>
+                    <p>{steps[3].detail}</p>
+                    <div>
+                      <strong>What you give us:</strong> {steps[3].give}
+                    </div>
+                    <div>
+                      <strong>What you get back:</strong> {steps[3].get}
+                    </div>
+                    <p className="process-retain-note">
+                      Production batch retain samples are maintained for lot reference, traceability, and repeat-order consistency.{" "}
+                      <Link href="/resources">See supplier resources</Link>.
+                    </p>
+                  </div>
+                  <figure className="process-retain-figure">
+                    <div className="process-retain-image">
+                      <AppImage
+                        src={siteImages.processRetainWall}
+                        alt="Labeled production retain samples stored on shelving at The Flavor Factory in Norco, CA"
+                        sizes="(max-width: 900px) calc(100vw - 40px), 480px"
+                        style={{ objectPosition: "center 40%" }}
+                      />
+                    </div>
+                    <figcaption>Retain samples from production batches, maintained as part of our quality program.</figcaption>
+                  </figure>
+                </article>
+              </Reveal>
             </section>
           </div>
         </section>
@@ -118,7 +177,7 @@ export default function ProcessPage() {
           eyebrow="Brief"
           title="Start with the product details."
           copy="Application, target profile, and timeline. That is enough to get the first samples moving."
-          label="Request a Sample"
+          label="Request a Custom Sample"
         />
       </main>
       <Footer />

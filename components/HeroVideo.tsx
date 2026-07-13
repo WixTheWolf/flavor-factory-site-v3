@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Video source. Swap type to "mux" when footage moves to Mux — no consumer changes needed.
+ * Video source. Swap type to "mux" when footage moves to Mux. No consumer changes needed.
  *
  *  Local:  files expected at {prefix}.av1.mp4 / {prefix}.hevc.mp4 / {prefix}.h264.mp4
  *  Mux:    streams from https://stream.mux.com/{playbackId}/high.mp4
@@ -15,7 +15,7 @@ export type HeroVideoSrc =
 
 type Props = {
   src: HeroVideoSrc;
-  /** Poster image path — rendered via next/image with priority so it is the LCP element. */
+  /** Poster image path. Rendered via next/image with priority so it is the LCP element. */
   poster: string;
   posterAlt?: string;
   /** Controls the darkness of the gradient overlay. Default: "medium". */
@@ -44,7 +44,7 @@ export function HeroVideo({ src, poster, posterAlt = "", overlayStrength = "medi
 
   return (
     <div className="hero-video-wrap" aria-hidden="true">
-      {/* Poster — LCP element, optimised by next/image, visible immediately. */}
+      {/* Poster. LCP element, optimised by next/image, visible immediately. */}
       <Image
         src={poster}
         alt={posterAlt}
@@ -55,7 +55,7 @@ export function HeroVideo({ src, poster, posterAlt = "", overlayStrength = "medi
         style={{ objectFit: "cover", objectPosition: "center" }}
       />
 
-      {/* Video — fades in once canplay fires. aria-hidden on wrapper. */}
+      {/* Video. Fades in once canplay fires. Aria-hidden on wrapper. */}
       <video
         ref={videoRef}
         autoPlay
@@ -78,7 +78,7 @@ export function HeroVideo({ src, poster, posterAlt = "", overlayStrength = "medi
         )}
       </video>
 
-      {/* Dark overlay — keeps hero copy AA-compliant against any footage. */}
+      {/* Dark overlay. Keeps hero copy AA-compliant against any footage. */}
       <div className="hero-video-overlay" style={{ background: gradient }} />
     </div>
   );

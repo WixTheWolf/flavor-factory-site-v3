@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { industries } from "@/data/industries";
 import { flavorFamilyDetails } from "@/data/flavor-family-details";
 import { articles } from "@/data/insights";
+import { caseStudies } from "@/data/case-studies";
+import { servicePages } from "@/data/service-pages";
 
 const BASE = "https://flavorfactory.net";
 
@@ -20,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/certifications`,          lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/company-info`,            lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE}/faq`,                     lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/resources`,               lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const industryRoutes: MetadataRoute.Sitemap = industries.map((ind) => ({
@@ -38,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const insightsIndex: MetadataRoute.Sitemap = [
     { url: `${BASE}/insights`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/case-studies`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
   const insightsRoutes: MetadataRoute.Sitemap = articles.map((a) => ({
@@ -47,5 +51,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticRoutes, ...industryRoutes, ...familyRoutes, ...insightsIndex, ...insightsRoutes];
+  const caseStudyRoutes: MetadataRoute.Sitemap = caseStudies.map((study) => ({
+    url: `${BASE}/case-studies/${study.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.65,
+  }));
+
+  const serviceRoutes: MetadataRoute.Sitemap = servicePages.map((service) => ({
+    url: `${BASE}/${service.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.75,
+  }));
+
+  return [...staticRoutes, ...industryRoutes, ...familyRoutes, ...insightsIndex, ...insightsRoutes, ...caseStudyRoutes, ...serviceRoutes];
 }

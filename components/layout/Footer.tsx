@@ -1,7 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { navigation, siteCopy } from "@/data/site-copy";
 import { industries } from "@/data/industries";
 import { Logo } from "@/components/ui/Logo";
+import { trackEvent } from "@/lib/analytics";
+
+const serviceLinks = [
+  { label: "Custom Liquid Flavors", href: "/custom-liquid-flavors" },
+  { label: "Custom Powder Flavors", href: "/custom-powder-flavors" },
+  { label: "Flavor Matching", href: "/flavor-matching" },
+  { label: "Masking and Modulation", href: "/masking-and-modulation" },
+  { label: "Organic-Compliant Flavors", href: "/organic-compliant-flavors" },
+  { label: "Oral Care Flavors", href: "/oral-care-flavors" },
+  { label: "Nutraceutical Flavors", href: "/nutraceutical-flavors" },
+  { label: "Beverage Flavors", href: "/beverage-flavors" },
+  { label: "Bakery Flavors", href: "/bakery-flavors" },
+  { label: "Pharmaceutical Flavors", href: "/pharmaceutical-flavors" },
+  { label: "Popcorn Seasoning Flavors", href: "/popcorn-seasoning-flavors" },
+] as const;
 
 export function Footer() {
   const footerLinks = navigation.filter((item) => item.href !== "/request-samples");
@@ -31,27 +48,48 @@ export function Footer() {
         <div>
           <div className="eyebrow">Contact</div>
           <div className="contact-lines">
+            <div className="footer-contact-brand">The Flavor Factory</div>
             <div>
               <a href="https://maps.google.com/?q=2058%20Second%20Street%2C%20Norco%2C%20CA%2092860">
                 2058 Second Street, Norco, CA 92860
               </a>
             </div>
-            <div><a href="tel:+19512739877">(951) 273-9877</a></div>
-            <div><a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a></div>
+            <div>
+              <a href="tel:+19512739877" onClick={() => trackEvent("phone_click", { location: "footer" })}>
+                (951) 273-9877
+              </a>
+            </div>
+            <div>
+              <a
+                href="mailto:samples@flavorfactory.net"
+                onClick={() => trackEvent("email_click", { location: "footer" })}
+              >
+                samples@flavorfactory.net
+              </a>
+            </div>
           </div>
         </div>
 
         <div>
           <div className="eyebrow">Quality</div>
-          <div className="footer-badge-row" aria-label="Certifications and facility programs">
-            {siteCopy.certifications.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-          <Link href="/request-samples" className="footer-cta">
-            Request a Sample
+          <p className="footer-quality-line">{siteCopy.qualityLine}</p>
+          <Link
+            href="/request-samples"
+            className="footer-cta"
+            onClick={() => trackEvent("request_sample_click", { location: "footer" })}
+          >
+            Request a Custom Sample
           </Link>
         </div>
+      </div>
+      <div className="container footer-service-links" aria-label="Flavor services">
+        {serviceLinks.map((item) => <Link href={item.href} key={item.label}>{item.label}</Link>)}
+      </div>
+      <div className="footer-social-row">
+        <a href="https://maps.google.com/?q=The+Flavor+Factory+2058+Second+Street+Norco+CA+92860" target="_blank" rel="noopener" className="footer-social-link">Google Maps</a>
+        <a href="https://www.facebook.com/DanTheFlavorFactory" target="_blank" rel="noopener" className="footer-social-link">Facebook</a>
+        <a href="https://www.linkedin.com/company/the-flavor-factory/" target="_blank" rel="noopener" className="footer-social-link">LinkedIn</a>
+        <a href="https://g.page/r/CcU-wmxp3I0XEBM/review" target="_blank" rel="noopener" className="footer-review-link">Leave a Google Review ↗</a>
       </div>
       <div className="copyright">© 2026 The Flavor Factory</div>
     </footer>

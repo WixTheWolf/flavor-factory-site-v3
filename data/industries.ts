@@ -53,7 +53,7 @@ export const industries: Industry[] = [
     heroImage: flavorFactoryImages.industryOralCare,
     pressurePoint: "Impact and finish define the experience; there is no food to compete with.",
     summary: "Clean, high-impact profiles where freshness, cooling balance, and finish are the whole product. No background flavors to hide behind.",
-    applications: ["Fresh profiles", "Cooling balance", "Impact and finish", "Application-specific support"],
+    applications: ["Fresh profiles", "Cooling balance", "Impact and finish", "Support for the product system you are actually making"],
     ctaLabel: "Maximize impact and finish",
   },
   {

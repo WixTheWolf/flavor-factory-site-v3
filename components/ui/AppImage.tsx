@@ -11,6 +11,7 @@ type Props = {
   fill?: boolean;
   height?: number;
   priority?: boolean;
+  quality?: number;
   sizes?: string;
   style?: CSSProperties;
   width?: number;
@@ -26,6 +27,7 @@ export function AppImage({
   fill = true,
   height,
   priority = false,
+  quality = 90,
   sizes = DEFAULT_SIZES,
   style,
   width,
@@ -42,6 +44,7 @@ export function AppImage({
         width={width}
         height={height}
         sizes={sizes}
+        quality={quality}
         priority={priority}
         onError={() => setCurrentSrc(FALLBACK_SRC)}
       />
@@ -56,6 +59,7 @@ export function AppImage({
       alt={alt}
       fill
       sizes={sizes}
+      quality={quality}
       priority={priority}
       onError={() => setCurrentSrc(FALLBACK_SRC)}
     />

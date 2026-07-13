@@ -29,7 +29,7 @@ export function HeroSection() {
               {siteCopy.heroText}
             </p>
             <div className="hero-actions">
-              <Button href="/request-samples" variant="secondary">Request a Sample</Button>
+              <Button href="/request-samples" variant="secondary">Request a Custom Sample</Button>
               <Button href="/flavors">Explore Flavors</Button>
               <Button href="/contact" variant="secondary">Talk About Your Project</Button>
             </div>

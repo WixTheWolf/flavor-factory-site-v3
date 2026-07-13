@@ -3,12 +3,15 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { InsightBreadcrumbJsonLd } from "@/components/InsightBreadcrumbJsonLd";
+import { ArticleReadTracker } from "@/components/AnalyticsEvents";
 
 export const metadata: Metadata = {
   title: "Flavor Systems for High-Acid Beverages",
-  description: "How citric, malic, and phosphoric acid environments affect flavor compound stability, what hydrolizes over shelf life, and how to build profiles that hold through acidic beverage systems.",
+  description: "How citric, malic, and phosphoric acid environments affect flavor compound stability, what hydrolyzes over shelf life, and how to build profiles that hold through acidic beverage systems.",
   alternates: { canonical: "/insights/flavor-systems-high-acid-beverages" },
   openGraph: {
+    type: "article",
     url: "/insights/flavor-systems-high-acid-beverages",
     title: "Flavor Systems for High-Acid Beverages | The Flavor Factory",
     description: "How acid environments affect flavor compound stability and how to build profiles that hold over shelf life.",
@@ -22,6 +25,8 @@ export default function Article() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <InsightBreadcrumbJsonLd slug="flavor-systems-high-acid-beverages" />
+      <ArticleReadTracker slug="flavor-systems-high-acid-beverages" />
       <Header />
       <main>
         <section className="section clean-page">
@@ -34,13 +39,13 @@ export default function Article() {
             <div className="article-header">
               <div className="new-eyebrow">Beverage</div>
               <h1>Flavor Systems for High-Acid Beverages</h1>
-              <p className="article-deck">How citric, malic, and phosphoric acid environments affect flavor stability, what hydrolizes over shelf life, and how to build profiles that hold through an acidic beverage system.</p>
+              <p className="article-deck">How citric, malic, and phosphoric acid environments affect flavor stability, what hydrolyzes over shelf life, and how to build profiles that hold through an acidic beverage system.</p>
               <div className="article-meta"><span>The Flavor Factory</span><span>6 min read</span></div>
             </div>
             <div className="article-body">
               <h2>What the acid environment actually does</h2>
               <p>Most beverages fall between pH 2.5 and 4.5. That range is wide enough to create meaningfully different flavor stability profiles. At pH 3.0 (typical sports drink or lemonade), ester hydrolysis is a real shelf-life concern. At pH 2.5 (some energy drinks), the acid environment is harsh enough to degrade flavor compounds that would be perfectly stable at pH 4.0.</p>
-              <p>The primary mechanism is acid hydrolysis. Esters — which provide most of the bright, fruity top notes in beverage flavors — are formed from the reaction of an alcohol and a carboxylic acid, and that reaction is reversible in acidic conditions. The rate of hydrolysis accelerates as pH drops and as temperature increases. A flavor that holds through 90 days at pH 3.5 may not hold at pH 3.0 without reformulation.</p>
+              <p>The primary mechanism is acid hydrolysis. Esters. Which provide most of the bright, fruity top notes in beverage flavors. Are formed from the reaction of an alcohol and a carboxylic acid, and that reaction is reversible in acidic conditions. The rate of hydrolysis accelerates as pH drops and as temperature increases. A flavor that holds through 90 days at pH 3.5 may not hold at pH 3.0 without reformulation.</p>
               <h2>Acid type matters</h2>
               <p>Citric acid, malic acid, and phosphoric acid are the three most common acidulants in beverages, and each interacts differently with flavor systems. Citric acid is the most common and generally the most benign from a flavor interaction standpoint. Malic acid has a tart, green-apple character that adds to the total flavor profile and can read as slightly sharp in profiles that are already bright. Phosphoric acid in cola formulations suppresses certain flavor characteristics, which is part of why cola flavor development requires specific profiles built for that acid system.</p>
               <p>The acidulant type affects not just stability but flavor perception. A citrus flavor developed and approved in water may read differently in a malic acid system because the malic acid contributes its own acidity character. Developing in the actual acid system, not just at the target pH with citric acid, reduces reformulation rounds.</p>

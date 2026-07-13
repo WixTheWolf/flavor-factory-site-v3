@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { optionalIndustryFieldNames } from "@/data/industry-form-fields";
 
 const DEFAULT_TO = "samples@flavorfactory.net";
 
@@ -7,13 +8,20 @@ type SampleRequest = {
   company?: string;
   email?: string;
   phone?: string;
+  shippingAddress?: string;
   industry?: string;
+  otherApplication?: string;
+  productBase?: string;
   flavorTarget?: string;
   format?: string;
   declaration?: string;
+  challenge?: string;
+  benchmark?: string;
+  projectScale?: string;
   useLevel?: string;
   timeline?: string;
   notes?: string;
+  [key: string]: unknown;
 };
 
 function clean(value: unknown) {
@@ -28,38 +36,71 @@ function escapeHtml(value: string) {
     .replace(/"/g, "&quot;");
 }
 
-function makeText(values: Required<SampleRequest>) {
+function optionalIndustryRows(body: SampleRequest) {
+  const rows: [string, string][] = [];
+
+  const otherApplication = clean(body.otherApplication);
+  if (otherApplication) {
+    rows.push(["Other application detail", otherApplication]);
+  }
+
+  for (const name of optionalIndustryFieldNames) {
+    const value = clean(body[name]);
+    if (value) {
+      rows.push([name, value]);
+    }
+  }
+
+  return rows;
+}
+
+function makeText(values: Required<Pick<SampleRequest, "name" | "company" | "email">> & SampleRequest) {
+  const optionalRows = optionalIndustryRows(values);
   return [
     "New sample request from the website",
     "",
     `Name: ${values.name}`,
     `Company: ${values.company}`,
     `Email: ${values.email}`,
-    `Phone: ${values.phone || "Not provided"}`,
-    `Application or industry: ${values.industry || "Not provided"}`,
-    `Flavor target: ${values.flavorTarget || "Not provided"}`,
-    `Preferred format: ${values.format || "Not provided"}`,
-    `Flavor declaration: ${values.declaration || "Not provided"}`,
-    `Target use level: ${values.useLevel || "Not provided"}`,
-    `Timeline: ${values.timeline || "Not provided"}`,
+    `Phone: ${clean(values.phone) || "Not provided"}`,
+    `Shipping address: ${clean(values.shippingAddress) || "Not provided"}`,
+    `Product application: ${clean(values.industry) || "Not provided"}`,
+    `Finished product base: ${clean(values.productBase) || "Not provided"}`,
+    `Flavor target: ${clean(values.flavorTarget) || "Not provided"}`,
+    `Preferred format: ${clean(values.format) || "Not provided"}`,
+    `Label goal: ${clean(values.declaration) || "Not provided"}`,
+    `Primary challenge: ${clean(values.challenge) || "Not provided"}`,
+    `Benchmark or existing flavor: ${clean(values.benchmark) || "Not provided"}`,
+    `Project scale: ${clean(values.projectScale) || "Not provided"}`,
+    `Target use level: ${clean(values.useLevel) || "Not provided"}`,
+    `Timeline: ${clean(values.timeline) || "Not provided"}`,
+    ...(optionalRows.length > 0
+      ? ["", "Application-specific details:", ...optionalRows.map(([label, value]) => `${label}: ${value}`)]
+      : []),
     "",
     "Application and profile notes:",
-    values.notes || "Not provided",
+    clean(values.notes) || "Not provided",
   ].join("\n");
 }
 
-function makeHtml(values: Required<SampleRequest>) {
-  const rows = [
+function makeHtml(values: Required<Pick<SampleRequest, "name" | "company" | "email">> & SampleRequest) {
+  const rows: [string, string][] = [
     ["Name", values.name],
     ["Company", values.company],
     ["Email", values.email],
-    ["Phone", values.phone || "Not provided"],
-    ["Application or industry", values.industry || "Not provided"],
-    ["Flavor target", values.flavorTarget || "Not provided"],
-    ["Preferred format", values.format || "Not provided"],
-    ["Flavor declaration", values.declaration || "Not provided"],
-    ["Target use level", values.useLevel || "Not provided"],
-    ["Timeline", values.timeline || "Not provided"],
+    ["Phone", clean(values.phone) || "Not provided"],
+    ["Shipping address", clean(values.shippingAddress) || "Not provided"],
+    ["Product application", clean(values.industry) || "Not provided"],
+    ["Finished product base", clean(values.productBase) || "Not provided"],
+    ["Flavor target", clean(values.flavorTarget) || "Not provided"],
+    ["Preferred format", clean(values.format) || "Not provided"],
+    ["Label goal", clean(values.declaration) || "Not provided"],
+    ["Primary challenge", clean(values.challenge) || "Not provided"],
+    ["Benchmark or existing flavor", clean(values.benchmark) || "Not provided"],
+    ["Project scale", clean(values.projectScale) || "Not provided"],
+    ["Target use level", clean(values.useLevel) || "Not provided"],
+    ["Timeline", clean(values.timeline) || "Not provided"],
+    ...optionalIndustryRows(values),
   ];
 
   return `
@@ -78,7 +119,7 @@ function makeHtml(values: Required<SampleRequest>) {
           .join("")}
       </table>
       <h2 style="font-size:16px;margin:20px 0 8px">Application and profile notes</h2>
-      <p style="white-space:pre-wrap;margin:0">${escapeHtml(values.notes || "Not provided")}</p>
+      <p style="white-space:pre-wrap;margin:0">${escapeHtml(clean(values.notes) || "Not provided")}</p>
     </div>
   `;
 }
@@ -96,22 +137,29 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const values: Required<SampleRequest> = {
+  const values = {
+    ...body,
     name: clean(body.name),
     company: clean(body.company),
     email: clean(body.email),
     phone: clean(body.phone),
+    shippingAddress: clean(body.shippingAddress),
     industry: clean(body.industry),
+    otherApplication: clean(body.otherApplication),
+    productBase: clean(body.productBase),
     flavorTarget: clean(body.flavorTarget),
     format: clean(body.format),
     declaration: clean(body.declaration),
+    challenge: clean(body.challenge),
+    benchmark: clean(body.benchmark),
+    projectScale: clean(body.projectScale),
     useLevel: clean(body.useLevel),
     timeline: clean(body.timeline),
     notes: clean(body.notes),
   };
 
-  if (!values.name || !values.company || !values.email) {
-    return NextResponse.json({ error: "Name, company, and email are required" }, { status: 400 });
+  if (!values.name || !values.company || !values.email || !values.shippingAddress) {
+    return NextResponse.json({ error: "Name, company, email, and shipping address are required" }, { status: 400 });
   }
 
   if (!apiKey) {

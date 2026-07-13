@@ -1,7 +1,17 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { HeroVideo } from "@/components/HeroVideo";
+import { Logo } from "@/components/ui/Logo";
 
 export function Hero() {
+  const trustItems = [
+    "3-5 Day First Samples",
+    "Family-Owned in Norco, CA",
+    "Liquid & Powder Flavors",
+    "Low Minimums",
+    "Kosher, Halal & Organic-Compliant Options",
+  ] as const;
+
   return (
     <section className="new-hero">
       <HeroVideo
@@ -11,17 +21,19 @@ export function Hero() {
       />
       <div className="home-shell new-hero-content">
         <div className="new-hero-copy">
+          <Logo className="hero-brand-logo" />
           <h1 className="display">Good on the Bench Is Not Good Enough.</h1>
           <p className="new-hero-text">
-            We develop liquid and powder flavors around how your product actually performs — in your base, at your processing temperature, on your label.
+            Custom liquid and powder flavors developed for your finished product: your base, process, label goals, and production path.
           </p>
           <div className="new-actions">
-            <Button href="/request-samples">Request a Sample</Button>
+            <Button href="/request-samples">Request a Custom Sample</Button>
             <Button href="/capabilities" variant="secondary">See How It Works</Button>
           </div>
-          <div className="new-hero-trust">
-            3-5 day samples <span /> Family-owned, Norco, CA <span /> SQF Facility <span /> GMP Practices <span /> Kosher &amp; Halal Options <span /> Organic-Compliant Capabilities <span /> FDA Registered Facility <span /> Low minimums
-          </div>
+          <Link className="new-hero-tertiary" href="/flavors">Explore Flavor Library</Link>
+          <ul className="new-hero-trust" aria-label="Key company facts">
+            {trustItems.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </div>
       </div>
     </section>

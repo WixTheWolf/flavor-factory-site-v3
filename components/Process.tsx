@@ -30,12 +30,12 @@ export function Process() {
         <div className="new-split-copy">
           <div className="new-eyebrow">How It Works</div>
           <h2>Structured development from brief to batch.</h2>
-          <a className="new-inline-cta" href="/request-samples">Request a Sample</a>
+          <a className="new-inline-cta" href="/request-samples">Request a Custom Sample</a>
         </div>
         <div className="new-process-panel">
           <div className="new-process-image">
             <AppImage
-              src="/images/flavor-factory/About-Your-Project.png"
+              src="/images/flavor-factory/about-your-project.png"
               alt="Project brief, sample bottles, and formulation tools"
               sizes="(max-width: 980px) calc(100vw - 40px), 44vw"
               style={{ objectPosition: "58% center" }}

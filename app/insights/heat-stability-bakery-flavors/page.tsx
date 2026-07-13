@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { InsightBreadcrumbJsonLd } from "@/components/InsightBreadcrumbJsonLd";
+import { ArticleReadTracker } from "@/components/AnalyticsEvents";
 
 export const metadata: Metadata = {
   title: "Heat Stability in Bakery Flavors: What Actually Breaks Down at 350F",
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
     "Most flavor compounds are volatile at oven temperatures. Here is what degrades, what survives, and how to build a bakery flavor that performs at the finished product stage.",
   alternates: { canonical: "/insights/heat-stability-bakery-flavors" },
   openGraph: {
+    type: "article",
     url: "/insights/heat-stability-bakery-flavors",
     title: "Heat Stability in Bakery Flavors | The Flavor Factory",
     description: "What flavor compounds break down at 350F, and how to build bakery flavors that survive the oven.",
@@ -30,6 +33,8 @@ export default function Article() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <InsightBreadcrumbJsonLd slug="heat-stability-bakery-flavors" />
+      <ArticleReadTracker slug="heat-stability-bakery-flavors" />
       <Header />
       <main>
         <section className="section clean-page">

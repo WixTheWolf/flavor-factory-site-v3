@@ -34,9 +34,12 @@ import { siteImages } from "@/data/site-images";
 import { AppImage } from "@/components/ui/AppImage";
 import { PageHero } from "@/components/PageHero";
 
+
+const BC_INDUSTRIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Industries","item":"https://flavorfactory.net/industries"}]};
 export default function IndustriesPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_INDUSTRIES) }} />
       <Header />
       <main>
         <section className="section clean-page">
@@ -44,12 +47,12 @@ export default function IndustriesPage() {
             <PageHero
               eyebrow="Industries"
               title="Eight categories. One development standard."
-              copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief — they're the starting point, not an obstacle to work around."
+              copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief. They're the starting point, not an obstacle to work around."
               image={siteImages.industriesHero}
-              imageAlt="Editorial arrangement of food and beverage products across ten flavor categories"
+              imageAlt="Editorial arrangement of food and beverage products across eight industry categories"
               imagePosition="center center"
               primaryHref="/request-samples"
-              primaryLabel="Request a Sample"
+              primaryLabel="Request a Custom Sample"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
             />

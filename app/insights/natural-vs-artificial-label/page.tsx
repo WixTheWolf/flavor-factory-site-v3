@@ -3,12 +3,15 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { InsightBreadcrumbJsonLd } from "@/components/InsightBreadcrumbJsonLd";
+import { ArticleReadTracker } from "@/components/AnalyticsEvents";
 
 export const metadata: Metadata = {
   title: "Natural vs Natural and Artificial vs Artificial: What Your Label Is Actually Saying",
   description: "The three declaration types have specific regulatory meanings that affect ingredient sourcing, cost, and what you can and cannot claim. Here is what each means in practice.",
   alternates: { canonical: "/insights/natural-vs-artificial-label" },
   openGraph: {
+    type: "article",
     url: "/insights/natural-vs-artificial-label",
     title: "Natural vs Artificial Flavor Declarations | The Flavor Factory",
     description: "What natural, natural and artificial, and artificial flavor declarations actually mean for sourcing, cost, and labeling.",
@@ -22,6 +25,8 @@ export default function Article() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <InsightBreadcrumbJsonLd slug="natural-vs-artificial-label" />
+      <ArticleReadTracker slug="natural-vs-artificial-label" />
       <Header />
       <main>
         <section className="section clean-page">
@@ -39,9 +44,9 @@ export default function Article() {
             </div>
             <div className="article-body">
               <h2>The regulatory definition of natural flavor</h2>
-              <p>Under 21 CFR 101.22, a natural flavor is defined as the essential oil, oleoresin, essence or extractive, protein hydrolysate, distillate, or any product of roasting, heating, or enzymolysis that is derived from a plant, animal, seafood, poultry, or dairy product — and whose function is flavoring rather than nutritional. The source of the flavor compound has to be a natural starting material, but the processing steps to extract and concentrate that compound can be extensive. Natural vanilla flavor, for example, can involve significant processing of vanilla bean extract. What matters is the source, not the simplicity of the manufacturing process.</p>
+              <p>Under 21 CFR 101.22, a natural flavor is defined as the essential oil, oleoresin, essence or extractive, protein hydrolysate, distillate, or any product of roasting, heating, or enzymolysis that is derived from a plant, animal, seafood, poultry, or dairy product. And whose function is flavoring rather than nutritional. The source of the flavor compound has to be a natural starting material, but the processing steps to extract and concentrate that compound can be extensive. Natural vanilla flavor, for example, can involve significant processing of vanilla bean extract. What matters is the source, not the simplicity of the manufacturing process.</p>
               <h2>What artificial means</h2>
-              <p>An artificial flavor is any flavor compound not meeting the natural definition — typically synthesized from petrochemical precursors rather than derived from natural starting materials. Ethyl vanillin, the most common synthetic vanilla compound, is made from guaiacol derived from petroleum. It is not a natural flavor. Vanillin derived from the fermentation of ferulic acid from rice bran can be labeled natural because the source is natural. The compound is identical. The label is not.</p>
+              <p>An artificial flavor is any flavor compound not meeting the natural definition. Typically synthesized from petrochemical precursors rather than derived from natural starting materials. Ethyl vanillin, the most common synthetic vanilla compound, is made from guaiacol derived from petroleum. It is not a natural flavor. Vanillin derived from the fermentation of ferulic acid from rice bran can be labeled natural because the source is natural. The compound is identical. The label is not.</p>
               <h2>Natural and artificial: the practical middle ground</h2>
               <p>Natural and artificial (N&A) flavors combine both types in one formulation. This declaration is commonly used when a natural base provides the primary character and a synthetic compound is added for cost, stability, or intensity reasons. An N&A strawberry flavor might use natural strawberry extract for authentic character and add synthetic ethyl acetate to boost the top note at a fraction of the cost of additional natural extract.</p>
               <p>N&A is often the most practical starting point for applications where natural declaration is preferred but cost is constrained, or where a full natural formula cannot achieve the target intensity or stability profile.</p>
@@ -52,7 +57,7 @@ export default function Article() {
             </div>
           </div>
         </section>
-        <CTA eyebrow="Label Goals?" title="Tell us your declaration requirement. We build around it." copy="Specify natural, N&A, or artificial at the project start. Samples in 3-5 days." href="/request-samples" label="Request a Sample" />
+        <CTA eyebrow="Label Goals?" title="Tell us your declaration requirement. We build around it." copy="Specify natural, N&A, or artificial at the project start. Samples in 3-5 days." href="/request-samples" label="Request a Custom Sample" />
       </main>
       <Footer />
     </>

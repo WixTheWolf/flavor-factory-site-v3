@@ -4,6 +4,7 @@ import type { Flavor } from "@/lib/types";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { useShortlist } from "@/lib/shortlist";
+import { trackEvent } from "@/lib/analytics";
 
 function industryLabel(value: string) {
   return value
@@ -35,6 +36,7 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
       remove(flavor.id);
     } else {
       add({ id: flavor.id, name: flavor.name, family: flavor.family, format: flavor.format });
+      trackEvent("flavor_add_to_request", { flavor: flavor.name, family: flavor.family });
     }
   }
 

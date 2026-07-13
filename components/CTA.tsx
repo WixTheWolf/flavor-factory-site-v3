@@ -10,18 +10,18 @@ type CTAProps = {
 };
 
 export function CTA({
-  eyebrow = "Ready to build?",
-  title = "Tell us the application. We'll handle the rest.",
-  copy = "Share your application, base, and label goals. We develop and produce in-house — same team, same facility.",
+  eyebrow = "Have a flavor problem to solve?",
+  title = "Tell us what you're making. We'll build around it.",
+  copy = "Share the application, base, target profile, format, and label goals. We'll help choose the right starting point.",
   href = "/request-samples",
-  label = "Request a Sample",
+  label = "Request a Custom Sample",
 }: CTAProps) {
   return (
     <section className="new-section new-final-cta">
       <div className="home-shell new-final-cta-inner">
         <div className="new-final-cta-bg" aria-hidden="true">
           <AppImage
-            src="/images/flavor-factory/12.%20CTA%20Section%20%E2%80%94%20Background.png"
+            src="/images/flavor-factory/cta-background.png"
             alt=""
             sizes="(max-width: 900px) calc(100vw - 48px), min(1280px, calc(100vw - 56px))"
             style={{ objectPosition: "60% center" }}

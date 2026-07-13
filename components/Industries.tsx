@@ -30,7 +30,7 @@ export function Industries() {
             </RevealItem>
           ))}
         </RevealGroup>
-        <Link className="new-inline-cta" href="/industries">See all industries →</Link>
+        <Link className="new-inline-cta" href="/industries">See all industries</Link>
       </div>
     </section>
   );

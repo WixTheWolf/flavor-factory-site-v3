@@ -11,8 +11,9 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { industryDetails } from "@/data/industry-details";
 import { demoFlavors } from "@/data/demo-flavors";
 import type { IndustryKey } from "@/lib/types";
-
-const BASE = "https://flavorfactory.net";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/JsonLd";
+import { IndustryViewed } from "@/components/AnalyticsEvents";
 
 export function generateStaticParams() {
   return industries.map((ind) => ({ slug: ind.key }));
@@ -27,7 +28,7 @@ export async function generateMetadata({
   if (!industry) return {};
 
   const title = `${industry.name} Flavor Development`;
-  const description = industry.summary;
+  const description = `${industry.summary} Custom liquid and powder ${industry.name.toLowerCase()} flavors from The Flavor Factory in Norco, California. Low minimums. First samples in 3-5 business days.`;
 
   return {
     title,
@@ -65,30 +66,25 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
     .filter((f) => f.industries.includes(params.slug as IndustryKey))
     .slice(0, 6);
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-      { "@type": "ListItem", position: 2, name: "Industries", item: `${BASE}/industries` },
-      { "@type": "ListItem", position: 3, name: industry.name, item: `${BASE}/industries/${params.slug}` },
-    ],
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: details.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.a },
-    })),
-  };
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Industries", path: "/industries" },
+    { name: industry.name, path: `/industries/${params.slug}` },
+  ]);
+  const faqs = faqSchema(details.faqs);
+  const service = serviceSchema({
+    name: `${industry.name} Flavor Development`,
+    description: industry.summary,
+    path: `/industries/${params.slug}`,
+    industry: industry.name,
+  });
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd data={breadcrumbs} />
+      <JsonLd data={faqs} />
+      <JsonLd data={service} />
+      <IndustryViewed industry={params.slug} />
       <Header />
       <main>
         <section className="section clean-page">
@@ -170,6 +166,20 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
               </Reveal>
             )}
 
+            {params.slug === "pharmaceutical" && (
+              <Reveal>
+                <section className="industry-related-links">
+                  <div className="new-eyebrow">Related resources</div>
+                  <h2 className="section-title">Pharmaceutical flavor development resources.</h2>
+                  <div className="footer-links">
+                    <Link href="/pharmaceutical-flavors">Pharmaceutical flavor services</Link>
+                    <Link href="/insights/pharmaceutical-palatability">Palatability article</Link>
+                    <Link href="/case-studies/pharmaceutical-palatability-liquid-dose">Representative challenge</Link>
+                  </div>
+                </section>
+              </Reveal>
+            )}
+
             <Reveal>
               <section className="industry-faq-section">
                 <div className="section-head">
@@ -195,8 +205,8 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
           eyebrow={industry.name}
           title={`Start a ${industry.name.toLowerCase()} flavor project.`}
           copy={`${details.sampleNote} Samples typically ship in 3-5 business days.`}
-          href="/request-samples"
-          label="Request a Sample"
+          href={`/request-samples?industry=${params.slug}`}
+          label="Request a Custom Sample"
         />
       </main>
       <Footer />

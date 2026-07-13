@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { InsightBreadcrumbJsonLd } from "@/components/InsightBreadcrumbJsonLd";
+import { ArticleReadTracker } from "@/components/AnalyticsEvents";
 
 export const metadata: Metadata = {
   title: "Masking Off-Notes in Plant-Based Protein",
@@ -10,9 +12,10 @@ export const metadata: Metadata = {
     "Pea protein, soy, and oat each have distinct off-note profiles. This is how masking flavor systems are built to address the source of the problem rather than covering it with sweetness.",
   alternates: { canonical: "/insights/masking-off-notes-plant-based-protein" },
   openGraph: {
+    type: "article",
     url: "/insights/masking-off-notes-plant-based-protein",
     title: "Masking Off-Notes in Plant-Based Protein | The Flavor Factory",
-    description: "How masking flavor systems work for pea protein, soy, and oat — and why sweetness alone does not solve the problem.",
+    description: "How masking flavor systems work for pea protein, soy, and oat. And why sweetness alone does not solve the problem.",
     images: [{ url: "/og?title=Masking+Off-Notes+in+Plant-Based+Protein", width: 1200, height: 630, alt: "Masking Off-Notes in Plant-Based Protein" }],
   },
 };
@@ -30,6 +33,8 @@ export default function Article() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <InsightBreadcrumbJsonLd slug="masking-off-notes-plant-based-protein" />
+      <ArticleReadTracker slug="masking-off-notes-plant-based-protein" />
       <Header />
       <main>
         <section className="section clean-page">
@@ -72,7 +77,7 @@ export default function Article() {
                 True masking works by targeting the specific off-note compounds or receptor systems being activated. The two main approaches are:
               </p>
               <p>
-                <strong>Receptor-level masking.</strong> Certain compounds block or compete with bitter taste receptors (TAS2Rs), reducing the perception of bitterness without adding sweetness. These are not flavors in the traditional sense — they are functional masking agents that change what the receptor perceives. They work best when the off-note is primarily bitter rather than metallic or aromatic.
+                <strong>Receptor-level masking.</strong> Certain compounds block or compete with bitter taste receptors (TAS2Rs), reducing the perception of bitterness without adding sweetness. These are not flavors in the traditional sense. They are functional masking agents that change what the receptor perceives. They work best when the off-note is primarily bitter rather than metallic or aromatic.
               </p>
               <p>
                 <strong>Aromatic diversion.</strong> This approach uses flavor compounds that compete with or distract from the off-note in the aromatic channel. A vanilla masking system for pea protein works partly by providing a dominant, pleasant aroma that the brain processes preferentially over the hexanal-derived notes. The off-note is still there, but its perceptual weight is reduced relative to the dominant positive character.

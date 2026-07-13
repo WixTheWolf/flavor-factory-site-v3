@@ -8,7 +8,7 @@ export const flavorNotes: Record<string, string> = {
   // ── Berry ────────────────────────────────────────────────────────────────
 
   "acai-berry-powder":
-    "Earthy, slightly astringent acai powder with subtle berry and grape undertones. Built for nutraceutical masking work — pairs well with other berry notes to reduce metallic and bitter character from actives.",
+    "Earthy, slightly astringent acai powder with subtle berry and grape undertones. Built for nutraceutical masking work. Pairs well with other berry notes to reduce metallic and bitter character from actives.",
 
   "black-currant-liquid":
     "Deep, jammy black currant with wine-like complexity and a dry finish. Strong identity in premium beverages and confectionery; keep use levels moderate or astringency builds.",
@@ -41,7 +41,7 @@ export const flavorNotes: Record<string, string> = {
     "Berry-based masking system in powder format targeting nutraceutical off-notes including metallic, bitter, and chalky character. Address the specific active first, then dial flavor to taste.",
 
   "pomegranate-liquid":
-    "Tart, slightly tannic pomegranate with a dry, wine-adjacent finish. Works in functional beverages and gummies — use levels moderate to manage astringency in the finished product.",
+    "Tart, slightly tannic pomegranate with a dry, wine-adjacent finish. Works in functional beverages and gummies. Use levels moderate to manage astringency in the finished product.",
 
   "raspberry-liquid":
     "Sharp, seedy raspberry with good acid punch at 1-400 concentration. Start use levels low and scale carefully. Strong identity in confectionery, beverages, and dairy.",
@@ -61,27 +61,27 @@ export const flavorNotes: Record<string, string> = {
     "Clean, moderately tannic black tea with restrained astringency and a slight malty note. Works as a background element in premium beverages and as a base for chai-style compound profiles.",
 
   "elderflower-liquid":
-    "Delicate, floral elderflower with a light honeyed sweetness and green-floral character. Use levels are critical — a little goes far. Works in premium beverages and specialty confectionery.",
+    "Delicate, floral elderflower with a light honeyed sweetness and green-floral character. Use levels are critical. A little goes far. Works in premium beverages and specialty confectionery.",
 
   "hibiscus-tea-liquid":
     "Bright, tart hibiscus with cranberry-adjacent acidity and a floral finish. Strong identity in functional beverages and gummies where a distinctive, tart-fruity note adds credibility.",
 
   "jasmine-tea-liquid":
-    "Soft, floral jasmine over a light tea base. Easily overwhelmed by bold flavor partners — keep surrounding notes subtle. Works in premium beverages and specialty confectionery.",
+    "Soft, floral jasmine over a light tea base. Easily overwhelmed by bold flavor partners. Keep surrounding notes subtle. Works in premium beverages and specialty confectionery.",
 
   "lavender-liquid":
-    "Soft herbal lavender with floral and slightly medicinal notes. Use levels are critical — too much reads soapy. Works in premium bakery, dairy, and wellness-positioned beverages.",
+    "Soft herbal lavender with floral and slightly medicinal notes. Use levels are critical. Too much reads soapy. Works in premium bakery, dairy, and wellness-positioned beverages.",
 
   "matcha-green-tea-liquid":
     "Earthy, vegetal matcha with a slightly bitter, grassy character and a sweet finish. Works in premium beverages, dairy, and functional applications where authentic tea character supports the product story.",
 
   "rose-liquid":
-    "Delicate, floral rose with a slightly waxy, perfumed character. Use levels are very critical — too high reads floral-off or soapy. Works in premium confectionery and specialty beverages.",
+    "Delicate, floral rose with a slightly waxy, perfumed character. Use levels are very critical. Too high reads floral-off or soapy. Works in premium confectionery and specialty beverages.",
 
   // ── Candy & Confectionery ─────────────────────────────────────────────────
 
   "bubble-gum-liquid":
-    "Sweet, fruity, high-impact gum character built for confectionery. Does not map to any natural fruit — it's a pure candy profile that reads artificial in food-format applications outside confectionery.",
+    "Sweet, fruity, high-impact gum character built for confectionery. Does not map to any natural fruit. It's a pure candy profile that reads artificial in food-format applications outside confectionery.",
 
   "cotton-candy-liquid":
     "Pure spun-sugar sweetness with no specific fruit direction. Works in confectionery and novelty applications; also useful as a very-low-level sweetness enhancer that doesn't add fruit character.",
@@ -101,19 +101,19 @@ export const flavorNotes: Record<string, string> = {
     "Warm, buttery brown sugar with a creamy, round finish. Works well in confectionery, dairy, and protein powder applications where a soft, sweet dessert character is needed without full chocolate depth.",
 
   "caramel-liquid":
-    "Clean, mid-tone caramel with balanced cooked-sugar sweetness and a smooth finish. Works across bakery, confectionery, dairy, and beverage — one of the most versatile brown notes in the library.",
+    "Clean, mid-tone caramel with balanced cooked-sugar sweetness and a smooth finish. Works across bakery, confectionery, dairy, and beverage. One of the most versatile brown notes in the library.",
 
   "caramel-popcorn-liquid":
     "Sweet caramel with a light popcorn character and a warm, faintly salty finish. Works in popcorn coatings, snack seasonings, and dessert-style confectionery.",
 
   "chocolate-liquid":
-    "Clean, mid-roast chocolate with balanced bitterness and sweetness. The dark variant adds more roasted depth. Works across confectionery, dairy, and bakery — test in the fat system of the finished product.",
+    "Clean, mid-roast chocolate with balanced bitterness and sweetness. The dark variant adds more roasted depth. Works across confectionery, dairy, and bakery. Test in the fat system of the finished product.",
 
   "chocolate-milk-liquid":
     "Sweet, rounded chocolate milk profile with soft dairy notes. Built for RTD chocolate beverage and protein powder applications where a drinkable chocolate profile, not a full-chocolate flavor, is the target.",
 
   "cocoa-powder":
-    "Pure, unsweetened cocoa with a slightly bitter, earthy finish in powder format. Works as a foundation in dry mixes — typically used with a sweetener complement since it contributes zero sweetness.",
+    "Pure, unsweetened cocoa with a slightly bitter, earthy finish in powder format. Works as a foundation in dry mixes. Typically used with a sweetener complement since it contributes zero sweetness.",
 
   "honey-liquid":
     "Floral, warm honey with a natural sweetness that reads authentic rather than candy-sweet. Works in beverages, dairy, and bakery as both a primary profile and a modifier to round out other notes.",
@@ -128,7 +128,7 @@ export const flavorNotes: Record<string, string> = {
     "Deep, caramelized sugar with a nutty, slightly bitter finish. Works in premium confectionery and dairy applications where a more complex brown note is needed beyond standard caramel.",
 
   "white-chocolate-liquid":
-    "Sweet, creamy, cocoa-butter-forward profile with vanilla undertones. Works in confectionery coatings and dairy applications — fat compatibility matters, so test in the finished matrix.",
+    "Sweet, creamy, cocoa-butter-forward profile with vanilla undertones. Works in confectionery coatings and dairy applications. Fat compatibility matters, so test in the finished matrix.",
 
   // ── Citrus ────────────────────────────────────────────────────────────────
 
@@ -139,7 +139,7 @@ export const flavorNotes: Record<string, string> = {
     "Punchy, sour-sweet calamansi with lime and orange character and a bright, clean finish. Strong identity in functional beverages and specialty confectionery.",
 
   "electrolyte-lemon-masking-liquid":
-    "Lemon-based masking system targeting electrolyte mineral bitterness and metallic off-notes. Built for sports drinks and hydration applications — address the mineral load specifically, not just general sweetness.",
+    "Lemon-based masking system targeting electrolyte mineral bitterness and metallic off-notes. Built for sports drinks and hydration applications. Address the mineral load specifically, not just general sweetness.",
 
   "ginger-lime-liquid":
     "Sharp, fresh lime with a ginger heat overlay. Works in functional beverages, cocktail mixers, and specialty confectionery where a compound citrus-spice note is the target.",
@@ -157,7 +157,7 @@ export const flavorNotes: Record<string, string> = {
     "Bright, clean lemon with a sharp top note and good acid character. Versatile across beverage, bakery, confectionery, and oral care. One of the most application-flexible citrus profiles in the library.",
 
   "lemon-lime-liquid":
-    "Balanced citrus blend with more body than straight lemon at 10X concentration. Performs well in beverage and confectionery at standard dilution — start use level calculation relative to the concentration.",
+    "Balanced citrus blend with more body than straight lemon at 10X concentration. Performs well in beverage and confectionery at standard dilution. Start use level calculation relative to the concentration.",
 
   "mandarin-orange-liquid":
     "Softer, rounder citrus than standard orange with more floral notes and lower acidity. Works well in dairy and light confectionery where orange reads too assertive.",
@@ -178,15 +178,15 @@ export const flavorNotes: Record<string, string> = {
     "Bright, sweet tangerine with clean top notes and a less pithy finish than standard orange. Performs well in beverages and light confectionery.",
 
   "vitamin-orange-masking-powder":
-    "Orange-based masking system in powder format targeting vitamin B complex and mineral off-notes. Formulated for fortified beverages and supplement applications — confirm active profile before finalizing use level.",
+    "Orange-based masking system in powder format targeting vitamin B complex and mineral off-notes. Formulated for fortified beverages and supplement applications. Confirm active profile before finalizing use level.",
 
   "yuzu-citrus-liquid":
-    "Complex, floral yuzu with citrus, tropical, and herbal notes — distinctive and premium. Low use levels deliver strong character. Works in specialty beverages and confectionery where yuzu is a brand story.",
+    "Complex, floral yuzu with citrus, tropical, and herbal notes. Distinctive and premium. Low use levels deliver strong character. Works in specialty beverages and confectionery where yuzu is a brand story.",
 
   // ── Coffee & Beverage ─────────────────────────────────────────────────────
 
   "coffee-liquid":
-    "Clean, medium-roast coffee with balanced bitterness and body. Works in beverages, dairy, and bakery. Adjust use level relative to the sweetener system — sweetness masks coffee bitterness non-linearly.",
+    "Clean, medium-roast coffee with balanced bitterness and body. Works in beverages, dairy, and bakery. Adjust use level relative to the sweetener system. Sweetness masks coffee bitterness non-linearly.",
 
   "cola-liquid":
     "Classic cola at concentrate strength with citrus, cinnamon, and vanilla notes. Highly versatile in syrup and RTD applications; confirm dilution ratio before development.",
@@ -195,7 +195,7 @@ export const flavorNotes: Record<string, string> = {
     "Smooth, low-acid cold brew with chocolate undertones and less bitterness than hot-brew profiles. Built for RTD beverage applications where body and roundness matter more than brightness.",
 
   "energy-drink-liquid":
-    "Sharp, slightly tart energy drink character with citrus and mixed berry notes. Built for functional beverage applications where the energy drink profile — not a fruit profile — is the target.",
+    "Sharp, slightly tart energy drink character with citrus and mixed berry notes. Built for functional beverage applications where the energy drink profile. Not a fruit profile. Is the target.",
 
   "espresso-liquid":
     "Strong, dark-roast concentrated coffee with concentrated bitterness and roasted character. Works well in syrup applications, dairy, and confectionery where coffee impact needs to punch through.",
@@ -221,10 +221,10 @@ export const flavorNotes: Record<string, string> = {
   // ── Custom & Signature ────────────────────────────────────────────────────
 
   "custom-beverage-profile-match-liquid":
-    "Beverage matching service — we reverse-engineer and reformulate a target profile around your specific base, sweetener, and processing system. Share the benchmark and application details.",
+    "Beverage matching service. We reverse-engineer and reformulate a target profile around your specific base, sweetener, and processing system. Share the benchmark and application details.",
 
   "custom-masking-system-liquid":
-    "Custom masking system engineered around a specific active ingredient combination, excipient stack, and palatability goal. Not a starting-point flavor — developed entirely around your brief.",
+    "Custom masking system engineered around a specific active ingredient combination, excipient stack, and palatability goal. Not a starting-point flavor. Developed entirely around your brief.",
 
   "custom-signature-fruit-liquid":
     "Proprietary fruit direction developed from the ground up around a specific brief, base, and application. Share the target character, matrix, and any reference products to start the conversation.",
@@ -235,7 +235,7 @@ export const flavorNotes: Record<string, string> = {
     "Sweet, frosting-forward vanilla cake with confetti-adjacent sweetness. Built for ice cream, confectionery, and RTD protein applications where a celebration-cake profile is the concept.",
 
   "butter-popcorn-liquid":
-    "Rich, buttery popcorn character in oil-soluble liquid format. Built for popcorn coating applications — moderate use levels to avoid artificial character at higher loads.",
+    "Rich, buttery popcorn character in oil-soluble liquid format. Built for popcorn coating applications. Moderate use levels to avoid artificial character at higher loads.",
 
   "marshmallow-liquid":
     "Sweet, soft vanilla-adjacent marshmallow character with a pillowy, rounded sweetness. Works in confectionery fillings, ice cream, and protein powder applications.",
@@ -258,7 +258,7 @@ export const flavorNotes: Record<string, string> = {
     "Light, fresh cucumber and melon blend with a clean, slightly green character. Works in functional beverages and wellness-positioned applications where a refreshing, non-fruit-sweet note is needed.",
 
   "watermelon-liquid":
-    "Fresh, green-rind watermelon with light natural sweetness. More naturalistic than candy watermelon — works in beverages and light confectionery where a fresh summer profile is the target.",
+    "Fresh, green-rind watermelon with light natural sweetness. More naturalistic than candy watermelon. Works in beverages and light confectionery where a fresh summer profile is the target.",
 
   "watermelon-candy-liquid":
     "Artificially sweet, high-impact watermelon candy profile. Distinct from natural watermelon. Built for high-sugar confectionery and novelty beverage applications where candy recognition is the goal.",
@@ -266,16 +266,16 @@ export const flavorNotes: Record<string, string> = {
   // ── Mint & Cooling ────────────────────────────────────────────────────────
 
   "mint-liquid":
-    "Clean, balanced spearmint-peppermint blend with moderate cooling. Versatile in confectionery, oral care, and functional beverages — a good starting point before selecting a more specific mint direction.",
+    "Clean, balanced spearmint-peppermint blend with moderate cooling. Versatile in confectionery, oral care, and functional beverages. A good starting point before selecting a more specific mint direction.",
 
   "mouth-wash-liquid":
-    "High-impact mint blend with balanced cooling, clean freshness, and a lasting aftertaste. Built for mouthwash applications — evaluates differently from food-format mint, so test in the finished system.",
+    "High-impact mint blend with balanced cooling, clean freshness, and a lasting aftertaste. Built for mouthwash applications. Evaluates differently from food-format mint, so test in the finished system.",
 
   "oral-care-cool-mint-liquid":
     "Balanced cooling mint formulated for toothpaste and rinse applications. Accounts for SLS interaction and the full brushing experience rather than initial taste alone.",
 
   "peppermint-liquid":
-    "Sharp, high-menthol peppermint with strong, clean cooling. Oral care and confectionery standard — adjust use level carefully. It goes from refreshing to medicinal in a narrow window.",
+    "Sharp, high-menthol peppermint with strong, clean cooling. Oral care and confectionery standard. Adjust use level carefully. It goes from refreshing to medicinal in a narrow window.",
 
   "toothpaste-mint-liquid":
     "Clean, slightly sweet mint built for SLS-containing toothpaste matrices. Formulated for the full rinse experience including the aftertaste, not just the initial application.",
@@ -321,7 +321,7 @@ export const flavorNotes: Record<string, string> = {
     "Soft, slightly floral pear with mild sweetness and low acidity. Works well in bakery fillings and dairy where apple would read too sharp or dominant.",
 
   "sour-apple-liquid":
-    "Extreme tart, candy-style sour green apple. Built for sour confectionery applications. Distinct from naturalistic green apple — confirm that a candy-style profile is the right direction.",
+    "Extreme tart, candy-style sour green apple. Built for sour confectionery applications. Distinct from naturalistic green apple. Confirm that a candy-style profile is the right direction.",
 
   "spearmint-liquid":
     "Sweet, low-menthol spearmint with smooth, gentle cooling. Preferred over peppermint in confectionery and gum applications where a softer, less assertive mint experience is needed.",
@@ -381,7 +381,7 @@ export const flavorNotes: Record<string, string> = {
     "Warm spice blend with black tea base, cinnamon, cardamom, and ginger. Works in beverage, dairy, and bakery applications where a layered, warming spice compound is the target.",
 
   "cinnamon-liquid":
-    "Clean, sharp cinnamon oil with strong top note character. Oil-soluble format; high use levels can cause irritation in some applications — confirm tolerance and use level range before proceeding.",
+    "Clean, sharp cinnamon oil with strong top note character. Oil-soluble format; high use levels can cause irritation in some applications. Confirm tolerance and use level range before proceeding.",
 
   "cinnamon-toothpaste-liquid":
     "Warm, spicy cinnamon built for oral care applications. Works with toothpaste bases and delivers lasting warmth without excess irritation at standard use levels.",
@@ -392,7 +392,7 @@ export const flavorNotes: Record<string, string> = {
     "Soft stone fruit with a slightly tart finish and a floral top note. Works well in bakery fillings, dairy, and confectionery coatings where a softer stone fruit character is preferred.",
 
   "peach-liquid":
-    "Ripe, juicy peach with rounded sweetness and a soft stone fruit background. Strong performer in dairy, beverages, and confectionery — one of the most versatile stone fruit profiles.",
+    "Ripe, juicy peach with rounded sweetness and a soft stone fruit background. Strong performer in dairy, beverages, and confectionery. One of the most versatile stone fruit profiles.",
 
   "plum-liquid":
     "Deep, slightly tangy plum with some stone fruit complexity and a wine-adjacent note. Works in specialty confectionery and premium beverage applications.",
@@ -403,7 +403,7 @@ export const flavorNotes: Record<string, string> = {
   // ── Tropical ──────────────────────────────────────────────────────────────
 
   "banana-liquid":
-    "Classic ripe banana with a clean, slightly candy-adjacent sweetness. Performs well in dairy, nutraceutical, and confectionery applications — watch for top note fade under heat.",
+    "Classic ripe banana with a clean, slightly candy-adjacent sweetness. Performs well in dairy, nutraceutical, and confectionery applications. Watch for top note fade under heat.",
 
   "coconut-liquid":
     "Clean, sweet coconut with a neutral finish that doesn't overwhelm blend partners. Works well in dairy, bakery, and tropical beverage profiles.",
@@ -418,7 +418,7 @@ export const flavorNotes: Record<string, string> = {
     "Bright, slightly tart kiwi with green and tropical notes. Works well in beverages and gummies where a fresh, light fruit character is needed.",
 
   "lychee-liquid":
-    "Floral, delicate lychee with rose-adjacent sweetness. Handle use level carefully — too much reads floral-off. Works in light beverages and premium confectionery.",
+    "Floral, delicate lychee with rose-adjacent sweetness. Handle use level carefully. Too much reads floral-off. Works in light beverages and premium confectionery.",
 
   "mango-liquid":
     "Ripe, juicy mango with smooth sweetness and a tropical top note. Strong performer across beverages, gummies, and dairy. One of the most reliably versatile tropical profiles.",
@@ -468,7 +468,7 @@ export const flavorNotes: Record<string, string> = {
     "Clean, neutral dairy cream without strong vanilla influence. Works as a modifier to round out fruit profiles or as a standalone in dairy applications where light, clean creaminess is needed.",
 
   "vanilla-liquid":
-    "Vanilla extract character in liquid format — woody, floral, and slightly complex compared to vanillin. Works in premium bakery and dairy applications where natural vanilla character is part of the label story.",
+    "Vanilla extract character in liquid format. Woody, floral, and slightly complex compared to vanillin. Works in premium bakery and dairy applications where natural vanilla character is part of the label story.",
 
   "vanilla-bean-liquid":
     "Full-spectrum vanilla bean character with woody, floral, and fruity notes. More botanical and authentic than vanillin; premium bakery and dairy positioning.",
@@ -480,9 +480,85 @@ export const flavorNotes: Record<string, string> = {
     "Clean, sweet vanilla built around powder format for dry mix applications. Balanced vanillin character; pairs well with cream and dairy profiles in protein blends and bakery dry mixes.",
 
   "vanillin-liquid":
-    "High-strength artificial vanillin at 10X concentration. Cost-effective sweet vanilla baseline. Adjust use level carefully relative to natural vanilla formats — concentration is significantly higher.",
+    "High-strength artificial vanillin at 10X concentration. Cost-effective sweet vanilla baseline. Adjust use level carefully relative to natural vanilla formats. Concentration is significantly higher.",
 
   "yogurt-liquid":
     "Mild, slightly tannic yogurt culture note. Works as a background flavor in dairy applications; adds authenticity to cultured dairy formats and can help fermented notes read more credible.",
+
+  // Expanded starting-point library
+  "lime-liquid":
+    "Bright, tart lime with a clean peel note and crisp finish. A practical starting point for beverages, confectionery, sauces, and refreshing flavor blends.",
+  "bergamot-liquid":
+    "Floral, lightly bitter bergamot with distinctive citrus-peel character. Best used carefully in tea, sparkling beverage, and premium botanical concepts.",
+  "lemonade-liquid":
+    "Rounded sweet-tart lemon profile designed to read as a finished lemonade direction rather than straight lemon. Useful for beverages, syrups, and candy.",
+  "pink-grapefruit-liquid":
+    "Juicy grapefruit with softer bitterness and a slightly sweeter finish than classic grapefruit. Works well in sparkling and functional beverages.",
+  "blood-orange-powder":
+    "Darker orange profile with berry-like depth in a dry format. Useful for powdered drink mixes, supplements, and dry-blend applications.",
+  "goji-berry-liquid":
+    "Mildly tart berry with dried-fruit and tea-like undertones. A credible fit for wellness beverages and nutraceutical concepts.",
+  "lingonberry-liquid":
+    "Bright, tart northern berry profile with cranberry-adjacent character. Useful where a less common berry direction can add distinction.",
+  "red-raspberry-powder":
+    "Sharp, recognizable raspberry in powder format with a tart, seedy finish. Built for dry mixes, supplements, and powdered beverage systems.",
+  "pineapple-coconut-liquid":
+    "Balanced tropical blend pairing juicy pineapple lift with rounded coconut body. Works across beverages, confectionery, and frozen desserts.",
+  "mango-passion-fruit-liquid":
+    "Ripe mango body with bright passion fruit acidity. A high-identity tropical blend for beverages, gummies, and wellness products.",
+  "coconut-cream-liquid":
+    "Soft coconut with a smooth cream finish and reduced toasted character. Useful in dairy, bakery, beverage, and tropical blend applications.",
+  "prickly-pear-liquid":
+    "Delicate melon-like fruit profile with soft berry notes and restrained sweetness. Best suited to beverages and light confectionery.",
+  "granny-smith-apple-liquid":
+    "Crisp green apple with pronounced tartness and fresh peel character. Strong fit for beverages, confectionery, and fruit-forward blends.",
+  "baked-apple-liquid":
+    "Cooked apple profile with warm brown notes and softened acidity. Built for bakery, seasonal beverage, and dessert concepts.",
+  "pear-vanilla-liquid":
+    "Soft ripe pear rounded with gentle vanilla sweetness. A subtle profile for beverage, dairy, and premium dessert applications.",
+  "peach-nectar-liquid":
+    "Juicy, rounded peach with a soft nectar-like finish. Works well in tea, beverage, dairy, and confectionery concepts.",
+  "black-cherry-liquid":
+    "Deep, ripe cherry with darker fruit character and a restrained stone-fruit finish. Useful for beverages, dairy, and premium confectionery.",
+  "cantaloupe-liquid":
+    "Light, ripe cantaloupe with fresh melon sweetness. Best suited to beverages, dairy, and low-heat applications.",
+  "honeydew-liquid":
+    "Clean honeydew with delicate green-melon character and a soft finish. Useful for beverages and lighter confectionery systems.",
+  "cucumber-watermelon-liquid":
+    "Fresh cucumber top notes over juicy watermelon sweetness. Designed for refreshing beverage and hydration concepts.",
+  "whipped-cream-liquid":
+    "Light dairy cream with airy sweetness and minimal vanilla. Useful as a modifier in dessert, beverage, and bakery applications.",
+  "vanilla-cake-liquid":
+    "Sweet vanilla cake profile with baked crumb and frosting notes. Designed for dessert-style beverages, bakery, and confectionery.",
+  "peppermint-bark-liquid":
+    "Cooling peppermint balanced with sweet chocolate character. A seasonal profile for confectionery, beverage, and dessert applications.",
+  "gingerbread-liquid":
+    "Warm baked spice profile with ginger, cinnamon, and molasses-like depth. Built for bakery, beverage, and seasonal concepts.",
+  "earl-grey-tea-liquid":
+    "Black tea character lifted by floral bergamot peel. A clear starting point for tea beverages, syrups, and premium confectionery.",
+  "lemon-ginger-tea-liquid":
+    "Bright lemon layered over warming ginger and light tea character. Useful for functional beverages and wellness-positioned products.",
+  "peach-iced-tea-liquid":
+    "Soft peach rounded by a lightly tannic brewed-tea base. Designed for RTD tea, syrup, and beverage applications.",
+  "roasted-garlic-powder":
+    "Savory roasted garlic with mellowed sharpness and cooked depth in powder format. Useful for snacks, seasonings, and dry blends.",
+  "onion-powder":
+    "Rounded savory onion in a dry format with light cooked character. A practical base note for seasonings, snacks, and sauces.",
+  "chipotle-liquid":
+    "Smoky chile profile with moderate warmth and roasted depth. Useful in sauces, snacks, and savory seasoning systems.",
+  "dill-pickle-liquid":
+    "Tangy dill pickle with vinegar brightness, green herb notes, and a salty impression. Designed for snacks, popcorn, and sauces.",
+  "black-truffle-liquid":
+    "Earthy, aromatic truffle profile with deep savory character. Use conservatively in premium snacks, sauces, and culinary systems.",
+  "sour-watermelon-candy-liquid":
+    "Juicy watermelon candy profile sharpened with a sour finish. Built for gummies, hard candy, and novelty beverage concepts.",
+  "cola-bottle-candy-liquid":
+    "Sweet cola confectionery profile with citrus-spice depth and gummy-style impact. Designed for candy and novelty applications.",
+  "root-beer-float-candy-liquid":
+    "Root beer spice and vanilla-cream sweetness combined as a nostalgic candy direction. Useful in confectionery and specialty beverages.",
+  "birthday-cake-popcorn-powder":
+    "Sweet frosting and vanilla-cake character in a dry popcorn-ready format. Designed for novelty snack coatings and seasonal concepts.",
+  "sea-salt-caramel-popcorn-powder":
+    "Caramelized sugar, light salt, and warm popcorn character in powder format. Built for coated snack and popcorn applications.",
 
 };

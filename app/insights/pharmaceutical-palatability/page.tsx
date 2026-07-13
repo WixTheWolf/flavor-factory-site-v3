@@ -3,12 +3,15 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { InsightBreadcrumbJsonLd } from "@/components/InsightBreadcrumbJsonLd";
+import { ArticleReadTracker } from "@/components/AnalyticsEvents";
 
 export const metadata: Metadata = {
   title: "Pharmaceutical Palatability: Making Actives Compliance-Friendly",
-  description: "API bitterness is not random — it follows receptor biology. Here is how targeted masking differs from general flavor coverage and why it matters for pediatric and liquid dosage forms.",
+  description: "API bitterness is not random. It follows receptor biology. Here is how targeted masking differs from general flavor coverage and why it matters for pediatric and liquid dosage forms.",
   alternates: { canonical: "/insights/pharmaceutical-palatability" },
   openGraph: {
+    type: "article",
     url: "/insights/pharmaceutical-palatability",
     title: "Pharmaceutical Palatability | The Flavor Factory",
     description: "How targeted API masking works and why it matters for pediatric and liquid dosage forms.",
@@ -22,6 +25,8 @@ export default function Article() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <InsightBreadcrumbJsonLd slug="pharmaceutical-palatability" />
+      <ArticleReadTracker slug="pharmaceutical-palatability" />
       <Header />
       <main>
         <section className="section clean-page">
@@ -52,7 +57,7 @@ export default function Article() {
             </div>
           </div>
         </section>
-        <CTA eyebrow="Pharmaceutical Flavors" title="Share the API and dosage form. We build around the active." copy="Include excipient system, dose volume, and any palatability goals. Samples in 3-5 days." href="/request-samples" label="Request Pharma Samples" />
+        <CTA eyebrow="Pharmaceutical Flavors" title="Share the API and dosage form. We build around the active." copy="Include excipient system, dose volume, and any palatability goals. Samples in 3-5 days." href="/request-samples?industry=pharmaceutical" label="Request Pharma Samples" />
       </main>
       <Footer />
     </>

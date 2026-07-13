@@ -32,6 +32,7 @@ import { CTA } from "@/components/CTA";
 import { PageHero } from "@/components/PageHero";
 import { siteImages } from "@/data/site-images";
 import { RevealGroup, RevealItem, Reveal } from "@/components/Reveal";
+import { BuiltInNorco } from "@/components/BuiltInNorco";
 
 const developmentStages = [
   {
@@ -75,9 +76,40 @@ const technicalWork = [
   "Organized revisions and production handoff",
 ] as const;
 
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Custom Flavor Development and Manufacturing Services - The Flavor Factory",
+  description: "Custom liquid and powder flavor development and manufacturing services from The Flavor Factory in Norco, California.",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Custom Liquid Flavors", url: "https://flavorfactory.net/custom-liquid-flavors" },
+    { "@type": "ListItem", position: 2, name: "Custom Powder Flavors", url: "https://flavorfactory.net/custom-powder-flavors" },
+    { "@type": "ListItem", position: 3, name: "Flavor Matching and Reformulation", url: "https://flavorfactory.net/flavor-matching" },
+    { "@type": "ListItem", position: 4, name: "Masking and Modulation", url: "https://flavorfactory.net/masking-and-modulation" },
+    { "@type": "ListItem", position: 5, name: "Organic-Compliant Flavors", url: "https://flavorfactory.net/organic-compliant-flavors" },
+    { "@type": "ListItem", position: 6, name: "Nutraceutical Flavors", url: "https://flavorfactory.net/nutraceutical-flavors" },
+    { "@type": "ListItem", position: 7, name: "Beverage Flavors", url: "https://flavorfactory.net/beverage-flavors" },
+    { "@type": "ListItem", position: 8, name: "Bakery Flavors", url: "https://flavorfactory.net/bakery-flavors" },
+    { "@type": "ListItem", position: 9, name: "Oral Care Flavors", url: "https://flavorfactory.net/oral-care-flavors" },
+    { "@type": "ListItem", position: 10, name: "Pharmaceutical Flavors", url: "https://flavorfactory.net/pharmaceutical-flavors" },
+    { "@type": "ListItem", position: 11, name: "Popcorn Seasoning Flavors", url: "https://flavorfactory.net/popcorn-seasoning-flavors" },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://flavorfactory.net" },
+    { "@type": "ListItem", position: 2, name: "Capabilities", item: "https://flavorfactory.net/capabilities" },
+  ],
+};
+
 export default function CapabilitiesPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
         <section className="section clean-page">
@@ -95,11 +127,13 @@ export default function CapabilitiesPage() {
               secondaryLabel="Explore Industries"
             />
 
+            <Reveal><BuiltInNorco /></Reveal>
+
             <section className="capability-timeline-section">
               <div className="section-head">
                 <div>
                   <div className="new-eyebrow">Development Loop</div>
-                  <h2 className="section-title">A controlled path from first idea to repeat order.</h2>
+                  <h2 className="section-title">From first sample to repeatable production.</h2>
                 </div>
                 <p className="section-subtext">
                   Each stage gives the customer a clearer decision point: what we need, what we build, and what comes back next.
@@ -125,7 +159,7 @@ export default function CapabilitiesPage() {
                   <div className="new-eyebrow">Capabilities</div>
                   <h2>What this looks like in practice.</h2>
                   <p>
-                    Six capabilities that move every project from brief to production-ready flavor.
+                    Six capabilities that move every project from brief to a flavor ready for production.
                   </p>
                 </div>
                 <RevealGroup className="technical-grid" stagger={0.07}>

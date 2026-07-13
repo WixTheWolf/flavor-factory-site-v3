@@ -50,9 +50,12 @@ const contactDetails = [
   },
 ] as const;
 
+const BC = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://flavorfactory.net/contact" }] };
+
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC) }} />
       <Header />
       <main>
         <section className="section clean-page">
@@ -64,7 +67,7 @@ export default function ContactPage() {
               image={siteImages.contactHero}
               imageAlt="California citrus grove at golden hour, Norco, CA"
               primaryHref="/request-samples"
-              primaryLabel="Request a Sample"
+              primaryLabel="Request a Custom Sample"
               secondaryHref="mailto:samples@flavorfactory.net"
               secondaryLabel="Email Samples"
               imagePosition="center 40%"

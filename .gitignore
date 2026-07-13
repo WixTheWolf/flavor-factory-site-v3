@@ -2,3 +2,7 @@ node_modules
 .next
 
 .vercel
+
+# local dev logs
+tmp-dev-*.log
+tmp-dev-*.err.log

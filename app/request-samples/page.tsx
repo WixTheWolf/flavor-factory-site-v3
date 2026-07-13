@@ -31,23 +31,35 @@ import { Footer } from "@/components/layout/Footer";
 import { SampleRequestForm } from "@/components/sample-request-form";
 import { siteImages } from "@/data/site-images";
 import { AppImage } from "@/components/ui/AppImage";
+import { BuiltInNorco } from "@/components/BuiltInNorco";
+import { normalizeIndustryKey } from "@/lib/industry-utils";
 
-export default function RequestSamplesPage() {
+
+const BC_REQUEST_SAMPLES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Request Samples","item":"https://flavorfactory.net/request-samples"}]};
+export default function RequestSamplesPage({
+  searchParams,
+}: {
+  searchParams?: { industry?: string };
+}) {
+  const industry = normalizeIndustryKey(searchParams?.industry ?? "") || searchParams?.industry || "";
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_REQUEST_SAMPLES) }} />
       <Header />
       <main>
         <section className="section clean-page request-page">
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
-                <div className="eyebrow">Request a Sample</div>
-                <h1 className="section-title" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
+                <div className="eyebrow">Request a Custom Sample</div>
+                <h1 className="section-title request-page-title">
                   Tell us what you are making.
                 </h1>
-                <p className="section-subtext" style={{ marginTop: 12 }}>
-                  Share the product application, flavor direction, preferred format, declaration goal, timeline, and any benchmark you want us to match. Your request goes directly to samples@flavorfactory.net.
+                <p className="section-subtext request-page-intro">
+                  Share the application, target profile, format, timeline, and constraints. A clear brief helps us build a better first sample.
                 </p>
+                <p className="sample-brief-note">Prefer to talk through it? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.</p>
                 <div className="sample-guidance" aria-label="Helpful details to include">
                   <div>
                     <span>Application</span>
@@ -66,7 +78,7 @@ export default function RequestSamplesPage() {
                     Use level if known, process conditions, timeline, and any cost or ingredient constraints.
                   </div>
                 </div>
-                <SampleRequestForm />
+                <SampleRequestForm initialIndustry={industry} />
               </div>
               <div className="sample-right">
                 <AppImage
@@ -79,6 +91,21 @@ export default function RequestSamplesPage() {
                 <div className="sample-overlay" />
               </div>
             </div>
+          </div>
+          <div className="container request-next-section">
+            <div>
+              <div className="new-eyebrow">What Happens Next</div>
+              <h2>Clear steps from brief to first sample.</h2>
+            </div>
+            <ol>
+              <li>We review your application and constraints.</li>
+              <li>We confirm the best starting direction.</li>
+              <li>First sample directions are typically prepared in 3-5 business days.</li>
+              <li>You review, give feedback, and we iterate toward production.</li>
+            </ol>
+          </div>
+          <div className="container request-proof-section">
+            <BuiltInNorco compact />
           </div>
         </section>
       </main>

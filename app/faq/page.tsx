@@ -3,6 +3,7 @@ import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { commercialPolicy } from "@/data/commercial-policy";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -33,11 +34,11 @@ const faqs = [
       },
       {
         q: "What is your sample policy?",
-        a: "We provide samples as part of active development projects. Share your application, target flavor profile, format, declaration requirements, and any relevant constraints. Samples are built around your real product system, not generic library pulls.",
+        a: `We provide samples as part of active development projects. Share your application, target flavor profile, format, declaration requirements, and any relevant constraints. Samples are built around your real product system, not generic library pulls. First-round directions are typically prepared in ${commercialPolicy.sampleTurnaround}.`,
       },
       {
         q: "Do you charge for samples?",
-        a: "Contact us to discuss your specific project. Sample costs depend on the scope and complexity of the development work involved.",
+        a: commercialPolicy.samplePolicy,
       },
       {
         q: "How many rounds of revisions are typical?",
@@ -50,15 +51,15 @@ const faqs = [
     items: [
       {
         q: "What is your minimum order quantity?",
-        a: "We operate a low minimum order policy designed to support both startup-scale production and large commercial runs. Contact us to discuss your specific order size and production needs.",
+        a: commercialPolicy.moqSummary,
       },
       {
         q: "Can I order small quantities for initial production runs?",
-        a: "Yes. Low minimums are part of our standard offering. We support brands moving from sample approval into first production and scaling from there.",
+        a: "Yes. Low minimums are part of our standard offering. We support brands moving from sample approval into first production and scaling from there. The right first-run quantity depends on format and formula and is confirmed at quote time.",
       },
       {
         q: "What are your typical lead times for production orders?",
-        a: "Production lead times depend on order size, formula complexity, and scheduling. Contact us with your order details and required delivery date and we will confirm a realistic timeline.",
+        a: commercialPolicy.productionLeadTime,
       },
     ],
   },
@@ -125,7 +126,7 @@ const faqs = [
       },
       {
         q: "Can you support regulatory filings or supplier questionnaires?",
-        a: "Yes. We can complete standard supplier qualification questionnaires and provide the documentation typically required for food manufacturing regulatory submissions. Contact us with your specific documentation requirements.",
+        a: "Yes. We can complete standard supplier qualification questionnaires and provide the documentation typically required for food manufacturing regulatory submissions. See the Resources page for the standard document list, or email samples@flavorfactory.net with your form.",
       },
     ],
   },
@@ -138,7 +139,7 @@ const faqs = [
       },
       {
         q: "What payment terms do you offer?",
-        a: "Payment terms are established as part of the commercial relationship. Contact us to discuss terms for your account.",
+        a: commercialPolicy.paymentTerms,
       },
     ],
   },

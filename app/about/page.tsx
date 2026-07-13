@@ -8,6 +8,10 @@ import { Button } from "@/components/ui/Button";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
 import { CTA } from "@/components/CTA";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { BuiltInNorco } from "@/components/BuiltInNorco";
+import { QualitySupport } from "@/components/QualitySupport";
+import { teamMembers } from "@/data/team";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Family-Owned Flavor Manufacturer in Norco, CA",
@@ -36,68 +40,30 @@ export const metadata: Metadata = {
   },
 };
 
-const team = [
-  {
-    name: "Dan Wixted",
-    title: "President",
-    focus: "Leadership",
-    bio: "Dan started The Flavor Factory and has spent more than 40 years in the flavor industry. He sets the standards for how projects are handled and stays close to every customer relationship. When a project is complicated, Dan is usually the first person in the room.",
-    photoAlt: "Dan Wixted, President of The Flavor Factory",
-  },
-  {
-    name: "Alex Wixted",
-    title: "Operations",
-    focus: "Operations",
-    bio: "Alex keeps projects moving from first request through production. He coordinates between teams, manages project flow, and makes sure nothing falls through between the sample conversation and the production order.",
-    photoAlt: "Alex Wixted, Operations at The Flavor Factory",
-  },
-  {
-    name: "Kelly Ziegler",
-    title: "Office Manager",
-    focus: "Customer Care",
-    bio: "Kelly is usually the first person a customer talks to. She handles communication, scheduling, and the coordination details that keep projects on track from the first email through the final order.",
-    photoAlt: "Kelly Ziegler, Office Manager at The Flavor Factory",
-  },
-  {
-    name: "Ryan Wixted",
-    title: "Quality and Regulatory",
-    focus: "Quality",
-    bio: "Ryan manages the quality systems and regulatory documentation that customers rely on for supplier qualification, allergen statements, COAs, and label support. If it involves a document or a certification, it goes through Ryan.",
-    photoAlt: "Ryan Wixted, Quality and Regulatory at The Flavor Factory",
-  },
-  {
-    name: "Matt Wixted",
-    title: "Production Manager",
-    focus: "Production",
-    bio: "Matt bridges sample approval and production. If a sample gets approved, Matt is the one making sure the first production batch matches it. He owns the path from bench to batch.",
-    photoAlt: "Matt Wixted, Production Manager at The Flavor Factory",
-  },
-] as const;
-
 const approachCards = [
   {
-    image: "/images/flavor-factory/Hands%20on%20specs.png",
-    alt: "Two people reviewing a flavor spec sheet with amber sample bottles on a desk",
+    image: "/images/flavor-factory/inhouse-photos/lab-new.png",
+    alt: "Custom flavor development laboratory at The Flavor Factory in Norco, CA - clean modern lab with black countertops",
     eyebrow: "Listening First",
     title: "The brief shapes the direction.",
     copy: "We start with the product system, not a flavor list. Application, base, processing, label goals, and real constraints inform every sample before it ships.",
-    position: "center 50%",
+    position: "center 40%",
   },
   {
-    image: "/images/flavor-factory/1.%20About%20%E2%80%94%20Hands-On%20Work.png",
-    alt: "Hands using a glass pipette to fill amber glass vials on a dark slate bench",
+    image: "/images/flavor-factory/inhouse-photos/production-workers.png",
+    alt: "Production team at work at The Flavor Factory's manufacturing facility in Norco, California",
     eyebrow: "Hands-On Work",
     title: "Development done in-house, start to finish.",
     copy: "Formulation, samples, revisions, and manufacturing all happen at our Norco facility. One team, one thread. No hand-offs to third parties.",
-    position: "center center",
+    position: "center 30%",
   },
   {
-    image: "/images/flavor-factory/2.%20About%20%E2%80%94%20Clear%20Follow-Through.png",
-    alt: "Overhead flat-lay of a printed flavor spec sheet with amber sample bottles and a gold pen",
+    image: "/images/flavor-factory/inhouse-photos/gallon-filling-station.png",
+    alt: "Gallon container filling line at The Flavor Factory production facility - finished liquid flavor product being filled for shipment",
     eyebrow: "Clear Follow-Through",
     title: "From first sample to repeat production.",
     copy: "Approved work moves into production specs. Reorders stay consistent. The thread from concept to first approval to repeat order is held every time.",
-    position: "center center",
+    position: "center 40%",
   },
 ] as const;
 
@@ -105,10 +71,28 @@ export default function AboutPage() {
   return (
     <>
       <OrganizationSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "About", item: "https://flavorfactory.net/about" }] }) }} />
       <Header />
       <main>
         <section className="section clean-page">
           <div className="container">
+
+            {/* AI-citable factual summary - also visible to users */}
+            <div className="about-company-facts" itemScope itemType="https://schema.org/Organization">
+              <meta itemProp="name" content="The Flavor Factory" />
+              <meta itemProp="foundingDate" content="2005" />
+              <meta itemProp="telephone" content="+19512739877" />
+              <meta itemProp="email" content="samples@flavorfactory.net" />
+              <meta itemProp="url" content="https://flavorfactory.net" />
+              <dl className="about-facts-grid">
+                <div><dt>Established</dt><dd>2005</dd></div>
+                <div><dt>Location</dt><dd>Norco, California</dd></div>
+                <div><dt>Ownership</dt><dd>Family-owned</dd></div>
+                <div><dt>Formats</dt><dd>Liquid & powder</dd></div>
+                <div><dt>First Samples</dt><dd>3-5 business days</dd></div>
+                <div><dt>Minimums</dt><dd>Low</dd></div>
+              </dl>
+            </div>
 
             <PageHero
               eyebrow="About"
@@ -117,7 +101,7 @@ export default function AboutPage() {
               image={siteImages.aboutHero}
               imageAlt="Row of amber flavor liquids in beakers and flasks on a stainless lab bench"
               primaryHref="/request-samples"
-              primaryLabel="Request a Sample"
+              primaryLabel="Request a Custom Sample"
               secondaryHref="/company-info"
               secondaryLabel="Company Info"
               imagePosition="40% center"
@@ -128,7 +112,7 @@ export default function AboutPage() {
               <section className="about-story-grid">
                 <div>
                   <div className="eyebrow">Why We Work This Way</div>
-                  <h2 className="section-title">The details are the relationship.</h2>
+                  <h2 className="section-title">Clear briefs. Clean revisions. Better production handoff.</h2>
                 </div>
                 <div className="about-story-copy">
                   <p>
@@ -151,10 +135,10 @@ export default function AboutPage() {
                   <div className="new-eyebrow">Family-Owned</div>
                   <h2>Why a family business works differently for this kind of work.</h2>
                   <p>
-                    A corporate flavor house has layers between the person selling the project and the person making the samples. When something goes wrong, the handoff is where it happens. The sales rep promised something the development team does not know about. The development team approved something production cannot reproduce.
+                    In larger flavor houses, projects often move through more layers between sales, development, quality, and production. Those handoffs can make it harder to keep the original application details intact.
                   </p>
                   <p>
-                    We do not have those layers. The people you talk to are the people who make and produce the flavor. Dan has been doing this for over 40 years. Alex runs operations. Ryan handles quality and regulatory. Matt runs production. Kelly keeps it all coordinated. When you approve a sample, the person who made it is the same one who will make the production batch.
+                    Here, the people you talk to stay close to the people who make and produce the flavor. Dan has been doing this for over 40 years. Alex runs operations. Ryan handles quality and regulatory. Matt runs production. Kelly keeps it all coordinated.
                   </p>
                   <p>
                     That is not a marketing claim. It is how the company is structured, and it is why customers who have worked with larger flavor houses often tell us the experience is different here.
@@ -176,6 +160,8 @@ export default function AboutPage() {
                 </div>
               </section>
             </Reveal>
+
+            <Reveal><BuiltInNorco /></Reveal>
 
             {/* Approach */}
             <section className="about-approach">
@@ -222,15 +208,17 @@ export default function AboutPage() {
                 </div>
               </Reveal>
               <RevealGroup className="team-card-grid" stagger={0.08}>
-                {team.map((member) => (
-                  <RevealItem key={member.name}>
+                {teamMembers.map((member) => (
+                  <RevealItem key={member.slug}>
                     <article className="team-card">
-                      <div className="team-card-photo" aria-label={member.photoAlt}>
-                        <div className="team-card-photo-placeholder">
-                          <span>{member.name.split(" ").map(n => n[0]).join("")}</span>
-                        </div>
-                      </div>
                       <div className="team-card-body">
+                        <div className="team-card-portrait">
+                          <AppImage
+                            src={member.image}
+                            alt={member.photoAlt}
+                            sizes="112px"
+                          />
+                        </div>
                         <h3>{member.name}</h3>
                         <div className="team-card-title">{member.title}</div>
                         <p>{member.bio}</p>
@@ -240,6 +228,15 @@ export default function AboutPage() {
                 ))}
               </RevealGroup>
             </section>
+
+            <Reveal>
+              <section className="about-trust-section">
+                <QualitySupport />
+                <p className="about-trust-links">
+                  Need documentation for a vendor file? See <Link href="/resources">supplier resources</Link> or <Link href="/certifications">certifications</Link>.
+                </p>
+              </section>
+            </Reveal>
 
             {/* Principles */}
             <Reveal>
@@ -252,7 +249,7 @@ export default function AboutPage() {
                   <p>
                     Being family-owned means the people you work with care about the outcome the same way you do. We hold the thread from concept to approval to repeat production, every time.
                   </p>
-                  <Button href="/request-samples" variant="secondary" className="mt-24">Request a Sample</Button>
+                  <Button href="/request-samples" variant="secondary" className="mt-24">Request a Custom Sample</Button>
                 </div>
               </section>
             </Reveal>

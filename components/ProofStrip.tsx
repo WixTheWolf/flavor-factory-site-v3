@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInView, useReducedMotion } from "framer-motion";
+import { SITE_STATS } from "@/data/site-stats";
 
 type StatItem =
   | { kind: "count"; value: number; suffix: string; label: string }
@@ -9,19 +10,20 @@ type StatItem =
   | { kind: "text"; display: string; label: string };
 
 const stats: StatItem[] = [
-  { kind: "count", value: 60, suffix: "+", label: "Years of combined flavor industry experience" },
-  { kind: "range", display: "3-5", label: "Business days from brief to first sample" },
-  { kind: "count", value: 180, suffix: "+", label: "Flavor profiles in the library — can't find yours? We'll build it." },
+  { kind: "count", value: SITE_STATS.combinedYearsExperience, suffix: "+", label: "Years of combined flavor industry experience" },
+  { kind: "range", display: SITE_STATS.sampleLeadTimeDays, label: "Business days from brief to first sample" },
+  { kind: "count", value: SITE_STATS.flavorProfileCount, suffix: "+", label: "Flavor profiles in the library. Can't find yours? We'll build it." },
   { kind: "text", display: "Family-Owned", label: "Norco, CA, since day one" },
 ];
 
 function useCountUp(target: number, active: boolean, duration = 1.3) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(target);
   const reduced = useReducedMotion();
 
   useEffect(() => {
     if (!active) return;
     if (reduced) { setValue(target); return; }
+    setValue(0);
 
     let start: number | null = null;
     let frame: number;
@@ -47,8 +49,8 @@ function CountStat({ item }: { item: Extract<StatItem, { kind: "count" }> }) {
   const count = useCountUp(item.value, inView);
 
   return (
-    <div className="new-proof-item" ref={ref}>
-      <strong>
+    <div className="new-proof-item" ref={ref} aria-label={`${item.value}${item.suffix} ${item.label}`}>
+      <strong aria-hidden="true">
         {count}{item.suffix}
       </strong>
       <span>{item.label}</span>

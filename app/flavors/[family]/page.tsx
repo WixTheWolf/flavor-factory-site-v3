@@ -81,15 +81,28 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
               <span>{detail.name}</span>
             </nav>
 
-            <Reveal><div className="family-hero-panel">
-              <div className="new-eyebrow">Flavor Family</div>
-              <h1 className="family-hero-title">{detail.name} Flavors</h1>
-              <p className="family-hero-intro">{detail.intro}</p>
-              {detail.formulatorNote && (
-                <p className="family-formulator-note">
-                  <strong>Formulator note:</strong> {detail.formulatorNote}
-                </p>
-              )}
+            <Reveal><div className="family-hero-layout">
+              <div className="family-hero-panel">
+                <div className="new-eyebrow">Flavor Family</div>
+                <h1 className="family-hero-title">{detail.name} Flavors</h1>
+                <p className="family-hero-intro">{detail.intro}</p>
+                {detail.formulatorNote && (
+                  <p className="family-formulator-note">
+                    <strong>Formulator note:</strong> {detail.formulatorNote}
+                  </p>
+                )}
+              </div>
+              <aside className="family-summary-panel" aria-label={`${detail.name} family summary`}>
+                <div>
+                  <strong>{familyFlavors.length}</strong>
+                  <span>sample-ready starting points</span>
+                </div>
+                <div>
+                  <strong>{detail.formats.length}</strong>
+                  <span>available format directions</span>
+                </div>
+                <Link href="/request-samples" className="cta-btn">Request a Custom Sample</Link>
+              </aside>
             </div></Reveal>
 
             <Reveal><div className="family-meta-strip">
@@ -133,19 +146,43 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
               ) : (
                 <div className="family-empty-state">
                   <p>Custom development in this family is available. Share your target profile and we&apos;ll build a direction around your application.</p>
-                  <Link href="/request-samples" className="cta-btn">Request a Sample</Link>
+                  <Link href="/request-samples" className="cta-btn">Request a Custom Sample</Link>
                 </div>
               )}
             </section></Reveal>
 
+            <Reveal><section className="family-browse-panel">
+              <div className="section-head">
+                <div>
+                  <div className="new-eyebrow">Continue Browsing</div>
+                  <h2 className="section-title">Explore another flavor family.</h2>
+                </div>
+              </div>
+              <div className="flavor-family-link-grid">
+                {flavorFamilyDetails.map((family) => {
+                  const count = demoFlavors.filter((flavor) => flavor.family === family.name).length;
+                  return (
+                    <Link
+                      key={family.slug}
+                      href={`/flavors/${family.slug}`}
+                      className={`flavor-family-link${family.slug === detail.slug ? " is-current" : ""}`}
+                    >
+                      <span>{family.name}</span>
+                      <small>{count} profile{count === 1 ? "" : "s"}</small>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section></Reveal>
+
             <Reveal><section className="family-custom-panel">
               <div className="new-eyebrow">Not Seeing the Right Profile?</div>
-              <h2>Tell us the application. We&apos;ll build from there.</h2>
+              <h2>Tell us what you&apos;re making. We&apos;ll build around it.</h2>
               <p>
                 The library shows common starting points. If the exact profile you need is not listed, we can develop it custom, match a reference, or reformulate around your specific matrix and label requirements.
               </p>
               <div className="new-actions">
-                <Link href="/request-samples" className="cta-btn">Request a Sample</Link>
+                <Link href="/request-samples" className="cta-btn">Request a Custom Sample</Link>
                 <Link href="/contact" className="light-btn">Talk About Your Project</Link>
               </div>
             </section></Reveal>
@@ -157,7 +194,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
           title={`${detail.name} flavor samples in 3-5 days.`}
           copy={`Share your application, base, format, and label goals. We build first-round ${detail.name.toLowerCase()} samples around your product system.`}
           href="/request-samples"
-          label="Request a Sample"
+          label="Request a Custom Sample"
         />
       </main>
       <Footer />

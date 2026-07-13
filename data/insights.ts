@@ -30,7 +30,7 @@ export const articles: Article[] = [
   {
     slug: "flavor-systems-high-acid-beverages",
     title: "Flavor Systems for High-Acid Beverages",
-    description: "How citric, malic, and phosphoric acid environments affect flavor compound stability, what hydrolizes over shelf life, and how to build profiles that hold through acidic beverage systems.",
+    description: "How citric, malic, and phosphoric acid environments affect flavor compound stability, what hydrolyzes over shelf life, and how to build profiles that hold through acidic beverage systems.",
     publishDate: "2026-05-01",
     readTime: 6,
     category: "Beverage",
@@ -48,7 +48,7 @@ export const articles: Article[] = [
   {
     slug: "pharmaceutical-palatability",
     title: "Pharmaceutical Palatability: Making Actives Compliance-Friendly",
-    description: "API bitterness is not random — it follows receptor biology. Here is how targeted masking differs from general flavor coverage and why it matters for pediatric and liquid dosage forms.",
+    description: "API bitterness is not random. It follows receptor biology. Here is how targeted masking differs from general flavor coverage and why it matters for pediatric and liquid dosage forms.",
     publishDate: "2026-05-01",
     readTime: 8,
     category: "Pharmaceutical",
@@ -57,7 +57,7 @@ export const articles: Article[] = [
   {
     slug: "popcorn-coating-adhesion",
     title: "Coating Adhesion in Retail Popcorn: Kettle vs Air-Popped vs Extruded",
-    description: "Coating adhesion is a function of surface texture, oil load, and application method — not just flavor concentration. Here is how the three major popcorn formats differ and what that means for flavor development.",
+    description: "Coating adhesion is a function of surface texture, oil load, and application method. Not just flavor concentration. Here is how the three major popcorn formats differ and what that means for flavor development.",
     publishDate: "2026-05-01",
     readTime: 6,
     category: "Popcorn",

@@ -3,12 +3,15 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CTA } from "@/components/CTA";
+import { InsightBreadcrumbJsonLd } from "@/components/InsightBreadcrumbJsonLd";
+import { ArticleReadTracker } from "@/components/AnalyticsEvents";
 
 export const metadata: Metadata = {
   title: "Choosing Between Liquid, Powder, Oil-Soluble, and Emulsion Formats",
   description: "Format selection affects flavor performance more than most formulators expect. Here is how each delivery system behaves and how to match format to application.",
   alternates: { canonical: "/insights/liquid-powder-oil-emulsion-formats" },
   openGraph: {
+    type: "article",
     url: "/insights/liquid-powder-oil-emulsion-formats",
     title: "Flavor Format Selection: Liquid, Powder, Oil-Soluble, Emulsion | The Flavor Factory",
     description: "How each flavor delivery format behaves and how to match format to application.",
@@ -22,6 +25,8 @@ export default function Article() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <InsightBreadcrumbJsonLd slug="liquid-powder-oil-emulsion-formats" />
+      <ArticleReadTracker slug="liquid-powder-oil-emulsion-formats" />
       <Header />
       <main>
         <section className="section clean-page">
@@ -53,7 +58,7 @@ export default function Article() {
             </div>
           </div>
         </section>
-        <CTA eyebrow="Format Questions?" title="Tell us the application and base. We recommend the right format." copy="Share your product system and processing conditions. First samples in 3-5 days." href="/request-samples" label="Request a Sample" />
+        <CTA eyebrow="Format Questions?" title="Tell us the application and base. We recommend the right format." copy="Share your product system and processing conditions. First samples in 3-5 days." href="/request-samples" label="Request a Custom Sample" />
       </main>
       <Footer />
     </>

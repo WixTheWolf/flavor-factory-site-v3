@@ -28,9 +28,12 @@ function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
+
+const BC_INSIGHTS = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://flavorfactory.net/insights"}]};
 export default function InsightsPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_INSIGHTS) }} />
       <Header />
       <main>
         <section className="section clean-page">
@@ -56,7 +59,7 @@ export default function InsightsPage() {
                     <p>{article.description}</p>
                     <div className="insight-card-footer">
                       <span>{formatDate(article.publishDate)}</span>
-                      <span className="insight-read-link">Read article →</span>
+                      <span className="insight-read-link">Read article</span>
                     </div>
                   </Link>
                 </RevealItem>

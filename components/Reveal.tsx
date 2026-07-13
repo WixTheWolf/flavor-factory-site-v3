@@ -3,7 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
-// Sitewide constants — one easing curve and duration everywhere.
+// Sitewide constants. One easing curve and duration everywhere.
 const DURATION = 0.55;
 const EASE = [0.22, 1, 0.36, 1] as const;
 const STAGGER = 0.08;

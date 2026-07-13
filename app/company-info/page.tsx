@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
+import { commercialPolicy } from "@/data/commercial-policy";
 
 export const metadata: Metadata = {
   title: "Liquid & Powder Flavor Manufacturer",
@@ -68,22 +69,25 @@ const companyFacts = [
   "Low minimum order policy",
 ] as const;
 
+
+const BC_COMPANY_INFO = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Company Info","item":"https://flavorfactory.net/company-info"}]};
 export default function CompanyInfoPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_COMPANY_INFO) }} />
       <Header />
       <main>
         <section className="section clean-page">
           <div className="container">
             <PageHero
               eyebrow="Company Info"
-              title="Production-ready on the first sample."
+              title="Ready for production on the first sample."
               copy="Most flavor suppliers separate the sample phase from production. We don't. Every sample is built with your manufacturing specs, so when you approve it, scaling is confirmation, not a new problem."
               image={siteImages.companyInfoHero}
               imageAlt="Clean laboratory bench with amber flavor liquids in glass beakers and bottles"
               imagePosition="center 55%"
               primaryHref="/request-samples"
-              primaryLabel="Request a Sample"
+              primaryLabel="Request a Custom Sample"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
             />
@@ -121,7 +125,7 @@ export default function CompanyInfoPage() {
                 <div className="section-head">
                   <div>
                     <div className="new-eyebrow">Project Flow</div>
-                    <h2 className="section-title">How a request becomes production-ready.</h2>
+                    <h2 className="section-title">How a request becomes ready for production.</h2>
                   </div>
                   <p>
                     Most sample delays come from misaligned expectations at the start. The goal is to remove guesswork before time is spent on the wrong path.
@@ -145,11 +149,13 @@ export default function CompanyInfoPage() {
               <div>
                 <div className="eyebrow">Service Standards</div>
                 <h2>Low MOQ. Responsive project support. Clear next steps.</h2>
-                <p>
-                  Ask about minimums, sample timing, repeat orders, documentation, and the details needed to quote or produce the flavor.
-                </p>
+                <p>{commercialPolicy.moqSummary}</p>
+                <p>First samples: {commercialPolicy.sampleTurnaround}. Production: {commercialPolicy.productionLeadTime}</p>
               </div>
-              <Button href="/contact">Talk to Our Team</Button>
+              <div className="company-service-actions">
+                <Button href="/resources">Supplier Resources</Button>
+                <Button href="/contact" variant="secondary">Talk to Our Team</Button>
+              </div>
             </section>
 
             <section className="company-visual-panel">
