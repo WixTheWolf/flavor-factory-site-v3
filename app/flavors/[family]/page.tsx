@@ -9,7 +9,7 @@ import { flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-detai
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { demoFlavors } from "@/data/demo-flavors";
 
-const BASE = "https://flavorfactory.net";
+const BASE = "https://www.flavorfactory.net";
 
 export function generateStaticParams() {
   return flavorFamilyDetails.map((f) => ({ family: f.slug }));

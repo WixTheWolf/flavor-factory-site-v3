@@ -4,7 +4,7 @@ import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import "./globals.css";
 
-const BASE = "https://flavorfactory.net";
+const BASE = "https://www.flavorfactory.net";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),

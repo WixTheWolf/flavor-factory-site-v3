@@ -145,7 +145,7 @@ const faqs = [
   },
 ];
 
-const BASE = "https://flavorfactory.net";
+const BASE = "https://www.flavorfactory.net";
 
 const faqSchema = {
   "@context": "https://schema.org",

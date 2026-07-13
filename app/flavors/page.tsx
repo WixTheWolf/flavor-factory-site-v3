@@ -34,7 +34,7 @@ import { PageHero } from "@/components/PageHero";
 import { TimeOnPageTracker } from "@/components/AnalyticsEvents";
 
 
-const BC_FLAVOR_LIBRARY = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Flavor Library","item":"https://flavorfactory.net/flavors"}]};
+const BC_FLAVOR_LIBRARY = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Flavor Library","item":"https://www.flavorfactory.net/flavors"}]};
 export default function FlavorsPage() {
   return (
     <>

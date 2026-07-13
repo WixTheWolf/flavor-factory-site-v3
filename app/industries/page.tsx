@@ -35,7 +35,7 @@ import { AppImage } from "@/components/ui/AppImage";
 import { PageHero } from "@/components/PageHero";
 
 
-const BC_INDUSTRIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Industries","item":"https://flavorfactory.net/industries"}]};
+const BC_INDUSTRIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Industries","item":"https://www.flavorfactory.net/industries"}]};
 export default function IndustriesPage() {
   return (
     <>

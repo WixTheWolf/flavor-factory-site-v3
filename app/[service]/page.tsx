@@ -47,15 +47,15 @@ export default function ServicePage({ params }: { params: { service: string } })
       "@type": "Service",
       name: service.title,
       description: service.description,
-      provider: { "@type": "Organization", name: "The Flavor Factory", url: "https://flavorfactory.net" },
+      provider: { "@type": "Organization", name: "The Flavor Factory", url: "https://www.flavorfactory.net" },
       areaServed: "US",
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Capabilities", item: "https://flavorfactory.net/capabilities" },
-        { "@type": "ListItem", position: 2, name: service.eyebrow, item: `https://flavorfactory.net/${service.slug}` },
+        { "@type": "ListItem", position: 1, name: "Capabilities", item: "https://www.flavorfactory.net/capabilities" },
+        { "@type": "ListItem", position: 2, name: service.eyebrow, item: `https://www.flavorfactory.net/${service.slug}` },
       ],
     },
     {

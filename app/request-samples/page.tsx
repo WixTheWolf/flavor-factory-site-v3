@@ -35,7 +35,7 @@ import { BuiltInNorco } from "@/components/BuiltInNorco";
 import { normalizeIndustryKey } from "@/lib/industry-utils";
 
 
-const BC_REQUEST_SAMPLES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Request Samples","item":"https://flavorfactory.net/request-samples"}]};
+const BC_REQUEST_SAMPLES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Request Samples","item":"https://www.flavorfactory.net/request-samples"}]};
 export default function RequestSamplesPage({
   searchParams,
 }: {

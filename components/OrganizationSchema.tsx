@@ -1,4 +1,4 @@
-const BASE = "https://flavorfactory.net";
+const BASE = "https://www.flavorfactory.net";
 
 const organization = {
   "@type": ["Organization", "LocalBusiness", "FoodEstablishment"],

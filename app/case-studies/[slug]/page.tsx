@@ -34,8 +34,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Case Studies", item: "https://flavorfactory.net/case-studies" },
-      { "@type": "ListItem", position: 2, name: study.title, item: `https://flavorfactory.net/case-studies/${study.slug}` },
+      { "@type": "ListItem", position: 1, name: "Case Studies", item: "https://www.flavorfactory.net/case-studies" },
+      { "@type": "ListItem", position: 2, name: study.title, item: `https://www.flavorfactory.net/case-studies/${study.slug}` },
     ],
   };
 

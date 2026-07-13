@@ -5,7 +5,7 @@ import { articles } from "@/data/insights";
 import { caseStudies } from "@/data/case-studies";
 import { servicePages } from "@/data/service-pages";
 
-const BASE = "https://flavorfactory.net";
+const BASE = "https://www.flavorfactory.net";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

@@ -82,17 +82,17 @@ const serviceListSchema = {
   name: "Custom Flavor Development and Manufacturing Services - The Flavor Factory",
   description: "Custom liquid and powder flavor development and manufacturing services from The Flavor Factory in Norco, California.",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Custom Liquid Flavors", url: "https://flavorfactory.net/custom-liquid-flavors" },
-    { "@type": "ListItem", position: 2, name: "Custom Powder Flavors", url: "https://flavorfactory.net/custom-powder-flavors" },
-    { "@type": "ListItem", position: 3, name: "Flavor Matching and Reformulation", url: "https://flavorfactory.net/flavor-matching" },
-    { "@type": "ListItem", position: 4, name: "Masking and Modulation", url: "https://flavorfactory.net/masking-and-modulation" },
-    { "@type": "ListItem", position: 5, name: "Organic-Compliant Flavors", url: "https://flavorfactory.net/organic-compliant-flavors" },
-    { "@type": "ListItem", position: 6, name: "Nutraceutical Flavors", url: "https://flavorfactory.net/nutraceutical-flavors" },
-    { "@type": "ListItem", position: 7, name: "Beverage Flavors", url: "https://flavorfactory.net/beverage-flavors" },
-    { "@type": "ListItem", position: 8, name: "Bakery Flavors", url: "https://flavorfactory.net/bakery-flavors" },
-    { "@type": "ListItem", position: 9, name: "Oral Care Flavors", url: "https://flavorfactory.net/oral-care-flavors" },
-    { "@type": "ListItem", position: 10, name: "Pharmaceutical Flavors", url: "https://flavorfactory.net/pharmaceutical-flavors" },
-    { "@type": "ListItem", position: 11, name: "Popcorn Seasoning Flavors", url: "https://flavorfactory.net/popcorn-seasoning-flavors" },
+    { "@type": "ListItem", position: 1, name: "Custom Liquid Flavors", url: "https://www.flavorfactory.net/custom-liquid-flavors" },
+    { "@type": "ListItem", position: 2, name: "Custom Powder Flavors", url: "https://www.flavorfactory.net/custom-powder-flavors" },
+    { "@type": "ListItem", position: 3, name: "Flavor Matching and Reformulation", url: "https://www.flavorfactory.net/flavor-matching" },
+    { "@type": "ListItem", position: 4, name: "Masking and Modulation", url: "https://www.flavorfactory.net/masking-and-modulation" },
+    { "@type": "ListItem", position: 5, name: "Organic-Compliant Flavors", url: "https://www.flavorfactory.net/organic-compliant-flavors" },
+    { "@type": "ListItem", position: 6, name: "Nutraceutical Flavors", url: "https://www.flavorfactory.net/nutraceutical-flavors" },
+    { "@type": "ListItem", position: 7, name: "Beverage Flavors", url: "https://www.flavorfactory.net/beverage-flavors" },
+    { "@type": "ListItem", position: 8, name: "Bakery Flavors", url: "https://www.flavorfactory.net/bakery-flavors" },
+    { "@type": "ListItem", position: 9, name: "Oral Care Flavors", url: "https://www.flavorfactory.net/oral-care-flavors" },
+    { "@type": "ListItem", position: 10, name: "Pharmaceutical Flavors", url: "https://www.flavorfactory.net/pharmaceutical-flavors" },
+    { "@type": "ListItem", position: 11, name: "Popcorn Seasoning Flavors", url: "https://www.flavorfactory.net/popcorn-seasoning-flavors" },
   ],
 };
 
@@ -100,8 +100,8 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://flavorfactory.net" },
-    { "@type": "ListItem", position: 2, name: "Capabilities", item: "https://flavorfactory.net/capabilities" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" },
+    { "@type": "ListItem", position: 2, name: "Capabilities", item: "https://www.flavorfactory.net/capabilities" },
   ],
 };
 

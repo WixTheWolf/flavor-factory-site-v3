@@ -29,7 +29,7 @@ function formatDate(iso: string) {
 }
 
 
-const BC_INSIGHTS = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://flavorfactory.net/insights"}]};
+const BC_INSIGHTS = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Insights","item":"https://www.flavorfactory.net/insights"}]};
 export default function InsightsPage() {
   return (
     <>

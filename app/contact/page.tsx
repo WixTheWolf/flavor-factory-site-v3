@@ -50,7 +50,7 @@ const contactDetails = [
   },
 ] as const;
 
-const BC = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://flavorfactory.net/contact" }] };
+const BC = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.flavorfactory.net/contact" }] };
 
 export default function ContactPage() {
   return (

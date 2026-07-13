@@ -70,7 +70,7 @@ const companyFacts = [
 ] as const;
 
 
-const BC_COMPANY_INFO = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Company Info","item":"https://flavorfactory.net/company-info"}]};
+const BC_COMPANY_INFO = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Company Info","item":"https://www.flavorfactory.net/company-info"}]};
 export default function CompanyInfoPage() {
   return (
     <>

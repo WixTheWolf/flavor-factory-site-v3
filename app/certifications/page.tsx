@@ -73,7 +73,7 @@ const certificationNotes = [
 ] as const;
 
 
-const BC_CERTIFICATIONS = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Certifications","item":"https://flavorfactory.net/certifications"}]};
+const BC_CERTIFICATIONS = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Certifications","item":"https://www.flavorfactory.net/certifications"}]};
 export default function CertificationsPage() {
   return (
     <>

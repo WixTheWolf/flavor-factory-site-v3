@@ -16,14 +16,14 @@ The Flavor Factory is a hands-on family business. Development, customer communic
 
 ## Useful Links
 
-- Website: https://flavorfactory.net
-- About: https://flavorfactory.net/about
-- Capabilities: https://flavorfactory.net/capabilities
-- Industries: https://flavorfactory.net/industries
-- Flavor library: https://flavorfactory.net/flavors
-- Certifications: https://flavorfactory.net/certifications
-- Request samples: https://flavorfactory.net/request-samples
-- Sitemap: https://flavorfactory.net/sitemap.xml
+- Website: https://www.flavorfactory.net
+- About: https://www.flavorfactory.net/about
+- Capabilities: https://www.flavorfactory.net/capabilities
+- Industries: https://www.flavorfactory.net/industries
+- Flavor library: https://www.flavorfactory.net/flavors
+- Certifications: https://www.flavorfactory.net/certifications
+- Request samples: https://www.flavorfactory.net/request-samples
+- Sitemap: https://www.flavorfactory.net/sitemap.xml
 
 ## Contact
 

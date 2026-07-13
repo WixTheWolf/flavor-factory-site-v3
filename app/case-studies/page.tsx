@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 
-const BC_CASE_STUDIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Case Studies","item":"https://flavorfactory.net/case-studies"}]};
+const BC_CASE_STUDIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Case Studies","item":"https://www.flavorfactory.net/case-studies"}]};
 export default function CaseStudiesPage() {
   return (
     <>

@@ -1,4 +1,4 @@
-const BASE_URL = "https://flavorfactory.net";
+const BASE_URL = "https://www.flavorfactory.net";
 
 export function absoluteUrl(path: string) {
   return path.startsWith("http") ? path : `${BASE_URL}${path}`;

@@ -65,7 +65,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: privateRoutes,
       },
     ],
-    sitemap: "https://flavorfactory.net/sitemap.xml",
-    host: "https://flavorfactory.net",
+    sitemap: "https://www.flavorfactory.net/sitemap.xml",
+    host: "https://www.flavorfactory.net",
   };
 }
