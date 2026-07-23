@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { navigation, siteCopy } from "@/data/site-copy";
+import { k9sBadge, k9sLinks } from "@/data/k9s-for-warriors";
 import { industries } from "@/data/industries";
 import { Logo } from "@/components/ui/Logo";
 import { trackEvent } from "@/lib/analytics";
@@ -29,6 +31,16 @@ export function Footer() {
         <div>
           <Logo className="logo-svg" />
           <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors, from first sample to full production.</p>
+          <a
+            className="footer-k9s"
+            href={k9sLinks.site}
+            target="_blank"
+            rel="noopener"
+            onClick={() => trackEvent("k9s_click", { location: "footer" })}
+          >
+            <Image src={k9sBadge.src} alt={k9sBadge.alt} width={k9sBadge.width} height={k9sBadge.height} sizes="150px" />
+            <span>Proud supporter of K9s For Warriors</span>
+          </a>
         </div>
 
         <div>

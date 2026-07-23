@@ -6892,6 +6892,211 @@ button, input, textarea, select { font: inherit; }
   .footer-review-link { margin-left: 0; }
 }
 
+/* ── K9s For Warriors: proud supporter section ──────────── */
+.k9s-section {
+  padding: 76px 0 88px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+}
+
+.k9s-section.is-compact {
+  padding: 56px 0 8px;
+  border-top: 0;
+}
+
+.k9s-intro {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.k9s-section.is-compact .k9s-intro {
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+}
+
+.k9s-badge {
+  display: block;
+}
+
+.k9s-badge img {
+  width: 100%;
+  height: auto;
+}
+
+.k9s-copy h2 {
+  margin: 10px 0 0;
+  color: var(--brand);
+  font-size: var(--text-h2);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  line-height: 1.15;
+}
+
+.k9s-copy p {
+  margin: 14px 0 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 68ch;
+}
+
+.k9s-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 24px;
+}
+
+.k9s-secondary-link {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.k9s-secondary-link:hover { color: var(--brand); }
+
+/* Carousel */
+.k9s-carousel {
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+
+.k9s-carousel-track {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: 10px;
+}
+
+.k9s-carousel-track::-webkit-scrollbar { display: none; }
+
+.k9s-slide {
+  flex: 0 0 100%;
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+/* No crop: the photos keep their native ratio so the K9s watermark stays intact. */
+.k9s-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.k9s-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.k9s-carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--brand);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color .15s, background .15s, opacity .15s;
+}
+
+.k9s-carousel-arrow:hover:not(:disabled) {
+  background: var(--gold-pale);
+  border-color: var(--border-gold);
+}
+
+.k9s-carousel-arrow:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+.k9s-carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.k9s-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background: rgba(18, 56, 47, .22);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+
+.k9s-dot:hover { background: rgba(18, 56, 47, .4); }
+
+.k9s-dot.is-active {
+  background: var(--gold);
+  transform: scale(1.35);
+}
+
+.k9s-carousel-credit {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .k9s-section,
+  .k9s-section.is-compact {
+    padding-top: 48px;
+  }
+  .k9s-intro,
+  .k9s-section.is-compact .k9s-intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    justify-items: start;
+  }
+  .k9s-badge {
+    width: 220px;
+  }
+}
+
+/* ── Footer: proud supporter badge ──────────────────────── */
+.footer-k9s {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  max-width: 320px;
+}
+
+.footer-k9s img {
+  width: 130px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.footer-k9s span {
+  color: rgba(17, 17, 17, .62);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.footer-k9s:hover span { color: var(--brand); }
+
 /* ── BuiltInNorco: text-only layout ───── */
 .built-in-norco-text-only {
   max-width: 680px;

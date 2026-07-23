@@ -10,6 +10,7 @@ import { CTA } from "@/components/CTA";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { BuiltInNorco } from "@/components/BuiltInNorco";
 import { QualitySupport } from "@/components/QualitySupport";
+import { K9sForWarriors } from "@/components/K9sForWarriors";
 import { teamMembers } from "@/data/team";
 import Link from "next/link";
 
@@ -253,6 +254,8 @@ export default function AboutPage() {
                 </div>
               </section>
             </Reveal>
+
+            <Reveal><K9sForWarriors variant="compact" /></Reveal>
 
           </div>
         </section>
