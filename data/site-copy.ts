@@ -39,5 +39,5 @@ export const navigation = [
   { label: "FAQ", href: "/faq", nav: false },
   { label: "Case Studies", href: "/case-studies", nav: false },
   { label: "Company Info", href: "/company-info", nav: false },
-  { label: "Request Samples", href: "/request-samples", nav: false },
+  { label: "Request a Sample", href: "/request-samples", nav: false },
 ];
