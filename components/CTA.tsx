@@ -11,8 +11,8 @@ type CTAProps = {
 
 export function CTA({
   eyebrow = "Request a Sample",
-  title = "Tell us what you are making.",
-  copy = "Share the application, flavor direction, and a few project details. A real person from our team will review it and follow up.",
+  title = "Tell us where to send it.",
+  copy = "Start with your name, email, and shipping address. Add whatever project details you already know, and a real person from our team will follow up.",
   href = "/request-samples",
   label = "Request a Sample",
 }: CTAProps) {
