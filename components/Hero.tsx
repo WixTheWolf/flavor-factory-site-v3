@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { HeroVideo } from "@/components/HeroVideo";
-import { Logo } from "@/components/ui/Logo";
 
 export function Hero() {
   const trustItems = [
@@ -20,7 +19,6 @@ export function Hero() {
       />
       <div className="home-shell new-hero-content">
         <div className="new-hero-copy">
-          <Logo className="hero-brand-logo" />
           <div className="new-eyebrow">Good on the bench is not good enough.</div>
           <h1 className="display">Custom liquid and powder flavors built for your finished product.</h1>
           <p className="new-hero-text">
@@ -28,8 +26,8 @@ export function Hero() {
           </p>
           <div className="new-actions">
             <Button href="/request-samples">Request a Sample</Button>
+            <Link className="new-hero-tertiary" href="/flavors">Browse Flavors</Link>
           </div>
-          <Link className="new-hero-tertiary" href="/flavors">Browse Flavors</Link>
           <ul className="new-hero-trust" aria-label="Key company facts">
             {trustItems.map((item) => <li key={item}>{item}</li>)}
           </ul>
