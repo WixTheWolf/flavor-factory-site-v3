@@ -7,6 +7,7 @@ import "./home-preview-context.css";
 import "./home-preview-polish.css";
 import "./site-preview-polish.css";
 import "./content-preview-polish.css";
+import "./best-site-v2.css";
 
 const BASE = "https://www.flavorfactory.net";
 const IS_PREVIEW = process.env.VERCEL_ENV === "preview";
