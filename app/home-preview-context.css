@@ -1,0 +1,12 @@
+/* Shared preview tokens for homepage-adjacent elements outside <main>, such as the header and footer. */
+body:has(.new-home) {
+  --preview-ink: #15352e;
+  --preview-deep: #0d2b25;
+  --preview-muted: #596a64;
+  --preview-line: rgba(18, 56, 47, 0.12);
+  --preview-line-strong: rgba(18, 56, 47, 0.2);
+  --preview-warm: #f3efe6;
+  --preview-cream: #fbfaf7;
+  --preview-card: #ffffff;
+  --preview-gold: #c9852c;
+}
