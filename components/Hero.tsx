@@ -27,7 +27,7 @@ export function Hero() {
             We help brands and manufacturers develop new profiles, match or replace existing flavors, mask difficult ingredients, and move approved work into production.
           </p>
           <div className="new-actions">
-            <Button href="/request-samples">Request Samples</Button>
+            <Button href="/request-samples">Request a Sample</Button>
           </div>
           <Link className="new-hero-tertiary" href="/flavors">Browse Flavors</Link>
           <ul className="new-hero-trust" aria-label="Key company facts">
