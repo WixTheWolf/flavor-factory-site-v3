@@ -28,8 +28,8 @@ export function Hero() {
           </p>
           <div className="new-actions">
             <Button href="/request-samples">Request Samples</Button>
-            <Link className="new-hero-tertiary" href="/flavors">Browse Flavors</Link>
           </div>
+          <Link className="new-hero-tertiary" href="/flavors">Browse Flavors</Link>
           <ul className="new-hero-trust" aria-label="Key company facts">
             {trustItems.map((item) => <li key={item}>{item}</li>)}
           </ul>
