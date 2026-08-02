@@ -35,8 +35,9 @@ export function FlavorProblems() {
           </p>
         </div>
         <div className="flavor-problems-grid">
-          {problems.map((problem) => (
+          {problems.map((problem, index) => (
             <article key={problem.title}>
+              <span className="fp-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <h3>{problem.title}</h3>
               <p className="fp-pain">{problem.text}</p>
               <Link href={problem.href} className="fp-link">Learn more</Link>
