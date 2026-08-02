@@ -13,27 +13,21 @@ import { teamMembers } from "@/data/team";
 export const metadata: Metadata = {
   title: "Family-Owned Flavor Manufacturer in Norco, CA",
   description:
-    "Family-owned custom flavor manufacturer in Norco, CA. Hands-on development, no hand-offs, and a team that holds every project from sample to repeat production.",
+    "Family-owned custom flavor manufacturer in Norco, California. A small, experienced team supports development, quality, operations, and production.",
   alternates: { canonical: "/about" },
   openGraph: {
     url: "/about",
     title: "Family-Owned Flavor Manufacturer in Norco, CA | The Flavor Factory",
     description:
-      "Family-owned custom flavor manufacturer in Norco, CA. Hands-on development, no hand-offs, and a team that holds every project from sample to repeat production.",
+      "A family-owned custom flavor manufacturer with development, quality, operations, and production in Norco, California.",
     images: [
       {
         url: "/og?title=Family-Owned+Flavor+Manufacturer",
         width: 1200,
         height: 630,
-        alt: "The Flavor Factory team in Norco, CA",
+        alt: "The Flavor Factory team in Norco, California",
       },
     ],
-  },
-  twitter: {
-    title: "Family-Owned Flavor Manufacturer in Norco, CA | The Flavor Factory",
-    description:
-      "Family-owned custom flavor manufacturer in Norco, CA. Hands-on development, no hand-offs, every project held from sample to production.",
-    images: ["/og?title=Family-Owned+Flavor+Manufacturer"],
   },
 };
 
@@ -104,7 +98,7 @@ export default function AboutPage() {
                 </div>
                 <div className="about-story-copy">
                   <p>
-                    Customers do not need a complicated process. They need someone to understand the product, build a useful first direction, and keep each revision focused.
+                    We listen closely, understand the finished product, build a useful first direction, and keep each revision focused.
                   </p>
                   <p>
                     The people helping develop the flavor are close to the people making it. That keeps the original brief intact from the first sample through repeat production.
