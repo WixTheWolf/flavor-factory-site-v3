@@ -9,6 +9,7 @@ import { OrganizationSchema } from "@/components/OrganizationSchema";
 import { Reveal } from "@/components/Reveal";
 import { FlavorProblems } from "@/components/FlavorProblems";
 import { QualitySupport } from "@/components/QualitySupport";
+import { K9sForWarriors } from "@/components/K9sForWarriors";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -100,6 +101,7 @@ export default function HomePage() {
           </section>
         </Reveal>
         <Reveal><QualitySupport /></Reveal>
+        <Reveal><K9sForWarriors /></Reveal>
         <Reveal><CTA /></Reveal>
       </main>
       <Footer />
