@@ -10,27 +10,21 @@ import { BuiltInNorco } from "@/components/BuiltInNorco";
 export const metadata: Metadata = {
   title: "Flavor Development Capabilities",
   description:
-    "Custom development, matching, and reformulation. Liquid and powder production from Norco, CA. Heat-stable, process-ready, and label-compliant formulations.",
+    "Custom development, matching, reformulation, masking, and liquid and powder production from The Flavor Factory in Norco, California.",
   alternates: { canonical: "/capabilities" },
   openGraph: {
     url: "/capabilities",
     title: "Flavor Development Capabilities | The Flavor Factory",
     description:
-      "Custom development, matching, and reformulation. Liquid and powder production from Norco, CA. Heat-stable, process-ready, and label-compliant formulations.",
+      "Custom development, matching, reformulation, masking, and liquid and powder production from Norco, California.",
     images: [
       {
         url: "/og?title=Flavor+Development+Capabilities",
         width: 1200,
         height: 630,
-        alt: "The Flavor Factory - flavor development capabilities",
+        alt: "The Flavor Factory flavor development capabilities",
       },
     ],
-  },
-  twitter: {
-    title: "Flavor Development Capabilities | The Flavor Factory",
-    description:
-      "Custom development, matching, and reformulation. Liquid and powder, heat-stable, process-ready formulations from Norco, CA.",
-    images: ["/og?title=Flavor+Development+Capabilities"],
   },
 };
 
@@ -43,12 +37,12 @@ const developmentStages = [
   {
     title: "Build the First Direction",
     output: "Liquid or powder sample set",
-    copy: "We create a focused starting point around the brief instead of sending a box of unrelated flavors and hoping one works.",
+    copy: "We choose the strongest starting route for the brief, whether that is a library profile, matching, masking, reformulation, or new custom development.",
   },
   {
     title: "Refine What Matters",
     output: "Clear revision notes and the next sample round",
-    copy: "Each revision addresses the specific changes that matter: impact, sweetness, acidity, masking, finish, stability, or cost.",
+    copy: "Each revision addresses the changes that matter: impact, sweetness, acidity, masking, finish, stability, or cost.",
   },
   {
     title: "Move Into Production",
@@ -62,7 +56,7 @@ const technicalWork = [
   "Masking and modulation",
   "Heat-stable and process-ready formulations",
   "Sweetener, acid, protein, fat, and active compatibility",
-  "Small batch development to full production",
+  "Small-batch development through commercial production",
   "Organized revisions and production handoff",
 ] as const;
 
@@ -91,7 +85,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" },
-    { "@type": "ListItem", position: 2, name: "Capabilities", item: "https://www.flavorfactory.net/capabilities" },
+    { "@type": "ListItem", position: 2, name: "What We Do", item: "https://www.flavorfactory.net/capabilities" },
   ],
 };
 
@@ -120,10 +114,10 @@ export default function CapabilitiesPage() {
             <section className="capability-timeline-section">
               <div className="section-head">
                 <div>
-                  <div className="new-eyebrow">How It Works</div>
+                  <div className="new-eyebrow">Development Path</div>
                   <h2 className="section-title">A clear path from brief to production.</h2>
                 </div>
-                <p className="section-subtext">Four practical stages. No unnecessary layers.</p>
+                <p className="section-subtext">Four practical stages, with the same team staying close to the work.</p>
               </div>
               <RevealGroup className="capability-timeline" stagger={0.09}>
                 {developmentStages.map((stage, index) => (
