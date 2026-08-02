@@ -10,19 +10,14 @@ import { resourceRequestSteps, resourceSections } from "@/data/resources";
 export const metadata: Metadata = {
   title: "Supplier Resources and Documentation",
   description:
-    "COAs, spec sheets, allergen statements, SDS, SQF documentation, FDA registration, and supplier qualification support from The Flavor Factory in Norco, CA.",
+    "COAs, specifications, allergen statements, SDS, SQF documentation, FDA registration, and supplier qualification support from The Flavor Factory.",
   alternates: { canonical: "/resources" },
   openGraph: {
     url: "/resources",
     title: "Supplier Resources and Documentation | The Flavor Factory",
     description:
-      "Production documentation, facility quality programs, certification support, and supplier qualification from a family-owned flavor manufacturer in Norco, CA.",
-    images: [{ url: "/og?title=Supplier+Resources", width: 1200, height: 630, alt: "Supplier resources - The Flavor Factory" }],
-  },
-  twitter: {
-    title: "Supplier Resources and Documentation | The Flavor Factory",
-    description: "COAs, spec sheets, allergen statements, SQF docs, and supplier qualification support.",
-    images: ["/og?title=Supplier+Resources"],
+      "Production documentation, facility quality programs, certification support, and supplier qualification from The Flavor Factory.",
+    images: [{ url: "/og?title=Supplier+Resources", width: 1200, height: 630, alt: "Supplier resources from The Flavor Factory" }],
   },
 };
 
@@ -43,17 +38,15 @@ export default function ResourcesPage() {
       <main>
         <section className="section clean-page">
           <div className="container">
-            <div className="clean-page-intro">
-              <div className="new-eyebrow">Resources</div>
+            <div className="clean-page-intro resources-intro">
+              <div className="new-eyebrow">Supplier Resources</div>
               <h1>Documentation for procurement, quality, and regulatory teams.</h1>
               <p>
-                The documents below are available for approved production flavors and active development projects.
-                Most requests are handled through{" "}
-                <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> with a 1-2 business day response for standard qualification paperwork.
+                The documents below are available for approved production flavors and active development projects. Standard qualification requests are typically answered within 1-2 business days.
               </p>
               <div className="new-actions">
-                <Button href="mailto:samples@flavorfactory.net">Request Documentation</Button>
-                <Button href="/certifications" variant="secondary">View Certifications</Button>
+                <Button href="mailto:samples@flavorfactory.net?subject=Supplier%20documentation%20request">Request Supplier Documents</Button>
+                <Button href="/certifications" variant="secondary">Review Quality Programs</Button>
               </div>
             </div>
 
@@ -90,27 +83,25 @@ export default function ResourcesPage() {
 
             <Reveal>
               <section className="resources-request-panel">
-                <div className="new-eyebrow">How to request</div>
-                <h2>Send the form or list what you need.</h2>
+                <div className="new-eyebrow">How to Request Documents</div>
+                <h2>Send the questionnaire or list what you need.</h2>
                 <ol className="resources-steps">
-                  {resourceRequestSteps.map((step) => (
-                    <li key={step}>{step}</li>
-                  ))}
+                  {resourceRequestSteps.map((step) => <li key={step}>{step}</li>)}
                 </ol>
                 <p>
-                  Related pages: <Link href="/faq">FAQ</Link>, <Link href="/certifications">Certifications</Link>,{" "}
-                  <Link href="/company-info">Company Info</Link>, <Link href="/contact">Contact</Link>.
+                  Related information: <Link href="/certifications">Quality</Link>, <Link href="/faq">FAQ</Link>,{" "}
+                  <Link href="/process">How It Works</Link>, and <Link href="/contact">Contact</Link>.
                 </p>
               </section>
             </Reveal>
           </div>
         </section>
         <CTA
-          eyebrow="Supplier qualification"
+          eyebrow="Supplier Qualification"
           title="Need documents for a vendor file?"
-          copy="Email samples@flavorfactory.net with your questionnaire or document list. Include the flavor name or project reference if you have one."
-          href="mailto:samples@flavorfactory.net"
-          label="Email Quality Team"
+          copy="Email the questionnaire or document list and include the project or flavor reference when one exists."
+          href="mailto:samples@flavorfactory.net?subject=Vendor%20qualification%20document%20request"
+          label="Email the Quality Team"
         />
       </main>
       <Footer />
