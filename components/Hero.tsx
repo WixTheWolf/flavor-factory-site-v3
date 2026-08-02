@@ -5,7 +5,7 @@ import { HeroVideo } from "@/components/HeroVideo";
 export function Hero() {
   const trustItems = [
     "Family-owned in Norco, California",
-    "First samples in 3–5 business days",
+    "First samples in 3-5 business days",
     "Low minimums",
     "Development and production under one roof",
   ] as const;
