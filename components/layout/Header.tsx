@@ -8,6 +8,8 @@ import { navigation } from "@/data/site-copy";
 import { Logo } from "@/components/ui/Logo";
 import { trackEvent } from "@/lib/analytics";
 
+const mobileSecondaryLinks = ["/process", "/resources", "/faq", "/contact", "/request-samples"] as const;
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -19,6 +21,10 @@ export function Header() {
   function isActive(href: string) {
     return href === "/" ? pathname === href : pathname.startsWith(href);
   }
+
+  const mobileNavigation = navigation.filter(
+    (item) => item.nav || mobileSecondaryLinks.includes(item.href as (typeof mobileSecondaryLinks)[number]),
+  );
 
   return (
     <header className="site-header">
@@ -67,18 +73,16 @@ export function Header() {
 
       <div id="mobile-navigation" className={`mobile-panel ${open ? "open" : ""}`} aria-hidden={!open}>
         <div className="container mobile-links">
-          {navigation
-            .filter((item) => item.nav || item.href === "/request-samples" || item.href === "/faq" || item.href === "/resources")
-            .map((item) => (
-              <Link
-                href={item.href}
-                key={item.href}
-                className={isActive(item.href) ? "active" : ""}
-                aria-current={isActive(item.href) ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {mobileNavigation.map((item) => (
+            <Link
+              href={item.href}
+              key={item.href}
+              className={isActive(item.href) ? "active" : ""}
+              aria-current={isActive(item.href) ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
           <a href="tel:+19512739877" onClick={() => trackEvent("phone_click", { location: "mobile menu" })}>
             Call (951) 273-9877
           </a>
