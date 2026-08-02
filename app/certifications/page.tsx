@@ -1,152 +1,142 @@
 import type { Metadata } from "next";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
-
-export const metadata: Metadata = {
-  title: "Flavor Certifications",
-  description:
-    "SQF facility, GMP practices, FDA registered facility, and Kosher, Halal, and organic-compliant options available by project. Certification needs reviewed as part of the development brief.",
-  alternates: { canonical: "/certifications" },
-  openGraph: {
-    url: "/certifications",
-    title: "Flavor Certifications | The Flavor Factory",
-    description:
-      "SQF facility, GMP practices, FDA registered facility, and Kosher, Halal, and organic-compliant options available by project.",
-    images: [
-      {
-        url: "/og?title=Flavor+Certifications&description=SQF+facility%2C+GMP+practices%2C+FDA+registered+facility",
-        width: 1200,
-        height: 630,
-        alt: "The Flavor Factory certifications",
-      },
-    ],
-  },
-  twitter: {
-    title: "Flavor Certifications | The Flavor Factory",
-    description:
-      "SQF facility, GMP practices, FDA registered facility, and Kosher, Halal, and organic-compliant options available by project.",
-    images: ["/og?title=Flavor+Certifications&description=SQF+facility%2C+GMP+practices%2C+FDA+registered+facility"],
-  },
-};
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
 import { siteImages } from "@/data/site-images";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 
-const certificationNotes = [
+export const metadata: Metadata = {
+  title: "Quality and Certification Support",
+  description:
+    "SQF facility, GMP practices, FDA registered facility, and Kosher, Halal, and organic-compliant options available by project.",
+  alternates: { canonical: "/certifications" },
+  openGraph: {
+    url: "/certifications",
+    title: "Quality and Certification Support | The Flavor Factory",
+    description:
+      "Facility quality programs, formula-specific certification support, and supplier documentation from The Flavor Factory.",
+    images: [
+      {
+        url: "/og?title=Quality+and+Certification+Support",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory quality and certification support",
+      },
+    ],
+  },
+};
+
+const programs = [
   {
     name: "SQF",
-    note: "Our SQF program gives customer quality teams a recognized framework to review during supplier qualification.",
-    scope: "Facility-level food safety and quality management program.",
-    request: "Program documentation available by request for vendor files.",
+    summary: "Facility-level food safety and quality management program.",
+    availability: "Current program documentation is available by request for supplier qualification.",
   },
   {
     name: "GMP",
-    note: "Good Manufacturing Practices govern how every flavor is handled, produced, and documented, from raw material receipt through finished-goods release.",
-    scope: "Applies to all production and documentation workflows in Norco.",
-    request: "GMP summary available by request.",
-  },
-  {
-    name: "Kosher",
-    note: "Many of our flavors carry Kosher certification. If your product requires it, tell us at the start of the project and we'll confirm the status for the specific formula.",
-    scope: "Formula-specific. Certification agency and status confirmed per project.",
-    request: "Kosher documentation provided for qualifying approved formulas.",
-  },
-  {
-    name: "Halal",
-    note: "Halal status varies by formula. Share the requirement up front and we'll confirm which directions qualify, or develop one that does.",
-    scope: "Formula-specific based on ingredient sourcing and project requirements.",
-    request: "Halal status confirmed before development proceeds when required.",
-  },
-  {
-    name: "Organic",
-    note: "We can develop organic-compliant flavor directions using approved ingredients where applicable. If your label requires an organic claim, bring that into the brief so documentation and formulation needs are reviewed early.",
-    scope: "Project-specific organic-compliant formulation paths.",
-    request: "Organic-compliant development discussed at brief stage.",
+    summary: "Good Manufacturing Practices for production, handling, and documentation workflows.",
+    availability: "A GMP summary is available by request.",
   },
   {
     name: "FDA Registered Facility",
-    note: "Our facility is registered with the FDA as a food manufacturing operation in Norco, California.",
-    scope: "Facility registration for food manufacturing operations.",
-    request: "Registration documentation available for supplier qualification files.",
+    summary: "The Norco facility is registered with the FDA as a food manufacturing operation.",
+    availability: "Registration documentation is available for supplier files.",
+  },
+  {
+    name: "Kosher",
+    summary: "Kosher status is confirmed for the specific formula and project.",
+    availability: "Tell us the requirement before development so qualifying directions can be confirmed.",
+  },
+  {
+    name: "Halal",
+    summary: "Halal status depends on formula, ingredients, and sourcing.",
+    availability: "Status is reviewed before development proceeds when required.",
+  },
+  {
+    name: "Organic-Compliant",
+    summary: "Organic-compliant development paths are available where the formula and ingredients allow.",
+    availability: "Bring the label goal into the brief so the requirement is reviewed early.",
   },
 ] as const;
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" },
+    { "@type": "ListItem", position: 2, name: "Quality", item: "https://www.flavorfactory.net/certifications" },
+  ],
+};
 
-const BC_CERTIFICATIONS = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Certifications","item":"https://www.flavorfactory.net/certifications"}]};
 export default function CertificationsPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_CERTIFICATIONS) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
         <section className="section clean-page">
           <div className="container">
-            <div className="clean-page-intro">
-              <div className="new-eyebrow">Certifications</div>
-              <h1>Your label requirements are part of the brief.</h1>
-              <p>
-                Certification needs are reviewed as part of the development path so label sourcing, ingredient declarations, and production requirements are considered before scale-up, not after.
-              </p>
-              <div className="new-actions">
-                <Button href="/resources">Supplier Resources</Button>
-                <Button href="/request-samples" variant="secondary">Request a Custom Sample</Button>
-                <Button href="/contact" variant="secondary">
-                  Talk to Our Team
-                </Button>
+            <div className="quality-page-hero">
+              <div className="quality-page-copy">
+                <div className="new-eyebrow">Quality</div>
+                <h1>Clear documentation for the formula, facility, and vendor file.</h1>
+                <p>
+                  Facility programs and formula-specific requirements are kept separate. That makes it easier to understand what applies to the plant, what applies to the flavor, and what can be supplied for your project.
+                </p>
+                <div className="new-actions">
+                  <Button href="mailto:samples@flavorfactory.net?subject=Supplier%20qualification%20documents">Request Supplier Documents</Button>
+                  <Button href="/request-samples" variant="secondary">Request a Sample</Button>
+                </div>
+                <p className="quality-response-note">Standard supplier-document requests are typically answered within 1-2 business days.</p>
+              </div>
+              <div className="quality-page-image">
+                <AppImage
+                  src={siteImages.certificationsHero}
+                  alt="Facility quality, kosher, halal, organic-compliant, and FDA registration program badges"
+                  fill={false}
+                  width={2172}
+                  height={724}
+                  priority
+                  sizes="(max-width: 980px) calc(100vw - 40px), 620px"
+                />
               </div>
             </div>
 
-            <div className="clean-cert-badges">
-              <AppImage
-                src={siteImages.certificationsHero}
-                alt="Facility quality, kosher, halal, organic-compliant, and FDA registration program badges"
-                fill={false}
-                width={2172}
-                height={724}
-                priority
-                sizes="(max-width: 980px) calc(100vw - 40px), 1040px"
-              />
-            </div>
-
-            <section className="quality clean-quality-panel">
+            <section className="quality-programs-section">
               <div className="section-head">
                 <div>
-                  <div className="new-eyebrow">Programs</div>
-                  <h2 className="section-title">Certification support, stated plainly.</h2>
+                  <div className="new-eyebrow">Programs and Options</div>
+                  <h2 className="section-title">What applies at the facility and what is confirmed by formula.</h2>
                 </div>
                 <p className="section-subtext">
-                  We keep certification and facility conversations specific to the flavor, application, and documentation available for the project.
+                  Certification and label requirements should be included in the project brief before sample development begins.
                 </p>
               </div>
-              <RevealGroup className="quality-grid quality-card-grid">
-                {certificationNotes.map((item) => (
+              <RevealGroup className="quality-program-grid" stagger={0.06}>
+                {programs.map((item) => (
                   <RevealItem key={item.name}>
-                    <article className="quality-badge quality-note-card">
+                    <article className="quality-program-card">
                       <h2>{item.name}</h2>
-                      <p>{item.note}</p>
-                      <p className="certification-meta"><strong>Scope:</strong> {item.scope}</p>
-                      <p className="certification-meta"><strong>Documentation:</strong> {item.request}</p>
+                      <p>{item.summary}</p>
+                      <span>{item.availability}</span>
                     </article>
                   </RevealItem>
                 ))}
               </RevealGroup>
             </section>
 
-            <section className="certification-claim-section">
+            <section className="quality-request-panel">
               <div>
-                <div className="new-eyebrow">Label Review</div>
-                <h2>The right claim depends on the right formula.</h2>
+                <div className="new-eyebrow">Vendor Qualification</div>
+                <h2>Send the questionnaire or document list.</h2>
                 <p>
-                  We review certification needs as part of the development path so label sourcing, ingredient declaration, and production requirements are considered before scale-up.
-                </p>
-                <p>
-                  Certification, documentation, and label needs are reviewed by project.
+                  Include the project name or flavor reference when one exists. The quality team will confirm what is available for the facility and the specific formula.
                 </p>
               </div>
-              <div className="new-actions">
-                <Button href="/resources">View Supplier Resources</Button>
-                <Button href="/request-samples" variant="secondary">Start a Flavor Brief</Button>
+              <div className="quality-request-actions">
+                <Button href="mailto:samples@flavorfactory.net?subject=Supplier%20questionnaire%20and%20document%20request">Email the Quality Team</Button>
+                <Button href="/resources" variant="secondary">See Available Documents</Button>
               </div>
             </section>
           </div>
