@@ -101,10 +101,10 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p>
-                    We are not the biggest flavor house, and we do not try to act like one. Our size keeps communication direct and accountability personal.
+                    Being family-owned keeps communication direct and responsibility clear. The person answering the question is close to the work itself.
                   </p>
                   <p>
-                    The people who help develop your flavor are close to the people who make it. That matters when a formula needs an adjustment, a deadline moves, or production has a question.
+                    Development, quality, operations, and production all happen in Norco, so important project details stay connected from the first sample through repeat orders.
                   </p>
                   <Link className="cta-btn" href="/about">Meet the Family</Link>
                 </div>
