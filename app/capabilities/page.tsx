@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { CTA } from "@/components/CTA";
+import { PageHero } from "@/components/PageHero";
+import { siteImages } from "@/data/site-images";
+import { RevealGroup, RevealItem, Reveal } from "@/components/Reveal";
+import { BuiltInNorco } from "@/components/BuiltInNorco";
 
 export const metadata: Metadata = {
   title: "Flavor Development Capabilities",
@@ -27,43 +33,27 @@ export const metadata: Metadata = {
     images: ["/og?title=Flavor+Development+Capabilities"],
   },
 };
-import { Footer } from "@/components/layout/Footer";
-import { CTA } from "@/components/CTA";
-import { PageHero } from "@/components/PageHero";
-import { siteImages } from "@/data/site-images";
-import { RevealGroup, RevealItem, Reveal } from "@/components/Reveal";
-import { BuiltInNorco } from "@/components/BuiltInNorco";
 
 const developmentStages = [
   {
-    title: "Concept Development",
-    output: "Output: project direction + technical brief",
-    copy: "We start with the product system, not a flavor list. Application, base, processing conditions, label goals, cost parameters, and timeline shape the first direction.",
+    title: "Understand the Product",
+    output: "Application, base, process, label, and timeline",
+    copy: "We begin with the finished product and the real constraints around it. That gives the first sample a clear job to do.",
   },
   {
-    title: "Sample Creation",
-    output: "Output: liquid or powder sample set",
-    copy: "First-round samples are built with application constraints in mind. Not a generic starting point: a direction built for the product.",
+    title: "Build the First Direction",
+    output: "Liquid or powder sample set",
+    copy: "We create a focused starting point around the brief instead of sending a box of unrelated flavors and hoping one works.",
   },
   {
-    title: "Flavor Adjustment",
-    output: "Output: revision notes + focused next round",
-    copy: "Each revision is documented so every round moves toward approval. Sweetness, acidity, top notes, finish, masking, and modulation are all in play.",
+    title: "Refine What Matters",
+    output: "Clear revision notes and the next sample round",
+    copy: "Each revision addresses the specific changes that matter: impact, sweetness, acidity, masking, finish, stability, or cost.",
   },
   {
-    title: "Scale-Up Support",
-    output: "Output: manufacturing specs",
-    copy: "Approved samples move into production documentation so the flavor stays consistent when you go from bench to batch.",
-  },
-  {
-    title: "Manufacturing",
-    output: "Output: repeatable liquid or powder production",
-    copy: "Liquid and powder production from Norco, CA. Consistent batch quality, fast repeat orders, and organized sample-to-order handoff.",
-  },
-  {
-    title: "Customer Follow-Through",
-    output: "Output: reorder and reformulation support",
-    copy: "Reorders, reformulations, questions, and long-term account management stay organized after first approval.",
+    title: "Move Into Production",
+    output: "Repeatable manufacturing specifications",
+    copy: "Approved work moves into production at the same Norco facility, keeping the handoff practical and the finished flavor consistent.",
   },
 ] as const;
 
@@ -115,16 +105,14 @@ export default function CapabilitiesPage() {
         <section className="section clean-page">
           <div className="container">
             <PageHero
-              eyebrow="Capabilities"
-              title="Built for the finished product. Not just the sample."
-              copy="Every flavor is formulated for your base, your processing, your label. Not for the flavor bench."
+              eyebrow="What We Do"
+              title="Flavor development built around the finished product."
+              copy="We develop, match, refine, and manufacture liquid and powder flavors around the base, process, label, and production path."
               image={siteImages.capabilitiesHero}
               imageAlt="Single amber drop falling from a pipette into a glass beaker"
               imagePosition="center 38%"
               primaryHref="/request-samples"
-              primaryLabel="Request Your First Sample"
-              secondaryHref="/industries"
-              secondaryLabel="Explore Industries"
+              primaryLabel="Request a Sample"
             />
 
             <Reveal><BuiltInNorco /></Reveal>
@@ -132,12 +120,10 @@ export default function CapabilitiesPage() {
             <section className="capability-timeline-section">
               <div className="section-head">
                 <div>
-                  <div className="new-eyebrow">Development Loop</div>
-                  <h2 className="section-title">From first sample to repeatable production.</h2>
+                  <div className="new-eyebrow">How It Works</div>
+                  <h2 className="section-title">A clear path from brief to production.</h2>
                 </div>
-                <p className="section-subtext">
-                  Each stage gives the customer a clearer decision point: what we need, what we build, and what comes back next.
-                </p>
+                <p className="section-subtext">Four practical stages. No unnecessary layers.</p>
               </div>
               <RevealGroup className="capability-timeline" stagger={0.09}>
                 {developmentStages.map((stage, index) => (
@@ -157,10 +143,8 @@ export default function CapabilitiesPage() {
               <section className="technical-section">
                 <div>
                   <div className="new-eyebrow">Capabilities</div>
-                  <h2>What this looks like in practice.</h2>
-                  <p>
-                    Six capabilities that move every project from brief to a flavor ready for production.
-                  </p>
+                  <h2>What we handle in-house.</h2>
+                  <p>Practical support from first formulation through repeat production.</p>
                 </div>
                 <RevealGroup className="technical-grid" stagger={0.07}>
                   {technicalWork.map((item) => (
@@ -173,12 +157,7 @@ export default function CapabilitiesPage() {
             </Reveal>
           </div>
         </section>
-        <CTA
-          eyebrow="Sample Development"
-          title="Ready to start with a sample?"
-          copy="Share the application and target profile. We will build the first direction with your product system in mind."
-          label="Request Your First Sample"
-        />
+        <CTA />
       </main>
       <Footer />
     </>
