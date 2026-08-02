@@ -17,7 +17,6 @@ function uniqueLabels(items: string[]) {
 
   return items.filter((item) => {
     const key = item.toLowerCase().replace(/[^a-z0-9]+/g, "");
-
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -29,7 +28,8 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
   const inList = mounted && has(flavor.id);
 
   const fit = uniqueLabels([...flavor.applications, ...flavor.industries.map(industryLabel)]).slice(0, 3);
-  const metadata = Array.from(new Set([flavor.format, flavor.declarationType, ...flavor.productTypes])).slice(0, 3);
+  const productTypes = flavor.productTypes.filter((item) => item !== "Blend" && item !== flavor.format);
+  const metadata = Array.from(new Set([flavor.format, flavor.declarationType, ...productTypes])).slice(0, 3);
 
   function toggleShortlist() {
     if (inList) {
@@ -49,7 +49,9 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
           <div className="eyebrow">{flavor.family}</div>
           <h3>{flavor.name}</h3>
         </div>
-        <span className="flavor-variant-count">{flavor.variantCount} option{flavor.variantCount === 1 ? "" : "s"}</span>
+        {flavor.variantCount > 1 && (
+          <span className="flavor-variant-count">{flavor.variantCount} options</span>
+        )}
       </div>
 
       <p className="flavor-card-note">{flavor.notes}</p>
@@ -67,14 +69,6 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
           {metadata.map((item) => <span className="flavor-meta-chip" key={item}>{item}</span>)}
         </div>
       </div>
-
-      <details className="flavor-card-details">
-        <summary>Technical names</summary>
-        <ul>
-          {flavor.rawNames.slice(0, 5).map((raw) => <li key={raw}>{raw}</li>)}
-          {flavor.rawNames.length > 5 && <li>+{flavor.rawNames.length - 5} more variants</li>}
-        </ul>
-      </details>
 
       <div className="flavor-card-actions">
         <button
