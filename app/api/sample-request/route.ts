@@ -208,7 +208,7 @@ export async function POST(request: Request) {
   const elapsed = Date.now() - startedAt;
 
   // Quietly accept obvious bot submissions so automated senders do not learn how to bypass the form.
-  if (honeypot || !startedAtValue || !Number.isFinite(startedAt) || elapsed < 1200) {
+  if (honeypot || !startedAtValue || !Number.isFinite(startedAt) || elapsed < 300) {
     return NextResponse.json({ ok: true });
   }
 
