@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { optionalIndustryFieldNames } from "@/data/industry-form-fields";
 
 const DEFAULT_TO = "samples@flavorfactory.net";
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const submissionLog = new Map<string, number[]>();
 
 type SampleRequest = {
   name?: string;
@@ -21,7 +24,29 @@ type SampleRequest = {
   useLevel?: string;
   timeline?: string;
   notes?: string;
+  website?: string;
+  formStartedAt?: string;
   [key: string]: unknown;
+};
+
+const FIELD_LIMITS: Record<string, number> = {
+  name: 120,
+  company: 160,
+  email: 254,
+  phone: 50,
+  shippingAddress: 500,
+  industry: 100,
+  otherApplication: 160,
+  productBase: 240,
+  flavorTarget: 240,
+  format: 100,
+  declaration: 100,
+  challenge: 120,
+  benchmark: 240,
+  projectScale: 160,
+  useLevel: 100,
+  timeline: 160,
+  notes: 4000,
 };
 
 function clean(value: unknown) {
@@ -34,6 +59,42 @@ function escapeHtml(value: string) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function validEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function clientIp(request: Request) {
+  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return forwarded || request.headers.get("x-real-ip")?.trim() || "";
+}
+
+function isRateLimited(ip: string) {
+  if (!ip) return false;
+
+  const now = Date.now();
+  const recent = (submissionLog.get(ip) || []).filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+
+  if (recent.length >= RATE_LIMIT_MAX) {
+    submissionLog.set(ip, recent);
+    return true;
+  }
+
+  submissionLog.set(ip, [...recent, now]);
+  return false;
+}
+
+function fieldOverLimit(body: SampleRequest) {
+  for (const [name, limit] of Object.entries(FIELD_LIMITS)) {
+    if (clean(body[name]).length > limit) return name;
+  }
+
+  for (const name of optionalIndustryFieldNames) {
+    if (clean(body[name]).length > 240) return name;
+  }
+
+  return "";
 }
 
 function optionalIndustryRows(body: SampleRequest) {
@@ -129,12 +190,35 @@ export async function POST(request: Request) {
   const to = process.env.SAMPLE_REQUEST_TO || DEFAULT_TO;
   const from = process.env.SAMPLE_REQUEST_FROM || "The Flavor Factory <onboarding@resend.dev>";
 
+  if (!request.headers.get("content-type")?.includes("application/json")) {
+    return NextResponse.json({ error: "Unsupported request" }, { status: 415 });
+  }
+
   let body: SampleRequest;
 
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+  }
+
+  const honeypot = clean(body.website);
+  const startedAtValue = clean(body.formStartedAt);
+  const startedAt = Number(startedAtValue);
+  const elapsed = Date.now() - startedAt;
+
+  // Quietly accept obvious bot submissions so automated senders do not learn how to bypass the form.
+  if (honeypot || !startedAtValue || !Number.isFinite(startedAt) || elapsed < 300) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (isRateLimited(clientIp(request))) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
+  const overLimit = fieldOverLimit(body);
+  if (overLimit) {
+    return NextResponse.json({ error: `Field is too long: ${overLimit}` }, { status: 400 });
   }
 
   const values = {
@@ -158,8 +242,19 @@ export async function POST(request: Request) {
     notes: clean(body.notes),
   };
 
-  if (!values.name || !values.company || !values.email || !values.shippingAddress) {
-    return NextResponse.json({ error: "Name, company, email, and shipping address are required" }, { status: 400 });
+  if (!values.name || !values.company || !values.email || !values.shippingAddress || !values.industry || !values.flavorTarget) {
+    return NextResponse.json(
+      { error: "Name, company, email, shipping address, application, and flavor direction are required" },
+      { status: 400 },
+    );
+  }
+
+  if (values.industry === "other" && !values.otherApplication) {
+    return NextResponse.json({ error: "Application detail is required" }, { status: 400 });
+  }
+
+  if (!validEmail(values.email)) {
+    return NextResponse.json({ error: "Enter a valid email address" }, { status: 400 });
   }
 
   if (!apiKey) {
