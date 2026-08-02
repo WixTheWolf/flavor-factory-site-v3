@@ -78,7 +78,7 @@ export function Footer() {
             className="footer-cta"
             onClick={() => trackEvent("request_sample_click", { location: "footer" })}
           >
-            Request Samples
+            Request a Sample
           </Link>
         </div>
       </div>
