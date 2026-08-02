@@ -8,9 +8,7 @@ import { CTA } from "@/components/CTA";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
 import { Reveal } from "@/components/Reveal";
 import { FlavorProblems } from "@/components/FlavorProblems";
-import { BuiltInNorco } from "@/components/BuiltInNorco";
 import { QualitySupport } from "@/components/QualitySupport";
-import { K9sForWarriors } from "@/components/K9sForWarriors";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -76,59 +74,32 @@ export default function HomePage() {
         <Hero />
         <Reveal><ProofStrip /></Reveal>
         <Reveal><FlavorProblems /></Reveal>
-        <Reveal>
-          <section className="new-isolation">
-            <div className="home-shell new-isolation-centered">
-              <p className="pull-quote">Most flavor houses develop for the tasting strip. We develop for the finished product.</p>
-            </div>
-          </section>
-        </Reveal>
         <Industries />
         <Reveal>
           <section className="new-section home-accountability-section">
             <div className="home-shell home-accountability-inner">
               <div>
-                <div className="new-eyebrow">One Team, One Facility</div>
-                <h2>Small-team accountability. Real manufacturing capability.</h2>
+                <div className="new-eyebrow">Family-Owned in Norco</div>
+                <h2>You will know who is working on your project.</h2>
                 <ul className="home-accountability-proofs">
-                  <li>In-house development and production</li>
-                  <li>Direct communication with the team</li>
-                  <li>Cleaner handoff from sample to scale</li>
+                  <li>Development and production under one roof</li>
+                  <li>Direct communication with a small, experienced team</li>
+                  <li>A practical handoff from sample to production</li>
                 </ul>
               </div>
               <div>
                 <p>
-                  Development, production, quality, and customer communication happen under one roof in Norco, CA. The people who understand the sample also understand how it gets made.
+                  We are not the biggest flavor house, and we do not try to act like one. Our size keeps communication direct and accountability personal.
                 </p>
-                <p>Send us the application, base, target profile, and label goals. We will help you find the right starting point.</p>
-                <Link className="cta-btn" href="/request-samples">Request a Custom Sample</Link>
+                <p>
+                  The people who help develop your flavor are close to the people who make it. That matters when a formula needs an adjustment, a deadline moves, or production has a question.
+                </p>
+                <Link className="cta-btn" href="/about">Meet the Family</Link>
               </div>
             </div>
           </section>
         </Reveal>
-        <Reveal>
-          <section className="new-section home-facility-section">
-            <div className="home-shell">
-              <BuiltInNorco />
-            </div>
-          </section>
-        </Reveal>
-        <Reveal>
-          <section className="new-who-section">
-            <div className="home-shell">
-              <p className="new-who-headline">Built for teams who need flavors that work in the real product.</p>
-              <ul className="new-who-list">
-                <li>Food and beverage brands developing new products</li>
-                <li>Co-packers and manufacturers needing reliable flavor supply</li>
-                <li>R&amp;D teams matching or improving an existing profile</li>
-                <li>Startups moving from prototype to first production run</li>
-                <li>Established brands needing faster sample turnaround</li>
-              </ul>
-            </div>
-          </section>
-        </Reveal>
         <Reveal><QualitySupport /></Reveal>
-        <Reveal><K9sForWarriors /></Reveal>
         <Reveal><CTA /></Reveal>
       </main>
       <Footer />

@@ -49,7 +49,7 @@ export function Header() {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/request-samples" className="cta-btn" onClick={() => trackEvent("request_sample_click", { location: "header" })}>Request a Custom Sample</Link>
+          <Link href="/request-samples" className="cta-btn" onClick={() => trackEvent("request_sample_click", { location: "header" })}>Request Samples</Link>
         </div>
       </div>
 

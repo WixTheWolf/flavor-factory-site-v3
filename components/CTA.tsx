@@ -10,11 +10,11 @@ type CTAProps = {
 };
 
 export function CTA({
-  eyebrow = "Have a flavor problem to solve?",
-  title = "Tell us what you're making. We'll build around it.",
-  copy = "Share the application, base, target profile, format, and label goals. We'll help choose the right starting point.",
+  eyebrow = "Ready to talk flavor?",
+  title = "Tell us what you are making.",
+  copy = "A few details about the product, base, flavor direction, and timing are enough to get started. A real person from our team will follow up.",
   href = "/request-samples",
-  label = "Request a Custom Sample",
+  label = "Start a Project",
 }: CTAProps) {
   return (
     <section className="new-section new-final-cta">

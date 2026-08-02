@@ -1,15 +1,13 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { HeroVideo } from "@/components/HeroVideo";
 import { Logo } from "@/components/ui/Logo";
 
 export function Hero() {
   const trustItems = [
-    "3-5 Day First Samples",
-    "Family-Owned in Norco, CA",
-    "Liquid & Powder Flavors",
-    "Low Minimums",
-    "Kosher, Halal & Organic-Compliant Options",
+    "Family-owned in Norco, California",
+    "First samples in 3–5 business days",
+    "Liquid and powder flavors",
+    "Low minimums",
   ] as const;
 
   return (
@@ -24,13 +22,12 @@ export function Hero() {
           <Logo className="hero-brand-logo" />
           <h1 className="display">Good on the Bench Is Not Good Enough.</h1>
           <p className="new-hero-text">
-            Custom liquid and powder flavors developed for your finished product: your base, process, label goals, and production path.
+            We are a family-owned flavor manufacturer in Norco, California. Our team develops and produces custom liquid and powder flavors for the product you are actually making—your base, process, label, and production needs.
           </p>
           <div className="new-actions">
-            <Button href="/request-samples">Request a Custom Sample</Button>
-            <Button href="/capabilities" variant="secondary">See How It Works</Button>
+            <Button href="/request-samples">Request Samples</Button>
+            <Button href="/flavors" variant="secondary">Browse Flavors</Button>
           </div>
-          <Link className="new-hero-tertiary" href="/flavors">Explore Flavor Library</Link>
           <ul className="new-hero-trust" aria-label="Key company facts">
             {trustItems.map((item) => <li key={item}>{item}</li>)}
           </ul>

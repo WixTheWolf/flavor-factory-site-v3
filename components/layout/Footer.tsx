@@ -2,35 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { navigation, siteCopy } from "@/data/site-copy";
+import { siteCopy } from "@/data/site-copy";
 import { k9sBadge, k9sLinks } from "@/data/k9s-for-warriors";
-import { industries } from "@/data/industries";
 import { Logo } from "@/components/ui/Logo";
 import { trackEvent } from "@/lib/analytics";
 
-const serviceLinks = [
-  { label: "Custom Liquid Flavors", href: "/custom-liquid-flavors" },
-  { label: "Custom Powder Flavors", href: "/custom-powder-flavors" },
-  { label: "Flavor Matching", href: "/flavor-matching" },
-  { label: "Masking and Modulation", href: "/masking-and-modulation" },
-  { label: "Organic-Compliant Flavors", href: "/organic-compliant-flavors" },
-  { label: "Oral Care Flavors", href: "/oral-care-flavors" },
-  { label: "Nutraceutical Flavors", href: "/nutraceutical-flavors" },
-  { label: "Beverage Flavors", href: "/beverage-flavors" },
-  { label: "Bakery Flavors", href: "/bakery-flavors" },
-  { label: "Pharmaceutical Flavors", href: "/pharmaceutical-flavors" },
-  { label: "Popcorn Seasoning Flavors", href: "/popcorn-seasoning-flavors" },
+const exploreLinks = [
+  { label: "Flavors", href: "/flavors" },
+  { label: "Industries", href: "/industries" },
+  { label: "What We Do", href: "/capabilities" },
+  { label: "Quality", href: "/certifications" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Resources", href: "/resources" },
 ] as const;
 
 export function Footer() {
-  const footerLinks = navigation.filter((item) => item.href !== "/request-samples");
-
   return (
     <footer className="footer">
       <div className="container footer-grid">
         <div>
           <Logo className="logo-svg" />
-          <p className="footer-copy">Family-owned. Norco, CA. Custom liquid and powder flavors, from first sample to full production.</p>
+          <p className="footer-copy">
+            Family-owned in Norco, California. Custom liquid and powder flavors from first sample through production.
+          </p>
           <a
             className="footer-k9s"
             href={k9sLinks.site}
@@ -46,14 +41,7 @@ export function Footer() {
         <div>
           <div className="eyebrow">Explore</div>
           <div className="footer-links">
-            {footerLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
-          </div>
-        </div>
-
-        <div>
-          <div className="eyebrow">Industries</div>
-          <div className="footer-links footer-industries">
-            {industries.map((item) => <Link href={`/industries/${item.key}`} key={item.key}>{item.name}</Link>)}
+            {exploreLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
           </div>
         </div>
 
@@ -83,19 +71,16 @@ export function Footer() {
         </div>
 
         <div>
-          <div className="eyebrow">Quality</div>
+          <div className="eyebrow">Start a Project</div>
           <p className="footer-quality-line">{siteCopy.qualityLine}</p>
           <Link
             href="/request-samples"
             className="footer-cta"
             onClick={() => trackEvent("request_sample_click", { location: "footer" })}
           >
-            Request a Custom Sample
+            Request Samples
           </Link>
         </div>
-      </div>
-      <div className="container footer-service-links" aria-label="Flavor services">
-        {serviceLinks.map((item) => <Link href={item.href} key={item.label}>{item.label}</Link>)}
       </div>
       <div className="footer-social-row">
         <a href="https://maps.google.com/?q=The+Flavor+Factory+2058+Second+Street+Norco+CA+92860" target="_blank" rel="noopener" className="footer-social-link">Google Maps</a>
