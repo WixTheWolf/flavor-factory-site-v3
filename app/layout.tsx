@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import "./globals.css";
+import "./home-preview-context.css";
 import "./home-preview-polish.css";
 
 const BASE = "https://www.flavorfactory.net";
