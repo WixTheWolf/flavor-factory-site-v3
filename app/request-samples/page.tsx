@@ -9,13 +9,13 @@ import { normalizeIndustryKey } from "@/lib/industry-utils";
 export const metadata: Metadata = {
   title: "Request Flavor Samples",
   description:
-    "Tell us your application and target flavor direction. First samples are typically prepared in 3-5 business days from Norco, CA.",
+    "Request custom flavor samples from The Flavor Factory. Only your name, email, and shipping address are required to get started.",
   alternates: { canonical: "/request-samples" },
   openGraph: {
     url: "/request-samples",
     title: "Request Flavor Samples | The Flavor Factory",
     description:
-      "Tell us your application and target flavor direction. First samples are typically prepared in 3-5 business days from Norco, CA.",
+      "Request custom flavor samples. Only your name, email, and shipping address are required to get started.",
     images: [
       {
         url: "/og?title=Request+Flavor+Samples&description=3-5+business+day+turnaround+from+Norco%2C+CA",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Request Flavor Samples | The Flavor Factory",
     description:
-      "Tell us your application and target flavor direction. First samples are typically prepared in 3-5 business days.",
+      "Request custom flavor samples. Only your name, email, and shipping address are required to get started.",
     images: ["/og?title=Request+Flavor+Samples&description=3-5+business+day+turnaround+from+Norco%2C+CA"],
   },
 };
@@ -52,9 +52,9 @@ export default function RequestSamplesPage({
             <div className="sample-grid">
               <div className="sample-left">
                 <div className="eyebrow">Request Samples</div>
-                <h1 className="section-title request-page-title">Tell us what you are making.</h1>
+                <h1 className="section-title request-page-title">Tell us where to send them.</h1>
                 <p className="section-subtext request-page-intro">
-                  Tell us the product, flavor direction, and where the samples should go. A real person from our team will review the request and follow up.
+                  Start with your name, email, and shipping address. Add whatever project details you know, and a real person from our team will follow up if we need anything else.
                 </p>
                 <p className="sample-brief-note">Prefer to talk first? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.</p>
                 <SampleRequestForm initialIndustry={industry} />
@@ -77,7 +77,7 @@ export default function RequestSamplesPage({
               <h2>A simple path from request to sample.</h2>
             </div>
             <ol>
-              <li>We review the product and flavor direction.</li>
+              <li>We review the information you shared.</li>
               <li>We follow up if anything important is missing.</li>
               <li>First sample directions are typically prepared in 3-5 business days.</li>
             </ol>
