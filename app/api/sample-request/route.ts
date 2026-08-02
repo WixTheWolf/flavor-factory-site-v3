@@ -203,11 +203,12 @@ export async function POST(request: Request) {
   }
 
   const honeypot = clean(body.website);
-  const startedAt = Number(clean(body.formStartedAt));
+  const startedAtValue = clean(body.formStartedAt);
+  const startedAt = Number(startedAtValue);
   const elapsed = Date.now() - startedAt;
 
   // Quietly accept obvious bot submissions so automated senders do not learn how to bypass the form.
-  if (honeypot || !Number.isFinite(startedAt) || elapsed < 1200) {
+  if (honeypot || !startedAtValue || !Number.isFinite(startedAt) || elapsed < 1200) {
     return NextResponse.json({ ok: true });
   }
 
