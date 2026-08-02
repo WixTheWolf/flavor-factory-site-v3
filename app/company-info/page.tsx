@@ -6,13 +6,13 @@ import { commercialPolicy } from "@/data/commercial-policy";
 export const metadata: Metadata = {
   title: "Liquid & Powder Flavor Manufacturer",
   description:
-    "Production-ready from the first sample. Liquid and powder manufacturing, low minimums, and organized sample-to-production handoff from Norco, CA.",
+    "Production thinking starts with the first sample. Liquid and powder manufacturing, low minimums, and an organized sample-to-production handoff from Norco, CA.",
   alternates: { canonical: "/company-info" },
   openGraph: {
     url: "/company-info",
     title: "Liquid & Powder Flavor Manufacturer | The Flavor Factory",
     description:
-      "Production-ready from the first sample. Liquid and powder manufacturing, low minimums, and organized sample-to-production handoff from Norco, CA.",
+      "Production thinking starts with the first sample. Liquid and powder manufacturing, low minimums, and an organized sample-to-production handoff from Norco, CA.",
     images: [
       {
         url: "/og?title=Liquid+%26+Powder+Flavor+Manufacturer",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Liquid & Powder Flavor Manufacturer | The Flavor Factory",
     description:
-      "Production-ready from the first sample. Low minimums, organized handoff from sample to repeat production.",
+      "Production thinking starts with the first sample. Low minimums and an organized handoff from sample to repeat production.",
     images: ["/og?title=Liquid+%26+Powder+Flavor+Manufacturer"],
   },
 };
@@ -69,7 +69,6 @@ const companyFacts = [
   "Low minimum order policy",
 ] as const;
 
-
 const BC_COMPANY_INFO = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Company Info","item":"https://www.flavorfactory.net/company-info"}]};
 export default function CompanyInfoPage() {
   return (
@@ -81,13 +80,13 @@ export default function CompanyInfoPage() {
           <div className="container">
             <PageHero
               eyebrow="Company Info"
-              title="Ready for production on the first sample."
-              copy="Most flavor suppliers separate the sample phase from production. We don't. Every sample is built with your manufacturing specs, so when you approve it, scaling is confirmation, not a new problem."
+              title="Built with production in mind from the first sample."
+              copy="Every sample is developed around the finished product, use level, process, label goals, and manufacturing needs. Approval may take revisions, but the production path is considered from the beginning."
               image={siteImages.companyInfoHero}
               imageAlt="Clean laboratory bench with amber flavor liquids in glass beakers and bottles"
               imagePosition="center 55%"
               primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
+              primaryLabel="Request Samples"
               secondaryHref="/flavors"
               secondaryLabel="Explore Flavors"
             />
