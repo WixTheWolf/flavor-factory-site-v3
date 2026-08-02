@@ -10,7 +10,7 @@ export function BuiltInNorco({ compact = false }: { compact?: boolean }) {
           <p>
             From first sample through production, our team works in the same Norco facility. That keeps communication tighter, revisions faster, and production handoff cleaner.
           </p>
-          {!compact && <Button href="/request-samples">Request a Custom Sample</Button>}
+          {!compact && <Button href="/request-samples">Request a Sample</Button>}
         </div>
       </div>
     </section>
