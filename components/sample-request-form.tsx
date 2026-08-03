@@ -40,13 +40,13 @@ function mailtoUrl(formData: FormData) {
     "New sample request",
     "",
     `Name: ${name}`,
-    `Company: ${company}`,
+    `Company: ${company || "Not provided"}`,
     `Email: ${field(formData, "email")}`,
     `Phone: ${field(formData, "phone") || "Not provided"}`,
-    `Shipping address: ${field(formData, "shippingAddress") || "Not provided"}`,
+    `Shipping address: ${field(formData, "shippingAddress")}`,
     `Product application: ${field(formData, "industry") || "Not provided"}`,
     `Finished product base: ${field(formData, "productBase") || "Not provided"}`,
-    `Flavor target: ${field(formData, "flavorTarget") || "Not provided"}`,
+    `Flavor direction: ${field(formData, "flavorTarget") || "Not provided"}`,
     `Preferred format: ${field(formData, "format") || "Not provided"}`,
     `Label goal: ${field(formData, "declaration") || "Not provided"}`,
     `Primary challenge: ${field(formData, "challenge") || "Not provided"}`,
@@ -56,7 +56,7 @@ function mailtoUrl(formData: FormData) {
     `Timeline: ${field(formData, "timeline") || "Not provided"}`,
     ...(industryLines.length > 0 ? ["", "Application-specific details:", ...industryLines] : []),
     "",
-    "Application and profile notes:",
+    "Project notes:",
     field(formData, "notes") || "Not provided",
   ].join("\n");
 
@@ -69,6 +69,8 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
   const [industry, setIndustry] = useState(normalizedInitial);
   const [detailsOpen, setDetailsOpen] = useState(Boolean(normalizedInitial));
   const [formStartedAt, setFormStartedAt] = useState("");
+  const [formToken, setFormToken] = useState("");
+  const [protectionError, setProtectionError] = useState(false);
   const { items: shortlist, clear: clearShortlist, mounted } = useShortlist();
   const [shortlistNote, setShortlistNote] = useState("");
   const started = useRef(false);
@@ -78,24 +80,42 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
 
   useEffect(() => {
     setFormStartedAt(String(Date.now()));
+
+    fetch("/api/sample-request-token", { cache: "no-store" })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Form protection unavailable");
+        return response.json() as Promise<{ token?: string }>;
+      })
+      .then((data) => {
+        if (!data.token) throw new Error("Missing form token");
+        setFormToken(data.token);
+        setProtectionError(false);
+      })
+      .catch(() => setProtectionError(true));
   }, []);
 
   useEffect(() => {
     if (mounted && shortlist.length > 0) {
-      const names = shortlist.map((i) => `${i.name} (${i.format})`).join(", ");
+      const names = shortlist.map((item) => `${item.name} (${item.format})`).join(", ");
       setShortlistNote(names);
     }
   }, [mounted, shortlist]);
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!formToken) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
 
-    const form = e.currentTarget;
+    const form = event.currentTarget;
     const formData = new FormData(form);
 
     if (shortlist.length > 0) {
-      const shortlistLine = `Shortlisted profiles: ${shortlist.map((i) => `${i.name} (${i.format})`).join(", ")}`;
+      const shortlistLine = `Shortlisted profiles: ${shortlist.map((item) => `${item.name} (${item.format})`).join(", ")}`;
       const existingNotes = field(formData, "notes");
       formData.set("notes", existingNotes ? `${shortlistLine}\n\n${existingNotes}` : shortlistLine);
     }
@@ -120,13 +140,22 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
         setShortlistNote("");
         clearShortlist();
         const redirectIndustry = normalizeIndustryKey(field(formData, "industry")) || field(formData, "industry");
-        window.location.href = `/request-samples/confirmation?industry=${encodeURIComponent(redirectIndustry)}`;
+        const confirmationUrl = redirectIndustry
+          ? `/request-samples/confirmation?industry=${encodeURIComponent(redirectIndustry)}`
+          : "/request-samples/confirmation";
+        window.location.href = confirmationUrl;
         return;
       }
 
-      trackEvent("request_sample_form_error", { reason: "api_fallback" });
-      window.location.href = mailtoUrl(formData);
-      setStatus("fallback");
+      if (response.status >= 500) {
+        trackEvent("request_sample_form_error", { reason: "api_fallback" });
+        window.location.href = mailtoUrl(formData);
+        setStatus("fallback");
+        return;
+      }
+
+      trackEvent("request_sample_form_error", { reason: `api_${response.status}` });
+      setStatus("error");
     } catch {
       trackEvent("request_sample_form_error", { reason: "network_error" });
       window.location.href = mailtoUrl(formData);
@@ -143,6 +172,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
   return (
     <form className="form-grid" onFocus={trackStart} onSubmit={onSubmit}>
       <input type="hidden" name="formStartedAt" value={formStartedAt} />
+      <input type="hidden" name="formToken" value={formToken} />
       <div
         aria-hidden="true"
         style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}
@@ -170,20 +200,40 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
       )}
 
       <div className="form-section-heading form-field-wide">
-        <h2>Tell us the essentials</h2>
-        <p>Enough detail to understand the product and flavor direction is all we need to start.</p>
+        <h2>Only three fields are required</h2>
+        <p>Your name, email, and shipping address are enough to start. Everything else is optional.</p>
       </div>
 
-      <label className="form-field"><span>Name *</span><input className="input" required name="name" autoComplete="name" placeholder="Your name" maxLength={120} /></label>
-      <label className="form-field"><span>Company *</span><input className="input" required name="company" autoComplete="organization" placeholder="Company name" maxLength={160} /></label>
-      <label className="form-field"><span>Email *</span><input className="input" required name="email" autoComplete="email" type="email" placeholder="name@company.com" maxLength={254} /></label>
-      <label className="form-field"><span>Phone</span><input className="input" name="phone" autoComplete="tel" placeholder="Best number to reach you" maxLength={50} /></label>
-      <label className="form-field form-field-wide"><span>Shipping address *</span><input className="input" required name="shippingAddress" autoComplete="street-address" placeholder="Street, city, state, zip" maxLength={500} /></label>
       <label className="form-field">
-        <span>Product application *</span>
+        <span>Name *</span>
+        <input className="input" required name="name" autoComplete="name" placeholder="Your name" maxLength={120} />
+      </label>
+      <label className="form-field">
+        <span>Email *</span>
+        <input className="input" required name="email" autoComplete="email" type="email" placeholder="you@company.com" maxLength={254} />
+      </label>
+      <label className="form-field form-field-wide">
+        <span>Shipping address *</span>
+        <input className="input" required name="shippingAddress" autoComplete="street-address" placeholder="Street, city, state, and ZIP code" maxLength={500} />
+      </label>
+
+      <div className="form-section-heading form-field-wide form-section-heading-secondary">
+        <h2>Project details</h2>
+        <p>Share whatever you already know. Our team will follow up if anything else is needed.</p>
+      </div>
+
+      <label className="form-field">
+        <span>Company <small>(optional)</small></span>
+        <input className="input" name="company" autoComplete="organization" placeholder="Company name" maxLength={160} />
+      </label>
+      <label className="form-field">
+        <span>Phone <small>(optional)</small></span>
+        <input className="input" name="phone" autoComplete="tel" placeholder="Best number to reach you" maxLength={50} />
+      </label>
+      <label className="form-field">
+        <span>Product application <small>(optional)</small></span>
         <select
           className="input"
-          required
           name="industry"
           value={industry}
           onChange={(event) => {
@@ -200,56 +250,94 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
       </label>
       {industry === "other" && (
         <label className="form-field">
-          <span>Describe the application *</span>
-          <input className="input" required name="otherApplication" placeholder="Seasoning, pet treat, sauce, etc." maxLength={160} />
+          <span>Describe the application <small>(optional)</small></span>
+          <input className="input" name="otherApplication" placeholder="Seasoning, pet treat, sauce, or another product" maxLength={160} />
         </label>
       )}
-      <label className="form-field"><span>Target flavor direction *</span><input className="input" required name="flavorTarget" placeholder="Profile, family, or target direction" defaultValue={shortlistNote} key={shortlistNote} maxLength={240} /></label>
       <label className="form-field">
-        <span>Desired format</span>
+        <span>Flavor direction <small>(optional)</small></span>
+        <input className="input" name="flavorTarget" placeholder="Example: fresh mint, tropical fruit, or vanilla" defaultValue={shortlistNote} key={shortlistNote} maxLength={240} />
+      </label>
+      <label className="form-field">
+        <span>Desired format <small>(optional)</small></span>
         <select className="input" name="format" defaultValue="">
           <option value="">Not sure yet</option>
-          <option>Liquid</option><option>Powder</option><option>Oil-soluble</option><option>Emulsion</option>
+          <option>Liquid</option>
+          <option>Powder</option>
+          <option>Oil-soluble</option>
+          <option>Emulsion</option>
         </select>
       </label>
-      <label className="form-field"><span>Target timeline</span><input className="input" name="timeline" placeholder="Sample deadline or production timing" maxLength={160} /></label>
-      <label className="form-field form-field-wide"><span>Project notes</span><textarea className="textarea" name="notes" placeholder="Base, masking needs, processing conditions, or anything else we should know" maxLength={4000} /></label>
+      <label className="form-field">
+        <span>Target timeline <small>(optional)</small></span>
+        <input className="input" name="timeline" placeholder="Sample deadline or production timing" maxLength={160} />
+      </label>
+      <label className="form-field form-field-wide">
+        <span>Project notes <small>(optional)</small></span>
+        <textarea className="textarea" name="notes" placeholder="Tell us anything useful about the product, flavor, base, or challenge" maxLength={4000} />
+      </label>
 
       <div className="form-optional-section">
         <button
           type="button"
           className="form-optional-toggle"
           aria-expanded={detailsOpen ? "true" : "false"}
-          onClick={() => setDetailsOpen((v) => !v)}
+          onClick={() => setDetailsOpen((value) => !value)}
         >
-          <span>Add more project details</span>
+          <span>Add technical details</span>
           <span className="form-optional-arrow" aria-hidden="true">{detailsOpen ? "-" : "+"}</span>
         </button>
-        <p className="form-optional-hint">Optional details can help us narrow the first sample direction.</p>
+        <p className="form-optional-hint">These fields are optional and can help us narrow the first sample direction.</p>
 
         {detailsOpen && (
           <div className="form-optional-fields">
-            <label className="form-field"><span>Finished product base</span><input className="input" name="productBase" placeholder="Water, dairy, protein, oil, syrup, dough..." maxLength={240} /></label>
             <label className="form-field">
-              <span>Label goal</span>
+              <span>Finished product base <small>(optional)</small></span>
+              <input className="input" name="productBase" placeholder="Water, dairy, protein, oil, syrup, dough, or another base" maxLength={240} />
+            </label>
+            <label className="form-field">
+              <span>Label goal <small>(optional)</small></span>
               <select className="input" name="declaration" defaultValue="">
                 <option value="">Not sure yet</option>
-                <option>Natural</option><option>Natural and artificial</option><option>Artificial</option><option>Organic-compliant</option><option>Kosher</option><option>Halal</option>
+                <option>Natural</option>
+                <option>Natural and artificial</option>
+                <option>Artificial</option>
+                <option>Organic-compliant</option>
+                <option>Kosher</option>
+                <option>Halal</option>
               </select>
             </label>
             <label className="form-field">
-              <span>Primary challenge</span>
+              <span>Primary challenge <small>(optional)</small></span>
               <select className="input" name="challenge" defaultValue="">
                 <option value="">Select if applicable</option>
-                <option>Masking</option><option>Heat stability</option><option>Sweetness balance</option><option>Bitterness</option><option>Cooling</option><option>Mouthfeel</option><option>Supplier match</option><option>Cost target</option><option>Production scale-up</option><option>Other</option>
+                <option>Masking</option>
+                <option>Heat stability</option>
+                <option>Sweetness balance</option>
+                <option>Bitterness</option>
+                <option>Cooling</option>
+                <option>Mouthfeel</option>
+                <option>Supplier match</option>
+                <option>Cost target</option>
+                <option>Production scale-up</option>
+                <option>Other</option>
               </select>
             </label>
-            <label className="form-field"><span>Benchmark or existing flavor</span><input className="input" name="benchmark" placeholder="Product, supplier flavor, or reference profile" maxLength={240} /></label>
-            <label className="form-field"><span>Estimated annual usage or scale</span><input className="input" name="projectScale" placeholder="Pilot, first run, annual volume..." maxLength={160} /></label>
-            <label className="form-field"><span>Target use level</span><input className="input" name="useLevel" placeholder="If known" maxLength={100} /></label>
+            <label className="form-field">
+              <span>Benchmark or existing flavor <small>(optional)</small></span>
+              <input className="input" name="benchmark" placeholder="Product, supplier flavor, or reference profile" maxLength={240} />
+            </label>
+            <label className="form-field">
+              <span>Estimated scale <small>(optional)</small></span>
+              <input className="input" name="projectScale" placeholder="Pilot run, first production run, or annual volume" maxLength={160} />
+            </label>
+            <label className="form-field">
+              <span>Target use level <small>(optional)</small></span>
+              <input className="input" name="useLevel" placeholder="Only if known" maxLength={100} />
+            </label>
             {industrySpecificFields.map((question) => (
               <label className="form-field" key={question.name}>
-                <span>{question.label}</span>
+                <span>{question.label} <small>(optional)</small></span>
                 <input className="input" name={question.name} placeholder={question.placeholder} maxLength={240} />
               </label>
             ))}
@@ -260,12 +348,13 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
       <p className="sample-file-note">Have a spec, label, or benchmark file? Mention it in the notes and we will tell you where to send it.</p>
       <div className="sample-utility">
         <p>A real person from our team will review your request and follow up by email.</p>
-        <button type="submit" className="cta-btn" disabled={status === "sending"}>
-          {status === "sending" ? "Sending..." : "Request Samples"}
+        <button type="submit" className="cta-btn" disabled={status === "sending" || !formToken}>
+          {status === "sending" ? "Sending..." : formToken ? "Request Samples" : "Preparing secure form..."}
         </button>
+        {protectionError && <span className="form-error" role="status">Please refresh the page before submitting.</span>}
         {status === "sent" && <span className="form-success" role="status">Your sample request has been sent.</span>}
         {status === "fallback" && <span className="form-success" role="status">Email draft opened for {SAMPLE_REQUEST_EMAIL}.</span>}
-        {status === "error" && <span className="form-error" role="status">Please email {SAMPLE_REQUEST_EMAIL} directly.</span>}
+        {status === "error" && <span className="form-error" role="status">We could not submit the form. Please review the required fields or refresh the page.</span>}
       </div>
     </form>
   );

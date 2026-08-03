@@ -1,9 +1,18 @@
+import { createHmac, timingSafeEqual } from "node:crypto";
+import { resolveMx } from "node:dns/promises";
 import { NextResponse } from "next/server";
 import { optionalIndustryFieldNames } from "@/data/industry-form-fields";
 
+export const runtime = "nodejs";
+
 const DEFAULT_TO = "samples@flavorfactory.net";
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const RATE_LIMIT_MAX = 5;
+const IP_RATE_LIMIT_WINDOW_MS = 30 * 60 * 1000;
+const IP_RATE_LIMIT_MAX = 6;
+const EMAIL_RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000;
+const EMAIL_RATE_LIMIT_MAX = 3;
+const MIN_FORM_AGE_MS = 1_500;
+const MAX_FORM_AGE_MS = 24 * 60 * 60 * 1000;
+const MAX_REQUEST_BYTES = 20_000;
 const submissionLog = new Map<string, number[]>();
 
 type SampleRequest = {
@@ -26,6 +35,7 @@ type SampleRequest = {
   notes?: string;
   website?: string;
   formStartedAt?: string;
+  formToken?: string;
   [key: string]: unknown;
 };
 
@@ -65,23 +75,55 @@ function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function signingSecret() {
+  return process.env.SAMPLE_FORM_SECRET || process.env.RESEND_API_KEY || "";
+}
+
+function validFormToken(token: string, secret: string) {
+  const [issuedAtValue, nonce, suppliedSignature, ...extra] = token.split(".");
+  if (!issuedAtValue || !nonce || !suppliedSignature || extra.length > 0) return false;
+
+  const issuedAt = Number(issuedAtValue);
+  const age = Date.now() - issuedAt;
+  if (!Number.isFinite(issuedAt) || age < MIN_FORM_AGE_MS || age > MAX_FORM_AGE_MS) return false;
+
+  const payload = `${issuedAtValue}.${nonce}`;
+  const expectedSignature = createHmac("sha256", secret).update(payload).digest("base64url");
+  const supplied = Buffer.from(suppliedSignature);
+  const expected = Buffer.from(expectedSignature);
+
+  return supplied.length === expected.length && timingSafeEqual(supplied, expected);
+}
+
+function requestCameFromThisSite(request: Request) {
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("x-forwarded-host") || request.headers.get("host");
+  if (!origin || !host) return false;
+
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
+}
+
 function clientIp(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   return forwarded || request.headers.get("x-real-ip")?.trim() || "";
 }
 
-function isRateLimited(ip: string) {
-  if (!ip) return false;
+function isRateLimited(key: string, windowMs: number, max: number) {
+  if (!key) return false;
 
   const now = Date.now();
-  const recent = (submissionLog.get(ip) || []).filter((timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS);
+  const recent = (submissionLog.get(key) || []).filter((timestamp) => now - timestamp < windowMs);
 
-  if (recent.length >= RATE_LIMIT_MAX) {
-    submissionLog.set(ip, recent);
+  if (recent.length >= max) {
+    submissionLog.set(key, recent);
     return true;
   }
 
-  submissionLog.set(ip, [...recent, now]);
+  submissionLog.set(key, [...recent, now]);
   return false;
 }
 
@@ -95,6 +137,34 @@ function fieldOverLimit(body: SampleRequest) {
   }
 
   return "";
+}
+
+function looksLikeSpam(body: SampleRequest) {
+  const text = Object.entries(body)
+    .filter(([name, value]) => !["formToken", "formStartedAt"].includes(name) && typeof value === "string")
+    .map(([, value]) => String(value))
+    .join(" ");
+
+  const urlCount = (text.match(/(?:https?:\/\/|www\.)/gi) || []).length;
+  const containsActiveHtml = /<\s*(?:script|iframe|style|img|a)\b|\[url=/i.test(text);
+  const containsSpamLanguage = /\b(?:guest posts?|backlinks?|seo services?|casino|crypto investment|payday loans?|viagra|adult dating|web design services)\b/i.test(text);
+  const repeatedCharacters = /(.)\1{14,}/.test(text);
+
+  return urlCount > 1 || containsActiveHtml || containsSpamLanguage || repeatedCharacters;
+}
+
+async function emailDomainAcceptsMail(email: string) {
+  const domain = email.split("@")[1]?.toLowerCase();
+  if (!domain) return false;
+
+  try {
+    const records = await resolveMx(domain);
+    return records.length > 0;
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code === "ENOTFOUND" || code === "ENODATA") return false;
+    return true;
+  }
 }
 
 function optionalIndustryRows(body: SampleRequest) {
@@ -115,19 +185,19 @@ function optionalIndustryRows(body: SampleRequest) {
   return rows;
 }
 
-function makeText(values: Required<Pick<SampleRequest, "name" | "company" | "email">> & SampleRequest) {
+function makeText(values: Required<Pick<SampleRequest, "name" | "email" | "shippingAddress">> & SampleRequest) {
   const optionalRows = optionalIndustryRows(values);
   return [
     "New sample request from the website",
     "",
     `Name: ${values.name}`,
-    `Company: ${values.company}`,
+    `Company: ${clean(values.company) || "Not provided"}`,
     `Email: ${values.email}`,
     `Phone: ${clean(values.phone) || "Not provided"}`,
-    `Shipping address: ${clean(values.shippingAddress) || "Not provided"}`,
+    `Shipping address: ${values.shippingAddress}`,
     `Product application: ${clean(values.industry) || "Not provided"}`,
     `Finished product base: ${clean(values.productBase) || "Not provided"}`,
-    `Flavor target: ${clean(values.flavorTarget) || "Not provided"}`,
+    `Flavor direction: ${clean(values.flavorTarget) || "Not provided"}`,
     `Preferred format: ${clean(values.format) || "Not provided"}`,
     `Label goal: ${clean(values.declaration) || "Not provided"}`,
     `Primary challenge: ${clean(values.challenge) || "Not provided"}`,
@@ -139,21 +209,21 @@ function makeText(values: Required<Pick<SampleRequest, "name" | "company" | "ema
       ? ["", "Application-specific details:", ...optionalRows.map(([label, value]) => `${label}: ${value}`)]
       : []),
     "",
-    "Application and profile notes:",
+    "Project notes:",
     clean(values.notes) || "Not provided",
   ].join("\n");
 }
 
-function makeHtml(values: Required<Pick<SampleRequest, "name" | "company" | "email">> & SampleRequest) {
+function makeHtml(values: Required<Pick<SampleRequest, "name" | "email" | "shippingAddress">> & SampleRequest) {
   const rows: [string, string][] = [
     ["Name", values.name],
-    ["Company", values.company],
+    ["Company", clean(values.company) || "Not provided"],
     ["Email", values.email],
     ["Phone", clean(values.phone) || "Not provided"],
-    ["Shipping address", clean(values.shippingAddress) || "Not provided"],
+    ["Shipping address", values.shippingAddress],
     ["Product application", clean(values.industry) || "Not provided"],
     ["Finished product base", clean(values.productBase) || "Not provided"],
-    ["Flavor target", clean(values.flavorTarget) || "Not provided"],
+    ["Flavor direction", clean(values.flavorTarget) || "Not provided"],
     ["Preferred format", clean(values.format) || "Not provided"],
     ["Label goal", clean(values.declaration) || "Not provided"],
     ["Primary challenge", clean(values.challenge) || "Not provided"],
@@ -179,7 +249,7 @@ function makeHtml(values: Required<Pick<SampleRequest, "name" | "company" | "ema
           )
           .join("")}
       </table>
-      <h2 style="font-size:16px;margin:20px 0 8px">Application and profile notes</h2>
+      <h2 style="font-size:16px;margin:20px 0 8px">Project notes</h2>
       <p style="white-space:pre-wrap;margin:0">${escapeHtml(clean(values.notes) || "Not provided")}</p>
     </div>
   `;
@@ -187,8 +257,14 @@ function makeHtml(values: Required<Pick<SampleRequest, "name" | "company" | "ema
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
+  const secret = signingSecret();
   const to = process.env.SAMPLE_REQUEST_TO || DEFAULT_TO;
   const from = process.env.SAMPLE_REQUEST_FROM || "The Flavor Factory <onboarding@resend.dev>";
+
+  const contentLength = Number(request.headers.get("content-length") || "0");
+  if (contentLength > MAX_REQUEST_BYTES) {
+    return NextResponse.json({ error: "Request is too large" }, { status: 413 });
+  }
 
   if (!request.headers.get("content-type")?.includes("application/json")) {
     return NextResponse.json({ error: "Unsupported request" }, { status: 415 });
@@ -203,17 +279,22 @@ export async function POST(request: Request) {
   }
 
   const honeypot = clean(body.website);
-  const startedAtValue = clean(body.formStartedAt);
-  const startedAt = Number(startedAtValue);
-  const elapsed = Date.now() - startedAt;
+  const token = clean(body.formToken);
+  const startedAt = Number(clean(body.formStartedAt));
+  const userAgent = request.headers.get("user-agent") || "";
 
-  // Quietly accept obvious bot submissions so automated senders do not learn how to bypass the form.
-  if (honeypot || !startedAtValue || !Number.isFinite(startedAt) || elapsed < 300) {
+  // Quietly discard obvious automated submissions so bots do not learn which check caught them.
+  if (
+    honeypot ||
+    !secret ||
+    !requestCameFromThisSite(request) ||
+    userAgent.length < 8 ||
+    !validFormToken(token, secret) ||
+    !Number.isFinite(startedAt) ||
+    Date.now() - startedAt < MIN_FORM_AGE_MS ||
+    looksLikeSpam(body)
+  ) {
     return NextResponse.json({ ok: true });
-  }
-
-  if (isRateLimited(clientIp(request))) {
-    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
   const overLimit = fieldOverLimit(body);
@@ -225,7 +306,7 @@ export async function POST(request: Request) {
     ...body,
     name: clean(body.name),
     company: clean(body.company),
-    email: clean(body.email),
+    email: clean(body.email).toLowerCase(),
     phone: clean(body.phone),
     shippingAddress: clean(body.shippingAddress),
     industry: clean(body.industry),
@@ -242,19 +323,32 @@ export async function POST(request: Request) {
     notes: clean(body.notes),
   };
 
-  if (!values.name || !values.company || !values.email || !values.shippingAddress || !values.industry || !values.flavorTarget) {
+  if (!values.name || !values.email || !values.shippingAddress) {
     return NextResponse.json(
-      { error: "Name, company, email, shipping address, application, and flavor direction are required" },
+      { error: "Name, email, and shipping address are required" },
       { status: 400 },
     );
   }
 
-  if (values.industry === "other" && !values.otherApplication) {
-    return NextResponse.json({ error: "Application detail is required" }, { status: 400 });
+  if (
+    values.name.length < 2 ||
+    /(?:https?:\/\/|www\.|@|[<>])/i.test(values.name) ||
+    values.shippingAddress.length < 8 ||
+    /(?:https?:\/\/|www\.|[<>])/i.test(values.shippingAddress)
+  ) {
+    return NextResponse.json({ error: "Please enter valid contact and shipping information" }, { status: 400 });
   }
 
-  if (!validEmail(values.email)) {
+  if (!validEmail(values.email) || !(await emailDomainAcceptsMail(values.email))) {
     return NextResponse.json({ error: "Enter a valid email address" }, { status: 400 });
+  }
+
+  const ip = clientIp(request);
+  if (
+    isRateLimited(`ip:${ip}`, IP_RATE_LIMIT_WINDOW_MS, IP_RATE_LIMIT_MAX) ||
+    isRateLimited(`email:${values.email}`, EMAIL_RATE_LIMIT_WINDOW_MS, EMAIL_RATE_LIMIT_MAX)
+  ) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
   if (!apiKey) {

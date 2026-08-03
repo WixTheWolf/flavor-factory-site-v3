@@ -17,14 +17,6 @@ export const teamMembers: TeamMember[] = [
     photoAlt: "Dan Wixted, President of The Flavor Factory",
   },
   {
-    slug: "alex-wixted",
-    name: "Alex Wixted",
-    title: "Operations",
-    bio: "Keeps projects moving from first request through production. Coordinates teams so nothing falls through between sample and order.",
-    image: "/images/flavor-factory/team/Alex Wixted-sketch-v2.png",
-    photoAlt: "Alex Wixted, Operations at The Flavor Factory",
-  },
-  {
     slug: "kelly-ziegler",
     name: "Kelly Ziegler",
     title: "Office Manager",
@@ -39,6 +31,14 @@ export const teamMembers: TeamMember[] = [
     bio: "Manages quality systems and regulatory documentation: supplier qualification, allergen statements, COAs, and label support.",
     image: "/images/flavor-factory/team/Ryan Wixted-sketch.png",
     photoAlt: "Ryan Wixted, Quality and Regulatory at The Flavor Factory",
+  },
+  {
+    slug: "alex-wixted",
+    name: "Alex Wixted",
+    title: "Operations",
+    bio: "Keeps projects moving from first request through production. Coordinates teams so nothing falls through between sample and order.",
+    image: "/images/flavor-factory/team/Alex Wixted-sketch-v2.png",
+    photoAlt: "Alex Wixted, Operations at The Flavor Factory",
   },
   {
     slug: "matt-wixted",
