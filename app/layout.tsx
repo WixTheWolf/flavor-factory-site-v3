@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import "./globals.css";
+import "./site-polish.css";
 
 const BASE = "https://www.flavorfactory.net";
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     template: "%s | The Flavor Factory",
   },
   description:
-    "The Flavor Factory is a family-owned custom liquid and powder flavor manufacturer in Norco, California. B2B flavor development for food, beverage, nutraceutical, oral care, pharmaceutical, and bakery. Low minimums. First samples in 3-5 business days.",
+    "The Flavor Factory is a family-owned custom liquid and powder flavor manufacturer in Norco, California.",
   applicationName: "The Flavor Factory",
   authors: [{ name: "The Flavor Factory", url: BASE }],
   generator: "Next.js",
@@ -29,9 +30,7 @@ export const metadata: Metadata = {
     "flavor matching",
     "flavor house Norco CA",
     "B2B flavor manufacturer",
-    "organic flavor manufacturer",
     "custom food flavoring",
-    "flavor supplier California",
   ],
   openGraph: {
     siteName: "The Flavor Factory",
