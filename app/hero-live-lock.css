@@ -1,0 +1,103 @@
+/*
+ * Locks the homepage hero presentation to the current live-site implementation.
+ * The broader preview design may evolve, but the hero media, crop, sizing,
+ * logo placement, and playback presentation must remain unchanged.
+ */
+
+.new-home .new-hero {
+  position: relative;
+  display: flex;
+  min-height: clamp(600px, 88svh, 860px);
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.new-home .new-hero::after {
+  content: none;
+}
+
+.new-home .hero-video-wrap {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+.new-home .new-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 96px 0 72px;
+}
+
+.new-home .new-hero-copy {
+  max-width: 680px;
+}
+
+.new-home .hero-brand-logo {
+  width: min(420px, 78vw);
+  height: auto;
+  margin: 0 0 28px;
+  color: #ece8e1;
+}
+
+.new-home .new-hero-copy h1 {
+  max-width: none;
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: var(--text-hero);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-shadow: none;
+  font-feature-settings: "liga" 1, "onum" 1;
+}
+
+.new-home .new-hero-text {
+  max-width: 540px;
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-body);
+  line-height: 1.7;
+}
+
+.new-home .new-actions {
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.new-home .new-hero-tertiary {
+  display: inline-block;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.new-home .new-hero-trust {
+  max-width: 720px;
+  gap: 9px;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+@media (max-width: 680px) {
+  .new-home .new-hero {
+    padding-top: 42px;
+  }
+
+  .new-home .new-hero-copy h1 {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+  }
+
+  .new-home .new-hero-trust {
+    max-width: 350px;
+    gap: 6px 10px;
+    margin-top: 18px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
