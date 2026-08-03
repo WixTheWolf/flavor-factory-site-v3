@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/Hero";
@@ -10,18 +11,17 @@ import { Reveal } from "@/components/Reveal";
 import { FlavorProblems } from "@/components/FlavorProblems";
 import { QualitySupport } from "@/components/QualitySupport";
 import { K9sForWarriors } from "@/components/K9sForWarriors";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Custom Liquid & Powder Flavors",
   description:
-    "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products: your base, processing, and label. Samples in 3-5 days.",
+    "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder development, matching, masking, and production support.",
   alternates: { canonical: "/" },
   openGraph: {
     url: "/",
     title: "Custom Liquid & Powder Flavors | The Flavor Factory",
     description:
-      "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products: your base, processing, and label. Samples in 3-5 days.",
+      "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder development, matching, masking, and production support.",
     images: [
       {
         url: "/og?title=Custom+Liquid+%26+Powder+Flavors",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Custom Liquid & Powder Flavors | The Flavor Factory",
     description:
-      "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products. Samples in 3-5 days.",
+      "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products.",
     images: ["/og?title=Custom+Liquid+%26+Powder+Flavors"],
   },
 };
@@ -45,24 +45,9 @@ const HOME_SCHEMA = {
   "@id": "https://www.flavorfactory.net/#webpage",
   url: "https://www.flavorfactory.net",
   name: "The Flavor Factory - Custom Liquid & Powder Flavor Manufacturer, Norco CA",
-  description: "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for your base, process, and label. Low minimums. First samples in 3-5 business days.",
+  description: "Family-owned custom flavor manufacturer in Norco, CA.",
   isPartOf: { "@id": "https://www.flavorfactory.net/#website" },
   about: { "@id": "https://www.flavorfactory.net/#organization" },
-  significantLink: [
-    "https://www.flavorfactory.net/flavors",
-    "https://www.flavorfactory.net/request-samples",
-    "https://www.flavorfactory.net/capabilities",
-    "https://www.flavorfactory.net/industries",
-    "https://www.flavorfactory.net/about",
-    "https://www.flavorfactory.net/process",
-    "https://www.flavorfactory.net/contact",
-    "https://www.flavorfactory.net/faq",
-    "https://www.flavorfactory.net/resources",
-  ],
-  breadcrumb: {
-    "@type": "BreadcrumbList",
-    itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" }],
-  },
 };
 
 export default function HomePage() {
@@ -81,21 +66,18 @@ export default function HomePage() {
             <div className="home-shell home-accountability-inner">
               <div>
                 <div className="new-eyebrow">Family-Owned in Norco</div>
-                <h2>You will know who is working on your project.</h2>
+                <h2>A small team stays close to every project.</h2>
                 <ul className="home-accountability-proofs">
                   <li>Development and production under one roof</li>
-                  <li>Direct communication with a small, experienced team</li>
-                  <li>A practical handoff from sample to production</li>
+                  <li>Direct communication with the team</li>
+                  <li>A practical path from sample to production</li>
                 </ul>
               </div>
               <div>
                 <p>
-                  We are not the biggest flavor house, and we do not try to act like one. Our size keeps communication direct and accountability personal.
+                  Development, production, quality, and customer communication happen in one facility. That keeps decisions clear and handoffs practical.
                 </p>
-                <p>
-                  The people who help develop your flavor are close to the people who make it. That matters when a formula needs an adjustment, a deadline moves, or production has a question.
-                </p>
-                <Link className="cta-btn" href="/about">Meet the Family</Link>
+                <Link className="cta-btn" href="/about">Meet the Team</Link>
               </div>
             </div>
           </section>
