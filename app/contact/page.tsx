@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { PageHero } from "@/components/PageHero";
+import { siteImages } from "@/data/site-images";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Reach The Flavor Factory for custom flavor development, matching, samples, or production support. Norco, CA. (951) 273-9877 or samples@flavorfactory.net.",
+    "Contact The Flavor Factory for samples, custom flavor development, matching, or production support.",
   alternates: { canonical: "/contact" },
   openGraph: {
     url: "/contact",
     title: "Contact | The Flavor Factory",
-    description:
-      "Reach The Flavor Factory for custom flavor development, matching, samples, or production support. Norco, CA. (951) 273-9877.",
+    description: "Contact The Flavor Factory in Norco, California.",
     images: [
       {
         url: "/og?title=Contact+The+Flavor+Factory",
@@ -23,14 +25,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Contact | The Flavor Factory",
-    description:
-      "Custom flavor development, matching, and production support. Norco, CA. (951) 273-9877 or samples@flavorfactory.net.",
+    description: "Samples, custom development, matching, and production support.",
     images: ["/og?title=Contact+The+Flavor+Factory"],
   },
 };
-import { Footer } from "@/components/layout/Footer";
-import { PageHero } from "@/components/PageHero";
-import { siteImages } from "@/data/site-images";
 
 const contactDetails = [
   {
@@ -50,6 +48,12 @@ const contactDetails = [
   },
 ] as const;
 
+const reasons = [
+  { title: "Samples", copy: "Use the sample form to tell us where to send them." },
+  { title: "Matching", copy: "Send the reference flavor or finished product details." },
+  { title: "General Questions", copy: "Call or email the team directly." },
+] as const;
+
 const BC = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.flavorfactory.net/contact" }] };
 
 export default function ContactPage() {
@@ -62,14 +66,14 @@ export default function ContactPage() {
           <div className="container">
             <PageHero
               eyebrow="Contact"
-              title="Talk with the people developing and manufacturing the flavor."
-              copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
+              title="Talk with the team."
+              copy="Reach out for samples, matching, custom development, or production support."
               image={siteImages.contactHero}
-              imageAlt="California citrus grove at golden hour, Norco, CA"
+              imageAlt="California citrus grove at golden hour"
               primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
+              primaryLabel="Request a Sample"
               secondaryHref="mailto:samples@flavorfactory.net"
-              secondaryLabel="Email Samples"
+              secondaryLabel="Email Us"
               imagePosition="center 40%"
             />
 
@@ -83,25 +87,16 @@ export default function ContactPage() {
                 </RevealItem>
               ))}
             </RevealGroup>
+
             <RevealGroup className="contact-choice-grid" stagger={0.1}>
-              <RevealItem>
-                <article>
-                  <h3>Need samples?</h3>
-                  <p>Share your product constraints and we&apos;ll build the first round around your manufacturing, not generic starting points. Most flavor suppliers work backwards from their library. We work backwards from your line.</p>
-                </article>
-              </RevealItem>
-              <RevealItem>
-                <article>
-                  <h3>Need a match?</h3>
-                  <p>We&apos;ll reformulate around your specific product, processing, cost, and label. Matching isn&apos;t about cloning. It&apos;s about understanding what made the reference work and building something better for your constraints.</p>
-                </article>
-              </RevealItem>
-              <RevealItem>
-                <article>
-                  <h3>Need custom work?</h3>
-                  <p>We develop around your specific application: the base, the temperature, the processing, the label requirements. No generic &quot;cherry flavor.&quot; The flavor that survives your product.</p>
-                </article>
-              </RevealItem>
+              {reasons.map((item) => (
+                <RevealItem key={item.title}>
+                  <article>
+                    <h3>{item.title}</h3>
+                    <p>{item.copy}</p>
+                  </article>
+                </RevealItem>
+              ))}
             </RevealGroup>
           </div>
         </section>
