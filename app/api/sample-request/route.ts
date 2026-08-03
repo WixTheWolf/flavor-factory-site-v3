@@ -115,19 +115,19 @@ function optionalIndustryRows(body: SampleRequest) {
   return rows;
 }
 
-function makeText(values: Required<Pick<SampleRequest, "name" | "company" | "email">> & SampleRequest) {
+function makeText(values: Required<Pick<SampleRequest, "name" | "email" | "shippingAddress">> & SampleRequest) {
   const optionalRows = optionalIndustryRows(values);
   return [
     "New sample request from the website",
     "",
     `Name: ${values.name}`,
-    `Company: ${values.company}`,
+    `Company: ${clean(values.company) || "Not provided"}`,
     `Email: ${values.email}`,
     `Phone: ${clean(values.phone) || "Not provided"}`,
-    `Shipping address: ${clean(values.shippingAddress) || "Not provided"}`,
+    `Shipping address: ${values.shippingAddress}`,
     `Product application: ${clean(values.industry) || "Not provided"}`,
     `Finished product base: ${clean(values.productBase) || "Not provided"}`,
-    `Flavor target: ${clean(values.flavorTarget) || "Not provided"}`,
+    `Flavor direction: ${clean(values.flavorTarget) || "Not provided"}`,
     `Preferred format: ${clean(values.format) || "Not provided"}`,
     `Label goal: ${clean(values.declaration) || "Not provided"}`,
     `Primary challenge: ${clean(values.challenge) || "Not provided"}`,
@@ -139,21 +139,21 @@ function makeText(values: Required<Pick<SampleRequest, "name" | "company" | "ema
       ? ["", "Application-specific details:", ...optionalRows.map(([label, value]) => `${label}: ${value}`)]
       : []),
     "",
-    "Application and profile notes:",
+    "Project notes:",
     clean(values.notes) || "Not provided",
   ].join("\n");
 }
 
-function makeHtml(values: Required<Pick<SampleRequest, "name" | "company" | "email">> & SampleRequest) {
+function makeHtml(values: Required<Pick<SampleRequest, "name" | "email" | "shippingAddress">> & SampleRequest) {
   const rows: [string, string][] = [
     ["Name", values.name],
-    ["Company", values.company],
+    ["Company", clean(values.company) || "Not provided"],
     ["Email", values.email],
     ["Phone", clean(values.phone) || "Not provided"],
-    ["Shipping address", clean(values.shippingAddress) || "Not provided"],
+    ["Shipping address", values.shippingAddress],
     ["Product application", clean(values.industry) || "Not provided"],
     ["Finished product base", clean(values.productBase) || "Not provided"],
-    ["Flavor target", clean(values.flavorTarget) || "Not provided"],
+    ["Flavor direction", clean(values.flavorTarget) || "Not provided"],
     ["Preferred format", clean(values.format) || "Not provided"],
     ["Label goal", clean(values.declaration) || "Not provided"],
     ["Primary challenge", clean(values.challenge) || "Not provided"],
@@ -179,7 +179,7 @@ function makeHtml(values: Required<Pick<SampleRequest, "name" | "company" | "ema
           )
           .join("")}
       </table>
-      <h2 style="font-size:16px;margin:20px 0 8px">Application and profile notes</h2>
+      <h2 style="font-size:16px;margin:20px 0 8px">Project notes</h2>
       <p style="white-space:pre-wrap;margin:0">${escapeHtml(clean(values.notes) || "Not provided")}</p>
     </div>
   `;
@@ -242,15 +242,11 @@ export async function POST(request: Request) {
     notes: clean(body.notes),
   };
 
-  if (!values.name || !values.company || !values.email || !values.shippingAddress || !values.industry || !values.flavorTarget) {
+  if (!values.name || !values.email || !values.shippingAddress) {
     return NextResponse.json(
-      { error: "Name, company, email, shipping address, application, and flavor direction are required" },
+      { error: "Name, email, and shipping address are required" },
       { status: 400 },
     );
-  }
-
-  if (values.industry === "other" && !values.otherApplication) {
-    return NextResponse.json({ error: "Application detail is required" }, { status: 400 });
   }
 
   if (!validEmail(values.email)) {

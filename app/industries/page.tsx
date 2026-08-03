@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import Link from "next/link";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { industries } from "@/data/industries";
+import { siteImages } from "@/data/site-images";
+import { AppImage } from "@/components/ui/AppImage";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Industries We Serve",
@@ -28,14 +34,9 @@ export const metadata: Metadata = {
     images: ["/og?title=Industries+We+Serve"],
   },
 };
-import { Footer } from "@/components/layout/Footer";
-import { industries } from "@/data/industries";
-import { siteImages } from "@/data/site-images";
-import { AppImage } from "@/components/ui/AppImage";
-import { PageHero } from "@/components/PageHero";
-
 
 const BC_INDUSTRIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Industries","item":"https://www.flavorfactory.net/industries"}]};
+
 export default function IndustriesPage() {
   return (
     <>
@@ -46,16 +47,19 @@ export default function IndustriesPage() {
           <div className="container">
             <PageHero
               eyebrow="Industries"
-              title="Eight categories. One development standard."
-              copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief. They're the starting point, not an obstacle to work around."
+              title="Flavor development changes with the application."
+              copy="Bakery, beverages, nutraceuticals, oral care, and every other category bring different bases, processes, and expectations. We start there."
               image={siteImages.industriesHero}
               imageAlt="Editorial arrangement of food and beverage products across eight industry categories"
               imagePosition="center center"
               primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/flavors"
-              secondaryLabel="Explore Flavors"
+              primaryLabel="Request a Sample"
             />
+
+            <div className="industry-page-intro">
+              <div className="new-eyebrow">Choose an Application</div>
+              <h2>See how we approach your product category.</h2>
+            </div>
 
             <RevealGroup className="industry-clean-grid" stagger={0.07}>
               {industries.map((item) => (
@@ -74,14 +78,9 @@ export default function IndustriesPage() {
                       <h3>{item.name}</h3>
                       <div className="industry-pressure">{item.pressurePoint}</div>
                       <p>{item.summary}</p>
-                      <div className="industry-clean-tags">
-                        {item.applications.map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                      <a className="industry-card-cta" href={`/industries/${item.key}`}>
-                        {item.ctaLabel}
-                      </a>
+                      <Link className="industry-card-cta" href={`/industries/${item.key}`}>
+                        View {item.name}
+                      </Link>
                     </div>
                   </article>
                 </RevealItem>

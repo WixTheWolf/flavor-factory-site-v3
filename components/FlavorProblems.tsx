@@ -28,15 +28,16 @@ export function FlavorProblems() {
     <section className="new-section flavor-problems-section">
       <div className="home-shell">
         <div className="new-section-head">
-          <div className="new-eyebrow">How We Help</div>
+          <div className="new-eyebrow">Common Projects</div>
           <h2>Most customers come to us with a specific problem to solve.</h2>
           <p>
             Tell us what you are making, what is getting in the way, and what the finished product needs to taste like.
           </p>
         </div>
         <div className="flavor-problems-grid">
-          {problems.map((problem) => (
+          {problems.map((problem, index) => (
             <article key={problem.title}>
+              <span className="fp-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <h3>{problem.title}</h3>
               <p className="fp-pain">{problem.text}</p>
               <Link href={problem.href} className="fp-link">Learn more</Link>
@@ -45,7 +46,7 @@ export function FlavorProblems() {
         </div>
         <div className="flavor-problems-cta">
           <p>Have a project in mind?</p>
-          <Link className="cta-btn" href="/request-samples">Request Samples</Link>
+          <Link className="cta-btn" href="/request-samples">Request a Sample</Link>
         </div>
       </div>
     </section>

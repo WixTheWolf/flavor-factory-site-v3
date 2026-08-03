@@ -27,14 +27,15 @@ export const metadata: Metadata = {
     images: [`/og?title=Flavor+Library&description=${SITE_STATS.flavorProfileCount}%2B+profiles+across+${SITE_STATS.flavorFamilyCount}+families`],
   },
 };
+
 import { Footer } from "@/components/layout/Footer";
 import { FlavorFinder } from "@/components/flavors/FlavorFinder";
 import { siteImages } from "@/data/site-images";
 import { PageHero } from "@/components/PageHero";
 import { TimeOnPageTracker } from "@/components/AnalyticsEvents";
 
-
 const BC_FLAVOR_LIBRARY = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Flavor Library","item":"https://www.flavorfactory.net/flavors"}]};
+
 export default function FlavorsPage() {
   return (
     <>
@@ -45,16 +46,14 @@ export default function FlavorsPage() {
         <section className="section clean-page">
           <div className="container">
             <PageHero
-              eyebrow="Our Flavors"
-              title="Find a starting point. We'll build the rest."
-              copy="The library gives you something to react to. Custom development, flavor matching, and reformulation are part of every conversation."
+              eyebrow="Flavor Library"
+              title="Browse our flavors. We will help with the rest."
+              copy="Use the library to find a direction. If the exact profile is not listed, we can recommend a starting point, match an existing flavor, or develop something custom."
               image={siteImages.flavorsHero}
               imageAlt="Amber liquid being poured into a round glass flask, warm studio light"
               imagePosition="center 30%"
               primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/industries"
-              secondaryLabel="View Industries"
+              primaryLabel="Request a Sample"
             />
             <FlavorFinder />
           </div>

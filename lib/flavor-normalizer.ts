@@ -19,10 +19,21 @@ const productTypeMatchers = [
   "BLEND",
 ] as const;
 
+const specificFamilyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
+  {
+    family: "Dessert & Bakery",
+    patterns: [
+      /APPLE CRISP|APPLE PIE|BAKED APPLE|PEACH COBBLER|CINNAMON ROLL|CHURRO|FRENCH TOAST|SNICKERDOODLE|LEMON POUND CAKE|BIRTHDAY CAKE|RED VELVET|GINGERBREAD|CREME BRULEE|RICE PUDDING/i,
+    ],
+  },
+  { family: "Candy & Confectionery", patterns: [/PEPPERMINT BARK|CANDY CANE|COLA BOTTLE|ROOT BEER FLOAT/i] },
+  { family: "Coffee & Beverage", patterns: [/SPORTS DRINK|ICED TEA|CREAM SODA/i] },
+];
+
 const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
   { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
   { family: "Savory & Culinary", patterns: [/POPCORN|KETTLE CORN|CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|ONION|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO|SRIRACHA|TERIYAKI|MUSTARD|BUFFALO|PICKLE|TRUFFLE/i] },
-  { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION|COLA BOTTLE|ROOT BEER FLOAT/i] },
+  { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION/i] },
   { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|WINTERGREEN|COOL|MOUTH ?WASH/i] },
   { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH|GINGER BEER|HORCHATA|LEMONADE|SPORTS DRINK|ICED TEA/i] },
   { family: "Botanical & Tea", patterns: [/TEA|MATCHA|BOTANICAL|HERBAL|HIBISCUS|LAVENDER|JASMINE|ROSE|ELDERFLOWER|BERGAMOT|CITRUS PEEL/i] },
@@ -34,15 +45,9 @@ const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
   { family: "Melons", patterns: [/WATERMELON|CANTALOUPE|HONEYDEW|MELON/i] },
   { family: "Vanilla & Cream", patterns: [/VANILLA|VANILLIN|CREAM|YOGURT|CUSTARD|CHEESECAKE|BAVARIAN|COOKIES/i] },
   { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE|BUTTERSCOTCH|TOFFEE|BROWNIE|HONEY/i] },
-  { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH|GINGER BEER|HORCHATA/i] },
-  { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|WINTERGREEN|COOL|MOUTH ?WASH/i] },
   { family: "Nut & Praline", patterns: [/ALMOND|HAZELNUT|PECAN|PEANUT|PISTACHIO|PRALINE|WALNUT|MACADAMIA|SESAME|NUT/i] },
-  { family: "Spice & Warmth", patterns: [/CINNAMON|SPICE|GINGER|CLOVE|CHAI/i] },
+  { family: "Spice & Warmth", patterns: [/CINNAMON|SPICE|GINGER|CLOVE|CHAI|NUTMEG|CARDAMOM/i] },
   { family: "Dessert & Bakery", patterns: [/MARSHMALLOW|BAKERY|PANCAKE|BUTTER|COOKIE|TIRAMISU|RED VELVET|BIRTHDAY CAKE/i] },
-  { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION/i] },
-  { family: "Savory & Culinary", patterns: [/CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO/i] },
-  { family: "Botanical & Tea", patterns: [/TEA|MATCHA|BOTANICAL|HERBAL|HIBISCUS|LAVENDER|JASMINE|ROSE|ELDERFLOWER|CITRUS PEEL/i] },
-  { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
 ];
 
 const familyNotes: Record<string, string> = {
@@ -63,6 +68,46 @@ const familyNotes: Record<string, string> = {
   "Savory & Culinary": "Culinary flavor systems for snacks, popcorn, seasonings, sauces, and savory bases.",
   "Botanical & Tea": "Botanical, herbal, and tea-inspired profiles for premium beverages and wellness-positioned products.",
   "Custom & Signature": "Custom matching, masking, and proprietary flavor directions shaped around a target brief.",
+  Other: "A flexible starting point that can be adjusted around the finished product and application.",
+};
+
+const familyIndustryDefaults: Partial<Record<string, IndustryKey[]>> = {
+  Citrus: ["beverage", "confectionery", "bakery"],
+  Berry: ["beverage", "confectionery", "dairy"],
+  Tropical: ["beverage", "confectionery", "nutraceutical"],
+  "Orchard Fruit": ["beverage", "bakery", "confectionery"],
+  "Stone Fruit": ["beverage", "dairy", "confectionery"],
+  Melons: ["beverage", "confectionery", "dairy"],
+  "Vanilla & Cream": ["bakery", "dairy", "beverage"],
+  "Chocolate & Brown Notes": ["bakery", "confectionery", "dairy"],
+  "Coffee & Beverage": ["beverage", "dairy", "bakery"],
+  "Mint & Cooling": ["oral-care", "confectionery", "beverage"],
+  "Nut & Praline": ["bakery", "confectionery", "dairy"],
+  "Spice & Warmth": ["bakery", "beverage", "confectionery"],
+  "Dessert & Bakery": ["bakery", "dairy", "confectionery"],
+  "Candy & Confectionery": ["confectionery", "beverage"],
+  "Botanical & Tea": ["beverage", "nutraceutical"],
+};
+
+const familyApplicationDefaults: Record<string, string> = {
+  Citrus: "Fruit Profile",
+  Berry: "Fruit Profile",
+  Tropical: "Fruit Profile",
+  "Orchard Fruit": "Fruit Profile",
+  "Stone Fruit": "Fruit Profile",
+  Melons: "Fruit Profile",
+  "Vanilla & Cream": "Sweet Applications",
+  "Chocolate & Brown Notes": "Sweet Applications",
+  "Coffee & Beverage": "Beverage",
+  "Mint & Cooling": "Cooling Profile",
+  "Nut & Praline": "Sweet Applications",
+  "Spice & Warmth": "Seasonal & Bakery",
+  "Dessert & Bakery": "Bakery & Dessert",
+  "Candy & Confectionery": "Confectionery",
+  "Savory & Culinary": "Savory",
+  "Botanical & Tea": "Beverage",
+  "Custom & Signature": "Custom Development",
+  Other: "Custom Development",
 };
 
 type ParsedFlavor = {
@@ -80,7 +125,7 @@ type ParsedFlavor = {
 function titleCase(input: string) {
   return input
     .toLowerCase()
-    .replace(/\b\w/g, (m) => m.toUpperCase())
+    .replace(/\b\w/g, (match) => match.toUpperCase())
     .replace(/\bBbq\b/g, "BBQ");
 }
 
@@ -153,20 +198,24 @@ function getAliases(displayName: string, rawNames: string[], family: string, app
 
 function getFamily(raw: string, displayName: string) {
   const source = `${raw} ${displayName}`;
+  const specific = specificFamilyMatchers.find(({ patterns }) => patterns.some((pattern) => pattern.test(source)));
+  if (specific) return specific.family;
+
   const match = familyMatchers.find(({ patterns }) => patterns.some((pattern) => pattern.test(source)));
   return match?.family ?? "Other";
 }
 
-function getUseCases(raw: string, family: string, format: FlavorFormat) {
+function getUseCases(raw: string, family: string) {
   const source = `${raw} ${family}`.toLowerCase();
   const industries = new Set<IndustryKey>();
   const applications = new Set<string>();
+  const confectioneryMint = /peppermint bark|candy cane|mint chocolate/.test(source);
 
-  if (/(bakery|cheesecake|pancake|brown sugar|vanilla|cinnamon|cookie|tiramisu|red velvet|birthday cake)/.test(source)) {
+  if (/(bakery|cheesecake|pancake|brown sugar|vanilla|cinnamon|cookie|tiramisu|red velvet|birthday cake|apple crisp|apple pie|cobbler|pound cake|churro|french toast|gingerbread)/.test(source)) {
     industries.add("bakery");
     applications.add("Bakery");
   }
-  if (/(gummy|cotton candy|marshmallow|confection|chocolate|candy)/.test(source)) {
+  if (/(gummy|cotton candy|marshmallow|confection|chocolate|candy|peppermint bark|candy cane)/.test(source)) {
     industries.add("confectionery");
     applications.add("Confectionery");
   }
@@ -178,11 +227,11 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     industries.add("nutraceutical");
     applications.add("Nutraceutical");
   }
-  if (/(toothpaste|mouth wash|oral care|peppermint|spearmint|mint)/.test(source)) {
+  if (!confectioneryMint && /(toothpaste|mouth wash|oral care|peppermint|spearmint|wintergreen|\bmint\b)/.test(source)) {
     industries.add("oral-care");
     applications.add("Oral Care");
   }
-  if (/(medicated|cough syrup|pharma|pharmaceutical)/.test(source)) {
+  if (/(medicated|cough syrup|pharma|pharmaceutical|pediatric)/.test(source)) {
     industries.add("pharmaceutical");
     applications.add("Pharmaceutical");
   }
@@ -190,7 +239,7 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     industries.add("popcorn");
     applications.add("Popcorn");
   }
-  if (/(cola|root beer|cream soda|energy drink|beverage|punch|lemonade|cold brew|espresso|tea|ginger beer|horchata|hibiscus|elderflower)/.test(source)) {
+  if (/(cola|root beer|cream soda|energy drink|beverage|punch|lemonade|cold brew|espresso|tea|ginger beer|horchata|hibiscus|elderflower|sports drink)/.test(source)) {
     industries.add("beverage");
     applications.add("Beverage");
   }
@@ -198,12 +247,16 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     industries.add("beverage");
     applications.add("Syrup");
   }
-  if (/(savory|bbq|chicken|beef|ranch|tomato|garlic|jalapeno|cheese|nacho|basil|wasabi|paprika|miso)/.test(source)) {
+  if (/(savory|bbq|chicken|beef|broth|ranch|tomato|garlic|onion|jalapeno|cheese|nacho|basil|wasabi|paprika|miso|truffle|teriyaki|mustard|buffalo|pickle)/.test(source)) {
     applications.add("Savory");
   }
 
-  if (industries.size === 0) industries.add(format === "Powder" ? "nutraceutical" : "bakery");
-  if (applications.size === 0) applications.add(format === "Powder" ? "Powder Blend" : "Beverage");
+  if (industries.size === 0) {
+    (familyIndustryDefaults[family] ?? []).forEach((industry) => industries.add(industry));
+  }
+  if (applications.size === 0) {
+    applications.add(familyApplicationDefaults[family] ?? "Custom Development");
+  }
 
   return { industries: [...industries], applications: [...applications] };
 }
@@ -215,7 +268,7 @@ function parseRawFlavor(rawName: string): ParsedFlavor {
   const strength = getStrength(rawName);
   const displayName = cleanDisplayName(rawName);
   const family = getFamily(rawName, displayName);
-  const { industries, applications } = getUseCases(rawName, family, format);
+  const { industries, applications } = getUseCases(rawName, family);
 
   return { rawName, displayName, family, format, declarationType, productType, strength, industries, applications };
 }
@@ -237,7 +290,7 @@ export function buildFlavorCatalog(rawRows: readonly string[] = rawFlavorProduct
   return [...grouped.entries()].map(([key, variants]) => {
     const [, family, format] = key.split("|");
     const name = variants
-      .map((v) => v.displayName)
+      .map((variant) => variant.displayName)
       .sort((a, b) => a.length - b.length)[0];
     const declarationSet = new Set(variants.map((item) => item.declarationType));
     const declarationType = declarationSet.size === 1 ? variants[0].declarationType : "Mixed";
@@ -265,10 +318,10 @@ export function buildFlavorCatalog(rawRows: readonly string[] = rawFlavorProduct
         family.toLowerCase(),
         format.toLowerCase(),
         declarationType.toLowerCase(),
-        ...productTypes.map((p) => p.toLowerCase()),
+        ...productTypes.map((productType) => productType.toLowerCase()),
         ...curatedApplications.map((item) => item.toLowerCase()),
       ].slice(0, 8),
-      notes: flavorNotes[slugify(`${name}-${format}`)] ?? familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
+      notes: flavorNotes[slugify(`${name}-${format}`)] ?? familyNotes[family] ?? familyNotes.Other,
     } satisfies Flavor;
   }).sort((a, b) => a.name.localeCompare(b.name));
 }

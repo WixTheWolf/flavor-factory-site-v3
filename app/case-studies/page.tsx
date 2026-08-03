@@ -6,43 +6,52 @@ import { CaseStudyAccordion } from "@/components/CaseStudyAccordion";
 import { caseStudies } from "@/data/case-studies";
 
 export const metadata: Metadata = {
-  title: "Representative Flavor Challenges",
-  description: "Representative flavor development examples for bakery, nutraceutical, oral care, beverage, popcorn, and reformulation projects. Not named customer claims.",
+  title: "Flavor Project Examples",
+  description:
+    "Representative examples of common flavor-development work across bakery, nutraceutical, oral care, beverage, popcorn, matching, and reformulation projects.",
   alternates: { canonical: "/case-studies" },
   openGraph: {
-    title: "Representative Flavor Challenges | The Flavor Factory",
+    title: "Flavor Project Examples | The Flavor Factory",
     url: "/case-studies",
-    description: "Representative flavor development examples showing common finished-product challenges and how we approach them.",
-    images: [{ url: "/og?title=Representative+Flavor+Challenges", width: 1200, height: 630 }],
+    description:
+      "Representative examples showing common finished-product challenges and how The Flavor Factory approaches them.",
+    images: [{ url: "/og?title=Flavor+Project+Examples", width: 1200, height: 630 }],
   },
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" },
+    { "@type": "ListItem", position: 2, name: "Project Examples", item: "https://www.flavorfactory.net/case-studies" },
+  ],
+};
 
-const BC_CASE_STUDIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Case Studies","item":"https://www.flavorfactory.net/case-studies"}]};
 export default function CaseStudiesPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_CASE_STUDIES) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
         <section className="section clean-page">
           <div className="container">
-            <div className="clean-page-intro">
-              <div className="new-eyebrow">Representative Flavor Challenges</div>
-              <h1>Common finished-product problems and how we approach them.</h1>
+            <div className="clean-page-intro project-examples-intro">
+              <div className="new-eyebrow">Project Examples</div>
+              <h1>Common flavor problems and the work behind solving them.</h1>
               <p>
-                Examples below show common project types and application challenges. They are representative applications, not named customer claims.
+                These examples show representative project types and application challenges. They explain the approach without presenting unnamed examples as customer results.
               </p>
             </div>
             <CaseStudyAccordion studies={caseStudies} />
           </div>
         </section>
         <CTA
-          eyebrow="Have a similar challenge?"
-          title="Share the application and what has already failed."
-          copy="We will build the next sample around the real product, base, and process."
+          eyebrow="Request a Sample"
+          title="Working through a similar problem?"
+          copy="Tell us what you are making, what is not working, and where to send the samples."
           href="/request-samples"
-          label="Request a Custom Sample"
+          label="Request a Sample"
         />
       </main>
       <Footer />

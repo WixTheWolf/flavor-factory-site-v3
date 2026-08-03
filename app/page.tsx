@@ -10,6 +10,8 @@ import { Reveal } from "@/components/Reveal";
 import { FlavorProblems } from "@/components/FlavorProblems";
 import { QualitySupport } from "@/components/QualitySupport";
 import { K9sForWarriors } from "@/components/K9sForWarriors";
+import { AppImage } from "@/components/ui/AppImage";
+import { flavorFactoryImages } from "@/data/flavorFactoryImages";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -78,24 +80,34 @@ export default function HomePage() {
         <Industries />
         <Reveal>
           <section className="new-section home-accountability-section">
-            <div className="home-shell home-accountability-inner">
-              <div>
-                <div className="new-eyebrow">Family-Owned in Norco</div>
-                <h2>You will know who is working on your project.</h2>
-                <ul className="home-accountability-proofs">
-                  <li>Development and production under one roof</li>
-                  <li>Direct communication with a small, experienced team</li>
-                  <li>A practical handoff from sample to production</li>
-                </ul>
+            <div className="home-shell home-accountability-card">
+              <div className="home-accountability-photo">
+                <AppImage
+                  src={flavorFactoryImages.inhouseProductionWorkers}
+                  alt="The Flavor Factory production team working in the Norco facility"
+                  sizes="(max-width: 900px) calc(100vw - 32px), 42vw"
+                  style={{ objectPosition: "center 44%" }}
+                />
               </div>
-              <div>
-                <p>
-                  We are not the biggest flavor house, and we do not try to act like one. Our size keeps communication direct and accountability personal.
-                </p>
-                <p>
-                  The people who help develop your flavor are close to the people who make it. That matters when a formula needs an adjustment, a deadline moves, or production has a question.
-                </p>
-                <Link className="cta-btn" href="/about">Meet the Family</Link>
+              <div className="home-accountability-inner">
+                <div>
+                  <div className="new-eyebrow">Family-Owned in Norco</div>
+                  <h2>You will know who is working on your project.</h2>
+                  <ul className="home-accountability-proofs">
+                    <li>Development and production under one roof</li>
+                    <li>Direct communication with a small, experienced team</li>
+                    <li>A practical handoff from sample to production</li>
+                  </ul>
+                </div>
+                <div>
+                  <p>
+                    Being family-owned keeps communication direct and responsibility clear. The person answering the question is close to the work itself.
+                  </p>
+                  <p>
+                    Development, quality, operations, and production all happen in Norco, so important project details stay connected from the first sample through repeat orders.
+                  </p>
+                  <Link className="cta-btn" href="/about">Meet the Family</Link>
+                </div>
               </div>
             </div>
           </section>

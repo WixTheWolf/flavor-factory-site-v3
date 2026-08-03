@@ -3,8 +3,15 @@ import { Analytics } from "@vercel/analytics/next";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import "./globals.css";
+import "./home-preview-context.css";
+import "./home-preview-polish.css";
+import "./site-preview-polish.css";
+import "./content-preview-polish.css";
+import "./best-site-v2.css";
+import "./hero-live-lock.css";
 
 const BASE = "https://www.flavorfactory.net";
+const IS_PREVIEW = process.env.VERCEL_ENV === "preview";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
@@ -54,17 +61,22 @@ export const metadata: Metadata = {
   verification: {
     google: "5Z2AJUwG1-KbdLbWFDZ5kzzTVOrSa_8uuF4DA961LvM",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: IS_PREVIEW
+    ? {
+        index: false,
+        follow: false,
+      }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
