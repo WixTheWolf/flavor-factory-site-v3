@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
+import { RevealGroup, RevealItem } from "@/components/Reveal";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { industries } from "@/data/industries";
+import { siteImages } from "@/data/site-images";
+import { AppImage } from "@/components/ui/AppImage";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
-    "Flavor development for bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, and popcorn applications. Application-specific from the first sample.",
+    "Flavor development for bakery, beverage, confectionery, dairy, nutraceutical, oral care, pharmaceutical, and popcorn applications.",
   alternates: { canonical: "/industries" },
   openGraph: {
     url: "/industries",
@@ -17,25 +22,19 @@ export const metadata: Metadata = {
         url: "/og?title=Industries+We+Serve",
         width: 1200,
         height: 630,
-        alt: "The Flavor Factory - industries served",
+        alt: "The Flavor Factory industries served",
       },
     ],
   },
   twitter: {
     title: "Industries We Serve | The Flavor Factory",
-    description:
-      "Flavor development for bakery, beverage, dairy, nutraceutical, oral care, pharmaceutical, and popcorn.",
+    description: "Application-specific flavor development across eight product categories.",
     images: ["/og?title=Industries+We+Serve"],
   },
 };
-import { Footer } from "@/components/layout/Footer";
-import { industries } from "@/data/industries";
-import { siteImages } from "@/data/site-images";
-import { AppImage } from "@/components/ui/AppImage";
-import { PageHero } from "@/components/PageHero";
-
 
 const BC_INDUSTRIES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Industries","item":"https://www.flavorfactory.net/industries"}]};
+
 export default function IndustriesPage() {
   return (
     <>
@@ -46,15 +45,15 @@ export default function IndustriesPage() {
           <div className="container">
             <PageHero
               eyebrow="Industries"
-              title="Eight categories. One development standard."
-              copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief. They're the starting point, not an obstacle to work around."
+              title="Flavor development built for the application."
+              copy="The base, process, label, and sensory target shape every project."
               image={siteImages.industriesHero}
-              imageAlt="Editorial arrangement of food and beverage products across eight industry categories"
+              imageAlt="Food and beverage products across the industries served"
               imagePosition="center center"
               primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
+              primaryLabel="Request a Sample"
               secondaryHref="/flavors"
-              secondaryLabel="Explore Flavors"
+              secondaryLabel="Browse Flavors"
             />
 
             <RevealGroup className="industry-clean-grid" stagger={0.07}>
@@ -71,17 +70,13 @@ export default function IndustriesPage() {
                       />
                     </div>
                     <div className="industry-clean-body">
+                      <div className="new-eyebrow">{item.pressurePoint}</div>
                       <h3>{item.name}</h3>
-                      <div className="industry-pressure">{item.pressurePoint}</div>
                       <p>{item.summary}</p>
                       <div className="industry-clean-tags">
-                        {item.applications.map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
+                        {item.applications.slice(0, 4).map((tag) => <span key={tag}>{tag}</span>)}
                       </div>
-                      <a className="industry-card-cta" href={`/industries/${item.key}`}>
-                        {item.ctaLabel}
-                      </a>
+                      <a className="industry-card-cta" href={`/industries/${item.key}`}>{item.ctaLabel}</a>
                     </div>
                   </article>
                 </RevealItem>
