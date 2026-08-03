@@ -9,16 +9,15 @@ import { normalizeIndustryKey } from "@/lib/industry-utils";
 export const metadata: Metadata = {
   title: "Request Flavor Samples",
   description:
-    "Tell us your application and target flavor direction. First samples are typically prepared in 3-5 business days from Norco, CA.",
+    "Request flavor samples from The Flavor Factory. Name, email, and shipping address are the only required fields.",
   alternates: { canonical: "/request-samples" },
   openGraph: {
     url: "/request-samples",
     title: "Request Flavor Samples | The Flavor Factory",
-    description:
-      "Tell us your application and target flavor direction. First samples are typically prepared in 3-5 business days from Norco, CA.",
+    description: "Name, email, and shipping address are the only required fields.",
     images: [
       {
-        url: "/og?title=Request+Flavor+Samples&description=3-5+business+day+turnaround+from+Norco%2C+CA",
+        url: "/og?title=Request+Flavor+Samples",
         width: 1200,
         height: 630,
         alt: "Request flavor samples from The Flavor Factory",
@@ -27,9 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Request Flavor Samples | The Flavor Factory",
-    description:
-      "Tell us your application and target flavor direction. First samples are typically prepared in 3-5 business days.",
-    images: ["/og?title=Request+Flavor+Samples&description=3-5+business+day+turnaround+from+Norco%2C+CA"],
+    description: "Name, email, and shipping address are the only required fields.",
+    images: ["/og?title=Request+Flavor+Samples"],
   },
 };
 
@@ -51,18 +49,20 @@ export default function RequestSamplesPage({
           <div className="container sample-panel">
             <div className="sample-grid">
               <div className="sample-left">
-                <div className="eyebrow">Request Samples</div>
-                <h1 className="section-title request-page-title">Tell us what you are making.</h1>
+                <div className="eyebrow">Request a Sample</div>
+                <h1 className="section-title request-page-title">Tell us where to send it.</h1>
                 <p className="section-subtext request-page-intro">
-                  Tell us the product, flavor direction, and where the samples should go. A real person from our team will review the request and follow up.
+                  Only your name, email, and shipping address are required. Add project details if you have them.
                 </p>
-                <p className="sample-brief-note">Prefer to talk first? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.</p>
+                <p className="sample-brief-note">
+                  Questions? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.
+                </p>
                 <SampleRequestForm initialIndustry={industry} />
               </div>
               <div className="sample-right">
                 <AppImage
                   src={siteImages.requestSamplesHero}
-                  alt="Amber liquid flavor being poured with precision in a lab setting"
+                  alt="Amber liquid flavor being poured in a lab setting"
                   priority
                   sizes="(max-width: 1200px) calc(100vw - 48px), 50vw"
                   style={{ objectPosition: "center 40%" }}
@@ -74,11 +74,11 @@ export default function RequestSamplesPage({
           <div className="container request-next-section">
             <div>
               <div className="new-eyebrow">What Happens Next</div>
-              <h2>A simple path from request to sample.</h2>
+              <h2>We review, follow up, and prepare the samples.</h2>
             </div>
             <ol>
-              <li>We review the product and flavor direction.</li>
-              <li>We follow up if anything important is missing.</li>
+              <li>We review the request.</li>
+              <li>We contact you if anything important is missing.</li>
               <li>First sample directions are typically prepared in 3-5 business days.</li>
             </ol>
           </div>
