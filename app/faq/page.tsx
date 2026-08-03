@@ -8,138 +8,124 @@ import { commercialPolicy } from "@/data/commercial-policy";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Answers on minimums, sample timelines, custom development, IP ownership, certifications, COAs, allergen statements, and how flavor development works at The Flavor Factory.",
+    "Answers about samples, minimums, custom development, certifications, documents, and production orders.",
   alternates: { canonical: "/faq" },
   openGraph: {
     url: "/faq",
     title: "Frequently Asked Questions | The Flavor Factory",
-    description:
-      "Answers on minimums, sample timelines, custom development, IP ownership, certifications, COAs, allergen statements, and how flavor development works.",
+    description: "Answers about samples, minimums, development, certifications, documents, and orders.",
     images: [{ url: "/og?title=Frequently+Asked+Questions", width: 1200, height: 630, alt: "FAQ - The Flavor Factory" }],
   },
   twitter: {
     title: "Frequently Asked Questions | The Flavor Factory",
-    description: "Answers on minimums, samples, custom development, IP ownership, certifications, COAs, and more.",
+    description: "Answers about samples, minimums, development, certifications, documents, and orders.",
     images: ["/og?title=Frequently+Asked+Questions"],
   },
 };
 
 const faqs = [
   {
-    category: "Samples and Lead Times",
+    category: "Samples",
     items: [
       {
         q: "How long does it take to get first samples?",
-        a: "First-round samples typically ship within 3-5 business days of receiving a confirmed brief. The more specific the brief, the closer the first samples will be to the target. A vague request adds rounds; a well-defined brief reduces them.",
+        a: "First samples are typically prepared in 3-5 business days after the brief is confirmed.",
       },
       {
-        q: "What is your sample policy?",
-        a: `We provide samples as part of active development projects. Share your application, target flavor profile, format, declaration requirements, and any relevant constraints. Samples are built around your real product system, not generic library pulls. First-round directions are typically prepared in ${commercialPolicy.sampleTurnaround}.`,
+        q: "What information do you need?",
+        a: "Name, email, and shipping address are required. Product and flavor details are helpful but optional.",
       },
       {
         q: "Do you charge for samples?",
         a: commercialPolicy.samplePolicy,
       },
       {
-        q: "How many rounds of revisions are typical?",
-        a: "It depends on how clearly the brief is defined. Projects with a specific target, known base, and defined label goals tend to reach an approvable sample in 2-4 rounds. Open-ended briefs take longer. Each revision is documented so every round moves forward.",
+        q: "How many revision rounds are typical?",
+        a: "Most projects need a few focused rounds. A clear target and known product base usually reduce revisions.",
       },
     ],
   },
   {
-    category: "Minimums and Orders",
+    category: "Orders",
     items: [
       {
         q: "What is your minimum order quantity?",
         a: commercialPolicy.moqSummary,
       },
       {
-        q: "Can I order small quantities for initial production runs?",
-        a: "Yes. Low minimums are part of our standard offering. We support brands moving from sample approval into first production and scaling from there. The right first-run quantity depends on format and formula and is confirmed at quote time.",
+        q: "Can you support a small first production run?",
+        a: "Yes. The right minimum depends on the formula and format and is confirmed with the quote.",
       },
       {
-        q: "What are your typical lead times for production orders?",
+        q: "What are typical production lead times?",
         a: commercialPolicy.productionLeadTime,
-      },
-    ],
-  },
-  {
-    category: "Custom Development",
-    items: [
-      {
-        q: "How does custom flavor development pricing work?",
-        a: "Development is typically priced into the ongoing manufacturing relationship rather than charged as a separate project fee. Contact us to discuss your project scope and how development fits into the commercial arrangement.",
-      },
-      {
-        q: "Can you match an existing flavor from another supplier?",
-        a: "Yes. Flavor matching is a standard part of our work. We need the reference product or a detailed sensory description of the target, along with your finished product matrix, to build an accurate match. The match is always validated in the finished product format, not in water or isolation.",
-      },
-      {
-        q: "Who owns the intellectual property on a custom-developed flavor?",
-        a: "IP ownership on custom formulations is addressed in the commercial agreement for each project. Contact us to discuss how IP is handled for your specific development work.",
-      },
-      {
-        q: "Do you develop flavors for pharmaceutical or oral care applications?",
-        a: "Yes. Pharmaceutical palatability and oral care are both standard application areas for us. These applications have specific technical requirements around API masking, excipient compatibility, and regulatory documentation that we address from the start of the development brief.",
-      },
-    ],
-  },
-  {
-    category: "Certifications and Compliance",
-    items: [
-      {
-        q: "Are your flavors Kosher certified?",
-        a: "Many of our flavors carry Kosher certification. Certification status varies by formula. If your product requires Kosher documentation, tell us at the start of the project so ingredient sourcing is confirmed from sample one.",
-      },
-      {
-        q: "Are your flavors Halal certified?",
-        a: "Halal status varies by formula. Share the requirement up front and we will confirm which directions qualify, or develop a formula that does.",
-      },
-      {
-        q: "Can you supply organic-compliant flavors?",
-        a: "Yes. Organic-compliant flavors using approved organic ingredients are available for qualifying applications. If your label requires an organic claim, bring that into the brief so the formula is built to support it from the start.",
-      },
-      {
-        q: "What is the scope of your FDA registration?",
-        a: "Our facility is registered with the FDA as a food manufacturing operation. Registration documentation is available for supplier qualification files. Facility registration does not replace product-specific regulatory review for your finished product.",
-      },
-    ],
-  },
-  {
-    category: "Documentation and Regulatory",
-    items: [
-      {
-        q: "Do you provide Certificates of Analysis?",
-        a: "Yes. Certificates of Analysis are provided with production orders as part of our standard documentation package.",
-      },
-      {
-        q: "Can you provide flavor specification sheets?",
-        a: "Yes. Flavor specifications covering physical properties, regulatory status, and relevant technical parameters are available for approved production flavors.",
-      },
-      {
-        q: "Do you provide allergen statements?",
-        a: "Yes. Allergen declarations are part of the standard documentation for any production flavor. Allergen status is determined by the ingredients in the specific formula.",
-      },
-      {
-        q: "Do you retain samples from production batches?",
-        a: "Yes. We maintain retain samples from production batches as part of our quality program. Contact us if you need to reference a specific production lot.",
-      },
-      {
-        q: "Can you support regulatory filings or supplier questionnaires?",
-        a: "Yes. We can complete standard supplier qualification questionnaires and provide the documentation typically required for food manufacturing regulatory submissions. See the Resources page for the standard document list, or email samples@flavorfactory.net with your form.",
-      },
-    ],
-  },
-  {
-    category: "Logistics and Practicalities",
-    items: [
-      {
-        q: "Where do you ship?",
-        a: "We ship domestically across the United States from our Norco, California facility. Contact us to discuss international shipping requirements.",
       },
       {
         q: "What payment terms do you offer?",
         a: commercialPolicy.paymentTerms,
+      },
+    ],
+  },
+  {
+    category: "Development",
+    items: [
+      {
+        q: "Can you develop a custom flavor?",
+        a: "Yes. We develop around the application, base, process, label goals, and target profile.",
+      },
+      {
+        q: "Can you match another supplier's flavor?",
+        a: "Yes. Send the reference flavor or finished product and the current project requirements.",
+      },
+      {
+        q: "Can you help with bitterness or difficult actives?",
+        a: "Yes. Masking and modulation are standard parts of our work.",
+      },
+      {
+        q: "Who owns a custom formula?",
+        a: "Formula ownership is addressed in the commercial agreement for the project.",
+      },
+    ],
+  },
+  {
+    category: "Quality & Certifications",
+    items: [
+      {
+        q: "Are your flavors Kosher?",
+        a: "Many formulas qualify. Status is confirmed for the specific project.",
+      },
+      {
+        q: "Are Halal options available?",
+        a: "Yes, for qualifying formulas. Share the requirement at the start.",
+      },
+      {
+        q: "Can you supply organic-compliant flavors?",
+        a: "Yes, where the application and ingredient requirements allow it.",
+      },
+      {
+        q: "Is your facility FDA registered?",
+        a: "Yes. Registration documentation is available for supplier qualification.",
+      },
+      {
+        q: "Do you provide COAs, specifications, and allergen statements?",
+        a: "Yes. Production documents are available for approved flavors as applicable.",
+      },
+    ],
+  },
+  {
+    category: "Shipping & Support",
+    items: [
+      {
+        q: "Where do you ship?",
+        a: "We ship throughout the United States from Norco, California. Contact us about international requirements.",
+      },
+      {
+        q: "Do you complete supplier questionnaires?",
+        a: "Yes. Email the questionnaire and project or flavor reference to samples@flavorfactory.net.",
+      },
+      {
+        q: "Do you keep retain samples?",
+        a: "Yes. Production batch retain samples are maintained for lot reference and traceability.",
       },
     ],
   },
@@ -179,14 +165,11 @@ export default function FAQPage() {
           <div className="container">
             <div className="clean-page-intro">
               <div className="new-eyebrow">FAQ</div>
-              <h1>Common questions, answered plainly.</h1>
-              <p>
-                Minimums, timelines, custom development, certifications, documentation, and how the process works.
-                If your question is not here, email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a>.
-              </p>
+              <h1>Common questions.</h1>
+              <p>Need something else? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a>.</p>
             </div>
 
-            <RevealGroup className="faq-page-body" stagger={0.12}>
+            <RevealGroup className="faq-page-body" stagger={0.08}>
               {faqs.map((section) => (
                 <RevealItem key={section.category}>
                   <section className="faq-category-section">
@@ -206,9 +189,9 @@ export default function FAQPage() {
           </div>
         </section>
         <CTA
-          eyebrow="Still have questions?"
-          title="Talk with us directly."
-          copy="Email samples@flavorfactory.net or call (951) 273-9877. We respond to every inquiry."
+          eyebrow="Contact"
+          title="Still have a question?"
+          copy="Email samples@flavorfactory.net or call (951) 273-9877."
           href="/contact"
           label="Contact Us"
         />
