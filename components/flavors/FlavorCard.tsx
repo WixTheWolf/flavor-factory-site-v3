@@ -2,7 +2,6 @@
 
 import type { Flavor } from "@/lib/types";
 import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 import { useShortlist } from "@/lib/shortlist";
 import { trackEvent } from "@/lib/analytics";
 
@@ -14,10 +13,8 @@ function industryLabel(value: string) {
 
 function uniqueLabels(items: string[]) {
   const seen = new Set<string>();
-
   return items.filter((item) => {
     const key = item.toLowerCase().replace(/[^a-z0-9]+/g, "");
-
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -27,9 +24,8 @@ function uniqueLabels(items: string[]) {
 export function FlavorCard({ flavor }: { flavor: Flavor }) {
   const { add, remove, has, mounted } = useShortlist();
   const inList = mounted && has(flavor.id);
-
-  const fit = uniqueLabels([...flavor.applications, ...flavor.industries.map(industryLabel)]).slice(0, 4);
-  const metadata = Array.from(new Set([flavor.format, flavor.declarationType, ...flavor.productTypes])).slice(0, 4);
+  const fit = uniqueLabels([...flavor.applications, ...flavor.industries.map(industryLabel)]).slice(0, 3);
+  const metadata = Array.from(new Set([flavor.format, flavor.declarationType])).slice(0, 2);
 
   function toggleShortlist() {
     if (inList) {
@@ -48,54 +44,33 @@ export function FlavorCard({ flavor }: { flavor: Flavor }) {
           <div className="eyebrow">{flavor.family}</div>
           <h3>{flavor.name}</h3>
         </div>
-        <span className="flavor-variant-count">{flavor.variantCount} option{flavor.variantCount === 1 ? "" : "s"}</span>
       </div>
+
       <p className="flavor-card-note">{flavor.notes}</p>
 
       <div className="flavor-card-section">
-        <div className="flavor-card-label">Best fit</div>
+        <div className="flavor-card-label">Common applications</div>
         <div className="showcase-pills">
-          {fit.map((item) => (
-            <span className="soft-pill" key={item}>
-              {item}
-            </span>
-          ))}
+          {fit.map((item) => <span className="soft-pill" key={item}>{item}</span>)}
         </div>
       </div>
 
       <div className="flavor-card-section">
-        <div className="flavor-card-label">Format / declaration</div>
+        <div className="flavor-card-label">Format</div>
         <div className="flavor-meta-row">
-          {metadata.map((item) => (
-            <span className="flavor-meta-chip" key={item}>
-              {item}
-            </span>
-          ))}
+          {metadata.map((item) => <span className="flavor-meta-chip" key={item}>{item}</span>)}
         </div>
       </div>
 
-      <details className="flavor-card-details">
-        <summary>View technical names</summary>
-        <ul>
-          {flavor.rawNames.slice(0, 5).map((raw) => (
-            <li key={raw}>{raw}</li>
-          ))}
-          {flavor.rawNames.length > 5 && <li>+{flavor.rawNames.length - 5} more variants</li>}
-        </ul>
-      </details>
-
-      <div className="flavor-card-actions">
+      <div className="flavor-card-actions flavor-card-actions-simple">
         <button
           type="button"
           className={`shortlist-btn${inList ? " is-active" : ""}`}
           onClick={toggleShortlist}
           aria-label={inList ? `Remove ${flavor.name} from sample request` : `Add ${flavor.name} to sample request`}
         >
-          {inList ? "Added to request" : "+ Add to request"}
+          {inList ? "Added to request" : "Add to sample request"}
         </button>
-        <Button href="/contact" variant="secondary">
-          Ask about this profile
-        </Button>
       </div>
     </Card>
   );
