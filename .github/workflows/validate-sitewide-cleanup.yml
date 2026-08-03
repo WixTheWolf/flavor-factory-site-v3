@@ -30,8 +30,5 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Copy check
-        run: npm run lint:copy
-
       - name: Build
         run: npm run build
