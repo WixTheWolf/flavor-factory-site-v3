@@ -2,23 +2,23 @@ import Link from "next/link";
 
 const problems = [
   {
-    title: "The flavor disappears in the finished product",
-    text: "A profile may taste right in water, then get buried by the real base, sweetener, fat, protein, or process.",
+    title: "Flavor fades in the finished product",
+    text: "We build around the real base, process, sweetener system, and use level.",
     href: "/custom-liquid-flavors",
   },
   {
-    title: "Actives leave a bitter or lingering finish",
-    text: "We work with proteins, vitamins, minerals, botanicals, caffeine, creatine, and other difficult ingredients.",
+    title: "Actives create bitterness or off-notes",
+    text: "We balance masking, sweetness, acidity, impact, and finish together.",
     href: "/masking-and-modulation",
   },
   {
-    title: "You need to match or replace a flavor",
-    text: "We can help when a flavor is discontinued, too expensive, inconsistent, or simply not performing well enough.",
+    title: "A current flavor needs to be matched or replaced",
+    text: "We work from the finished-product experience and the constraints that matter now.",
     href: "/flavor-matching",
   },
   {
-    title: "The sample works, but production does not",
-    text: "Development and manufacturing happen in the same facility, so the handoff from sample to production stays practical.",
+    title: "An approved sample needs a clean production path",
+    text: "Development and manufacturing stay connected in the same Norco facility.",
     href: "/process",
   },
 ] as const;
@@ -28,11 +28,9 @@ export function FlavorProblems() {
     <section className="new-section flavor-problems-section">
       <div className="home-shell">
         <div className="new-section-head">
-          <div className="new-eyebrow">How We Help</div>
-          <h2>Most customers come to us with a specific problem to solve.</h2>
-          <p>
-            Tell us what you are making, what is getting in the way, and what the finished product needs to taste like.
-          </p>
+          <div className="new-eyebrow">Common Projects</div>
+          <h2>Bring us the product problem.</h2>
+          <p>We build the flavor around the application, process, target profile, and label requirements.</p>
         </div>
         <div className="flavor-problems-grid">
           {problems.map((problem) => (
@@ -45,7 +43,7 @@ export function FlavorProblems() {
         </div>
         <div className="flavor-problems-cta">
           <p>Have a project in mind?</p>
-          <Link className="cta-btn" href="/request-samples">Request Samples</Link>
+          <Link className="cta-btn" href="/request-samples">Request a Sample</Link>
         </div>
       </div>
     </section>
