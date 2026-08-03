@@ -3,19 +3,19 @@ import { SITE_STATS } from "@/data/site-stats";
 const stats = [
   {
     value: `${SITE_STATS.combinedYearsExperience}+`,
-    label: "Years of combined flavor experience",
+    label: "Years of combined experience",
   },
   {
     value: SITE_STATS.sampleLeadTimeDays,
-    label: "Business days to a first sample",
+    label: "Business days to first samples",
   },
   {
     value: `${SITE_STATS.flavorProfileCount}+`,
-    label: "Flavor profiles in our library",
+    label: "Flavor profiles",
   },
   {
-    value: "One Facility",
-    label: "Development and production in Norco",
+    value: "Norco, CA",
+    label: "Development and production",
   },
 ] as const;
 
