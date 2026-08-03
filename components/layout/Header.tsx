@@ -26,7 +26,6 @@ export function Header() {
         <nav className="nav" aria-label="Primary">
           {navigation.filter((item) => item.nav).map((item) => {
             const active = isActive(item.href);
-
             return (
               <Link
                 href={item.href}
@@ -45,28 +44,38 @@ export function Header() {
             className="mobile-toggle"
             aria-label="Toggle menu"
             aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen((value) => !value)}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/request-samples" className="cta-btn" onClick={() => trackEvent("request_sample_click", { location: "header" })}>Request Samples</Link>
+          <Link
+            href="/request-samples"
+            className="cta-btn"
+            onClick={() => trackEvent("request_sample_click", { location: "header" })}
+          >
+            Request a Sample
+          </Link>
         </div>
       </div>
 
       <div className={`mobile-panel ${open ? "open" : ""}`}>
         <div className="container mobile-links">
-          {navigation.filter((item) => item.nav || item.href === "/request-samples" || item.href === "/faq" || item.href === "/resources").map((item) => (
-            <Link
-              href={item.href}
-              key={item.href}
-              className={isActive(item.href) ? "active" : ""}
-              aria-current={isActive(item.href) ? "page" : undefined}
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <a href="tel:+19512739877" onClick={() => trackEvent("phone_click", { location: "mobile menu" })}>Call (951) 273-9877</a>
+          {navigation
+            .filter((item) => item.nav || ["/contact", "/request-samples", "/faq", "/resources"].includes(item.href))
+            .map((item) => (
+              <Link
+                href={item.href}
+                key={item.href}
+                className={isActive(item.href) ? "active" : ""}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          <a href="tel:+19512739877" onClick={() => trackEvent("phone_click", { location: "mobile menu" })}>
+            Call (951) 273-9877
+          </a>
         </div>
       </div>
     </header>
