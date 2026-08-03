@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 const items = [
-  { label: "SQF Facility", note: "Facility quality program" },
-  { label: "FDA Registered Facility", note: "Regulatory support" },
-  { label: "GMP Practices", note: "Plant and production controls" },
-  { label: "Kosher, Halal & Organic-Compliant Options", note: "Available by project" },
-  { label: "COAs, Specifications & Allergen Documents", note: "Available where applicable" },
+  { label: "SQF Facility", note: "Food safety and quality program" },
+  { label: "FDA Registered Facility", note: "Norco manufacturing facility" },
+  { label: "GMP Practices", note: "Production and handling controls" },
+  { label: "Certification Options", note: "Kosher, Halal, and organic-compliant by project" },
+  { label: "Production Documents", note: "COAs, specifications, and allergen statements" },
 ] as const;
 
 export function QualitySupport() {
@@ -15,12 +15,10 @@ export function QualitySupport() {
         <div className="quality-support-head">
           <div>
             <div className="new-eyebrow">Quality & Documentation</div>
-            <h2>The paperwork matters, too.</h2>
-            <p>
-              We provide the documents your quality and purchasing teams need, and we review certification requirements for each project before development begins.
-            </p>
+            <h2>Handled early, not after approval.</h2>
+            <p>We review certification and document needs at the start of each project.</p>
           </div>
-          <Link className="new-inline-cta" href="/certifications">See quality and documentation</Link>
+          <Link className="new-inline-cta" href="/certifications">View quality support</Link>
         </div>
         <div className="quality-support-grid">
           {items.map((item) => (
