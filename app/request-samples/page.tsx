@@ -4,13 +4,13 @@ import { Header } from "@/components/layout/Header";
 export const metadata: Metadata = {
   title: "Request Flavor Samples",
   description:
-    "Tell us your application, target profile, format, and label goals. First samples typically shipped in 3-5 business days from Norco, CA.",
+    "Request custom flavor samples from The Flavor Factory. Name, company, email, and shipping address are the only required fields.",
   alternates: { canonical: "/request-samples" },
   openGraph: {
     url: "/request-samples",
     title: "Request Flavor Samples | The Flavor Factory",
     description:
-      "Tell us your application, target profile, format, and label goals. First samples typically shipped in 3-5 business days from Norco, CA.",
+      "Request custom flavor samples. Project details are optional and first samples are typically prepared in 3-5 business days.",
     images: [
       {
         url: "/og?title=Request+Flavor+Samples&description=3-5+business+day+turnaround+from+Norco%2C+CA",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Request Flavor Samples | The Flavor Factory",
     description:
-      "Tell us your application, format, and label goals. First samples in 3-5 business days.",
+      "Request custom flavor samples. Project details are optional and first samples are typically prepared in 3-5 business days.",
     images: ["/og?title=Request+Flavor+Samples&description=3-5+business+day+turnaround+from+Norco%2C+CA"],
   },
 };
@@ -34,8 +34,8 @@ import { AppImage } from "@/components/ui/AppImage";
 import { BuiltInNorco } from "@/components/BuiltInNorco";
 import { normalizeIndustryKey } from "@/lib/industry-utils";
 
-
 const BC_REQUEST_SAMPLES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Request Samples","item":"https://www.flavorfactory.net/request-samples"}]};
+
 export default function RequestSamplesPage({
   searchParams,
 }: {
@@ -53,31 +53,13 @@ export default function RequestSamplesPage({
             <div className="sample-grid">
               <div className="sample-left">
                 <div className="eyebrow">Request a Custom Sample</div>
-                <h1 className="section-title request-page-title">
-                  Tell us what you are making.
-                </h1>
+                <h1 className="section-title request-page-title">Tell us where to send it.</h1>
                 <p className="section-subtext request-page-intro">
-                  Share the application, target profile, format, timeline, and constraints. A clear brief helps us build a better first sample.
+                  Enter your contact and shipping information. Project details are optional and can be added below.
                 </p>
-                <p className="sample-brief-note">Prefer to talk through it? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.</p>
-                <div className="sample-guidance" aria-label="Helpful details to include">
-                  <div>
-                    <span>Application</span>
-                    Beverage, gummy, bakery filling, oral care, seasoning, syrup, or another finished product.
-                  </div>
-                  <div>
-                    <span>Flavor direction</span>
-                    Target profile, benchmark, sweetness level, masking need, cooling effect, or flavor family.
-                  </div>
-                  <div>
-                    <span>Format and label</span>
-                    Liquid or powder, plus natural, natural and artificial, artificial, kosher, halal, or other needs.
-                  </div>
-                  <div>
-                    <span>Production context</span>
-                    Use level if known, process conditions, timeline, and any cost or ingredient constraints.
-                  </div>
-                </div>
+                <p className="sample-brief-note">
+                  Prefer to talk first? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.
+                </p>
                 <SampleRequestForm initialIndustry={industry} />
               </div>
               <div className="sample-right">
@@ -95,13 +77,12 @@ export default function RequestSamplesPage({
           <div className="container request-next-section">
             <div>
               <div className="new-eyebrow">What Happens Next</div>
-              <h2>Clear steps from brief to first sample.</h2>
+              <h2>A simple path from request to sample.</h2>
             </div>
             <ol>
-              <li>We review your application and constraints.</li>
-              <li>We confirm the best starting direction.</li>
+              <li>We review the request.</li>
+              <li>We follow up if any project details are needed.</li>
               <li>First sample directions are typically prepared in 3-5 business days.</li>
-              <li>You review, give feedback, and we iterate toward production.</li>
             </ol>
           </div>
           <div className="container request-proof-section">
