@@ -9,7 +9,8 @@ export function Industries() {
       <div className="home-shell">
         <div className="new-section-head">
           <div className="new-eyebrow">Industries</div>
-          <h2>Every application has its own rules. We know them.</h2>
+          <h2>Built for the application.</h2>
+          <p>Each product has its own process, base, label, and sensory requirements.</p>
         </div>
         <RevealGroup className="new-industry-grid" stagger={0.06}>
           {industries.map((industry) => (
@@ -30,7 +31,7 @@ export function Industries() {
             </RevealItem>
           ))}
         </RevealGroup>
-        <Link className="new-inline-cta" href="/industries">See all industries</Link>
+        <Link className="new-inline-cta" href="/industries">View all industries</Link>
       </div>
     </section>
   );

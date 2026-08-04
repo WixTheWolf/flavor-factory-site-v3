@@ -1,5 +1,6 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "alias": ["flavorfactory.net", "www.flavorfactory.net"]
+  "ignoreCommand": "node -e \"process.exit(process.env.VERCEL_PROJECT_ID === 'prj_d3SGYK8qE511dqZRfX83WjOX9b58' ? 1 : 0)\""
 }
