@@ -6,6 +6,7 @@ import { industries } from "@/data/industries";
 import { industryFormFields } from "@/data/industry-form-fields";
 import { useShortlist } from "@/lib/shortlist";
 import { normalizeIndustryKey } from "@/lib/industry-utils";
+import styles from "./sample-request-form.module.css";
 
 const SAMPLE_REQUEST_EMAIL = "samples@flavorfactory.net";
 
@@ -67,8 +68,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
   const [industry, setIndustry] = useState(normalizedInitial);
   const [detailsOpen, setDetailsOpen] = useState(Boolean(normalizedInitial));
   const [formStartedAt, setFormStartedAt] = useState("");
-  const [formToken, setFormToken] = useState("");
-  const [protectionError, setProtectionError] = useState(false);
+  const [humanConfirmed, setHumanConfirmed] = useState(false);
   const [shortlistNote, setShortlistNote] = useState("");
   const { items: shortlist, clear: clearShortlist, mounted } = useShortlist();
   const started = useRef(false);
@@ -78,18 +78,6 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
 
   useEffect(() => {
     setFormStartedAt(String(Date.now()));
-
-    fetch("/api/sample-request-token", { cache: "no-store" })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("Form protection unavailable");
-        return response.json() as Promise<{ token?: string }>;
-      })
-      .then((data) => {
-        if (!data.token) throw new Error("Missing form token");
-        setFormToken(data.token);
-        setProtectionError(false);
-      })
-      .catch(() => setProtectionError(true));
   }, []);
 
   useEffect(() => {
@@ -102,7 +90,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!formToken) {
+    if (!humanConfirmed) {
       setStatus("error");
       return;
     }
@@ -163,7 +151,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
   return (
     <form className="form-grid" onFocus={trackStart} onSubmit={onSubmit}>
       <input type="hidden" name="formStartedAt" value={formStartedAt} />
-      <input type="hidden" name="formToken" value={formToken} />
+      <input type="hidden" name="humanConfirmed" value={humanConfirmed ? "yes" : ""} />
 
       <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
         <label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
@@ -324,12 +312,26 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
       <p className="sample-file-note">Have a spec, label, or benchmark file? Mention it in the notes and we will tell you where to send it.</p>
       <div className="sample-utility">
         <p>A real person from our team will review your request and follow up by email.</p>
-        <button type="submit" className="cta-btn" disabled={status === "sending" || !formToken}>
-          {status === "sending" ? "Sending..." : formToken ? "Request Samples" : "Preparing secure form..."}
+        <label className={`${styles.humanProof} ${humanConfirmed ? styles.humanProofChecked : ""}`}>
+          <input
+            type="checkbox"
+            checked={humanConfirmed}
+            onChange={(event) => {
+              setHumanConfirmed(event.target.checked);
+              if (event.target.checked && status === "error") setStatus("idle");
+            }}
+          />
+          <span className={styles.humanProofBox} aria-hidden="true">{humanConfirmed ? "✓" : ""}</span>
+          <span className={styles.humanProofCopy}>
+            <strong>I&apos;m human</strong>
+            <small>Secure bot protection runs in the background.</small>
+          </span>
+        </label>
+        <button type="submit" className="cta-btn" disabled={status === "sending" || !humanConfirmed}>
+          {status === "sending" ? "Sending..." : humanConfirmed ? "Request Samples" : "Confirm you're human"}
         </button>
-        {protectionError && <span className="form-error" role="status">Please refresh the page before submitting.</span>}
         {status === "fallback" && <span className="form-success" role="status">Email draft opened for {SAMPLE_REQUEST_EMAIL}.</span>}
-        {status === "error" && <span className="form-error" role="status">Please check the required fields and try again, or email {SAMPLE_REQUEST_EMAIL}.</span>}
+        {status === "error" && <span className="form-error" role="status">Confirm you&apos;re human, check the required fields, and try again.</span>}
       </div>
     </form>
   );
