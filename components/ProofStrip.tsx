@@ -1,20 +1,80 @@
-const proofItems = [
-  ["3–5 Days", "From brief to sample"],
-  ["Family-Owned", "Norco, CA — since day one"],
-  ["Liquid & Powder", "Both systems, one team"],
-  ["Low Minimums", "Start small. Scale fast."],
-] as const;
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useInView, useReducedMotion } from "framer-motion";
+import { SITE_STATS } from "@/data/site-stats";
+
+type StatItem =
+  | { kind: "count"; value: number; suffix: string; label: string }
+  | { kind: "range"; display: string; label: string }
+  | { kind: "text"; display: string; label: string };
+
+const stats: StatItem[] = [
+  { kind: "count", value: SITE_STATS.combinedYearsExperience, suffix: "+", label: "Years of combined flavor industry experience" },
+  { kind: "range", display: SITE_STATS.sampleLeadTimeDays, label: "Business days from brief to first sample" },
+  { kind: "count", value: SITE_STATS.flavorProfileCount, suffix: "+", label: "Flavor profiles in the library. Can't find yours? We'll build it." },
+  { kind: "text", display: "Family-Owned", label: "Norco, CA, since day one" },
+];
+
+function useCountUp(target: number, active: boolean, duration = 1.3) {
+  const [value, setValue] = useState(target);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    if (!active) return;
+    if (reduced) { setValue(target); return; }
+    setValue(0);
+
+    let start: number | null = null;
+    let frame: number;
+
+    const tick = (now: number) => {
+      if (!start) start = now;
+      const progress = Math.min((now - start) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setValue(Math.round(eased * target));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [active, target, duration, reduced]);
+
+  return value;
+}
+
+function CountStat({ item }: { item: Extract<StatItem, { kind: "count" }> }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const count = useCountUp(item.value, inView);
+
+  return (
+    <div className="new-proof-item" ref={ref} aria-label={`${item.value}${item.suffix} ${item.label}`}>
+      <strong aria-hidden="true">
+        {count}{item.suffix}
+      </strong>
+      <span>{item.label}</span>
+    </div>
+  );
+}
+
+function StaticStat({ display, label }: { display: string; label: string }) {
+  return (
+    <div className="new-proof-item">
+      <strong>{display}</strong>
+      <span>{label}</span>
+    </div>
+  );
+}
 
 export function ProofStrip() {
   return (
     <section className="new-proof">
       <div className="home-shell new-proof-grid">
-        {proofItems.map(([value, label]) => (
-          <div className="new-proof-item" key={value}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </div>
-        ))}
+        {stats.map((stat) => {
+          if (stat.kind === "count") return <CountStat key={stat.label} item={stat} />;
+          return <StaticStat key={stat.label} display={(stat as { display: string }).display} label={stat.label} />;
+        })}
       </div>
     </section>
   );

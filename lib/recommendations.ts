@@ -9,8 +9,6 @@ const industryFamilyPriority: Record<IndustryKey, string[]> = {
   "oral-care": ["Mint & Cooling", "Spice & Warmth", "Botanical & Tea", "Citrus", "Custom & Signature"],
   pharmaceutical: ["Berry", "Cherry", "Citrus", "Mint & Cooling", "Custom & Signature"],
   popcorn: ["Savory & Culinary", "Chocolate & Brown Notes", "Dessert & Bakery", "Nut & Praline"],
-  syrup: ["Coffee & Beverage", "Citrus", "Berry", "Tropical", "Vanilla & Cream"],
-  savory: ["Savory & Culinary", "Spice & Warmth", "Botanical & Tea", "Citrus"],
 };
 
 export function recommendedByIndustry(flavors: Flavor[], industry: IndustryKey) {

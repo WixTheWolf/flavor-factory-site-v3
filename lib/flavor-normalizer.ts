@@ -1,4 +1,5 @@
 import { rawFlavorProducts } from "@/data/raw-flavor-products";
+import { flavorNotes } from "@/data/flavor-notes";
 import type { DeclarationType, Flavor, FlavorFormat, IndustryKey } from "@/lib/types";
 
 const declarationMatchers: Array<{ type: DeclarationType; patterns: RegExp[] }> = [
@@ -19,11 +20,17 @@ const productTypeMatchers = [
 ] as const;
 
 const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
+  { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
+  { family: "Savory & Culinary", patterns: [/POPCORN|KETTLE CORN|CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|ONION|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO|SRIRACHA|TERIYAKI|MUSTARD|BUFFALO|PICKLE|TRUFFLE/i] },
+  { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION|COLA BOTTLE|ROOT BEER FLOAT/i] },
+  { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|WINTERGREEN|COOL|MOUTH ?WASH/i] },
+  { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH|GINGER BEER|HORCHATA|LEMONADE|SPORTS DRINK|ICED TEA/i] },
+  { family: "Botanical & Tea", patterns: [/TEA|MATCHA|BOTANICAL|HERBAL|HIBISCUS|LAVENDER|JASMINE|ROSE|ELDERFLOWER|BERGAMOT|CITRUS PEEL/i] },
+  { family: "Tropical", patterns: [/MANGO|PINEAPPLE|COCONUT|TROPICAL|BANANA|PASSION ?FRUIT|GUAVA|PINA|DRAGON FRUIT|LYCHEE|KIWI|PAPAYA|TAMARIND|JACKFRUIT|STARFRUIT|PRICKLY PEAR/i] },
   { family: "Citrus", patterns: [/ORANGE|LEMON|LIME|GRAPEFRUIT|CITRUS|YUZU|MANDARIN|CALAMANSI|TANGERINE/i] },
-  { family: "Berry", patterns: [/STRAWBERRY|BLUEBERRY|RASPBERRY|BLACKBERRY|BLACK CURRANT|CRANBERRY|BERRY|CHERRY|ACAI|POMEGRANATE/i] },
-  { family: "Tropical", patterns: [/MANGO|PINEAPPLE|COCONUT|TROPICAL|BANANA|PASSION ?FRUIT|GUAVA|PINA|PIÑA|DRAGON FRUIT|LYCHEE|KIWI|PAPAYA|TAMARIND/i] },
+  { family: "Berry", patterns: [/STRAWBERRY|BLUEBERRY|RASPBERRY|BLACKBERRY|BLACK CURRANT|CRANBERRY|BERRY|ACAI|POMEGRANATE|GOJI|LINGONBERRY|ELDERBERRY|MULBERRY/i] },
   { family: "Orchard Fruit", patterns: [/APPLE|PEAR/i] },
-  { family: "Stone Fruit", patterns: [/PEACH|APRICOT|PLUM/i] },
+  { family: "Stone Fruit", patterns: [/PEACH|APRICOT|PLUM|CHERRY|NECTARINE|FIG/i] },
   { family: "Melons", patterns: [/WATERMELON|CANTALOUPE|HONEYDEW|MELON/i] },
   { family: "Vanilla & Cream", patterns: [/VANILLA|VANILLIN|CREAM|YOGURT|CUSTARD|CHEESECAKE|BAVARIAN|COOKIES/i] },
   { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE|BUTTERSCOTCH|TOFFEE|BROWNIE|HONEY/i] },
@@ -188,11 +195,10 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     applications.add("Beverage");
   }
   if (/(syrup|coffee syrup|fountain)/.test(source)) {
-    industries.add("syrup");
+    industries.add("beverage");
     applications.add("Syrup");
   }
   if (/(savory|bbq|chicken|beef|ranch|tomato|garlic|jalapeno|cheese|nacho|basil|wasabi|paprika|miso)/.test(source)) {
-    industries.add("savory");
     applications.add("Savory");
   }
 
@@ -262,7 +268,7 @@ export function buildFlavorCatalog(rawRows: readonly string[] = rawFlavorProduct
         ...productTypes.map((p) => p.toLowerCase()),
         ...curatedApplications.map((item) => item.toLowerCase()),
       ].slice(0, 8),
-      notes: familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
+      notes: flavorNotes[slugify(`${name}-${format}`)] ?? familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
     } satisfies Flavor;
   }).sort((a, b) => a.name.localeCompare(b.name));
 }

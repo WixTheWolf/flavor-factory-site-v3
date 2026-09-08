@@ -9,8 +9,6 @@ const industryLabels: Record<string, string> = {
   "oral-care": "oral care oralcare mouthwash mouth wash toothpaste breath",
   pharmaceutical: "pharmaceutical pharma medicated cough syrup",
   popcorn: "popcorn kettle corn snack",
-  syrup: "syrup beverage drinks soda fountain",
-  savory: "savory culinary seasoning sauce snack",
 };
 
 const queryAliases: Record<string, string[]> = {

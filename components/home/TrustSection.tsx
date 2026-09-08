@@ -17,7 +17,7 @@ export function TrustSection() {
             <div className="showcase-pills" style={{ marginTop: 16 }}>
               {siteCopy.trustPoints.map((item) => <span className="soft-pill" key={item}>{item}</span>)}
             </div>
-            <Button href="/request-samples" className="mt-24" >Request Samples</Button>
+            <Button href="/request-samples" className="mt-24" >Request a Custom Sample</Button>
           </div>
           <div className="sample-right">
             <AppImage

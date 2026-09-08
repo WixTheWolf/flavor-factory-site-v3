@@ -1,42 +1,135 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/Hero";
 import { ProofStrip } from "@/components/ProofStrip";
 import { Industries } from "@/components/Industries";
 import { CTA } from "@/components/CTA";
-import { AppImage } from "@/components/ui/AppImage";
+import { OrganizationSchema } from "@/components/OrganizationSchema";
+import { Reveal } from "@/components/Reveal";
+import { FlavorProblems } from "@/components/FlavorProblems";
+import { BuiltInNorco } from "@/components/BuiltInNorco";
+import { QualitySupport } from "@/components/QualitySupport";
+import { K9sForWarriors } from "@/components/K9sForWarriors";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Custom Liquid & Powder Flavors",
+  description:
+    "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products: your base, processing, and label. Samples in 3-5 days.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    title: "Custom Liquid & Powder Flavors | The Flavor Factory",
+    description:
+      "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products: your base, processing, and label. Samples in 3-5 days.",
+    images: [
+      {
+        url: "/og?title=Custom+Liquid+%26+Powder+Flavors",
+        width: 1200,
+        height: 630,
+        alt: "The Flavor Factory - Custom Liquid & Powder Flavor Manufacturer",
+      },
+    ],
+  },
+  twitter: {
+    title: "Custom Liquid & Powder Flavors | The Flavor Factory",
+    description:
+      "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for real products. Samples in 3-5 days.",
+    images: ["/og?title=Custom+Liquid+%26+Powder+Flavors"],
+  },
+};
+
+const HOME_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.flavorfactory.net/#webpage",
+  url: "https://www.flavorfactory.net",
+  name: "The Flavor Factory - Custom Liquid & Powder Flavor Manufacturer, Norco CA",
+  description: "Family-owned custom flavor manufacturer in Norco, CA. Liquid and powder flavors built for your base, process, and label. Low minimums. First samples in 3-5 business days.",
+  isPartOf: { "@id": "https://www.flavorfactory.net/#website" },
+  about: { "@id": "https://www.flavorfactory.net/#organization" },
+  significantLink: [
+    "https://www.flavorfactory.net/flavors",
+    "https://www.flavorfactory.net/request-samples",
+    "https://www.flavorfactory.net/capabilities",
+    "https://www.flavorfactory.net/industries",
+    "https://www.flavorfactory.net/about",
+    "https://www.flavorfactory.net/process",
+    "https://www.flavorfactory.net/contact",
+    "https://www.flavorfactory.net/faq",
+    "https://www.flavorfactory.net/resources",
+  ],
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" }],
+  },
+};
 
 export default function HomePage() {
   return (
     <>
+      <OrganizationSchema />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMA) }} />
       <Header />
       <main className="new-home">
         <Hero />
-        <ProofStrip />
-        <section className="new-isolation">
-          <div className="home-shell new-isolation-centered">
-            <p className="pull-quote">Most flavor houses develop to impress. We develop to perform.</p>
-          </div>
-        </section>
-        <Industries />
-        <section className="new-cert-row-section">
-          <div className="home-shell">
-            <p className="new-cert-intro">Your label sets the rules. We work within them.</p>
-            <div className="new-cert-image" aria-label="Certifications and facility programs">
-              <AppImage
-                src="/images/flavor-factory/certifications_transparent.png"
-                alt="SQF, GMP, Kosher, Halal, Organic, and FDA Registered Facility badges"
-                fill={false}
-                width={2172}
-                height={724}
-                sizes="(max-width: 900px) calc(100vw - 32px), 900px"
-              />
+        <Reveal><ProofStrip /></Reveal>
+        <Reveal><FlavorProblems /></Reveal>
+        <Reveal>
+          <section className="new-isolation">
+            <div className="home-shell new-isolation-centered">
+              <p className="pull-quote">Most flavor houses develop for the tasting strip. We develop for the finished product.</p>
             </div>
-            <Link className="new-inline-cta" href="/certifications">See certifications →</Link>
-          </div>
-        </section>
-        <CTA />
+          </section>
+        </Reveal>
+        <Industries />
+        <Reveal>
+          <section className="new-section home-accountability-section">
+            <div className="home-shell home-accountability-inner">
+              <div>
+                <div className="new-eyebrow">One Team, One Facility</div>
+                <h2>Small-team accountability. Real manufacturing capability.</h2>
+                <ul className="home-accountability-proofs">
+                  <li>In-house development and production</li>
+                  <li>Direct communication with the team</li>
+                  <li>Cleaner handoff from sample to scale</li>
+                </ul>
+              </div>
+              <div>
+                <p>
+                  Development, production, quality, and customer communication happen under one roof in Norco, CA. The people who understand the sample also understand how it gets made.
+                </p>
+                <p>Send us the application, base, target profile, and label goals. We will help you find the right starting point.</p>
+                <Link className="cta-btn" href="/request-samples">Request a Custom Sample</Link>
+              </div>
+            </div>
+          </section>
+        </Reveal>
+        <Reveal>
+          <section className="new-section home-facility-section">
+            <div className="home-shell">
+              <BuiltInNorco />
+            </div>
+          </section>
+        </Reveal>
+        <Reveal>
+          <section className="new-who-section">
+            <div className="home-shell">
+              <p className="new-who-headline">Built for teams who need flavors that work in the real product.</p>
+              <ul className="new-who-list">
+                <li>Food and beverage brands developing new products</li>
+                <li>Co-packers and manufacturers needing reliable flavor supply</li>
+                <li>R&amp;D teams matching or improving an existing profile</li>
+                <li>Startups moving from prototype to first production run</li>
+                <li>Established brands needing faster sample turnaround</li>
+              </ul>
+            </div>
+          </section>
+        </Reveal>
+        <Reveal><QualitySupport /></Reveal>
+        <Reveal><K9sForWarriors /></Reveal>
+        <Reveal><CTA /></Reveal>
       </main>
       <Footer />
     </>

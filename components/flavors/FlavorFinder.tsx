@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { demoFlavors } from "@/data/demo-flavors";
 import type { FlavorFilters, IndustryKey } from "@/lib/types";
@@ -9,6 +10,8 @@ import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
 import { recommendedByIndustry } from "@/lib/recommendations";
+import { trackEvent } from "@/lib/analytics";
+import { flavorFamilyDetails } from "@/data/flavor-family-details";
 
 type Collection = {
   name: string;
@@ -17,70 +20,79 @@ type Collection = {
   image: string;
   imagePosition?: string;
   terms: string[];
+  familySlug: string;
 };
 
 const collections: Collection[] = [
   {
     name: "Citrus",
+    familySlug: "citrus",
     description: "Bright, zesty, and juicy citrus profiles.",
     examples: ["Lemon", "Lime", "Orange", "Grapefruit", "Key Lime"],
-    image: "/images/flavor-factory/3.%20Flavor%20%E2%80%94%20Citrus.png",
+    image: "/images/flavor-factory/flavor-citrus.png",
     imagePosition: "center 60%",
     terms: ["citrus", "lemon", "lime", "orange", "grapefruit", "key lime", "yuzu", "mandarin", "calamansi", "tangerine"],
   },
   {
     name: "Berry",
+    familySlug: "berry",
     description: "Sweet, tart, and naturally vibrant berry profiles.",
     examples: ["Strawberry", "Raspberry", "Blueberry", "Blackberry", "Mixed Berry"],
-    image: "/images/flavor-factory/4.%20Flavor%20%E2%80%94%20Berry.png",
+    image: "/images/flavor-factory/flavor-berry.png",
     imagePosition: "center 55%",
     terms: ["berry", "strawberry", "raspberry", "blueberry", "blackberry", "mixed berry", "black currant", "cranberry", "cherry", "boysenberry", "acai", "pomegranate"],
   },
   {
     name: "Vanilla",
+    familySlug: "vanilla-cream",
     description: "Classic, creamy, warm vanilla profiles for sweet applications.",
     examples: ["Vanilla", "French Vanilla", "Vanilla Cream", "Vanilla Bean"],
-    image: "/images/flavor-factory/Powder%20ingredient%20close-up.png",
+    image: "/images/flavor-factory/powder-ingredient-close-up.png",
     imagePosition: "center center",
     terms: ["vanilla", "french vanilla", "vanilla cream", "vanilla bean", "cream", "custard"],
   },
   {
     name: "Chocolate",
+    familySlug: "chocolate-brown-notes",
     description: "Rich, smooth, and indulgent chocolate and cocoa profiles.",
     examples: ["Chocolate", "Cocoa", "Fudge", "Brownie"],
-    image: "/images/flavor-factory/5.%20Flavor%20%E2%80%94%20Chocolate.png",
+    image: "/images/flavor-factory/flavor-chocolate.png",
     imagePosition: "center center",
     terms: ["chocolate", "cocoa", "fudge", "brownie", "mocha"],
   },
   {
     name: "Tropical",
+    familySlug: "tropical",
     description: "Exotic, juicy fruit profiles with bright top notes.",
     examples: ["Mango", "Pineapple", "Passion Fruit", "Guava", "Coconut"],
-    image: "/images/flavor-factory/6.%20Flavor%20%E2%80%94%20Tropical.png",
+    image: "/images/flavor-factory/flavor-tropical.png",
     imagePosition: "center center",
     terms: ["tropical", "mango", "pineapple", "passion fruit", "guava", "coconut", "pina colada", "dragon fruit", "banana", "lychee", "kiwi", "papaya", "tamarind"],
   },
   {
     name: "Nutty",
+    familySlug: "nut-praline",
     description: "Warm, roasted, and naturally rich nut profiles.",
     examples: ["Almond", "Hazelnut", "Peanut", "Pistachio", "Butter Pecan"],
-    image: "/images/flavor-factory/7.%20Flavor%20%E2%80%94%20Nutty.png",
+    image: "/images/flavor-factory/flavor-nutty.png",
     imagePosition: "center 40%",
     terms: ["nutty", "almond", "hazelnut", "peanut", "pistachio", "pecan", "praline", "butter pecan", "walnut", "macadamia", "sesame"],
   },
   {
     name: "Beverage",
+    familySlug: "coffee-beverage",
     description: "Refreshing profiles for drinks, syrups, and beverage bases.",
     examples: ["Cola", "Coffee", "Energy Drink", "Lemonade", "Tea"],
-    image: "/images/flavor-factory/Beverage%20editorial.png",
+    image: "/images/flavor-factory/beverage-editorial.png",
     imagePosition: "center center",
     terms: ["beverage", "syrup", "cola", "coffee", "energy drink", "lemonade", "tea", "cold brew", "root beer", "soda", "punch", "ginger beer", "horchata"],
   },
   {
     name: "Sweet",
+    familySlug: "dessert-bakery",
     description: "Dessert-style sweetness, brown notes, and confectionery profiles.",
     examples: ["Caramel", "Butterscotch", "Marshmallow", "Pancake Syrup"],
-    image: "/images/flavor-factory/8.%20Flavor%20%E2%80%94%20Sweet.png",
+    image: "/images/flavor-factory/flavor-sweet.png",
     imagePosition: "center center",
     terms: ["sweet", "dessert", "caramel", "butterscotch", "marshmallow", "pancake syrup", "toffee", "maple", "cotton candy", "gummy", "honey", "cookie", "tiramisu", "red velvet", "birthday cake"],
   },
@@ -104,36 +116,8 @@ function industryLabel(value: IndustryKey) {
   return value.replace("-", " ");
 }
 
-function normalizeCategoryText(value: string) {
-  return value.toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").trim();
-}
 
-function flavorCategoryText(flavor: (typeof demoFlavors)[number]) {
-  return normalizeCategoryText(
-    [
-      flavor.name,
-      flavor.family,
-      flavor.notes,
-      ...flavor.rawNames,
-      ...flavor.aliases,
-      ...flavor.productTypes,
-      ...flavor.profile,
-      ...flavor.applications,
-      ...flavor.industries,
-    ].join(" "),
-  );
-}
 
-function matchesCategory(flavor: (typeof demoFlavors)[number], category: Collection | null) {
-  if (!category) return true;
-
-  const text = flavorCategoryText(flavor);
-
-  return category.terms.some((term) => {
-    const normalizedTerm = normalizeCategoryText(term);
-    return new RegExp(`(^|\\s)${normalizedTerm.replace(/\s+/g, "\\s+")}(\\s|$)`).test(text);
-  });
-}
 
 function filterLabels(filters: FlavorFilters, category: Collection | null) {
   return [
@@ -149,17 +133,15 @@ function filterLabels(filters: FlavorFilters, category: Collection | null) {
 
 export function FlavorFinder() {
   const [filters, setFilters] = useState<FlavorFilters>(initialFilters);
-  const [activeCategoryName, setActiveCategoryName] = useState<string | null>(null);
   const [visibleResults, setVisibleResults] = useState(initialVisibleResults);
   const resultsRef = useRef<HTMLDivElement>(null);
 
-  const activeCategory = useMemo(() => collections.find((item) => item.name === activeCategoryName) ?? null, [activeCategoryName]);
   const families = useMemo(() => Array.from(new Set(demoFlavors.map((item) => item.family))).sort(), []);
   const industries = useMemo(() => Array.from(new Set(demoFlavors.flatMap((item) => item.industries))).sort(), []);
   const applications = useMemo(() => Array.from(new Set(demoFlavors.flatMap((item) => item.applications))).sort(), []);
-  const results = useMemo(() => filterFlavors(demoFlavors, filters).filter((item) => matchesCategory(item, activeCategory)), [activeCategory, filters]);
+  const results = useMemo(() => filterFlavors(demoFlavors, filters), [filters]);
   const shownResults = useMemo(() => results.slice(0, visibleResults), [results, visibleResults]);
-  const activeFilters = useMemo(() => filterLabels(filters, activeCategory), [activeCategory, filters]);
+  const activeFilters = useMemo(() => filterLabels(filters, null), [filters]);
   const recommended = useMemo(
     () => (filters.industry === "All" ? [] : recommendedByIndustry(demoFlavors, filters.industry).slice(0, 3)),
     [filters.industry],
@@ -172,15 +154,14 @@ export function FlavorFinder() {
   }
 
   function updateFilters(next: FlavorFilters, shouldFocus = false) {
+    const filterKeys = ["family", "industry", "useCase", "format", "declarationType"] as const;
+    const changed = filterKeys.find((key) => next[key] !== filters[key]);
+    if (changed) {
+      trackEvent("flavor_filter_use", { filter: changed, value: next[changed] });
+    }
     setFilters(next);
     setVisibleResults(initialVisibleResults);
     if (shouldFocus) focusResults();
-  }
-
-  function exploreCollection(categoryName: string) {
-    setActiveCategoryName(categoryName);
-    setVisibleResults(initialVisibleResults);
-    focusResults();
   }
 
   function handleSearch(search: string) {
@@ -188,13 +169,7 @@ export function FlavorFinder() {
   }
 
   function clearFilters() {
-    setActiveCategoryName(null);
     updateFilters(initialFilters);
-  }
-
-  function clearCategory() {
-    setActiveCategoryName(null);
-    setVisibleResults(initialVisibleResults);
   }
 
   return (
@@ -204,7 +179,7 @@ export function FlavorFinder() {
           <div className="eyebrow">Flavor Discovery</div>
           <h2>Start with a family, narrow by application, then request samples.</h2>
           <p>
-            This page shows common flavor directions and searchable starting points. If you do not see the exact profile, we can likely develop or match it.
+            Browse {demoFlavors.length}+ common flavor profiles across {flavorFamilyDetails.length} families. If you do not see the exact direction, we can likely develop or match it.
           </p>
         </div>
         <p className="flavor-format-note">
@@ -216,19 +191,15 @@ export function FlavorFinder() {
         <div className="section-head flavor-section-head">
           <div>
             <div className="eyebrow">Flavor Collections</div>
-            <h3>Start with a flavor family, then narrow by application, format, or declaration type.</h3>
+            <h3>Browse by family, or search and filter below.</h3>
           </div>
-          <button type="button" className={`light-btn ${activeCategory ? "" : "is-active"}`} onClick={clearCategory}>
-            View All Flavors
-          </button>
         </div>
         <div className="flavor-collection-grid">
           {collections.map((collection) => (
-            <button
-              type="button"
+            <Link
               key={collection.name}
-              className={`flavor-collection-card ${activeCategoryName === collection.name ? "is-active" : ""}`}
-              onClick={() => exploreCollection(collection.name)}
+              href={`/flavors/${collection.familySlug}`}
+              className="flavor-collection-card"
             >
               <span className="flavor-collection-image" aria-hidden="true">
                 <AppImage
@@ -247,8 +218,28 @@ export function FlavorFinder() {
                   ))}
                 </span>
               </span>
-            </button>
+            </Link>
           ))}
+        </div>
+        <div className="flavor-family-directory">
+          <div className="flavor-family-directory-head">
+            <div>
+              <div className="eyebrow">Complete Family Directory</div>
+              <h3>Explore all {flavorFamilyDetails.length} families.</h3>
+            </div>
+            <p>Each family page includes practical notes, common applications, available formats, and sample-ready starting points.</p>
+          </div>
+          <div className="flavor-family-link-grid">
+            {flavorFamilyDetails.map((family) => {
+              const profileCount = demoFlavors.filter((flavor) => flavor.family === family.name).length;
+              return (
+                <Link key={family.slug} href={`/flavors/${family.slug}`} className="flavor-family-link">
+                  <span>{family.name}</span>
+                  <small>{profileCount} profile{profileCount === 1 ? "" : "s"}</small>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -262,10 +253,11 @@ export function FlavorFinder() {
           placeholder="Try vanilla, strawberry, mouthwash, gummy, syrup, popcorn, or custom"
           value={filters.search}
           onChange={(event) => handleSearch(event.target.value)}
+          onBlur={() => filters.search.trim() && trackEvent("flavor_search", { query: filters.search.trim() })}
         />
         <div className="flavor-quick-row">
           {quickSearches.map((item) => (
-            <button type="button" className="soft-pill" key={item} onClick={() => updateFilters({ ...filters, search: item }, true)}>
+            <button type="button" className="soft-pill" key={item} onClick={() => { trackEvent("flavor_search", { query: item, source: "quick_search" }); updateFilters({ ...filters, search: item }, true); }}>
               {item}
             </button>
           ))}
@@ -327,7 +319,7 @@ export function FlavorFinder() {
             )}
           </div>
           <Button href="/request-samples" variant="secondary">
-            Request Samples
+            Request a Custom Sample
           </Button>
         </div>
 

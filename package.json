@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev -p 3014",
     "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "lint:copy": "node scripts/check-no-dashes.mjs",
     "start": "next start",
     "lint": "next lint",
     "test:visual": "playwright test",
@@ -12,11 +14,18 @@
     "playwright:install": "playwright install chromium"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/playfair-display": "^5.2.8",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^16.2.6",
+    "@vercel/analytics": "^2.0.1",
+    "botid": "^1.5.11",
+    "framer-motion": "^12.38.0",
     "lucide-react": "^0.511.0",
-    "next": "14.2.15",
+    "next": "^14.2.35",
     "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "xlsx": "^0.18.5"
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",

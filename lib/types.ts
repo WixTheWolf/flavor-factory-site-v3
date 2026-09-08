@@ -9,9 +9,7 @@ export type IndustryKey =
   | "nutraceutical"
   | "oral-care"
   | "pharmaceutical"
-  | "popcorn"
-  | "syrup"
-  | "savory";
+  | "popcorn";
 
 export type Industry = {
   key: IndustryKey;
@@ -20,6 +18,7 @@ export type Industry = {
   summary: string;
   pressurePoint: string;
   applications: string[];
+  ctaLabel: string;
 };
 
 export type Flavor = {

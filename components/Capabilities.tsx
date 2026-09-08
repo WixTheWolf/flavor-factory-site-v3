@@ -18,7 +18,7 @@ export function Capabilities() {
         </div>
         <div className="new-capability-image">
           <AppImage
-            src="/images/flavor-factory/Liquid Pour.png"
+            src="/images/flavor-factory/liquid-pour.png"
             alt="Controlled liquid and powder formulation detail"
             sizes="(max-width: 980px) calc(100vw - 40px), 44vw"
             style={{ objectPosition: "center center" }}

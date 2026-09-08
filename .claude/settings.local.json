@@ -3,7 +3,17 @@
     "allow": [
       "Bash(find '/mnt/c/Users/Matt/flavor-factory-site-v3-main/app/' -type f -name '*.tsx' 2>/dev/null)",
       "Read(//mnt/c/Users/Matt/flavor-factory-site-v3-main/**)",
-      "Bash(grep -v \"media options\\\\|team\\\\|industry-bakery$\\\\|hero-main-v4$\")"
+      "Bash(grep -v \"media options\\\\|team\\\\|industry-bakery$\\\\|hero-main-v4$\")",
+      "Bash(npx tsx --tsconfig tsconfig.json -e ' *)",
+      "Bash(npx tsx *)",
+      "Bash(npm install *)",
+      "Bash(where ffmpeg *)",
+      "Bash(winget search *)",
+      "Bash(choco install *)",
+      "Bash(powershell -Command \"Invoke-WebRequest -Uri 'https://www.w3schools.com/html/mov_bbb.mp4' -OutFile 'c:/Users/Matt/flavor-factory-site-v3-main/public/hero/hero.h264.mp4'\")",
+      "Bash(file c:/Users/Matt/flavor-factory-site-v3-main/public/hero/*.mp4)",
+      "Bash(powershell -Command \"Get-Item 'c:/Users/Matt/flavor-factory-site-v3-main/public/hero/*.mp4' | Select-Object Name, Length, LastWriteTime\")",
+      "Bash(npm run *)"
     ]
   }
 }

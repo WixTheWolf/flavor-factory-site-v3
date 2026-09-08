@@ -1,31 +1,39 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { AppImage } from "@/components/ui/AppImage";
+import { HeroVideo } from "@/components/HeroVideo";
+import { Logo } from "@/components/ui/Logo";
 
 export function Hero() {
+  const trustItems = [
+    "3-5 Day First Samples",
+    "Family-Owned in Norco, CA",
+    "Liquid & Powder Flavors",
+    "Low Minimums",
+    "Kosher, Halal & Organic-Compliant Options",
+  ] as const;
+
   return (
     <section className="new-hero">
-      <div className="home-shell new-hero-grid">
+      <HeroVideo
+        src={{ type: "local", prefix: "/hero/hero" }}
+        poster="/hero/hero-poster.jpg"
+        overlayStrength="medium"
+      />
+      <div className="home-shell new-hero-content">
         <div className="new-hero-copy">
+          <Logo className="hero-brand-logo" />
           <h1 className="display">Good on the Bench Is Not Good Enough.</h1>
           <p className="new-hero-text">
-            We develop liquid and powder flavors around how your product actually performs — in your base, at your temperature, on your label. Norco, CA. Samples in 3–5 days.
+            Custom liquid and powder flavors developed for your finished product: your base, process, label goals, and production path.
           </p>
           <div className="new-actions">
-            <Button href="/request-samples">Start a Project</Button>
+            <Button href="/request-samples">Request a Custom Sample</Button>
             <Button href="/capabilities" variant="secondary">See How It Works</Button>
           </div>
-          <div className="new-hero-trust">
-            3–5 day samples <span /> Family-owned, Norco CA <span /> Kosher <span /> Halal <span /> SQF <span /> GMP <span /> Organic <span /> FDA Registered <span /> Low minimums
-          </div>
-        </div>
-        <div className="new-hero-image" aria-label="Amber liquid flavor being poured in a controlled lab setting">
-          <AppImage
-            src="/images/flavor-factory/Hero-main-pour.jpg"
-            alt="Amber liquid flavor being poured with controlled studio lighting"
-            priority
-            sizes="(max-width: 980px) calc(100vw - 40px), 48vw"
-            style={{ objectPosition: "center 30%" }}
-          />
+          <Link className="new-hero-tertiary" href="/flavors">Explore Flavor Library</Link>
+          <ul className="new-hero-trust" aria-label="Key company facts">
+            {trustItems.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </div>
       </div>
     </section>
