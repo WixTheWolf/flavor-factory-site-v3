@@ -1,4 +1,3 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
 import { resolveMx } from "node:dns/promises";
 import { NextResponse } from "next/server";
 import { checkBotId } from "botid/server";
@@ -12,7 +11,6 @@ const IP_RATE_LIMIT_MAX = 6;
 const EMAIL_RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000;
 const EMAIL_RATE_LIMIT_MAX = 3;
 const MIN_FORM_AGE_MS = 1_500;
-const MAX_FORM_AGE_MS = 24 * 60 * 60 * 1000;
 const MAX_REQUEST_BYTES = 20_000;
 const submissionLog = new Map<string, number[]>();
 
@@ -37,7 +35,7 @@ type SampleRequest = {
   website?: string;
   fax?: string;
   formStartedAt?: string;
-  formToken?: string;
+  humanConfirmed?: string;
   [key: string]: unknown;
 };
 
@@ -75,26 +73,6 @@ function escapeHtml(value: string) {
 
 function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-function signingSecret() {
-  return process.env.SAMPLE_FORM_SECRET || process.env.RESEND_API_KEY || "";
-}
-
-function validFormToken(token: string, secret: string) {
-  const [issuedAtValue, nonce, suppliedSignature, ...extra] = token.split(".");
-  if (!issuedAtValue || !nonce || !suppliedSignature || extra.length > 0) return false;
-
-  const issuedAt = Number(issuedAtValue);
-  const age = Date.now() - issuedAt;
-  if (!Number.isFinite(issuedAt) || age < MIN_FORM_AGE_MS || age > MAX_FORM_AGE_MS) return false;
-
-  const payload = `${issuedAtValue}.${nonce}`;
-  const expectedSignature = createHmac("sha256", secret).update(payload).digest("base64url");
-  const supplied = Buffer.from(suppliedSignature);
-  const expected = Buffer.from(expectedSignature);
-
-  return supplied.length === expected.length && timingSafeEqual(supplied, expected);
 }
 
 function requestCameFromThisSite(request: Request) {
@@ -144,7 +122,7 @@ function fieldOverLimit(body: SampleRequest) {
 
 function looksLikeSpam(body: SampleRequest) {
   const text = Object.entries(body)
-    .filter(([name, value]) => !["formToken", "formStartedAt"].includes(name) && typeof value === "string")
+    .filter(([name, value]) => !["formStartedAt", "humanConfirmed"].includes(name) && typeof value === "string")
     .map(([, value]) => String(value))
     .join(" ");
 
@@ -250,9 +228,9 @@ function makeHtml(values: RequiredValues) {
 }
 
 export async function POST(request: Request) {
-  // BotID is an invisible, Vercel-native bot check. If it is ever unavailable,
-  // fail open here and let the existing signed token, honeypots, spam heuristics,
-  // origin checks, and rate limits continue protecting the form.
+  // BotID is the real bot check. The visible human confirmation is an explicit
+  // user interaction layered on top of honeypots, spam heuristics, origin checks,
+  // form timing, MX validation, and rate limits.
   try {
     const verification = await checkBotId();
     if (verification.isBot) {
@@ -263,7 +241,6 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const secret = signingSecret();
   const to = process.env.SAMPLE_REQUEST_TO || DEFAULT_TO;
   const from = process.env.SAMPLE_REQUEST_FROM || "The Flavor Factory <onboarding@resend.dev>";
 
@@ -284,17 +261,16 @@ export async function POST(request: Request) {
   }
 
   const honeypot = clean(body.website) || clean(body.fax);
-  const token = clean(body.formToken);
+  const humanConfirmed = clean(body.humanConfirmed) === "yes";
   const startedAt = Number(clean(body.formStartedAt));
   const userAgent = request.headers.get("user-agent") || "";
 
   // Quietly discard obvious automated submissions so bots do not learn which check caught them.
   if (
     honeypot ||
-    !secret ||
+    !humanConfirmed ||
     !requestCameFromThisSite(request) ||
     userAgent.length < 8 ||
-    !validFormToken(token, secret) ||
     !Number.isFinite(startedAt) ||
     Date.now() - startedAt < MIN_FORM_AGE_MS ||
     looksLikeSpam(body)
