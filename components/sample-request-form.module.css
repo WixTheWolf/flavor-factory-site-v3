@@ -1,0 +1,76 @@
+.humanProof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 16px;
+  border: 1px solid rgba(18, 56, 47, 0.18);
+  border-radius: 18px;
+  background: #f7faf8;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  user-select: none;
+}
+
+.humanProof:hover {
+  border-color: rgba(18, 56, 47, 0.34);
+  box-shadow: 0 8px 24px rgba(18, 56, 47, 0.08);
+}
+
+.humanProofChecked {
+  border-color: rgba(18, 56, 47, 0.42);
+  background: rgba(18, 56, 47, 0.06);
+}
+
+.humanProof input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.humanProofBox {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(18, 56, 47, 0.42);
+  border-radius: 7px;
+  background: white;
+  color: #12382f;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.humanProofChecked .humanProofBox {
+  border-color: #12382f;
+  background: #12382f;
+  color: white;
+}
+
+.humanProofCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+
+.humanProofCopy strong {
+  color: #12382f;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.humanProofCopy small {
+  color: rgba(17, 17, 17, 0.6);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.humanProof:focus-within {
+  outline: 2px solid rgba(18, 56, 47, 0.22);
+  outline-offset: 2px;
+}
