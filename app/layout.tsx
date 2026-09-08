@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { BotIdClient } from "botid/client";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import "./globals.css";
@@ -82,6 +83,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <BotIdClient protect={[{ path: "/api/sample-request", method: "POST" }]} />
+      </head>
       <body>
         {children}
         <ShortlistWidget />
