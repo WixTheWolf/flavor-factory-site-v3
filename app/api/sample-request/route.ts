@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { resolveMx } from "node:dns/promises";
 import { NextResponse } from "next/server";
+import { checkBotId } from "botid/server";
 import { optionalIndustryFieldNames } from "@/data/industry-form-fields";
 
 export const runtime = "nodejs";
@@ -249,6 +250,18 @@ function makeHtml(values: RequiredValues) {
 }
 
 export async function POST(request: Request) {
+  // BotID is an invisible, Vercel-native bot check. If it is ever unavailable,
+  // fail open here and let the existing signed token, honeypots, spam heuristics,
+  // origin checks, and rate limits continue protecting the form.
+  try {
+    const verification = await checkBotId();
+    if (verification.isBot) {
+      return NextResponse.json({ error: "Automated submission blocked" }, { status: 403 });
+    }
+  } catch (error) {
+    console.error("BotID verification unavailable", error);
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const secret = signingSecret();
   const to = process.env.SAMPLE_REQUEST_TO || DEFAULT_TO;
