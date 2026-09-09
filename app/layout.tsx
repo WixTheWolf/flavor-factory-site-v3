@@ -84,7 +84,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <BotIdClient protect={[{ path: "/api/sample-request", method: "POST" }]} />
+        <BotIdClient
+          protect={[
+            { path: "/api/sample-request", method: "POST" },
+            { path: "/api/customer-feedback", method: "POST" },
+          ]}
+        />
       </head>
       <body>
         {children}
