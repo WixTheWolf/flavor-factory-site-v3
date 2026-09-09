@@ -6,13 +6,25 @@
 }
 
 .hero {
-  padding: 92px 0 34px;
+  padding: 82px 0 34px;
 }
 
 .heroInner {
   max-width: 860px;
   margin: 0 auto;
   text-align: center;
+}
+
+.brandLogoWrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 26px;
+}
+
+.brandLogo {
+  width: min(600px, 78vw);
+  height: auto;
+  object-fit: contain;
 }
 
 .eyebrow {
@@ -77,11 +89,20 @@
 
 @media (max-width: 720px) {
   .hero {
-    padding-top: 64px;
+    padding-top: 56px;
   }
 
   .heroInner {
     text-align: left;
+  }
+
+  .brandLogoWrap {
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+
+  .brandLogo {
+    width: min(520px, 92vw);
   }
 
   .hero h1,
