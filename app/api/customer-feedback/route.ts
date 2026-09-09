@@ -3,7 +3,7 @@ import { checkBotId } from "botid/server";
 
 export const runtime = "nodejs";
 
-const DEFAULT_TO = "samples@flavorfactory.net";
+const DEFAULT_TO = "matt@flavorfactory.net";
 const IP_RATE_LIMIT_WINDOW_MS = 30 * 60 * 1000;
 const IP_RATE_LIMIT_MAX = 10;
 const MIN_FORM_AGE_MS = 1_500;
