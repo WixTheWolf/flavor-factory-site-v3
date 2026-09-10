@@ -15,18 +15,6 @@
   text-align: center;
 }
 
-.brandLogoWrap {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 26px;
-}
-
-.brandLogo {
-  width: min(600px, 78vw);
-  height: auto;
-  object-fit: contain;
-}
-
 .eyebrow {
   display: inline-block;
   margin-bottom: 18px;
@@ -94,15 +82,6 @@
 
   .heroInner {
     text-align: left;
-  }
-
-  .brandLogoWrap {
-    justify-content: center;
-    margin-bottom: 22px;
-  }
-
-  .brandLogo {
-    width: min(520px, 92vw);
   }
 
   .hero h1,
