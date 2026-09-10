@@ -7,7 +7,9 @@ interface LogoProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "a
   title?: string;
 }
 
-const LOGO_SRC = "/images/flavor-factory/customer-feedback-logo.png";
+// Use the long-standing public/logo path so the same real logo is served
+// consistently in the header, footer, homepage hero, and feedback page.
+const LOGO_SRC = "/logo/layer-1.png";
 
 export function Logo({
   variant = "stacked",
