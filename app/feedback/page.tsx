@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Logo } from "@/components/ui/Logo";
 import { CustomerFeedbackForm } from "@/components/customer-feedback-form";
 import styles from "./feedback-page.module.css";
 
@@ -29,12 +28,6 @@ export default function FeedbackPage({
         <section className={styles.hero}>
           <div className="container">
             <div className={styles.heroInner}>
-              <div className={styles.brandLogoWrap}>
-                <Logo
-                  title="The Flavor Factory"
-                  className={styles.brandLogo}
-                />
-              </div>
               <div className={styles.eyebrow}>Customer Feedback</div>
               <h1>Help us make The Flavor Factory better.</h1>
               <p className={styles.intro}>
