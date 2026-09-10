@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { HeroVideo } from "@/components/HeroVideo";
-import { Logo } from "@/components/ui/Logo";
 
 export function Hero() {
   const trustItems = [
@@ -21,15 +20,6 @@ export function Hero() {
       />
       <div className="home-shell new-hero-content">
         <div className="new-hero-copy">
-          <Logo
-            className="hero-brand-logo"
-            style={{
-              background: "rgba(255, 255, 255, 0.92)",
-              borderRadius: 18,
-              padding: "12px 16px",
-              boxShadow: "0 12px 30px rgba(0, 0, 0, 0.14)",
-            }}
-          />
           <h1 className="display">Good on the Bench Is Not Good Enough.</h1>
           <p className="new-hero-text">
             Custom liquid and powder flavors developed for your finished product: your base, process, label goals, and production path.
