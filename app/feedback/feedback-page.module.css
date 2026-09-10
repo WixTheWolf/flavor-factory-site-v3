@@ -5,6 +5,7 @@
     linear-gradient(180deg, #f8f6f0 0%, #f2f4ef 100%);
 }
 
+/* The page-level hero intentionally omits a duplicate brand logo. */
 .hero {
   padding: 82px 0 34px;
 }
