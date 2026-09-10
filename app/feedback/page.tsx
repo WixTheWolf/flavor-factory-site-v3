@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CustomerFeedbackForm } from "@/components/customer-feedback-form";
 import styles from "./feedback-page.module.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function FeedbackPage() {
+export default function FeedbackPage({
+  searchParams,
+}: {
+  searchParams?: { source?: string };
+}) {
+  const source = String(searchParams?.source || "direct").slice(0, 50);
+
   return (
     <>
       <Header />
@@ -39,31 +46,7 @@ export default function FeedbackPage() {
 
         <section className={styles.formSection}>
           <div className={`container ${styles.formContainer}`}>
-            <iframe
-              id="jotform-customer-feedback"
-              title="The Flavor Factory Customer Feedback Survey"
-              src="https://form.jotform.com/262526012389053"
-              style={{
-                width: "100%",
-                minHeight: "2700px",
-                border: 0,
-                borderRadius: "18px",
-                background: "transparent",
-              }}
-              scrolling="yes"
-              allow="geolocation; microphone; camera; fullscreen"
-            />
-            <p style={{ textAlign: "center", marginTop: "14px", color: "#5d675f", fontSize: "0.9rem" }}>
-              If the survey does not load, you can {" "}
-              <a
-                href="https://form.jotform.com/262526012389053"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "#2f6c48", fontWeight: 700, textDecoration: "underline" }}
-              >
-                open it directly here
-              </a>.
-            </p>
+            <CustomerFeedbackForm source={source} />
           </div>
         </section>
       </main>
