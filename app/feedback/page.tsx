@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Logo } from "@/components/ui/Logo";
 import { CustomerFeedbackForm } from "@/components/customer-feedback-form";
 import styles from "./feedback-page.module.css";
 
@@ -30,12 +30,8 @@ export default function FeedbackPage({
           <div className="container">
             <div className={styles.heroInner}>
               <div className={styles.brandLogoWrap}>
-                <Image
-                  src="/images/flavor-factory/customer-feedback-logo.png"
-                  alt="The Flavor Factory"
-                  width={600}
-                  height={139}
-                  priority
+                <Logo
+                  title="The Flavor Factory"
                   className={styles.brandLogo}
                 />
               </div>
