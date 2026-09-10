@@ -7,9 +7,8 @@ interface LogoProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "a
   title?: string;
 }
 
-// Use the long-standing public/logo path so the same real logo is served
-// consistently in the header, footer, homepage hero, and feedback page.
-const LOGO_SRC = "/logo/layer-1.png";
+// Single self-contained logo asset used everywhere on the site.
+const LOGO_SRC = "/logo/tff-logo.svg";
 
 export function Logo({
   variant = "stacked",
