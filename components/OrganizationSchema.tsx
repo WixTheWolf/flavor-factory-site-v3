@@ -11,8 +11,8 @@ const organization = {
   url: BASE,
   logo: {
     "@type": "ImageObject",
-    url: `${BASE}/favicon.svg`,
-    contentUrl: `${BASE}/favicon.svg`,
+    url: `${BASE}/images/flavor-factory/customer-feedback-logo.png`,
+    contentUrl: `${BASE}/images/flavor-factory/customer-feedback-logo.png`,
   },
   image: `${BASE}/og?title=Custom+Flavor+Manufacturer`,
   telephone: "+19512739877",
