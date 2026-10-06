@@ -2,6 +2,7 @@ import { resolveMx } from "node:dns/promises";
 import { NextResponse } from "next/server";
 import { checkBotId } from "botid/server";
 import { optionalIndustryFieldNames } from "@/data/industry-form-fields";
+import { industryLabel } from "@/lib/industry-utils";
 
 export const runtime = "nodejs";
 
@@ -14,11 +15,31 @@ const MIN_FORM_AGE_MS = 1_500;
 const MAX_REQUEST_BYTES = 20_000;
 const submissionLog = new Map<string, number[]>();
 
+const ALLOWED_FORMATS = new Set(["Water Soluble", "Oil Soluble", "Powder", "Emulsion", "Extract"]);
+const ALLOWED_LABEL_GOALS = new Set(["Natural", "WONF", "N&A", "Artificial", "No Preference/Flexible"]);
+
+const REGULATORY_FIELDS = [
+  ["kosher", "Kosher"],
+  ["halal", "Halal"],
+  ["ttbCompliant", "TTB Compliant"],
+  ["alcoholFree", "Alcohol-Free"],
+  ["nonGmo", "Non-GMO"],
+  ["organicCompliant", "Organic Compliant"],
+] as const;
+
 type SampleRequest = {
+  firstName?: string;
+  lastName?: string;
   name?: string;
   company?: string;
+  companyWebsite?: string;
   email?: string;
   phone?: string;
+  street?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
   shippingAddress?: string;
   industry?: string;
   otherApplication?: string;
@@ -26,9 +47,16 @@ type SampleRequest = {
   flavorTarget?: string;
   format?: string;
   declaration?: string;
+  kosher?: string;
+  halal?: string;
+  ttbCompliant?: string;
+  alcoholFree?: string;
+  nonGmo?: string;
+  organicCompliant?: string;
   challenge?: string;
   benchmark?: string;
   projectScale?: string;
+  volumeUnit?: string;
   useLevel?: string;
   timeline?: string;
   notes?: string;
@@ -40,20 +68,35 @@ type SampleRequest = {
 };
 
 const FIELD_LIMITS: Record<string, number> = {
-  name: 120,
+  firstName: 80,
+  lastName: 80,
+  name: 161,
   company: 160,
+  companyWebsite: 300,
   email: 254,
   phone: 50,
-  shippingAddress: 500,
+  street: 200,
+  city: 120,
+  state: 120,
+  postalCode: 40,
+  country: 100,
+  shippingAddress: 600,
   industry: 100,
   otherApplication: 160,
   productBase: 240,
-  flavorTarget: 240,
+  flavorTarget: 500,
   format: 100,
   declaration: 100,
+  kosher: 10,
+  halal: 10,
+  ttbCompliant: 10,
+  alcoholFree: 10,
+  nonGmo: 10,
+  organicCompliant: 10,
   challenge: 120,
   benchmark: 240,
-  projectScale: 160,
+  projectScale: 80,
+  volumeUnit: 20,
   useLevel: 100,
   timeline: 160,
   notes: 4000,
@@ -73,6 +116,32 @@ function escapeHtml(value: string) {
 
 function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function normalizeCompanyWebsite(value: string) {
+  if (!value) return "";
+
+  const candidate = /^https?:\/\//i.test(value) ? value : `https://${value}`;
+
+  try {
+    const url = new URL(candidate);
+    if (!["http:", "https:"].includes(url.protocol)) return "";
+    if (!url.hostname.includes(".") || url.hostname.startsWith(".") || url.hostname.endsWith(".")) return "";
+    if (url.username || url.password) return "";
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return "";
+  }
+}
+
+function formatShippingAddress(street: string, city: string, state: string, postalCode: string, country: string) {
+  return [street, `${city}, ${state} ${postalCode}`.trim(), country].filter(Boolean).join("\n");
+}
+
+function selectedRegulatory(body: SampleRequest) {
+  return REGULATORY_FIELDS
+    .filter(([name]) => clean(body[name]) === "yes")
+    .map(([, label]) => label);
 }
 
 function requestCameFromThisSite(request: Request) {
@@ -122,7 +191,7 @@ function fieldOverLimit(body: SampleRequest) {
 
 function looksLikeSpam(body: SampleRequest) {
   const text = Object.entries(body)
-    .filter(([name, value]) => !["formStartedAt", "humanConfirmed"].includes(name) && typeof value === "string")
+    .filter(([name, value]) => !["formStartedAt", "humanConfirmed", "companyWebsite"].includes(name) && typeof value === "string")
     .map(([, value]) => String(value))
     .join(" ");
 
@@ -161,52 +230,84 @@ function optionalIndustryRows(body: SampleRequest) {
   return rows;
 }
 
-type RequiredValues = Required<Pick<SampleRequest, "name" | "company" | "email" | "shippingAddress">> & SampleRequest;
+type RequiredValues = SampleRequest & {
+  firstName: string;
+  lastName: string;
+  name: string;
+  company: string;
+  companyWebsite: string;
+  email: string;
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  shippingAddress: string;
+  industry: string;
+  flavorTarget: string;
+  format: string;
+  declaration: string;
+};
+
+function annualVolume(values: RequiredValues) {
+  const amount = clean(values.projectScale);
+  if (!amount) return "Not provided";
+  return `${amount} ${clean(values.volumeUnit) || ""}`.trim();
+}
 
 function makeText(values: RequiredValues) {
   const optionalRows = optionalIndustryRows(values);
+  const regulatory = selectedRegulatory(values);
+
   return [
     "New sample request from the website",
     "",
     `Name: ${values.name}`,
     `Company: ${values.company}`,
+    `Company website: ${values.companyWebsite}`,
     `Email: ${values.email}`,
     `Phone: ${clean(values.phone) || "Not provided"}`,
-    `Shipping address: ${values.shippingAddress}`,
-    `Product application: ${clean(values.industry) || "Not provided"}`,
-    `Finished product base: ${clean(values.productBase) || "Not provided"}`,
-    `Flavor direction: ${clean(values.flavorTarget) || "Not provided"}`,
-    `Preferred format: ${clean(values.format) || "Not provided"}`,
-    `Label goal: ${clean(values.declaration) || "Not provided"}`,
+    "Shipping address:",
+    values.shippingAddress,
+    "",
+    `Product application: ${industryLabel(values.industry)}`,
+    `Finished product / base: ${clean(values.productBase) || "Not provided"}`,
+    `Flavor(s) requested: ${values.flavorTarget}`,
+    `Flavor format: ${values.format}`,
+    `Flavor label goal: ${values.declaration}`,
+    `Other regulatory / label requirements: ${regulatory.length ? regulatory.join(", ") : "None specified"}`,
+    `Estimated annual flavor volume: ${annualVolume(values)}`,
     `Primary challenge: ${clean(values.challenge) || "Not provided"}`,
     `Benchmark or existing flavor: ${clean(values.benchmark) || "Not provided"}`,
-    `Project scale: ${clean(values.projectScale) || "Not provided"}`,
     `Target use level: ${clean(values.useLevel) || "Not provided"}`,
-    `Timeline: ${clean(values.timeline) || "Not provided"}`,
+    `Target timeline: ${clean(values.timeline) || "Not provided"}`,
     ...(optionalRows.length ? ["", "Application-specific details:", ...optionalRows.map(([label, value]) => `${label}: ${value}`)] : []),
     "",
-    "Project notes:",
+    "Additional notes:",
     clean(values.notes) || "Not provided",
   ].join("\n");
 }
 
 function makeHtml(values: RequiredValues) {
+  const regulatory = selectedRegulatory(values);
   const rows: [string, string][] = [
     ["Name", values.name],
     ["Company", values.company],
+    ["Company website", values.companyWebsite],
     ["Email", values.email],
     ["Phone", clean(values.phone) || "Not provided"],
     ["Shipping address", values.shippingAddress],
-    ["Product application", clean(values.industry) || "Not provided"],
-    ["Finished product base", clean(values.productBase) || "Not provided"],
-    ["Flavor direction", clean(values.flavorTarget) || "Not provided"],
-    ["Preferred format", clean(values.format) || "Not provided"],
-    ["Label goal", clean(values.declaration) || "Not provided"],
+    ["Product application", industryLabel(values.industry)],
+    ["Finished product / base", clean(values.productBase) || "Not provided"],
+    ["Flavor(s) requested", values.flavorTarget],
+    ["Flavor format", values.format],
+    ["Flavor label goal", values.declaration],
+    ["Other regulatory / label requirements", regulatory.length ? regulatory.join(", ") : "None specified"],
+    ["Estimated annual flavor volume", annualVolume(values)],
     ["Primary challenge", clean(values.challenge) || "Not provided"],
     ["Benchmark or existing flavor", clean(values.benchmark) || "Not provided"],
-    ["Project scale", clean(values.projectScale) || "Not provided"],
     ["Target use level", clean(values.useLevel) || "Not provided"],
-    ["Timeline", clean(values.timeline) || "Not provided"],
+    ["Target timeline", clean(values.timeline) || "Not provided"],
     ...optionalIndustryRows(values),
   ];
 
@@ -217,20 +318,17 @@ function makeHtml(values: RequiredValues) {
         ${rows.map(([label, value]) => `
           <tr>
             <td style="border:1px solid #e5e7eb;padding:8px 10px;font-weight:700;background:#f9fafb">${escapeHtml(label)}</td>
-            <td style="border:1px solid #e5e7eb;padding:8px 10px">${escapeHtml(value)}</td>
+            <td style="border:1px solid #e5e7eb;padding:8px 10px;white-space:pre-wrap">${escapeHtml(value)}</td>
           </tr>
         `).join("")}
       </table>
-      <h2 style="font-size:16px;margin:20px 0 8px">Project notes</h2>
+      <h2 style="font-size:16px;margin:20px 0 8px">Additional notes</h2>
       <p style="white-space:pre-wrap;margin:0">${escapeHtml(clean(values.notes) || "Not provided")}</p>
     </div>
   `;
 }
 
 export async function POST(request: Request) {
-  // BotID is the real bot check. The visible human confirmation is an explicit
-  // user interaction layered on top of honeypots, spam heuristics, origin checks,
-  // form timing, MX validation, and rate limits.
   try {
     const verification = await checkBotId();
     if (verification.isBot) {
@@ -265,7 +363,6 @@ export async function POST(request: Request) {
   const startedAt = Number(clean(body.formStartedAt));
   const userAgent = request.headers.get("user-agent") || "";
 
-  // Quietly discard obvious automated submissions so bots do not learn which check caught them.
   if (
     honeypot ||
     !humanConfirmed ||
@@ -283,13 +380,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: `Field is too long: ${overLimit}` }, { status: 400 });
   }
 
-  const values = {
+  const firstName = clean(body.firstName);
+  const lastName = clean(body.lastName);
+  const companyWebsite = normalizeCompanyWebsite(clean(body.companyWebsite));
+  const street = clean(body.street);
+  const city = clean(body.city);
+  const state = clean(body.state);
+  const postalCode = clean(body.postalCode);
+  const country = clean(body.country);
+  const shippingAddress = formatShippingAddress(street, city, state, postalCode, country);
+
+  const values: RequiredValues = {
     ...body,
-    name: clean(body.name),
+    firstName,
+    lastName,
+    name: [firstName, lastName].filter(Boolean).join(" "),
     company: clean(body.company),
+    companyWebsite,
     email: clean(body.email).toLowerCase(),
     phone: clean(body.phone),
-    shippingAddress: clean(body.shippingAddress),
+    street,
+    city,
+    state,
+    postalCode,
+    country,
+    shippingAddress,
     industry: clean(body.industry),
     otherApplication: clean(body.otherApplication),
     productBase: clean(body.productBase),
@@ -299,24 +414,56 @@ export async function POST(request: Request) {
     challenge: clean(body.challenge),
     benchmark: clean(body.benchmark),
     projectScale: clean(body.projectScale),
+    volumeUnit: clean(body.volumeUnit),
     useLevel: clean(body.useLevel),
     timeline: clean(body.timeline),
     notes: clean(body.notes),
   };
 
-  if (!values.name || !values.company || !values.email || !values.shippingAddress) {
-    return NextResponse.json({ error: "Name, company, email, and shipping address are required" }, { status: 400 });
+  if (
+    !values.firstName ||
+    !values.lastName ||
+    !values.company ||
+    !values.companyWebsite ||
+    !values.email ||
+    !values.street ||
+    !values.city ||
+    !values.state ||
+    !values.postalCode ||
+    !values.country ||
+    !values.industry ||
+    !values.flavorTarget ||
+    !values.format ||
+    !values.declaration
+  ) {
+    return NextResponse.json({ error: "Complete every required field before submitting" }, { status: 400 });
   }
 
   if (
-    values.name.length < 2 ||
+    values.firstName.length < 2 ||
+    values.lastName.length < 2 ||
     values.company.length < 2 ||
-    values.shippingAddress.length < 8 ||
-    /(?:https?:\/\/|www\.|@|[<>])/i.test(values.name) ||
+    values.street.length < 4 ||
+    values.city.length < 2 ||
+    values.state.length < 2 ||
+    values.postalCode.length < 3 ||
+    values.country.length < 2 ||
+    values.flavorTarget.length < 2 ||
+    /(?:https?:\/\/|www\.|@|[<>])/i.test(values.firstName) ||
+    /(?:https?:\/\/|www\.|@|[<>])/i.test(values.lastName) ||
     /(?:https?:\/\/|www\.|[<>])/i.test(values.company) ||
-    /(?:https?:\/\/|www\.|[<>])/i.test(values.shippingAddress)
+    /[<>]/.test(values.shippingAddress) ||
+    /[<>]/.test(values.flavorTarget)
   ) {
-    return NextResponse.json({ error: "Please enter valid contact and shipping information" }, { status: 400 });
+    return NextResponse.json({ error: "Please enter valid company, contact, shipping, and flavor information" }, { status: 400 });
+  }
+
+  if (!ALLOWED_FORMATS.has(values.format) || !ALLOWED_LABEL_GOALS.has(values.declaration)) {
+    return NextResponse.json({ error: "Select a valid flavor format and label goal" }, { status: 400 });
+  }
+
+  if (values.industry === "other" && !clean(values.otherApplication)) {
+    return NextResponse.json({ error: "Describe the product application" }, { status: 400 });
   }
 
   if (!validEmail(values.email) || !(await emailDomainAcceptsMail(values.email))) {
@@ -335,6 +482,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Email provider is not configured" }, { status: 503 });
   }
 
+  const flavorSubject = values.flavorTarget.replace(/\s+/g, " ").slice(0, 70);
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -345,7 +493,7 @@ export async function POST(request: Request) {
       from,
       to,
       reply_to: values.email,
-      subject: `Sample request: ${values.company}`,
+      subject: `Sample request: ${values.company} — ${flavorSubject}`,
       text: makeText(values),
       html: makeHtml(values),
     }),
