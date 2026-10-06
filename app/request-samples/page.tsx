@@ -55,7 +55,7 @@ export default function RequestSamplesPage({
                 <div className="eyebrow">Request a Custom Sample</div>
                 <h1 className="section-title request-page-title">Give us a complete sample brief.</h1>
                 <p className="section-subtext request-page-intro">
-                  Required company, shipping, application, flavor format, and label details help us verify the request and prepare the SR without unnecessary back-and-forth.
+                  Required company, shipping, application, flavor format, and label details help us verify the request and prepare a clear sample brief without unnecessary back-and-forth.
                 </p>
                 <p className="sample-brief-note">
                   Prefer to talk first? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.
