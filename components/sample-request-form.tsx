@@ -30,11 +30,8 @@ function shippingAddressFromFormData(formData: FormData) {
   const postalCode = field(formData, "postalCode");
   const country = field(formData, "country");
 
-  return [
-    street,
-    [city, state, postalCode].filter(Boolean).join(", ").replace(/, ([^,]+),/, ", $1 "),
-    country,
-  ].filter(Boolean).join("\n");
+  const cityLine = [city, [state, postalCode].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+  return [street, cityLine, country].filter(Boolean).join("\n");
 }
 
 function regulatoryFromFormData(formData: FormData) {
