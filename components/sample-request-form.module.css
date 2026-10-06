@@ -74,3 +74,51 @@
   outline: 2px solid rgba(18, 56, 47, 0.22);
   outline-offset: 2px;
 }
+
+.regulatoryGroup {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(18, 56, 47, 0.14);
+  border-radius: 14px;
+  background: rgba(247, 250, 248, 0.7);
+}
+
+.regulatoryLegend {
+  padding: 0 6px;
+  color: #12382f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.regulatoryLegend small {
+  color: rgba(17, 17, 17, 0.52);
+  font-weight: 500;
+}
+
+.regulatoryOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.regulatoryOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid rgba(18, 56, 47, 0.12);
+  border-radius: 999px;
+  background: white;
+  color: #24362f;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.regulatoryOption input {
+  width: 16px;
+  height: 16px;
+  accent-color: #12382f;
+}
