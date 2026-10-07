@@ -30,9 +30,9 @@ export default function SampleConfirmationPage({
           <div className="container confirmation-grid">
             <div className="clean-page-intro">
               <div className="new-eyebrow">Request Received</div>
-              <h1>Thanks. We will review the project details next.</h1>
+              <h1>Thanks. Your sample brief is with our team.</h1>
               <p>
-                Your request goes to the samples team in Norco. If anything is missing, we will follow up before building the first round. Most first samples ship in 3-5 business days once the brief is clear.
+                We will verify the company and review the project details before the request moves into development. If R&amp;D needs clarification, we will contact you. Most first samples are prepared in 3-5 business days after the brief is accepted.
               </p>
               <div className="new-actions">
                 <Link href="/flavors" className="light-btn">Back to flavors</Link>
