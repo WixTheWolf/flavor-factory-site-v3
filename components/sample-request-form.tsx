@@ -23,82 +23,9 @@ function field(formData: FormData, name: string) {
   return String(formData.get(name) || "").trim();
 }
 
-function shippingAddressFromFormData(formData: FormData) {
-  const street = field(formData, "street");
-  const city = field(formData, "city");
-  const state = field(formData, "state");
-  const postalCode = field(formData, "postalCode");
-  const country = field(formData, "country");
-
-  const cityLine = [city, [state, postalCode].filter(Boolean).join(" ")].filter(Boolean).join(", ");
-  return [street, cityLine, country].filter(Boolean).join("\n");
-}
-
-function regulatoryFromFormData(formData: FormData) {
-  return REGULATORY_FIELDS
-    .filter(([name]) => field(formData, name) === "yes")
-    .map(([, label]) => label);
-}
-
-function optionalIndustryLines(formData: FormData) {
-  const industryKey = normalizeIndustryKey(field(formData, "industry"));
-  const fields = industryKey ? industryFormFields[industryKey] ?? [] : [];
-  const lines = fields
-    .map((question) => {
-      const value = field(formData, question.name);
-      return value ? `${question.label}: ${value}` : null;
-    })
-    .filter(Boolean) as string[];
-
-  const otherApplication = field(formData, "otherApplication");
-  if (otherApplication) lines.unshift(`Other application detail: ${otherApplication}`);
-
-  return lines;
-}
-
-function mailtoUrl(formData: FormData) {
-  const firstName = field(formData, "firstName");
-  const lastName = field(formData, "lastName");
-  const company = field(formData, "company");
-  const industryLines = optionalIndustryLines(formData);
-  const regulatory = regulatoryFromFormData(formData);
-  const annualVolume = field(formData, "projectScale");
-  const volumeUnit = field(formData, "volumeUnit");
-  const subject = `Sample request: ${company || `${firstName} ${lastName}`.trim() || "Website inquiry"}`;
-  const body = [
-    "New sample request",
-    "",
-    `Name: ${[firstName, lastName].filter(Boolean).join(" ")}`,
-    `Company: ${company}`,
-    `Company website: ${field(formData, "companyWebsite")}`,
-    `Email: ${field(formData, "email")}`,
-    `Phone: ${field(formData, "phone") || "Not provided"}`,
-    "Shipping address:",
-    shippingAddressFromFormData(formData),
-    "",
-    `Product application: ${field(formData, "industry")}`,
-    `Finished product / base: ${field(formData, "productBase") || "Not provided"}`,
-    `Flavor(s) requested: ${field(formData, "flavorTarget")}`,
-    `Flavor format: ${field(formData, "format")}`,
-    `Flavor label goal: ${field(formData, "declaration")}`,
-    `Other regulatory / label requirements: ${regulatory.length ? regulatory.join(", ") : "None specified"}`,
-    `Estimated annual flavor volume: ${annualVolume ? `${annualVolume} ${volumeUnit || ""}`.trim() : "Not provided"}`,
-    `Primary challenge: ${field(formData, "challenge") || "Not provided"}`,
-    `Benchmark or existing flavor: ${field(formData, "benchmark") || "Not provided"}`,
-    `Target use level: ${field(formData, "useLevel") || "Not provided"}`,
-    `Target timeline: ${field(formData, "timeline") || "Not provided"}`,
-    ...(industryLines.length ? ["", "Application-specific details:", ...industryLines] : []),
-    "",
-    "Additional notes:",
-    field(formData, "notes") || "Not provided",
-  ].join("\n");
-
-  return `mailto:${SAMPLE_REQUEST_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
 export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: string }) {
   const normalizedInitial = normalizeIndustryKey(initialIndustry) || initialIndustry;
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "fallback" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "validationError" | "deliveryError">("idle");
   const [industry, setIndustry] = useState(normalizedInitial);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [formStartedAt, setFormStartedAt] = useState("");
@@ -124,7 +51,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
     event.preventDefault();
 
     if (!humanConfirmed) {
-      setStatus("error");
+      setStatus("validationError");
       return;
     }
 
@@ -154,18 +81,16 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
       }
 
       if (response.status >= 500) {
-        trackEvent("request_sample_form_error", { reason: "api_fallback" });
-        window.location.href = mailtoUrl(formData);
-        setStatus("fallback");
+        trackEvent("request_sample_form_error", { reason: "api_delivery_error" });
+        setStatus("deliveryError");
         return;
       }
 
       trackEvent("request_sample_form_error", { reason: `api_${response.status}` });
-      setStatus("error");
+      setStatus("validationError");
     } catch {
       trackEvent("request_sample_form_error", { reason: "network_error" });
-      window.location.href = mailtoUrl(formData);
-      setStatus("fallback");
+      setStatus("deliveryError");
     }
   }
 
@@ -415,7 +340,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
             checked={humanConfirmed}
             onChange={(event) => {
               setHumanConfirmed(event.target.checked);
-              if (event.target.checked && status === "error") setStatus("idle");
+              if (event.target.checked && status === "validationError") setStatus("idle");
             }}
           />
           <span className={styles.humanProofBox} aria-hidden="true">{humanConfirmed ? "✓" : ""}</span>
@@ -427,8 +352,17 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
         <button type="submit" className="cta-btn" disabled={status === "sending" || !humanConfirmed}>
           {status === "sending" ? "Sending..." : humanConfirmed ? "Request Samples" : "Confirm you're human"}
         </button>
-        {status === "fallback" && <span className="form-success" role="status">Email draft opened for {SAMPLE_REQUEST_EMAIL}.</span>}
-        {status === "error" && <span className="form-error" role="status">Complete every required field, confirm you&apos;re human, and try again.</span>}
+        {status === "validationError" && (
+          <span className="form-error" role="status">
+            Complete every required field, confirm you&apos;re human, and try again.
+          </span>
+        )}
+        {status === "deliveryError" && (
+          <span className="form-error" role="status">
+            We couldn&apos;t send your request right now. Please try again. If the problem continues, email{" "}
+            <a href={`mailto:${SAMPLE_REQUEST_EMAIL}`}>{SAMPLE_REQUEST_EMAIL}</a>.
+          </span>
+        )}
       </div>
     </form>
   );
