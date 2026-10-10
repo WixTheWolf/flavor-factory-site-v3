@@ -5,6 +5,8 @@ export type Collection = {
   examples: string[];
   image: string;
   imagePosition?: string;
+  /** Optional looping clip prefix (see lib/media-prefs videoSources). Plays on hover or when in view. */
+  video?: string;
   terms: string[];
   familySlug: string;
 };

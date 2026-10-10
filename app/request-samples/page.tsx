@@ -32,6 +32,7 @@ import { Check, Mail, Phone } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
 import { SampleRequestForm } from "@/components/sample-request-form";
 import { AppImage } from "@/components/ui/AppImage";
+import { BackgroundLoop } from "@/components/BackgroundLoop";
 import { siteCopy } from "@/data/site-copy";
 import { normalizeIndustryKey } from "@/lib/industry-utils";
 import s from "./request-page.module.css";
@@ -59,6 +60,13 @@ export default function RequestSamplesPage({
       <Header />
       <main className={s.page}>
         <section className={s.top}>
+          <BackgroundLoop
+            video="/video/request-header"
+            poster="/images/flavor-factory/v4/request-header.jpg"
+            className={s.topMedia}
+            videoClassName={s.topVideo}
+            playingClassName={s.topVideoOn}
+          />
           <div className={s.glow} aria-hidden="true" />
           <div className={s.topInner}>
             <div className={s.eyebrow}>Request Samples</div>

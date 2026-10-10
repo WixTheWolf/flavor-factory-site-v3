@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import type { CSSProperties, PointerEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { ArrowUpRight, Search } from "lucide-react";
 import { AppImage } from "@/components/ui/AppImage";
-import { collections } from "@/data/flavor-collections";
+import { collections, type Collection } from "@/data/flavor-collections";
 import { accentFor } from "@/data/flavor-palette";
 import { SITE_STATS } from "@/data/site-stats";
 import { trackEvent } from "@/lib/analytics";
+import { canPlayDecorativeVideo, videoSources } from "@/lib/media-prefs";
 import s from "./FlavorFamilies.module.css";
 
 function tilt(event: PointerEvent<HTMLAnchorElement>) {
@@ -64,32 +65,7 @@ export function FlavorFamilies() {
 
         <div className={s.grid}>
           {collections.map((collection, index) => (
-            <Link
-              key={collection.name}
-              href={`/flavors/${collection.familySlug}`}
-              className={s.card}
-              style={{ "--accent": accentFor(collection.familySlug), "--i": index } as CSSProperties}
-              onPointerMove={tilt}
-              onPointerLeave={resetTilt}
-            >
-              <span className={s.media} aria-hidden="true">
-                <AppImage
-                  src={collection.image}
-                  alt=""
-                  sizes="(max-width: 640px) 80vw, (max-width: 1100px) 45vw, 25vw"
-                  style={{ objectPosition: collection.imagePosition }}
-                />
-              </span>
-              <span className={s.shine} aria-hidden="true" />
-              <span className={s.body}>
-                <span className={s.dot} aria-hidden="true" />
-                <span className={s.name}>{collection.name}</span>
-                <span className={s.examples}>{collection.examples.slice(0, 4).join(" · ")}</span>
-              </span>
-              <span className={s.arrow} aria-hidden="true">
-                <ArrowUpRight size={18} />
-              </span>
-            </Link>
+            <FamilyCard key={collection.name} collection={collection} index={index} />
           ))}
         </div>
 
@@ -101,5 +77,95 @@ export function FlavorFamilies() {
         </div>
       </div>
     </section>
+  );
+}
+
+function FamilyCard({ collection, index }: { collection: Collection; index: number }) {
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoAllowed, setVideoAllowed] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    setVideoAllowed(Boolean(collection.video) && canPlayDecorativeVideo());
+  }, [collection.video]);
+
+  // Touch screens have no hover, so play while the card is mostly on screen.
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!videoAllowed || !card || window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      },
+      { threshold: 0.6 },
+    );
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [videoAllowed]);
+
+  function play() {
+    videoRef.current?.play().catch(() => {});
+  }
+
+  function stop() {
+    const video = videoRef.current;
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  return (
+    <Link
+      ref={cardRef}
+      href={`/flavors/${collection.familySlug}`}
+      className={s.card}
+      style={{ "--accent": accentFor(collection.familySlug), "--i": index } as CSSProperties}
+      onPointerMove={tilt}
+      onPointerEnter={(event) => event.pointerType === "mouse" && play()}
+      onPointerLeave={(event) => {
+        resetTilt(event);
+        if (event.pointerType === "mouse") stop();
+      }}
+      onFocus={play}
+      onBlur={stop}
+    >
+      <span className={s.media} aria-hidden="true">
+        <AppImage
+          src={collection.image}
+          alt=""
+          sizes="(max-width: 640px) 80vw, (max-width: 1100px) 45vw, 25vw"
+          style={{ objectPosition: collection.imagePosition }}
+        />
+        {videoAllowed && collection.video && (
+          <video
+            ref={videoRef}
+            className={`${s.video} ${playing ? s.videoOn : ""}`}
+            muted
+            loop
+            playsInline
+            preload="none"
+            onPlaying={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+          >
+            {videoSources(collection.video).map((source) => (
+              <source key={source.src} src={source.src} type={source.type} />
+            ))}
+          </video>
+        )}
+      </span>
+      <span className={s.shine} aria-hidden="true" />
+      <span className={s.body}>
+        <span className={s.dot} aria-hidden="true" />
+        <span className={s.name}>{collection.name}</span>
+        <span className={s.examples}>{collection.examples.slice(0, 4).join(" · ")}</span>
+      </span>
+      <span className={s.arrow} aria-hidden="true">
+        <ArrowUpRight size={18} />
+      </span>
+    </Link>
   );
 }
