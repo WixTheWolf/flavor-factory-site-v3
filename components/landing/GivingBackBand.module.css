@@ -1,0 +1,63 @@
+.band {
+  padding: 28px 0;
+  border-top: 1px solid rgba(18, 56, 47, .08);
+  background: #fff;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  width: min(1280px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
+.badge {
+  flex: none;
+  width: 64px;
+  height: auto;
+}
+
+.inner p {
+  flex: 1;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.inner p strong {
+  color: #0d2b25;
+}
+
+.links {
+  display: flex;
+  flex: none;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.links a {
+  color: #12382f;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .inner {
+    flex-wrap: wrap;
+    width: calc(100% - 32px);
+  }
+
+  .inner p {
+    flex-basis: calc(100% - 90px);
+  }
+
+  .links {
+    padding-left: 86px;
+  }
+}

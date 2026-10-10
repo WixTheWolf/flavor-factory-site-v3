@@ -4,6 +4,7 @@ import { BotIdClient } from "botid/client";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import "./globals.css";
+import "./redesign.css";
 
 const BASE = "https://www.flavorfactory.net";
 

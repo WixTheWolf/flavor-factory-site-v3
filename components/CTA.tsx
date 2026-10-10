@@ -32,7 +32,7 @@ export function CTA({
           <h2>{title}</h2>
           <p>{copy}</p>
         </div>
-        <Button href={href}>{label}</Button>
+        <Button href={href} variant="gold">{label}</Button>
       </div>
     </section>
   );

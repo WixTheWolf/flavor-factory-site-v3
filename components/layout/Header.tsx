@@ -3,21 +3,37 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navigation } from "@/data/site-copy";
 import { Logo } from "@/components/ui/Logo";
 import { trackEvent } from "@/lib/analytics";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function isActive(href: string) {
     return href === "/" ? pathname === href : pathname.startsWith(href);
   }
 
   return (
-    <header className="site-header">
+    <header
+      className={[
+        "site-header",
+        isHome ? "is-home" : "",
+        scrolled ? "is-scrolled" : "is-top",
+        open ? "is-open" : "",
+      ].filter(Boolean).join(" ")}
+    >
       <div className="container header-row">
         <Link href="/" className="logo-link" aria-label="The Flavor Factory home">
           <Logo className="logo-svg" variant="inline" />
@@ -49,7 +65,7 @@ export function Header() {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/request-samples" className="cta-btn" onClick={() => trackEvent("request_sample_click", { location: "header" })}>Request a Custom Sample</Link>
+          <Link href="/request-samples" className="btn-gold" onClick={() => trackEvent("request_sample_click", { location: "header" })}>Request Samples</Link>
         </div>
       </div>
 

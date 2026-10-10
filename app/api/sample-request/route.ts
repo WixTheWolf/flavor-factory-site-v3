@@ -15,7 +15,7 @@ const MIN_FORM_AGE_MS = 1_500;
 const MAX_REQUEST_BYTES = 20_000;
 const submissionLog = new Map<string, number[]>();
 
-const ALLOWED_FORMATS = new Set(["Water Soluble", "Oil Soluble", "Powder", "Emulsion", "Extract"]);
+const ALLOWED_FORMATS = new Set(["Water Soluble", "Oil Soluble", "Powder", "Emulsion", "Extract", "Not sure, recommend one"]);
 const ALLOWED_LABEL_GOALS = new Set(["Natural", "WONF", "N&A", "Artificial", "No Preference/Flexible"]);
 
 const REGULATORY_FIELDS = [
