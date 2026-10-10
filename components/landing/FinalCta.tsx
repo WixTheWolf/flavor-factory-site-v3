@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { AppImage } from "@/components/ui/AppImage";
 import { ArrowRight, Mail, Phone } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import s from "./FinalCta.module.css";
@@ -14,11 +16,44 @@ const AUDIENCE = [
   "Brands that need faster samples",
 ];
 
+const SWIRL_POSTER = "/images/flavor-factory/v4/cta-swirl.jpg";
+const SWIRL_VIDEO = "/video/flavor-swirl";
+
 export function FinalCta() {
   const reduced = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  // Only fetch the background clip once the section is close to the viewport.
+  const near = useInView(ref, { once: true, margin: "600px 0px" });
+  const [saveData, setSaveData] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    setSaveData(Boolean(connection?.saveData));
+  }, []);
+
+  const showVideo = near && !reduced && !saveData;
 
   return (
-    <section className={s.section} aria-labelledby="final-cta-title">
+    <section ref={ref} className={s.section} aria-labelledby="final-cta-title">
+      <div className={s.media} aria-hidden="true">
+        <AppImage src={SWIRL_POSTER} alt="" sizes="100vw" />
+        {showVideo && (
+          <video
+            className={`${s.video} ${playing ? s.videoOn : ""}`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onPlaying={() => setPlaying(true)}
+          >
+            <source src={`${SWIRL_VIDEO}.av1.mp4`} type='video/mp4; codecs="av01.0.05M.08"' />
+            <source src={`${SWIRL_VIDEO}.hevc.mp4`} type='video/mp4; codecs="hvc1"' />
+            <source src={`${SWIRL_VIDEO}.h264.mp4`} type="video/mp4" />
+          </video>
+        )}
+      </div>
       <div className={s.orbs} aria-hidden="true">
         <span />
         <span />

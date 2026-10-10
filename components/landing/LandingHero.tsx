@@ -57,7 +57,12 @@ export function LandingHero() {
 
   return (
     <section ref={ref} className={s.hero} onPointerMove={onPointerMove} aria-labelledby="hero-title">
-      <HeroVideo src={{ type: "local", prefix: "/hero/hero" }} poster="/hero/hero-poster.jpg" overlayStrength="light" />
+      <HeroVideo
+        src={{ type: "local", prefix: "/hero/hero-v4" }}
+        poster="/hero/hero-v4-poster.jpg"
+        mobile={{ src: { type: "local", prefix: "/hero/hero-v4-mobile" }, poster: "/hero/hero-v4-poster-mobile.jpg" }}
+        overlayStrength="light"
+      />
       <div className={s.scrim} aria-hidden="true" />
       <div className={s.glow} aria-hidden="true" />
       <div className={s.grain} aria-hidden="true" />
