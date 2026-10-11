@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { BotIdClient } from "botid/client";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
@@ -7,6 +8,18 @@ import "./globals.css";
 import "./redesign.css";
 
 const BASE = "https://www.flavorfactory.net";
+
+// Self-hosted, preloaded fonts with metric-matched fallbacks, so text doesn't jump when they load: 3 files instead of 7.
+// Each family is one variable file per style; weights are capped at the ones the site was designed with (heavier CSS
+// weights render as 700). Keep Playfair preloaded: without it the large headlines reflow when it arrives.
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap", variable: "--font-inter" });
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-playfair",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
@@ -83,7 +96,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
         <BotIdClient
           protect={[

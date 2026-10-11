@@ -31,23 +31,13 @@ export const metadata: Metadata = {
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/PageHero";
 import { siteImages } from "@/data/site-images";
+import { QuickSampleRequest } from "@/components/QuickSampleRequest";
+import { CONTACT } from "@/lib/contact";
 
 const contactDetails = [
-  {
-    label: "Email",
-    value: "samples@flavorfactory.net",
-    href: "mailto:samples@flavorfactory.net",
-  },
-  {
-    label: "Phone",
-    value: "(951) 273-9877",
-    href: "tel:+19512739877",
-  },
-  {
-    label: "Address",
-    value: "2058 Second Street, Norco, CA 92860",
-    href: "https://maps.google.com/?q=2058%20Second%20Street%2C%20Norco%2C%20CA%2092860",
-  },
+  { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}` },
+  { label: "Phone", value: CONTACT.phone, href: CONTACT.phoneHref },
+  { label: "Address", value: CONTACT.address, href: CONTACT.mapHref },
 ] as const;
 
 const BC = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "Contact", item: "https://www.flavorfactory.net/contact" }] };
@@ -66,10 +56,10 @@ export default function ContactPage() {
               copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
               image={siteImages.contactHero}
               imageAlt="California citrus grove at golden hour, Norco, CA"
-              primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="mailto:samples@flavorfactory.net"
-              secondaryLabel="Email Samples"
+              primaryHref="#contact-request"
+              primaryLabel="Request Samples"
+              secondaryHref={`mailto:${CONTACT.email}`}
+              secondaryLabel="Email Us"
               imagePosition="center 40%"
             />
 
@@ -83,6 +73,16 @@ export default function ContactPage() {
                 </RevealItem>
               ))}
             </RevealGroup>
+
+            <div id="contact-request" className="contact-quick">
+              <div className="contact-quick-copy">
+                <div className="new-eyebrow">Need samples?</div>
+                <h2>Send a quick request from right here.</h2>
+                <p>Four fields, about a minute. It goes straight to our sample team, and a real person replies to confirm the details and shipping.</p>
+              </div>
+              <QuickSampleRequest location="contact page" />
+            </div>
+
             <RevealGroup className="contact-choice-grid" stagger={0.1}>
               <RevealItem>
                 <article>

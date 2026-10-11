@@ -1,11 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { Fragment, useRef, type CSSProperties, type PointerEvent } from "react";
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionStyle, type MotionValue } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { HeroVideo } from "@/components/HeroVideo";
-import { SITE_STATS } from "@/data/site-stats";
 import { accentFor } from "@/data/flavor-palette";
 import { trackEvent } from "@/lib/analytics";
 import s from "./LandingHero.module.css";
@@ -29,34 +26,32 @@ const CHIPS = [
 ] as const;
 
 const STEPS = [
-  { title: "Brief in", copy: "Your base, process, and label goals.", when: "Day 0" },
+  { title: "Request in", copy: "Your product, base, and label goals.", when: "Day 0" },
   { title: "Built for your base", copy: "Developed in our Norco lab.", when: "In the lab" },
   { title: "Samples ship", copy: "Ready to test in your product.", when: "Day 3-5" },
 ] as const;
 
 export function LandingHero() {
-  const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 120]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, reduced ? 1 : 0]);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const frame = useRef(0);
 
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const sx = useSpring(px, { stiffness: 60, damping: 18, mass: 0.6 });
-  const sy = useSpring(py, { stiffness: 60, damping: 18, mass: 0.6 });
-
+  // Chips drift toward the mouse. CSS variables keep this off React's render path.
   function onPointerMove(event: PointerEvent<HTMLElement>) {
-    if (reduced || event.pointerType !== "mouse") return;
+    if (event.pointerType !== "mouse" || !stageRef.current) return;
     const rect = event.currentTarget.getBoundingClientRect();
-    px.set(((event.clientX - rect.left) / rect.width - 0.5) * 2);
-    py.set(((event.clientY - rect.top) / rect.height - 0.5) * 2);
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    cancelAnimationFrame(frame.current);
+    frame.current = requestAnimationFrame(() => {
+      stageRef.current?.style.setProperty("--px", x.toFixed(3));
+      stageRef.current?.style.setProperty("--py", y.toFixed(3));
+    });
   }
 
   let wordIndex = 0;
 
   return (
-    <section ref={ref} className={s.hero} onPointerMove={onPointerMove} aria-labelledby="hero-title">
+    <section className={s.hero} onPointerMove={onPointerMove} aria-labelledby="hero-title">
       <HeroVideo
         src={{ type: "local", prefix: "/hero/hero-v4" }}
         poster="/hero/hero-v4-poster.jpg"
@@ -67,11 +62,11 @@ export function LandingHero() {
       <div className={s.glow} aria-hidden="true" />
       <div className={s.grain} aria-hidden="true" />
 
-      <motion.div className={s.inner} style={{ y: contentY, opacity: contentOpacity }}>
+      <div className={s.inner}>
         <div className={s.copy}>
           <p className={s.kicker}>
             <span className={s.kickerDot} aria-hidden="true" />
-            Good on the bench is not good enough.
+            Family-owned flavor manufacturer, Norco, CA
           </p>
 
           <h1 id="hero-title" className={s.title}>
@@ -93,21 +88,21 @@ export function LandingHero() {
           </h1>
 
           <p className={s.lede}>
-            Liquid and powder flavors developed around your base, process, and label goals by a family-owned team in Norco, California.
+            Tell us what you&apos;re making and we&apos;ll send custom liquid or powder flavor samples built for your base, process, and label.
           </p>
 
           <div className={s.actions}>
-            <Link
-              href="/request-samples"
+            <a
+              href="#request"
               className="btn-gold btn-lg"
               onClick={() => trackEvent("request_sample_click", { location: "hero" })}
             >
               Request Samples
               <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-            <Link href="/flavors" className={s.ghost}>
-              Browse {SITE_STATS.flavorProfileCount}+ flavors
-            </Link>
+            </a>
+            <a href="#what-we-do" className={s.ghost}>
+              See what we do
+            </a>
           </div>
 
           <ul className={s.trust} aria-label="Why teams start here">
@@ -120,9 +115,23 @@ export function LandingHero() {
           </ul>
         </div>
 
-        <div className={s.stage}>
+        <div className={s.stage} ref={stageRef}>
           {CHIPS.map((chip) => (
-            <Chip key={chip.name} {...chip} sx={sx} sy={sy} />
+            <span
+              key={chip.name}
+              className={s.chip}
+              style={{
+                left: chip.left,
+                top: chip.top,
+                "--depth": chip.depth,
+                "--accent": accentFor(chip.family),
+                "--float": `${5 + chip.depth * 2}s`,
+              } as CSSProperties}
+              aria-hidden="true"
+            >
+              <i />
+              {chip.name}
+            </span>
           ))}
 
           <aside className={s.journey} aria-label="How a sample request moves">
@@ -155,41 +164,11 @@ export function LandingHero() {
             </div>
           </aside>
         </div>
-      </motion.div>
+      </div>
 
       <div className={s.scrollCue} aria-hidden="true">
         <span />
       </div>
     </section>
-  );
-}
-
-type ChipProps = {
-  name: string;
-  family: string;
-  left: string;
-  top: string;
-  depth: number;
-  sx: MotionValue<number>;
-  sy: MotionValue<number>;
-};
-
-function Chip({ name, family, left, top, depth, sx, sy }: ChipProps) {
-  const x = useTransform(sx, (v) => v * depth * 18);
-  const y = useTransform(sy, (v) => v * depth * 14);
-  const style = {
-    left,
-    top,
-    x,
-    y,
-    "--accent": accentFor(family),
-    "--float": `${5 + depth * 2}s`,
-  } as unknown as MotionStyle;
-
-  return (
-    <motion.span className={s.chip} style={style} aria-hidden="true">
-      <i />
-      {name}
-    </motion.span>
   );
 }

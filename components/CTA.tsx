@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { AppImage } from "@/components/ui/AppImage";
+import { CONTACT } from "@/lib/contact";
 
 type CTAProps = {
   eyebrow?: string;
@@ -12,9 +13,9 @@ type CTAProps = {
 export function CTA({
   eyebrow = "Have a flavor problem to solve?",
   title = "Tell us what you're making. We'll build around it.",
-  copy = "Share the application, base, target profile, format, and label goals. We'll help choose the right starting point.",
+  copy = "Send a quick sample request in about a minute. We'll confirm the base, format, and label goals and help choose the right starting point.",
   href = "/request-samples",
-  label = "Request a Custom Sample",
+  label = "Request Samples",
 }: CTAProps) {
   return (
     <section className="new-section new-final-cta">
@@ -32,7 +33,12 @@ export function CTA({
           <h2>{title}</h2>
           <p>{copy}</p>
         </div>
-        <Button href={href} variant="gold">{label}</Button>
+        <div className="new-final-cta-actions">
+          <Button href={href} variant="gold">{label}</Button>
+          <p className="new-final-cta-alt">
+            Or call <a href={CONTACT.phoneHref}>{CONTACT.phone}</a> or email <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+          </p>
+        </div>
       </div>
     </section>
   );

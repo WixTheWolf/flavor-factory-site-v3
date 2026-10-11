@@ -11,19 +11,22 @@ type Props = {
   className?: string;
   videoClassName?: string;
   playingClassName?: string;
+  /** Only play when this media query matches, e.g. "(min-width: 700px)" to keep phones on the poster. */
+  media?: string;
 };
 
 /**
  * Decorative looping background. Shows the poster first and swaps in the clip
- * after mount, unless the visitor prefers reduced motion or has Data Saver on.
+ * after mount, unless the visitor prefers reduced motion, has Data Saver on, is on a slow
+ * connection, or the optional media query does not match.
  */
-export function BackgroundLoop({ video, poster, className, videoClassName, playingClassName }: Props) {
+export function BackgroundLoop({ video, poster, className, videoClassName, playingClassName, media }: Props) {
   const [allowed, setAllowed] = useState(false);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
-    setAllowed(canPlayDecorativeVideo());
-  }, []);
+    setAllowed(canPlayDecorativeVideo() && (!media || window.matchMedia(media).matches));
+  }, [media]);
 
   return (
     <div className={className} aria-hidden="true">

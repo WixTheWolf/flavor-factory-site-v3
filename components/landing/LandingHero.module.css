@@ -207,6 +207,12 @@
   pointer-events: none;
 }
 
+.chip {
+  /* Mouse parallax: the hero sets --px/--py from -1 to 1. Composes with the bob and chipIn animations. */
+  transform: translate3d(calc(var(--px, 0) * var(--depth) * 18px), calc(var(--py, 0) * var(--depth) * 14px), 0);
+  transition: transform .9s cubic-bezier(.2, .9, .2, 1);
+}
+
 .chip i {
   width: 12px;
   height: 12px;
@@ -517,8 +523,31 @@
   100% { opacity: 0; transform: translateY(14px); }
 }
 
+/* The copy and card ease up and fade as the hero scrolls away (CSS scroll timeline, no JS). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero {
+      view-timeline: --hero block;
+    }
+
+    .inner {
+      animation: heroOut linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 75%;
+    }
+  }
+}
+
+@keyframes heroOut {
+  to { opacity: 0; transform: translateY(120px); }
+}
+
 /* Reduced motion: show the finished state of the timeline. */
 @media (prefers-reduced-motion: reduce) {
+  .chip {
+    transform: none;
+  }
+
   .stepDot {
     background: #f0b35a;
     border-color: #f0b35a;
@@ -554,6 +583,11 @@
 @media (max-width: 640px) {
   .hero {
     min-height: auto;
+  }
+
+  /* The request section right below shows the same three steps, so phones skip the timeline card. */
+  .stage {
+    display: none;
   }
 
   /* Copy spans the full width on phones, so darken the whole frame evenly. */

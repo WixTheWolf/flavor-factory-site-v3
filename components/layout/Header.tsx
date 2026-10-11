@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { navigation } from "@/data/site-copy";
 import { Logo } from "@/components/ui/Logo";
 import { trackEvent } from "@/lib/analytics";
+import { CONTACT } from "@/lib/contact";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -65,7 +66,13 @@ export function Header() {
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
-          <Link href="/request-samples" className="btn-gold" onClick={() => trackEvent("request_sample_click", { location: "header" })}>Request Samples</Link>
+          <Link
+            href={isHome ? "#request" : "/request-samples"}
+            className="btn-gold"
+            onClick={() => trackEvent("request_sample_click", { location: "header" })}
+          >
+            Request Samples
+          </Link>
         </div>
       </div>
 
@@ -82,7 +89,10 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <a href="tel:+19512739877" onClick={() => trackEvent("phone_click", { location: "mobile menu" })}>Call (951) 273-9877</a>
+          <a href={`mailto:${CONTACT.email}`} onClick={() => trackEvent("email_click", { location: "mobile menu" })}>
+            Email {CONTACT.email}
+          </a>
+          <a href={CONTACT.phoneHref} onClick={() => trackEvent("phone_click", { location: "mobile menu" })}>Call {CONTACT.phone}</a>
         </div>
       </div>
     </header>

@@ -17,6 +17,8 @@ const submissionLog = new Map<string, number[]>();
 
 const ALLOWED_FORMATS = new Set(["Water Soluble", "Oil Soluble", "Powder", "Emulsion", "Extract", "Not sure, recommend one"]);
 const ALLOWED_LABEL_GOALS = new Set(["Natural", "WONF", "N&A", "Artificial", "No Preference/Flexible"]);
+// Quick requests (components/QuickSampleRequest.tsx) send only the essentials; we follow up for specs and shipping.
+const QUICK_FORMATS = new Set(["Liquid", "Powder", "Not sure"]);
 
 const REGULATORY_FIELDS = [
   ["kosher", "Kosher"],
@@ -64,6 +66,8 @@ type SampleRequest = {
   fax?: string;
   formStartedAt?: string;
   humanConfirmed?: string;
+  requestType?: string;
+  sourcePage?: string;
   [key: string]: unknown;
 };
 
@@ -100,6 +104,8 @@ const FIELD_LIMITS: Record<string, number> = {
   useLevel: 100,
   timeline: 160,
   notes: 4000,
+  requestType: 20,
+  sourcePage: 120,
 };
 
 function clean(value: unknown) {
@@ -328,6 +334,125 @@ function makeHtml(values: RequiredValues) {
   `;
 }
 
+type QuickValues = {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  flavorTarget: string;
+  format: string;
+  industry: string;
+  sourcePage: string;
+};
+
+function quickRows(values: QuickValues): [string, string][] {
+  return [
+    ["Name", values.name],
+    ["Company", values.company],
+    ["Email", values.email],
+    ["Phone", values.phone || "Not provided"],
+    ["What they need", values.flavorTarget],
+    ["Format preference", values.format || "Not provided"],
+    ["Application", values.industry ? industryLabel(values.industry) : "Not provided"],
+    ["Sent from", values.sourcePage || "Website"],
+  ];
+}
+
+function quickText(values: QuickValues) {
+  return [
+    "New quick sample request from the website",
+    "",
+    ...quickRows(values).map(([label, value]) => `${label}: ${value}`),
+    "",
+    "Quick requests skip specs and shipping. Reply to confirm the details and where to send samples.",
+  ].join("\n");
+}
+
+function quickHtml(values: QuickValues) {
+  return `
+    <div style="font-family:Arial,sans-serif;color:#111827;line-height:1.5">
+      <h1 style="font-size:22px;margin:0 0 6px">New quick sample request</h1>
+      <p style="margin:0 0 16px;color:#4b5563">Quick requests skip specs and shipping. Reply to confirm the details and where to send samples.</p>
+      <table style="border-collapse:collapse;width:100%;max-width:680px">
+        ${quickRows(values).map(([label, value]) => `
+          <tr>
+            <td style="border:1px solid #e5e7eb;padding:8px 10px;font-weight:700;background:#f9fafb">${escapeHtml(label)}</td>
+            <td style="border:1px solid #e5e7eb;padding:8px 10px;white-space:pre-wrap">${escapeHtml(value)}</td>
+          </tr>
+        `).join("")}
+      </table>
+    </div>
+  `;
+}
+
+async function sendQuickRequest(body: SampleRequest, request: Request, apiKey: string | undefined, from: string, to: string) {
+  const values: QuickValues = {
+    name: clean(body.name),
+    company: clean(body.company),
+    email: clean(body.email).toLowerCase(),
+    phone: clean(body.phone),
+    flavorTarget: clean(body.flavorTarget),
+    format: clean(body.format),
+    industry: clean(body.industry),
+    sourcePage: clean(body.sourcePage),
+  };
+
+  if (!values.name || !values.company || !values.email || !values.flavorTarget) {
+    return NextResponse.json({ error: "Complete every required field before submitting" }, { status: 400 });
+  }
+
+  if (
+    values.name.length < 2 ||
+    values.company.length < 2 ||
+    values.flavorTarget.length < 3 ||
+    /(?:https?:\/\/|www\.|@|[<>])/i.test(values.name) ||
+    /(?:https?:\/\/|www\.|[<>])/i.test(values.company) ||
+    /[<>]/.test(values.flavorTarget) ||
+    (values.format && !QUICK_FORMATS.has(values.format))
+  ) {
+    return NextResponse.json({ error: "Please enter valid contact and flavor information" }, { status: 400 });
+  }
+
+  if (!validEmail(values.email) || !(await emailDomainAcceptsMail(values.email))) {
+    return NextResponse.json({ error: "Enter a valid email address" }, { status: 400 });
+  }
+
+  const ip = clientIp(request);
+  if (
+    isRateLimited(`ip:${ip}`, IP_RATE_LIMIT_WINDOW_MS, IP_RATE_LIMIT_MAX) ||
+    isRateLimited(`email:${values.email}`, EMAIL_RATE_LIMIT_WINDOW_MS, EMAIL_RATE_LIMIT_MAX)
+  ) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
+  if (!apiKey) {
+    return NextResponse.json({ error: "Email provider is not configured" }, { status: 503 });
+  }
+
+  const flavorSubject = values.flavorTarget.replace(/\s+/g, " ").slice(0, 70);
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      reply_to: values.email,
+      subject: `Quick sample request: ${values.company.replace(/\s+/g, " ")}: ${flavorSubject}`,
+      text: quickText(values),
+      html: quickHtml(values),
+    }),
+  });
+
+  if (!response.ok) {
+    return NextResponse.json({ error: await response.text() }, { status: 502 });
+  }
+
+  return NextResponse.json({ ok: true });
+}
+
 export async function POST(request: Request) {
   try {
     const verification = await checkBotId();
@@ -378,6 +503,10 @@ export async function POST(request: Request) {
   const overLimit = fieldOverLimit(body);
   if (overLimit) {
     return NextResponse.json({ error: `Field is too long: ${overLimit}` }, { status: 400 });
+  }
+
+  if (clean(body.requestType) === "quick") {
+    return sendQuickRequest(body, request, apiKey, from, to);
   }
 
   const firstName = clean(body.firstName);

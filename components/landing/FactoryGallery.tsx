@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import type { CSSProperties } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { AppImage } from "@/components/ui/AppImage";
 import s from "./FactoryGallery.module.css";
@@ -21,10 +18,6 @@ const PROOFS = [
 ];
 
 export function FactoryGallery() {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-
   return (
     <section className={s.section} aria-labelledby="factory-title">
       <div className={s.shell}>
@@ -52,9 +45,9 @@ export function FactoryGallery() {
           </div>
         </div>
 
-        <div className={s.bento} ref={ref}>
-          {PHOTOS.map((photo, index) => (
-            <Tile key={photo.src} {...photo} index={index} progress={scrollYProgress} still={!!reduced} />
+        <div className={s.bento}>
+          {PHOTOS.map((photo) => (
+            <Tile key={photo.src} {...photo} />
           ))}
         </div>
       </div>
@@ -62,28 +55,16 @@ export function FactoryGallery() {
   );
 }
 
-type TileProps = (typeof PHOTOS)[number] & {
-  index: number;
-  progress: MotionValue<number>;
-  still: boolean;
-};
+type TileProps = (typeof PHOTOS)[number];
 
-function Tile({ src, alt, caption, area, speed, index, progress, still }: TileProps) {
-  const y = useTransform(progress, [0, 1], still ? ["0%", "0%"] : [`${-6 * speed}%`, `${6 * speed}%`]);
-
+/** Clip-path reveal and parallax run on CSS scroll timelines (see the module CSS), so no JS ships for them. */
+function Tile({ src, alt, caption, area, speed }: TileProps) {
   return (
-    <motion.figure
-      className={s.tile}
-      style={{ gridArea: area }}
-      initial={still ? false : { clipPath: "inset(14% 10% 14% 10% round 28px)", opacity: 0.4 }}
-      whileInView={{ clipPath: "inset(0% 0% 0% 0% round 28px)", opacity: 1 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 1.1, delay: index * 0.1, ease: [0.2, 0.9, 0.2, 1] }}
-    >
-      <motion.div className={s.media} style={{ y }}>
+    <figure className={s.tile} style={{ gridArea: area, "--speed": speed } as CSSProperties}>
+      <div className={s.media}>
         <AppImage src={src} alt={alt} sizes={area === "a" ? "(max-width: 900px) 100vw, 50vw" : "(max-width: 900px) 100vw, 33vw"} />
-      </motion.div>
+      </div>
       <figcaption>{caption}</figcaption>
-    </motion.figure>
+    </figure>
   );
 }

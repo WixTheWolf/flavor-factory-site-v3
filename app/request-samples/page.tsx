@@ -4,13 +4,13 @@ import { Header } from "@/components/layout/Header";
 export const metadata: Metadata = {
   title: "Request Flavor Samples",
   description:
-    "Request custom liquid or powder flavor samples from The Flavor Factory in Norco, CA. Two short steps, reviewed by a real person, with first samples typically shipping in 3-5 business days.",
+    "Request custom liquid or powder flavor samples from The Flavor Factory in Norco, CA. A quick request takes about a minute, every request is reviewed by a real person, and first samples typically ship in 3-5 business days.",
   alternates: { canonical: "/request-samples" },
   openGraph: {
     url: "/request-samples",
     title: "Request Flavor Samples | The Flavor Factory",
     description:
-      "Tell us what you're making in two short steps. Custom liquid and powder flavor samples from Norco, CA, typically shipping in 3-5 business days.",
+      "Tell us what you're making in about a minute. Custom liquid and powder flavor samples from Norco, CA, typically shipping in 3-5 business days.",
     images: [
       {
         url: "/og?title=Request+Flavor+Samples&description=Complete+sample+briefs+from+Norco%2C+CA",
@@ -23,23 +23,24 @@ export const metadata: Metadata = {
   twitter: {
     title: "Request Flavor Samples | The Flavor Factory",
     description:
-      "Tell us what you're making in two short steps. Custom liquid and powder flavor samples from Norco, CA, typically shipping in 3-5 business days.",
+      "Tell us what you're making in about a minute. Custom liquid and powder flavor samples from Norco, CA, typically shipping in 3-5 business days.",
     images: ["/og?title=Request+Flavor+Samples&description=Complete+sample+briefs+from+Norco%2C+CA"],
   },
 };
 import Link from "next/link";
 import { Check, Mail, Phone } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
-import { SampleRequestForm } from "@/components/sample-request-form";
+import { RequestOptions } from "@/components/RequestOptions";
 import { AppImage } from "@/components/ui/AppImage";
 import { BackgroundLoop } from "@/components/BackgroundLoop";
 import { siteCopy } from "@/data/site-copy";
+import { CONTACT } from "@/lib/contact";
 import { normalizeIndustryKey } from "@/lib/industry-utils";
 import s from "./request-page.module.css";
 
 const BC_REQUEST_SAMPLES = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.flavorfactory.net"},{"@type":"ListItem","position":2,"name":"Request Samples","item":"https://www.flavorfactory.net/request-samples"}]};
 
-const PROMISES = ["Two short steps", "Reviewed by a real person", "Liquid & powder formats"];
+const PROMISES = ["Quick request in about a minute", "Reviewed by a real person", "Liquid & powder formats"];
 
 const NEXT_STEPS = [
   { title: "We review your brief", copy: "A real person confirms the company and project details." },
@@ -50,9 +51,10 @@ const NEXT_STEPS = [
 export default function RequestSamplesPage({
   searchParams,
 }: {
-  searchParams?: { industry?: string };
+  searchParams?: { industry?: string; details?: string };
 }) {
   const industry = normalizeIndustryKey(searchParams?.industry ?? "") || searchParams?.industry || "";
+  const initialMode = searchParams?.details ? "detailed" : "quick";
 
   return (
     <>
@@ -66,6 +68,7 @@ export default function RequestSamplesPage({
             className={s.topMedia}
             videoClassName={s.topVideo}
             playingClassName={s.topVideoOn}
+            media="(min-width: 700px)"
           />
           <div className={s.glow} aria-hidden="true" />
           <div className={s.topInner}>
@@ -74,7 +77,7 @@ export default function RequestSamplesPage({
               Get custom flavor samples, <em>built for your product.</em>
             </h1>
             <p className={s.intro}>
-              Tell us what you&apos;re making in two short steps. Our Norco team reviews every request, and first samples typically ship in 3-5 business days once your brief is confirmed.
+              Send a quick request in about a minute, or a detailed brief with specs and shipping. Our Norco team reviews every request, and first samples typically ship in 3-5 business days once your brief is confirmed.
             </p>
             <ul className={s.promises}>
               {PROMISES.map((item) => (
@@ -89,8 +92,8 @@ export default function RequestSamplesPage({
 
         <section className={s.body}>
           <div className={s.grid}>
-            <div className={s.formCard}>
-              <SampleRequestForm initialIndustry={industry} />
+            <div className={s.formCol}>
+              <RequestOptions initialMode={initialMode} initialIndustry={industry} />
             </div>
 
             <aside className={s.side} aria-label="What happens after you send your request">
@@ -121,13 +124,13 @@ export default function RequestSamplesPage({
 
               <div className={s.talk}>
                 <strong>Prefer to talk first?</strong>
-                <a href="tel:+19512739877">
+                <a href={CONTACT.phoneHref}>
                   <Phone size={16} aria-hidden="true" />
-                  (951) 273-9877
+                  {CONTACT.phone}
                 </a>
-                <a href="mailto:samples@flavorfactory.net">
+                <a href={`mailto:${CONTACT.email}`}>
                   <Mail size={16} aria-hidden="true" />
-                  samples@flavorfactory.net
+                  {CONTACT.email}
                 </a>
               </div>
 

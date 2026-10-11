@@ -2,6 +2,7 @@
 
 import { getImageProps } from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { prefersLightMedia } from "@/lib/media-prefs";
 
 /**
  * Video source. Swap type to "mux" when footage moves to Mux. No consumer changes needed.
@@ -46,9 +47,8 @@ export function HeroVideo({
   const hasMobile = Boolean(mobile);
 
   useEffect(() => {
-    // Data Saver: keep the poster and skip the video entirely.
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    if (connection?.saveData) return;
+    // Data Saver or a slow connection: keep the poster and skip the video entirely.
+    if (prefersLightMedia()) return;
 
     const mq = window.matchMedia(mobileQuery);
     const pick = () => setVariant(hasMobile && mq.matches ? "mobile" : "desktop");

@@ -7,9 +7,11 @@ import { industries } from "@/data/industries";
 import { industryFormFields } from "@/data/industry-form-fields";
 import { useShortlist } from "@/lib/shortlist";
 import { normalizeIndustryKey } from "@/lib/industry-utils";
+import { CONTACT } from "@/lib/contact";
+import { QUICK_REQUEST_STORAGE_KEY } from "@/components/QuickSampleRequest";
 import styles from "./sample-request-form.module.css";
 
-const SAMPLE_REQUEST_EMAIL = "samples@flavorfactory.net";
+const SAMPLE_REQUEST_EMAIL = CONTACT.email;
 
 const REGULATORY_FIELDS = [
   ["kosher", "Kosher"],
@@ -43,6 +45,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
   const [formStartedAt, setFormStartedAt] = useState("");
   const [humanConfirmed, setHumanConfirmed] = useState(false);
   const [shortlistNote, setShortlistNote] = useState("");
+  const [prefilled, setPrefilled] = useState(false);
   const { items: shortlist, clear: clearShortlist, mounted } = useShortlist();
   const started = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -54,6 +57,30 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
 
   useEffect(() => {
     setFormStartedAt(String(Date.now()));
+  }, []);
+
+  // Carry over what someone already sent in a quick request, so nothing is typed twice.
+  useEffect(() => {
+    let saved: Record<string, string> | null = null;
+    try {
+      saved = JSON.parse(sessionStorage.getItem(QUICK_REQUEST_STORAGE_KEY) || "null");
+    } catch {
+      saved = null;
+    }
+    const form = formRef.current;
+    if (!saved || !form) return;
+
+    const fill = (name: string, value?: string) => {
+      const control = form.elements.namedItem(name);
+      if (control instanceof HTMLInputElement && !control.value && value) control.value = value;
+    };
+    const [first = "", ...rest] = String(saved.name || "").split(/\s+/);
+    fill("firstName", first);
+    fill("lastName", rest.join(" "));
+    fill("email", saved.email);
+    fill("company", saved.company);
+    if (saved.flavorTarget) setShortlistNote((current) => current || saved?.flavorTarget || "");
+    setPrefilled(true);
   }, []);
 
   useEffect(() => {
@@ -139,6 +166,11 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
         });
         setStatus("sent");
         clearShortlist();
+        try {
+          sessionStorage.removeItem(QUICK_REQUEST_STORAGE_KEY);
+        } catch {
+          // Storage unavailable; nothing to clear.
+        }
         const redirectIndustry = normalizeIndustryKey(field(formData, "industry")) || field(formData, "industry");
         window.location.href = redirectIndustry
           ? `/request-samples/confirmation?industry=${encodeURIComponent(redirectIndustry)}`
@@ -221,7 +253,11 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
 
         <div className="form-section-heading form-field-wide">
           <h2>Tell us about you and your product</h2>
-          <p>We use this to confirm the company and point your sample at the right application.</p>
+          <p>
+            {prefilled
+              ? "We filled in what you sent in your quick request. Add the rest so samples can ship sooner."
+              : "We use this to confirm the company and point your sample at the right application."}
+          </p>
         </div>
 
         <label className="form-field">

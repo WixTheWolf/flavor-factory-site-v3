@@ -27,7 +27,7 @@ export function AppImage({
   fill = true,
   height,
   priority = false,
-  quality = 90,
+  quality = 75,
   sizes = DEFAULT_SIZES,
   style,
   width,

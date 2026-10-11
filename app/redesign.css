@@ -151,11 +151,137 @@
   .mobile-contact-bar a + a {
     border-left: 0;
   }
+
+  .mobile-contact-bar {
+    transition: transform .3s cubic-bezier(.2, .9, .2, 1), opacity .3s ease;
+  }
+
+  .mobile-contact-bar.is-tucked {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(100% + 16px));
+  }
 }
 
 @media (max-width: 640px) {
   .site-header .header-actions .btn-gold {
     display: none;
+  }
+}
+
+/* ── Email fallbacks (address, copy, Gmail, Outlook) ───────── */
+
+.email-fallbacks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.email-fallbacks .email-fallbacks-address {
+  font-weight: 700;
+  letter-spacing: .005em;
+  text-decoration-color: transparent;
+  opacity: 1;
+}
+
+.email-fallbacks .email-fallbacks-address:hover {
+  text-decoration-color: currentColor;
+}
+
+.email-fallbacks button,
+.email-fallbacks a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  opacity: .82;
+}
+
+.email-fallbacks button:hover,
+.email-fallbacks a:hover {
+  opacity: 1;
+}
+
+.email-fallbacks--dark {
+  color: rgba(255, 255, 255, .92);
+}
+
+.email-fallbacks--dark .email-fallbacks-address {
+  color: #fff;
+}
+
+.email-fallbacks--light {
+  color: #12382f;
+}
+
+/* ── Contact page quick request ────────────────────────────── */
+
+.contact-quick {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  margin-top: 48px;
+  scroll-margin-top: 110px;
+}
+
+.contact-quick-copy h2 {
+  margin: 12px 0 0;
+  color: #0d2b25;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.015em;
+}
+
+.contact-quick-copy p {
+  margin: 14px 0 0;
+  color: #3d4a44;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .contact-quick {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Scroll reveal (components/Reveal.tsx) ─────────────────── */
+
+/* Pure CSS: no JS, nothing hidden before hydration. Unsupported browsers show content in place. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; translate: 0 20px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
@@ -202,32 +328,6 @@
 }
 
 @media (max-width: 640px) {
-  /* Flavor problems become a swipe rail instead of six stacked cards. */
-  .landing .flavor-problems-grid {
-    display: flex;
-    gap: 12px;
-    margin: 0 -16px;
-    padding: 0 16px 8px;
-    overflow-x: auto;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 16px;
-    scrollbar-width: none;
-  }
-
-  .landing .flavor-problems-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .landing .flavor-problems-grid article {
-    flex: 0 0 84%;
-    border: 1px solid rgba(18, 56, 47, .12);
-    border-radius: 18px;
-    scroll-snap-align: start;
-  }
-
   .landing .new-industry-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px 12px;
@@ -242,8 +342,38 @@
   }
 }
 
-/* Shared inner-page CTA (components/CTA.tsx) now uses the gold button. */
+/* Shared inner-page CTA (components/CTA.tsx): gold button with phone and email underneath. */
+.new-final-cta-actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex-shrink: 0;
+  justify-items: center;
+  gap: 12px;
+}
+
+.new-final-cta .new-final-cta-alt {
+  max-width: 300px;
+  margin: 0;
+  color: rgba(255, 255, 255, .78);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.new-final-cta-alt a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
 @media (max-width: 760px) {
+  .new-final-cta-actions {
+    width: 100%;
+  }
+
   .new-final-cta-inner .btn-gold {
     width: 100%;
   }

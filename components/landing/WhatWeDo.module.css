@@ -1,0 +1,279 @@
+.section {
+  scroll-margin-top: 72px;
+  padding: clamp(64px, 8vw, 112px) 0;
+  background: #fff;
+}
+
+.shell {
+  width: min(1200px, calc(100% - 56px));
+  margin: 0 auto;
+}
+
+.head {
+  max-width: 760px;
+}
+
+.head h2 {
+  margin: 14px 0 0;
+  color: #0d2b25;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+
+.head p {
+  margin: 18px 0 0;
+  color: #3d4a44;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+  border: 1px solid rgba(18, 56, 47, .1);
+  border-radius: 22px;
+  background: #fbfaf7;
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s cubic-bezier(.2, .9, .2, 1);
+}
+
+.card:hover {
+  border-color: rgba(201, 133, 44, .45);
+  box-shadow: 0 22px 48px rgba(13, 43, 37, .1);
+  transform: translateY(-3px);
+}
+
+.card:focus-visible {
+  outline: 3px solid rgba(240, 179, 90, .8);
+  outline-offset: 3px;
+}
+
+.icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 14px;
+  background: #12382f;
+  color: #f6c46f;
+}
+
+.card h3 {
+  margin: 18px 0 0;
+  color: #0d2b25;
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.card p {
+  flex: 1;
+  margin: 8px 0 0;
+  color: #3d4a44;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: #b06f1f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card:hover .more svg {
+  transform: translateX(3px);
+}
+
+.more svg {
+  transition: transform .25s ease;
+}
+
+.offer {
+  display: grid;
+  grid-template-columns: minmax(0, .5fr) minmax(0, 1.5fr);
+  gap: 24px 40px;
+  align-items: center;
+  margin-top: 28px;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: 26px;
+  background: #0d2b25;
+  color: #fff;
+}
+
+.offerEyebrow {
+  color: #f6c46f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.offerHead p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, .8);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+.offerList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offerList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: rgba(255, 255, 255, .92);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.offerList svg {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -1px;
+  padding: 4px;
+  border-radius: 50%;
+  background: rgba(240, 179, 90, .2);
+  color: #f6c46f;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  margin-top: 22px;
+}
+
+.links a {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  color: #12382f;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(18, 56, 47, .3);
+  text-underline-offset: 4px;
+}
+
+.links a:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .offer {
+    grid-template-columns: 1fr;
+  }
+
+  .offerList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Phones: a compact list (icon, name, one line, arrow) instead of tall stacked cards. */
+@media (max-width: 640px) {
+  .shell {
+    width: calc(100% - 32px);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 18px;
+    column-gap: 14px;
+    align-items: center;
+    padding: 14px 14px 14px 16px;
+    border-radius: 16px;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .icon {
+    grid-row: 1 / span 2;
+    align-self: start;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .card h3 {
+    grid-column: 2;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .card p {
+    grid-column: 2;
+    margin-top: 3px;
+    font-size: 13.5px;
+    line-height: 1.45;
+  }
+
+  .more {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+
+  .moreText {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .offerList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .more svg {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}

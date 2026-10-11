@@ -131,6 +131,32 @@
   background: linear-gradient(180deg, rgba(8, 28, 24, 0) 55%, rgba(8, 28, 24, .55) 100%);
 }
 
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .tile {
+      animation: tileIn linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+
+    .media {
+      animation: tileDrift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes tileIn {
+  from { clip-path: inset(14% 10% 14% 10% round 28px); opacity: .4; }
+  to { clip-path: inset(0% 0% 0% 0% round 28px); opacity: 1; }
+}
+
+@keyframes tileDrift {
+  from { transform: translateY(calc(var(--speed, 1) * -6%)); }
+  to { transform: translateY(calc(var(--speed, 1) * 6%)); }
+}
+
 @media (max-width: 900px) {
   .head {
     grid-template-columns: 1fr;
