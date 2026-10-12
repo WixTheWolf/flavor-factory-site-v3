@@ -5,7 +5,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FlavorCard } from "@/components/flavors/FlavorCard";
 import { CTA } from "@/components/CTA";
-import { flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-details";
+import { familyMedia, flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-details";
+import { PageHero } from "@/components/PageHero";
+import { CountUp } from "@/components/CountUp";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { demoFlavors } from "@/data/demo-flavors";
 
@@ -56,6 +58,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
   if (!detail) notFound();
 
   const familyFlavors = demoFlavors.filter((f) => f.family === detail.name);
+  const media = familyMedia(detail.slug);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -72,38 +75,39 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
+        <PageHero
+          layout="card"
+          eyebrow="Flavor Family"
+          title={detail.name}
+          accent="Flavors"
+          copy={detail.intro}
+          image={media.image}
+          imageAlt={`${detail.name} flavor ingredients`}
+          video={media.video}
+          primaryHref="/request-samples"
+          primaryLabel={`Request ${detail.name} Samples`}
+          secondaryHref="/flavors"
+          secondaryLabel="Browse full library"
+          breadcrumbs={[{ label: "All Flavors", href: "/flavors" }, { label: detail.name }]}
+        >
+          <dl className="hero-stats">
+            <div>
+              <dt>Sample-ready starting points</dt>
+              <dd><CountUp value={familyFlavors.length} trigger="load" /></dd>
+            </div>
+            <div>
+              <dt>Format directions</dt>
+              <dd><CountUp value={detail.formats.length} trigger="load" /></dd>
+            </div>
+          </dl>
+        </PageHero>
         <section className="section clean-page">
           <div className="container">
-
-            <nav className="industry-detail-breadcrumb" aria-label="Breadcrumb">
-              <Link href="/flavors">All Flavors</Link>
-              <span aria-hidden="true">/</span>
-              <span>{detail.name}</span>
-            </nav>
-
-            <Reveal><div className="family-hero-layout">
-              <div className="family-hero-panel">
-                <div className="new-eyebrow">Flavor Family</div>
-                <h1 className="family-hero-title">{detail.name} Flavors</h1>
-                <p className="family-hero-intro">{detail.intro}</p>
-                {detail.formulatorNote && (
-                  <p className="family-formulator-note">
-                    <strong>Formulator note:</strong> {detail.formulatorNote}
-                  </p>
-                )}
-              </div>
-              <aside className="family-summary-panel" aria-label={`${detail.name} family summary`}>
-                <div>
-                  <strong>{familyFlavors.length}</strong>
-                  <span>sample-ready starting points</span>
-                </div>
-                <div>
-                  <strong>{detail.formats.length}</strong>
-                  <span>available format directions</span>
-                </div>
-                <Link href="/request-samples" className="cta-btn">Request a Custom Sample</Link>
-              </aside>
-            </div></Reveal>
+            {detail.formulatorNote && (
+              <p className="family-formulator-note family-formulator-note--lead">
+                <strong>Formulator note:</strong> {detail.formulatorNote}
+              </p>
+            )}
 
             <Reveal><div className="family-meta-strip">
               <div className="family-meta-block">

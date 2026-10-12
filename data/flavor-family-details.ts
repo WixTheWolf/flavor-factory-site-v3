@@ -146,6 +146,24 @@ export const flavorFamilyDetails: FamilyDetail[] = [
   },
 ];
 
+/** Header photo and clip names for the eight families that share the homepage collection art. */
+const FAMILY_MEDIA: Record<string, string> = {
+  citrus: "citrus",
+  berry: "berry",
+  tropical: "tropical",
+  "vanilla-cream": "vanilla",
+  "chocolate-brown-notes": "chocolate",
+  "coffee-beverage": "beverage",
+  "nut-praline": "nutty",
+  "dessert-bakery": "sweet",
+};
+
+/** Photo and looping clip for a family page header. Families without shared art use their own slug. */
+export function familyMedia(slug: string) {
+  const name = FAMILY_MEDIA[slug] ?? slug;
+  return { image: `/images/flavor-factory/v4/family-${name}.jpg`, video: `/video/families/${name}` };
+}
+
 export function familySlug(name: string): string {
   return name
     .toLowerCase()

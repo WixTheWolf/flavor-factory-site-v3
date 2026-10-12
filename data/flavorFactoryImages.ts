@@ -6,7 +6,7 @@ export const flavorFactoryImages = {
   ctaBg: "/images/flavor-factory/cta-background.png",
 
   // ── Industry hero images ──────────────────────────────────────────
-  industriesHero: "/images/flavor-factory/industries-hero.png",
+  industriesHero: "/images/flavor-factory/v4/industries-hero.jpg",
 
   // Industry cards, dark studio photography (consistent style)
   industryBakery:         "/images/flavor-factory/v4/industry-bakery.jpg",

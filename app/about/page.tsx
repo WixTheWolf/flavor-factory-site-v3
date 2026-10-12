@@ -75,6 +75,19 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://www.flavorfactory.net" }, { "@type": "ListItem", position: 2, name: "About", item: "https://www.flavorfactory.net/about" }] }) }} />
       <Header />
       <main>
+        <PageHero
+          eyebrow="About"
+          title="Precise work."
+          accent="Real people. Norco, CA."
+          copy="The Flavor Factory is a family-owned custom flavor manufacturer based in Norco, California. We develop liquid and powder flavor systems for brands that need flavors to work inside real products, not just taste good in a sample cup."
+          image={siteImages.aboutHero}
+          imageAlt="A Flavor Factory team member preparing gallon containers in the Norco facility"
+          primaryHref="/request-samples"
+          primaryLabel="Request a Custom Sample"
+          secondaryHref="/company-info"
+          secondaryLabel="Company Info"
+          imagePosition="40% center"
+        />
         <section className="section clean-page">
           <div className="container">
 
@@ -95,18 +108,6 @@ export default function AboutPage() {
               </dl>
             </div>
 
-            <PageHero
-              eyebrow="About"
-              title="Precise work. Real people. Norco, CA."
-              copy="The Flavor Factory is a family-owned custom flavor manufacturer based in Norco, California. We develop liquid and powder flavor systems for brands that need flavors to work inside real products, not just taste good in a sample cup."
-              image={siteImages.aboutHero}
-              imageAlt="Row of amber flavor liquids in beakers and flasks on a stainless lab bench"
-              primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/company-info"
-              secondaryLabel="Company Info"
-              imagePosition="40% center"
-            />
 
             {/* Story */}
             <Reveal>

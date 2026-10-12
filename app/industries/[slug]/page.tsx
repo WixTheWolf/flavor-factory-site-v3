@@ -87,27 +87,23 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
       <IndustryViewed industry={params.slug} />
       <Header />
       <main>
+        <PageHero
+          eyebrow={industry.name}
+          title={industry.pressurePoint}
+          copy={industry.summary}
+          image={industry.heroImage}
+          imageAlt={`${industry.name} flavor application`}
+          video={`/video/industries/${industry.key}`}
+          imagePosition="center center"
+          breadcrumbs={[{ label: "All Industries", href: "/industries" }, { label: industry.name }]}
+          primaryHref={`/request-samples?industry=${params.slug}`}
+          primaryLabel={industry.ctaLabel}
+          secondaryHref="/contact"
+          secondaryLabel="Talk to Our Team"
+        />
         <section className="section clean-page">
           <div className="container">
 
-            <nav className="industry-detail-breadcrumb" aria-label="Breadcrumb">
-              <Link href="/industries">All Industries</Link>
-              <span aria-hidden="true">/</span>
-              <span>{industry.name}</span>
-            </nav>
-
-            <PageHero
-              eyebrow={industry.name}
-              title={industry.pressurePoint}
-              copy={industry.summary}
-              image={industry.heroImage}
-              imageAlt={`${industry.name} flavor application`}
-              imagePosition="center center"
-              primaryHref={`/request-samples?industry=${params.slug}`}
-              primaryLabel={industry.ctaLabel}
-              secondaryHref="/contact"
-              secondaryLabel="Talk to Our Team"
-            />
 
             <Reveal>
               <section className="industry-challenges-section">

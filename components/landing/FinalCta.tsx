@@ -7,6 +7,7 @@ import { trackEvent } from "@/lib/analytics";
 import { CONTACT } from "@/lib/contact";
 import { canPlayDecorativeVideo, videoSources } from "@/lib/media-prefs";
 import s from "./FinalCta.module.css";
+import { RevealWords } from "@/components/RevealWords";
 
 const AUDIENCE = [
   "Food & beverage brands",
@@ -42,7 +43,7 @@ export function FinalCta() {
   }, []);
 
   return (
-    <section ref={ref} className={s.section} aria-labelledby="final-cta-title">
+    <section ref={ref} className={`${s.section} glow-zone grain`} aria-labelledby="final-cta-title">
       <div className={s.media} aria-hidden="true">
         <AppImage src={SWIRL_POSTER} alt="" sizes="100vw" quality={70} />
         {showVideo && (
@@ -69,8 +70,7 @@ export function FinalCta() {
       <div className={`${s.inner} reveal`}>
         <div className={s.eyebrow}>Have a flavor problem to solve?</div>
         <h2 id="final-cta-title">
-          Tell us what you&apos;re making.
-          <em> We&apos;ll build around it.</em>
+          <RevealWords text="Tell us what you're making." accent="We'll build around it." />
         </h2>
         <p>
           Send a quick request in about a minute. A real person on our Norco team reviews every one.

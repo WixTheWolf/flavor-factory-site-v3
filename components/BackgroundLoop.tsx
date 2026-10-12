@@ -1,8 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { AppImage } from "@/components/ui/AppImage";
-import { canPlayDecorativeVideo, videoSources } from "@/lib/media-prefs";
+import { LoopVideo } from "@/components/LoopVideo";
 
 type Props = {
   /** Clip prefix, e.g. /video/request-header (see lib/media-prefs videoSources). */
@@ -21,31 +18,10 @@ type Props = {
  * connection, or the optional media query does not match.
  */
 export function BackgroundLoop({ video, poster, className, videoClassName, playingClassName, media }: Props) {
-  const [allowed, setAllowed] = useState(false);
-  const [playing, setPlaying] = useState(false);
-
-  useEffect(() => {
-    setAllowed(canPlayDecorativeVideo() && (!media || window.matchMedia(media).matches));
-  }, [media]);
-
   return (
     <div className={className} aria-hidden="true">
       <AppImage src={poster} alt="" sizes="100vw" priority />
-      {allowed && (
-        <video
-          className={`${videoClassName ?? ""} ${playing ? playingClassName ?? "" : ""}`.trim()}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onPlaying={() => setPlaying(true)}
-        >
-          {videoSources(video).map((source) => (
-            <source key={source.src} src={source.src} type={source.type} />
-          ))}
-        </video>
-      )}
+      <LoopVideo video={video} className={videoClassName} playingClassName={playingClassName} media={media} />
     </div>
   );
 }

@@ -42,20 +42,21 @@ export default function IndustriesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_INDUSTRIES) }} />
       <Header />
       <main>
+        <PageHero
+          eyebrow="Industries"
+          title="Eight categories."
+          accent="One development standard."
+          copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief. They're the starting point, not an obstacle to work around."
+          image={siteImages.industriesHero}
+          imageAlt="Editorial arrangement of food and beverage products across eight industry categories"
+          imagePosition="right center"
+          primaryHref="/request-samples"
+          primaryLabel="Request a Custom Sample"
+          secondaryHref="/flavors"
+          secondaryLabel="Explore Flavors"
+        />
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Industries"
-              title="Eight categories. One development standard."
-              copy="Consistent process, response time, and technical depth whether you're building for bakery or pharmaceuticals. Application requirements drive the brief. They're the starting point, not an obstacle to work around."
-              image={siteImages.industriesHero}
-              imageAlt="Editorial arrangement of food and beverage products across eight industry categories"
-              imagePosition="center center"
-              primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/flavors"
-              secondaryLabel="Explore Flavors"
-            />
 
             <RevealGroup className="industry-clean-grid" stagger={0.07}>
               {industries.map((item) => (

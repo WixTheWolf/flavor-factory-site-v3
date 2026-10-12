@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { BotIdClient } from "botid/client";
 import { ShortlistWidget } from "@/components/ShortlistWidget";
 import { MobileContactBar } from "@/components/MobileContactBar";
+import { CursorGlow } from "@/components/CursorGlow";
 import "./globals.css";
 import "./redesign.css";
 
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <ShortlistWidget />
         <MobileContactBar />
+        <CursorGlow />
         <Analytics />
       </body>
     </html>

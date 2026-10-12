@@ -112,20 +112,21 @@ export default function CapabilitiesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
+        <PageHero
+          eyebrow="Capabilities"
+          title="Built for the finished product."
+          accent="Not just the sample."
+          copy="Every flavor is formulated for your base, your processing, your label. Not for the flavor bench."
+          image={siteImages.capabilitiesHero}
+          imageAlt="Stainless steel production tanks on The Flavor Factory floor in Norco"
+          imagePosition="center 38%"
+          primaryHref="/request-samples"
+          primaryLabel="Request Your First Sample"
+          secondaryHref="/industries"
+          secondaryLabel="Explore Industries"
+        />
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Capabilities"
-              title="Built for the finished product. Not just the sample."
-              copy="Every flavor is formulated for your base, your processing, your label. Not for the flavor bench."
-              image={siteImages.capabilitiesHero}
-              imageAlt="Single amber drop falling from a pipette into a glass beaker"
-              imagePosition="center 38%"
-              primaryHref="/request-samples"
-              primaryLabel="Request Your First Sample"
-              secondaryHref="/industries"
-              secondaryLabel="Explore Industries"
-            />
 
             <Reveal><BuiltInNorco /></Reveal>
 

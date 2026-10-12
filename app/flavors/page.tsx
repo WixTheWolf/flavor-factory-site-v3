@@ -42,20 +42,21 @@ export default function FlavorsPage() {
       <TimeOnPageTracker eventName="Time on page over 60s on the Flavors library" page="/flavors" />
       <Header />
       <main>
+        <PageHero
+          eyebrow="Our Flavors"
+          title="Find a starting point."
+          accent="We'll build the rest."
+          copy="The library gives you something to react to. Custom development, flavor matching, and reformulation are part of every conversation."
+          image={siteImages.flavorsHero}
+          imageAlt="Amber liquid being poured into a round glass flask, warm studio light"
+          imagePosition="center 30%"
+          primaryHref="/request-samples"
+          primaryLabel="Request a Custom Sample"
+          secondaryHref="/industries"
+          secondaryLabel="View Industries"
+        />
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Our Flavors"
-              title="Find a starting point. We'll build the rest."
-              copy="The library gives you something to react to. Custom development, flavor matching, and reformulation are part of every conversation."
-              image={siteImages.flavorsHero}
-              imageAlt="Amber liquid being poured into a round glass flask, warm studio light"
-              imagePosition="center 30%"
-              primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/industries"
-              secondaryLabel="View Industries"
-            />
             <FlavorFinder />
           </div>
         </section>

@@ -48,20 +48,21 @@ export default function ContactPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC) }} />
       <Header />
       <main>
+        <PageHero
+          eyebrow="Contact"
+          title="Talk with the people developing"
+          accent="and manufacturing the flavor."
+          copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
+          image={siteImages.contactHero}
+          imageAlt="The Flavor Factory building on Second Street in Norco, California, at sunset"
+          primaryHref="#contact-request"
+          primaryLabel="Request Samples"
+          secondaryHref={`mailto:${CONTACT.email}`}
+          secondaryLabel="Email Us"
+          imagePosition="center 40%"
+        />
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Contact"
-              title="Talk with the people developing and manufacturing the flavor."
-              copy="Reach out for custom flavor development, matching, samples, production questions, or application-specific support."
-              image={siteImages.contactHero}
-              imageAlt="California citrus grove at golden hour, Norco, CA"
-              primaryHref="#contact-request"
-              primaryLabel="Request Samples"
-              secondaryHref={`mailto:${CONTACT.email}`}
-              secondaryLabel="Email Us"
-              imagePosition="center 40%"
-            />
 
             <RevealGroup className="contact-direct-grid" stagger={0.08}>
               {contactDetails.map((item) => (

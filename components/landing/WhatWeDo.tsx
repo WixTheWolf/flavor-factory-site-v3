@@ -1,55 +1,65 @@
 import Link from "next/link";
-import { ArrowRight, Check, Droplets, Factory, Layers, Leaf, Package, Target } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { SITE_STATS } from "@/data/site-stats";
+import { flavorFamilyDetails } from "@/data/flavor-family-details";
+import { AppImage } from "@/components/ui/AppImage";
+import { CountUp } from "@/components/CountUp";
+import { RevealWords } from "@/components/RevealWords";
 import s from "./WhatWeDo.module.css";
 
 const SERVICES = [
   {
-    icon: Droplets,
     title: "Custom liquid flavors",
     copy: "Water- and oil-soluble flavors built for your base, use level, and process.",
     href: "/custom-liquid-flavors",
+    image: "/images/flavor-factory/v4/service-liquid.jpg",
+    area: s.liquid,
   },
   {
-    icon: Package,
     title: "Custom powder flavors",
     copy: "Powder flavors for nutraceutical, bakery, snack, and dry-blend products.",
     href: "/custom-powder-flavors",
+    image: "/images/flavor-factory/v4/service-powder.jpg",
+    area: s.powder,
   },
   {
-    icon: Target,
     title: "Flavor matching",
     copy: "Replace a discontinued, costly, or underperforming flavor in your finished product.",
     href: "/flavor-matching",
+    image: "/images/flavor-factory/v4/service-matching.jpg",
+    area: s.matching,
   },
   {
-    icon: Layers,
     title: "Masking and modulation",
     copy: "Tame bitter proteins, vitamins, botanicals, and actives without flattening the profile.",
     href: "/masking-and-modulation",
+    image: "/images/flavor-factory/v4/service-masking.jpg",
+    area: s.masking,
   },
   {
-    icon: Leaf,
     title: "Natural and organic-compliant",
     copy: "Natural, N&A, artificial, organic-compliant, kosher, and halal directions, set early.",
     href: "/organic-compliant-flavors",
+    image: "/images/flavor-factory/v4/service-organic.jpg",
+    area: s.organic,
   },
   {
-    icon: Factory,
     title: "Sample to full production",
     copy: "The team that builds your sample takes it to repeatable production runs.",
     href: "/process",
+    image: "/images/flavor-factory/inhouse-photos/production-room.png",
+    area: s.production,
   },
-] as const;
-
-const OFFER = [
-  "First samples in 3-5 business days",
-  "Low minimums",
-  `${SITE_STATS.flavorProfileCount}+ flavor profiles to start from`,
-  "SQF facility, GMP practices, FDA registered",
-  "Kosher, Halal & organic-compliant options",
-  `${SITE_STATS.combinedYearsExperience}+ years of combined flavor experience`,
 ];
+
+const STATS = [
+  { value: null, display: "3-5", label: "business days to first samples" },
+  { value: SITE_STATS.flavorProfileCount, suffix: "+", label: "flavor profiles to start from" },
+  { value: flavorFamilyDetails.length, suffix: "", label: "flavor families in the library" },
+  { value: SITE_STATS.combinedYearsExperience, suffix: "+", label: "years of combined flavor experience" },
+];
+
+const PROMISES = ["Low minimums", "SQF facility, GMP practices, FDA registered", "Kosher, Halal & organic-compliant options"];
 
 /** What we do and what customers get, right after the sample request. */
 export function WhatWeDo() {
@@ -58,42 +68,57 @@ export function WhatWeDo() {
       <div className={s.shell}>
         <div className={s.head}>
           <div className="new-eyebrow">What We Do</div>
-          <h2 id="what-we-do-title">Custom flavors, developed and made in one Norco facility.</h2>
+          <h2 id="what-we-do-title">
+            <RevealWords text="Custom flavors, developed and made in one Norco facility." />
+          </h2>
           <p>
             A family-owned team that develops, matches, and manufactures liquid and powder flavors for food, beverage, nutraceutical, oral care, and pharmaceutical products.
           </p>
         </div>
 
         <ul className={s.grid}>
-          {SERVICES.map((service) => {
-            const Icon = service.icon;
-            return (
-              <li key={service.title}>
-                <Link href={service.href} className={s.card}>
-                  <span className={s.icon} aria-hidden="true">
-                    <Icon size={22} />
-                  </span>
-                  <h3>{service.title}</h3>
-                  <p>{service.copy}</p>
-                  <span className={s.more}>
-                    <span className={s.moreText}>Learn more</span>
-                    <ArrowRight size={15} aria-hidden="true" />
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
+          {SERVICES.map((service) => (
+            <li key={service.title} className={service.area}>
+              <Link href={service.href} className={s.tile}>
+                <span className={s.media} aria-hidden="true">
+                  <AppImage
+                    src={service.image}
+                    alt=""
+                    sizes="(max-width: 640px) 50vw, (max-width: 1000px) 50vw, 33vw"
+                  />
+                </span>
+                <span className={s.arrow} aria-hidden="true">
+                  <ArrowUpRight size={18} />
+                </span>
+                <span className={s.body}>
+                  <span className={s.title}>{service.title}</span>
+                  <span className={s.copy}>{service.copy}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
         </ul>
 
-        <div className={s.offer}>
+        <div className={`${s.offer} glow-zone grain`}>
           <div className={s.offerHead}>
             <div className={s.offerEyebrow}>What you get</div>
             <p>Every project, from the first sample on.</p>
           </div>
-          <ul className={s.offerList}>
-            {OFFER.map((item) => (
+          <dl className={s.stats}>
+            {STATS.map((stat) => (
+              <div key={stat.label}>
+                <dt>{stat.label}</dt>
+                <dd>
+                  {stat.value === null ? stat.display : <CountUp value={stat.value} />}
+                  {stat.suffix}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <ul className={s.promises}>
+            {PROMISES.map((item) => (
               <li key={item}>
-                <Check size={16} aria-hidden="true" />
+                <Check size={15} aria-hidden="true" />
                 {item}
               </li>
             ))}

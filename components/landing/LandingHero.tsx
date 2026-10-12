@@ -51,11 +51,11 @@ export function LandingHero() {
   let wordIndex = 0;
 
   return (
-    <section className={s.hero} onPointerMove={onPointerMove} aria-labelledby="hero-title">
+    <section className={`${s.hero} grain`} onPointerMove={onPointerMove} aria-labelledby="hero-title">
       <HeroVideo
-        src={{ type: "local", prefix: "/hero/hero-v4" }}
-        poster="/hero/hero-v4-poster.jpg"
-        mobile={{ src: { type: "local", prefix: "/hero/hero-v4-mobile" }, poster: "/hero/hero-v4-poster-mobile.jpg" }}
+        src={{ type: "local", prefix: "/hero/hero-v5" }}
+        poster="/hero/hero-v5-poster.jpg"
+        mobile={{ src: { type: "local", prefix: "/hero/hero-v5-mobile" }, poster: "/hero/hero-v5-poster-mobile.jpg" }}
         overlayStrength="light"
       />
       <div className={s.scrim} aria-hidden="true" />

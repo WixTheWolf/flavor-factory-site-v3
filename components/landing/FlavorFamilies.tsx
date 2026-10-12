@@ -10,6 +10,7 @@ import { SITE_STATS } from "@/data/site-stats";
 import { trackEvent } from "@/lib/analytics";
 import { canPlayDecorativeVideo, videoSources } from "@/lib/media-prefs";
 import s from "./FlavorFamilies.module.css";
+import { RevealWords } from "@/components/RevealWords";
 
 function tilt(event: PointerEvent<HTMLAnchorElement>) {
   if (event.pointerType !== "mouse") return;
@@ -31,7 +32,7 @@ function resetTilt(event: PointerEvent<HTMLAnchorElement>) {
 
 export function FlavorFamilies() {
   return (
-    <section className={s.section} aria-labelledby="flavor-families-title">
+    <section className={`${s.section} glow-zone grain`} aria-labelledby="flavor-families-title">
       <div className={s.orbs} aria-hidden="true">
         <span />
         <span />
@@ -43,8 +44,7 @@ export function FlavorFamilies() {
           <div>
             <div className={s.eyebrow}>The Flavor Library</div>
             <h2 id="flavor-families-title">
-              {SITE_STATS.flavorProfileCount}+ starting points.
-              <em> Built out for your product.</em>
+              <RevealWords text={`${SITE_STATS.flavorProfileCount}+ starting points.`} accent="Built out for your product." />
             </h2>
           </div>
           <div className={s.headSide}>

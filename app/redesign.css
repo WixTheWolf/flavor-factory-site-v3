@@ -378,3 +378,187 @@
     width: 100%;
   }
 }
+
+/* ── Headline word reveal (components/RevealWords.tsx) ────────── */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-word {
+      display: inline-block;
+      animation: word-rise linear both;
+      animation-timeline: view();
+      animation-range: cover calc(4% + var(--i, 0) * 1.4%) cover calc(20% + var(--i, 0) * 1.4%);
+    }
+
+    .reveal-em {
+      animation: word-fade linear both;
+      animation-timeline: view();
+      animation-range: cover calc(6% + var(--i, 0) * 1.4%) cover calc(26% + var(--i, 0) * 1.4%);
+    }
+  }
+}
+
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(.5em); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes word-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Count-up numbers (components/CountUp.tsx) ─────────────────── */
+
+@property --count {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.count-up-anim {
+  display: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .count-up-static {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .count-up-anim {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+      counter-reset: count var(--count);
+      animation: count-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+
+    .count-up--load .count-up-anim {
+      animation: count-up 1.6s cubic-bezier(.2, .9, .2, 1) .35s both;
+      animation-timeline: auto;
+    }
+
+    .count-up-anim::after {
+      content: counter(count);
+    }
+  }
+}
+
+@keyframes count-up {
+  from { --count: 0; }
+  to { --count: var(--to); }
+}
+
+/* ── Cursor glow on dark sections (components/CursorGlow.tsx) ──── */
+
+.glow-zone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(560px circle at var(--gx, 50%) var(--gy, 50%), rgba(246, 196, 111, .13), rgba(246, 196, 111, 0) 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+.glow-zone.is-glowing::after {
+  opacity: 1;
+}
+
+/* ── Film grain on dark sections ───────────────────────────────── */
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/textures/grain.webp") repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  opacity: .1;
+}
+
+/* ── Page fade-in on navigation (app/template.tsx) ─────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-enter .5s cubic-bezier(.2, .9, .2, 1) both;
+  }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Hover clips on homepage industry cards (components/HoverClip.tsx) */
+
+.hover-clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .5s ease, transform 1s cubic-bezier(.2, .9, .2, 1);
+}
+
+.hover-clip.is-playing {
+  opacity: 1;
+}
+
+.landing .new-industry-image {
+  position: relative;
+}
+
+.landing .new-industry-card:hover .hover-clip {
+  transform: scale(1.07);
+}
+
+/* ── Flavor family header stats ────────────────────────────────── */
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 30px 0 0;
+}
+
+.hero-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+  min-width: 150px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(10px);
+}
+
+.hero-stats dt {
+  color: rgba(255, 255, 255, .72);
+  font-size: 13px;
+}
+
+.hero-stats dd {
+  margin: 0;
+  color: #f6c46f;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.family-formulator-note--lead {
+  max-width: 900px;
+  margin: 0 0 28px;
+}

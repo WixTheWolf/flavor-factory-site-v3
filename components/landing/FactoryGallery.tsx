@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { AppImage } from "@/components/ui/AppImage";
 import s from "./FactoryGallery.module.css";
+import { RevealWords } from "@/components/RevealWords";
 
 const PHOTOS = [
   { src: "/images/flavor-factory/inhouse-photos/lab-new.png", alt: "Flavor development lab at The Flavor Factory in Norco", caption: "R&D lab", area: "a", speed: 1 },
@@ -19,12 +20,12 @@ const PROOFS = [
 
 export function FactoryGallery() {
   return (
-    <section className={s.section} aria-labelledby="factory-title">
+    <section className={`${s.section} glow-zone grain`} aria-labelledby="factory-title">
       <div className={s.shell}>
         <div className={s.head}>
           <div>
             <div className={s.eyebrow}>One Team, One Facility</div>
-            <h2 id="factory-title">Step inside the factory.</h2>
+            <h2 id="factory-title"><RevealWords text="Step inside the factory." /></h2>
           </div>
           <div>
             <p>

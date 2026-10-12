@@ -2,6 +2,8 @@ import { AppImage } from "@/components/ui/AppImage";
 import Link from "next/link";
 import { industries } from "@/data/industries";
 import { RevealGroup, RevealItem } from "@/components/Reveal";
+import { RevealWords } from "@/components/RevealWords";
+import { HoverClip } from "@/components/HoverClip";
 
 export function Industries() {
   return (
@@ -9,7 +11,7 @@ export function Industries() {
       <div className="home-shell">
         <div className="new-section-head">
           <div className="new-eyebrow">Industries</div>
-          <h2>Every application has its own rules. We know them.</h2>
+          <h2><RevealWords text="Every application has its own rules. We know them." /></h2>
         </div>
         <RevealGroup className="new-industry-grid" stagger={0.06}>
           {industries.map((industry) => (
@@ -22,6 +24,7 @@ export function Industries() {
                     sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1180px) 45vw, 25vw"
                     style={{ objectPosition: "center" }}
                   />
+                  <HoverClip video={`/video/industries/${industry.key}`} className="hover-clip" playingClassName="is-playing" />
                 </div>
                 <div className="new-industry-copy">
                   <h3>{industry.name}</h3>

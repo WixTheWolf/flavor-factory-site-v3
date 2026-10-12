@@ -77,20 +77,21 @@ export default function CompanyInfoPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(BC_COMPANY_INFO) }} />
       <Header />
       <main>
+        <PageHero
+          eyebrow="Company Info"
+          title="Ready for production"
+          accent="on the first sample."
+          copy="Most flavor suppliers separate the sample phase from production. We don't. Every sample is built with your manufacturing specs, so when you approve it, scaling is confirmation, not a new problem."
+          image={siteImages.companyInfoHero}
+          imageAlt="The Flavor Factory facility in Norco, California, at sunset"
+          imagePosition="center 55%"
+          primaryHref="/request-samples"
+          primaryLabel="Request a Custom Sample"
+          secondaryHref="/flavors"
+          secondaryLabel="Explore Flavors"
+        />
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Company Info"
-              title="Ready for production on the first sample."
-              copy="Most flavor suppliers separate the sample phase from production. We don't. Every sample is built with your manufacturing specs, so when you approve it, scaling is confirmation, not a new problem."
-              image={siteImages.companyInfoHero}
-              imageAlt="Clean laboratory bench with amber flavor liquids in glass beakers and bottles"
-              imagePosition="center 55%"
-              primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/flavors"
-              secondaryLabel="Explore Flavors"
-            />
 
             <section className="company-fact-strip">
               {companyFacts.map((item) => (

@@ -3,6 +3,7 @@ import { QuickSampleRequest } from "@/components/QuickSampleRequest";
 import { EmailFallbacks } from "@/components/EmailSamples";
 import { CONTACT } from "@/lib/contact";
 import s from "./RequestSection.module.css";
+import { RevealWords } from "@/components/RevealWords";
 
 const STEPS = [
   { title: "Send the quick request", copy: "Four fields. It goes straight to our sample team." },
@@ -18,7 +19,7 @@ export function RequestSection() {
         <div className={s.head}>
           <div className="new-eyebrow">Request Samples</div>
           <h2 id="request-title" className={s.heading}>
-            Tell us what you&apos;re making. <em>We&apos;ll send samples built for it.</em>
+            <RevealWords text="Tell us what you're making." accent="We'll send samples built for it." />
           </h2>
         </div>
 

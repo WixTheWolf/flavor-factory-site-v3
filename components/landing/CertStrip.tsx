@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { AppImage } from "@/components/ui/AppImage";
 import s from "./CertStrip.module.css";
+import { RevealWords } from "@/components/RevealWords";
 
 const NOTES = ["SQF facility", "GMP practices", "FDA registered", "Kosher & Halal options", "Organic-compliant options", "COAs & allergen docs"];
 
@@ -11,7 +12,7 @@ export function CertStrip() {
       <div className={s.inner}>
         <div className={s.copy}>
           <div className="new-eyebrow">Quality & Documentation</div>
-          <h2 id="cert-strip-title">Your label sets the rules. We work within them.</h2>
+          <h2 id="cert-strip-title"><RevealWords text="Your label sets the rules. We work within them." /></h2>
           <ul className={s.notes}>
             {NOTES.map((note) => <li key={note}>{note}</li>)}
           </ul>
