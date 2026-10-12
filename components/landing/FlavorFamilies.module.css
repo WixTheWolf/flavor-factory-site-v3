@@ -180,10 +180,12 @@
   transition: transform 1.1s cubic-bezier(.2, .9, .2, 1) !important;
 }
 
-.card:hover .media img {
+.card:hover .media img,
+.card:hover .video {
   transform: scale(1.08);
 }
 
+/* Zooms with the photo so the clip fades in without a jump. */
 .video {
   position: absolute;
   inset: 0;
@@ -191,7 +193,7 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity .5s ease;
+  transition: opacity .5s ease, transform 1.1s cubic-bezier(.2, .9, .2, 1);
 }
 
 .videoOn {
