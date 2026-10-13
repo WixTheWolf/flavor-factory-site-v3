@@ -562,3 +562,58 @@
   max-width: 900px;
   margin: 0 0 28px;
 }
+
+/* ── Flavor page actions (AddToTrayButton) ─────────────────── */
+
+.flavor-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+  margin-top: 30px;
+}
+
+.flavor-tray-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 26px;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.flavor-tray-btn:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+.flavor-tray-btn:focus-visible,
+.flavor-request-link:focus-visible {
+  outline: 3px solid #f6c46f;
+  outline-offset: 3px;
+}
+
+.flavor-request-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f6c46f;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.flavor-request-link:hover {
+  color: #ffd58a;
+}
+
+/* Keep the page still behind the open sample tray. */
+.tray-open body {
+  overflow: hidden;
+}

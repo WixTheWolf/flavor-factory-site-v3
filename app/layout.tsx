@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { BotIdClient } from "botid/client";
-import { ShortlistWidget } from "@/components/ShortlistWidget";
+import { SampleTray } from "@/components/SampleTray";
 import { MobileContactBar } from "@/components/MobileContactBar";
 import { CursorGlow } from "@/components/CursorGlow";
 import "./globals.css";
@@ -108,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <ShortlistWidget />
+        <SampleTray />
         <MobileContactBar />
         <CursorGlow />
         <Analytics />

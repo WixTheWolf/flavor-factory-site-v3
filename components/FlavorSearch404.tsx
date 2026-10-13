@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { demoFlavors } from "@/data/demo-flavors";
+import { matchesQuery, searchableText } from "@/lib/filter-flavors";
+import { flavorHref } from "@/lib/flavor-labels";
 
 export function FlavorSearch404() {
   const [query, setQuery] = useState("");
@@ -10,9 +12,7 @@ export function FlavorSearch404() {
     const term = query.trim().toLowerCase();
     if (!term) return [];
 
-    return demoFlavors
-      .filter((flavor) => `${flavor.name} ${flavor.family} ${flavor.notes}`.toLowerCase().includes(term))
-      .slice(0, 5);
+    return demoFlavors.filter((flavor) => matchesQuery(searchableText(flavor), term)).slice(0, 5);
   }, [query]);
 
   return (
@@ -28,7 +28,7 @@ export function FlavorSearch404() {
       {results.length > 0 && (
         <div className="footer-links">
           {results.map((flavor) => (
-            <Link href={`/flavors?search=${encodeURIComponent(flavor.name)}`} key={flavor.id}>
+            <Link href={flavorHref(flavor)} key={flavor.id}>
               {flavor.name}
             </Link>
           ))}

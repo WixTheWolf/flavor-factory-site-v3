@@ -22,28 +22,35 @@ export type Industry = {
 };
 
 export type Flavor = {
+  /** URL slug, unique across the library: /flavors/[familySlug]/[id]. */
   id: string;
   name: string;
   rawNames: string[];
   aliases: string[];
   family: string;
-  format: FlavorFormat;
+  familySlug: string;
+  /** Every format the library lists this flavor in. */
+  formats: FlavorFormat[];
   declarationType: DeclarationType;
+  /** Each label declaration the library lists this flavor under (empty when the name gives none). */
+  declarations: DeclarationType[];
   productTypes: string[];
   strengths: string[];
-  variantCount: number;
+  /** Industries the product name itself points to (toothpaste, cough syrup, popcorn...). */
+  signals: IndustryKey[];
+  /** Signals plus the family's common applications. Drives the application filter. */
   industries: IndustryKey[];
   applications: string[];
-  profile: string[];
   notes: string;
+  /** The library's own note for each format, when it has one. */
+  formatNotes: Partial<Record<FlavorFormat, string>>;
 };
 
 export type FlavorFilters = {
   search: string;
+  /** Family slug, or "All". */
   family: string;
   format: "All" | FlavorFormat;
   declarationType: "All" | DeclarationType;
-  productType: "All" | string;
-  useCase: "All" | string;
   industry: "All" | IndustryKey;
 };

@@ -5,12 +5,19 @@ import { track } from "@vercel/analytics";
 
 const STORAGE_KEY = "tff-shortlist";
 const CHANGE_EVENT = "tff-shortlist-change";
+/** Fired with the added item's name so the sample tray can confirm it. */
+export const ADDED_EVENT = "tff-shortlist-added";
+/** A first sample round stays focused; the brief form can carry more. */
+export const TRAY_LIMIT = 12;
 
 export type ShortlistItem = {
   id: string;
   name: string;
   family: string;
   format: string;
+  /** Swatch color and page link, when the item came from the library. */
+  color?: string;
+  href?: string;
 };
 
 function readStorage(): ShortlistItem[] {
@@ -26,10 +33,10 @@ function readStorage(): ShortlistItem[] {
 function writeStorage(items: ShortlistItem[]) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    window.dispatchEvent(new Event(CHANGE_EVENT));
   } catch {
-    // ignore storage errors
+    // ignore storage errors: the tray still works for this page view
   }
+  window.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
 export function useShortlist() {
@@ -52,26 +59,31 @@ export function useShortlist() {
     };
   }, []);
 
+  /** Adds an item; returns false when the tray is already full. */
   const add = useCallback((item: ShortlistItem) => {
-    setItems((prev) => {
-      if (prev.some((i) => i.id === item.id)) return prev;
-      const next = [...prev, item];
-      writeStorage(next);
-      track("Add to shortlist", { id: item.id, name: item.name, family: item.family });
-      return next;
-    });
+    const current = readStorage();
+    if (current.some((i) => i.id === item.id)) return true;
+    if (current.length >= TRAY_LIMIT) {
+      window.dispatchEvent(new CustomEvent(ADDED_EVENT, { detail: { name: item.name, full: true } }));
+      return false;
+    }
+    const next = [...current, item];
+    setItems(next);
+    writeStorage(next);
+    window.dispatchEvent(new CustomEvent(ADDED_EVENT, { detail: { name: item.name } }));
+    track("Add to shortlist", { id: item.id, name: item.name, family: item.family });
+    return true;
   }, []);
 
   const remove = useCallback((id: string) => {
-    setItems((prev) => {
-      const removed = prev.find((i) => i.id === id);
-      const next = prev.filter((i) => i.id !== id);
-      writeStorage(next);
-      if (removed) {
-        track("Remove from shortlist", { id: removed.id, name: removed.name, family: removed.family });
-      }
-      return next;
-    });
+    const current = readStorage();
+    const removed = current.find((i) => i.id === id);
+    const next = current.filter((i) => i.id !== id);
+    setItems(next);
+    writeStorage(next);
+    if (removed) {
+      track("Remove from shortlist", { id: removed.id, name: removed.name, family: removed.family });
+    }
   }, []);
 
   const clear = useCallback(() => {

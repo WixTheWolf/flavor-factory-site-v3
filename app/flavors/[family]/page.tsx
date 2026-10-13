@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FlavorCard } from "@/components/flavors/FlavorCard";
+import { FlavorTileGrid } from "@/components/flavors/FlavorTile";
+import { toLibraryItem } from "@/lib/flavor-library";
 import { CTA } from "@/components/CTA";
 import { familyMedia, flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-details";
 import { PageHero } from "@/components/PageHero";
@@ -57,7 +58,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
   const detail = getFamilyBySlug(params.family);
   if (!detail) notFound();
 
-  const familyFlavors = demoFlavors.filter((f) => f.family === detail.name);
+  const familyFlavors = demoFlavors.filter((f) => f.familySlug === detail.slug);
   const media = familyMedia(detail.slug);
 
   const breadcrumbSchema = {
@@ -92,7 +93,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
         >
           <dl className="hero-stats">
             <div>
-              <dt>Sample-ready starting points</dt>
+              <dt>Flavors in the library</dt>
               <dd><CountUp value={familyFlavors.length} trigger="load" /></dd>
             </div>
             <div>
@@ -133,20 +134,16 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                 <div>
                   <div className="new-eyebrow">Profiles in This Family</div>
                   <h2 className="section-title">
-                    {familyFlavors.length} {detail.name.toLowerCase()} direction{familyFlavors.length === 1 ? "" : "s"} in the library.
+                    {familyFlavors.length} {detail.name.toLowerCase()} flavor{familyFlavors.length === 1 ? "" : "s"} to start from.
                   </h2>
                 </div>
-                <Link href="/flavors" className="light-btn">
-                  Browse full library
+                <Link href={`/flavors?family=${detail.slug}`} className="light-btn">
+                  Search and filter
                 </Link>
               </div>
 
               {familyFlavors.length > 0 ? (
-                <div className="finder-results-grid">
-                  {familyFlavors.map((flavor) => (
-                    <FlavorCard key={flavor.id} flavor={flavor} />
-                  ))}
-                </div>
+                <FlavorTileGrid flavors={familyFlavors.map(toLibraryItem)} showFamily={false} />
               ) : (
                 <div className="family-empty-state">
                   <p>Custom development in this family is available. Share your target profile and we&apos;ll build a direction around your application.</p>
@@ -164,7 +161,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
               </div>
               <div className="flavor-family-link-grid">
                 {flavorFamilyDetails.map((family) => {
-                  const count = demoFlavors.filter((flavor) => flavor.family === family.name).length;
+                  const count = demoFlavors.filter((flavor) => flavor.familySlug === family.slug).length;
                   return (
                     <Link
                       key={family.slug}
@@ -172,7 +169,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                       className={`flavor-family-link${family.slug === detail.slug ? " is-current" : ""}`}
                     >
                       <span>{family.name}</span>
-                      <small>{count} profile{count === 1 ? "" : "s"}</small>
+                      <small>{count} flavor{count === 1 ? "" : "s"}</small>
                     </Link>
                   );
                 })}

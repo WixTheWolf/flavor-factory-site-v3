@@ -28,7 +28,9 @@ export const metadata: Metadata = {
   },
 };
 import { Footer } from "@/components/layout/Footer";
-import { FlavorFinder } from "@/components/flavors/FlavorFinder";
+import { FlavorLibrary } from "@/components/flavors/FlavorLibrary";
+import { CTA } from "@/components/CTA";
+import { familySummaries, libraryItems } from "@/lib/flavor-library";
 import { siteImages } from "@/data/site-images";
 import { PageHero } from "@/components/PageHero";
 import { TimeOnPageTracker } from "@/components/AnalyticsEvents";
@@ -55,11 +57,18 @@ export default function FlavorsPage() {
           secondaryHref="/industries"
           secondaryLabel="View Industries"
         />
-        <section className="section clean-page">
+        <section className="section clean-page flavor-library-section">
           <div className="container">
-            <FlavorFinder />
+            <FlavorLibrary items={libraryItems()} families={familySummaries()} profileCount={SITE_STATS.flavorProfileCount} />
           </div>
         </section>
+        <CTA
+          eyebrow="Not in the library?"
+          title="Tell us the flavor. We'll build it for your base."
+          copy="The library is a set of starting points. Custom development, flavor matching and reformulation are part of every project, with first samples in 3-5 business days once your brief is confirmed."
+          href="/request-samples"
+          label="Request a Custom Sample"
+        />
       </main>
       <Footer />
     </>

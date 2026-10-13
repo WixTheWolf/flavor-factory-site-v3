@@ -1,3 +1,5 @@
+import type { IndustryKey } from "@/lib/types";
+
 export type FamilyDetail = {
   name: string;
   slug: string;
@@ -145,6 +147,31 @@ export const flavorFamilyDetails: FamilyDetail[] = [
     formats: ["Liquid", "Powder (determined by application)"],
   },
 ];
+
+/**
+ * The industries each family's "Common applications" list points to. The library's
+ * application filter and the industry pages use these, so a flavor only shows up
+ * under an application its family page already names.
+ */
+export const familyUses: Record<string, IndustryKey[]> = {
+  citrus: ["beverage", "confectionery", "bakery", "oral-care"],
+  berry: ["beverage", "confectionery", "dairy", "nutraceutical", "bakery"],
+  tropical: ["beverage", "confectionery", "nutraceutical"],
+  "orchard-fruit": ["beverage", "bakery", "confectionery", "dairy", "nutraceutical"],
+  "stone-fruit": ["beverage", "dairy", "confectionery", "bakery", "nutraceutical"],
+  melons: ["beverage", "confectionery", "dairy"],
+  "vanilla-cream": ["dairy", "bakery", "nutraceutical", "beverage", "confectionery", "oral-care"],
+  "chocolate-brown-notes": ["confectionery", "dairy", "bakery", "beverage", "nutraceutical"],
+  "coffee-beverage": ["beverage", "bakery", "confectionery"],
+  "mint-cooling": ["oral-care", "confectionery", "beverage", "pharmaceutical", "nutraceutical"],
+  "nut-praline": ["bakery", "confectionery", "dairy", "beverage"],
+  "spice-warmth": ["bakery", "beverage", "confectionery", "dairy", "nutraceutical"],
+  "dessert-bakery": ["confectionery", "dairy", "nutraceutical", "beverage", "bakery"],
+  "candy-confectionery": ["confectionery", "beverage"],
+  "savory-culinary": ["popcorn"],
+  "botanical-tea": ["beverage", "confectionery"],
+  "custom-signature": ["nutraceutical", "pharmaceutical", "beverage"],
+};
 
 /** Header photo and clip names for the eight families that share the homepage collection art. */
 const FAMILY_MEDIA: Record<string, string> = {
