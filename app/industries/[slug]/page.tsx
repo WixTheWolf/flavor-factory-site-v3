@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageHero } from "@/components/PageHero";
-import { FlavorCard } from "@/components/flavors/FlavorCard";
+import { FlavorTileGrid } from "@/components/flavors/FlavorTile";
+import { toLibraryItem } from "@/lib/flavor-library";
+import { recommendedByIndustry } from "@/lib/recommendations";
 import { CTA } from "@/components/CTA";
 import { industries } from "@/data/industries";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
@@ -62,9 +64,7 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
   const details = industryDetails[params.slug];
   if (!details) notFound();
 
-  const relatedFlavors = demoFlavors
-    .filter((f) => f.industries.includes(params.slug as IndustryKey))
-    .slice(0, 6);
+  const relatedFlavors = recommendedByIndustry(demoFlavors, params.slug as IndustryKey, 12);
 
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", path: "/" },
@@ -87,27 +87,23 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
       <IndustryViewed industry={params.slug} />
       <Header />
       <main>
+        <PageHero
+          eyebrow={industry.name}
+          title={industry.pressurePoint}
+          copy={industry.summary}
+          image={industry.heroImage}
+          imageAlt={`${industry.name} flavor application`}
+          video={`/video/industries/${industry.key}`}
+          imagePosition="center center"
+          breadcrumbs={[{ label: "All Industries", href: "/industries" }, { label: industry.name }]}
+          primaryHref={`/request-samples?industry=${params.slug}`}
+          primaryLabel={industry.ctaLabel}
+          secondaryHref="/contact"
+          secondaryLabel="Talk to Our Team"
+        />
         <section className="section clean-page">
           <div className="container">
 
-            <nav className="industry-detail-breadcrumb" aria-label="Breadcrumb">
-              <Link href="/industries">All Industries</Link>
-              <span aria-hidden="true">/</span>
-              <span>{industry.name}</span>
-            </nav>
-
-            <PageHero
-              eyebrow={industry.name}
-              title={industry.pressurePoint}
-              copy={industry.summary}
-              image={industry.heroImage}
-              imageAlt={`${industry.name} flavor application`}
-              imagePosition="center center"
-              primaryHref={`/request-samples?industry=${params.slug}`}
-              primaryLabel={industry.ctaLabel}
-              secondaryHref="/contact"
-              secondaryLabel="Talk to Our Team"
-            />
 
             <Reveal>
               <section className="industry-challenges-section">
@@ -141,13 +137,9 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
                       <div className="new-eyebrow">Relevant Profiles</div>
                       <h2 className="section-title">Flavors commonly used in {industry.name.toLowerCase()} applications.</h2>
                     </div>
-                    <Link href="/flavors" className="light-btn">See full library</Link>
+                    <Link href={`/flavors?use=${params.slug}`} className="light-btn">See all {industry.name.toLowerCase()} flavors</Link>
                   </div>
-                  <div className="finder-results-grid">
-                    {relatedFlavors.map((flavor) => (
-                      <FlavorCard key={flavor.id} flavor={flavor} />
-                    ))}
-                  </div>
+                  <FlavorTileGrid flavors={relatedFlavors.map(toLibraryItem)} />
                 </section>
               </Reveal>
             )}

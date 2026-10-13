@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/Hero";
-import { ProofStrip } from "@/components/ProofStrip";
 import { Industries } from "@/components/Industries";
-import { CTA } from "@/components/CTA";
 import { OrganizationSchema } from "@/components/OrganizationSchema";
-import { Reveal } from "@/components/Reveal";
-import { FlavorProblems } from "@/components/FlavorProblems";
-import { BuiltInNorco } from "@/components/BuiltInNorco";
-import { QualitySupport } from "@/components/QualitySupport";
-import { K9sForWarriors } from "@/components/K9sForWarriors";
-import Link from "next/link";
+import { LandingHero } from "@/components/landing/LandingHero";
+import { RequestSection } from "@/components/landing/RequestSection";
+import { WhatWeDo } from "@/components/landing/WhatWeDo";
+import { FlavorFamilies } from "@/components/landing/FlavorFamilies";
+import { FactoryGallery } from "@/components/landing/FactoryGallery";
+import { CertStrip } from "@/components/landing/CertStrip";
+import { FinalCta } from "@/components/landing/FinalCta";
 
 export const metadata: Metadata = {
   title: "Custom Liquid & Powder Flavors",
@@ -72,64 +70,16 @@ export default function HomePage() {
       <OrganizationSchema />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMA) }} />
       <Header />
-      <main className="new-home">
-        <Hero />
-        <Reveal><ProofStrip /></Reveal>
-        <Reveal><FlavorProblems /></Reveal>
-        <Reveal>
-          <section className="new-isolation">
-            <div className="home-shell new-isolation-centered">
-              <p className="pull-quote">Most flavor houses develop for the tasting strip. We develop for the finished product.</p>
-            </div>
-          </section>
-        </Reveal>
+      <main className="new-home landing">
+        {/* Order: request samples first, then what we do and offer, then proof. */}
+        <LandingHero />
+        <RequestSection />
+        <WhatWeDo />
+        <FlavorFamilies />
         <Industries />
-        <Reveal>
-          <section className="new-section home-accountability-section">
-            <div className="home-shell home-accountability-inner">
-              <div>
-                <div className="new-eyebrow">One Team, One Facility</div>
-                <h2>Small-team accountability. Real manufacturing capability.</h2>
-                <ul className="home-accountability-proofs">
-                  <li>In-house development and production</li>
-                  <li>Direct communication with the team</li>
-                  <li>Cleaner handoff from sample to scale</li>
-                </ul>
-              </div>
-              <div>
-                <p>
-                  Development, production, quality, and customer communication happen under one roof in Norco, CA. The people who understand the sample also understand how it gets made.
-                </p>
-                <p>Send us the application, base, target profile, and label goals. We will help you find the right starting point.</p>
-                <Link className="cta-btn" href="/request-samples">Request a Custom Sample</Link>
-              </div>
-            </div>
-          </section>
-        </Reveal>
-        <Reveal>
-          <section className="new-section home-facility-section">
-            <div className="home-shell">
-              <BuiltInNorco />
-            </div>
-          </section>
-        </Reveal>
-        <Reveal>
-          <section className="new-who-section">
-            <div className="home-shell">
-              <p className="new-who-headline">Built for teams who need flavors that work in the real product.</p>
-              <ul className="new-who-list">
-                <li>Food and beverage brands developing new products</li>
-                <li>Co-packers and manufacturers needing reliable flavor supply</li>
-                <li>R&amp;D teams matching or improving an existing profile</li>
-                <li>Startups moving from prototype to first production run</li>
-                <li>Established brands needing faster sample turnaround</li>
-              </ul>
-            </div>
-          </section>
-        </Reveal>
-        <Reveal><QualitySupport /></Reveal>
-        <Reveal><K9sForWarriors /></Reveal>
-        <Reveal><CTA /></Reveal>
+        <FactoryGallery />
+        <CertStrip />
+        <FinalCta />
       </main>
       <Footer />
     </>

@@ -97,20 +97,21 @@ export default function ProcessPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
+        <PageHero
+          eyebrow="Process"
+          title="Specifics shape"
+          accent="faster samples."
+          copy="The more detail you share, the fewer iterations you need. Here's the conversation that gets you to approval quickly."
+          image={siteImages.processHero}
+          imageAlt="Warehouse aisle with blue drums and stacked ingredient sacks at The Flavor Factory in Norco"
+          primaryHref="/request-samples"
+          primaryLabel="Request a Custom Sample"
+          secondaryHref="/contact"
+          secondaryLabel="Talk to Our Team"
+          imagePosition="55% center"
+        />
         <section className="section clean-page">
           <div className="container">
-            <PageHero
-              eyebrow="Process"
-              title="Specifics shape faster samples."
-              copy="The more detail you share, the fewer iterations you need. Here's the conversation that gets you to approval quickly."
-              image={siteImages.processHero}
-              imageAlt="Stainless steel production vessel with amber flavor liquid visible through the porthole"
-              primaryHref="/request-samples"
-              primaryLabel="Request a Custom Sample"
-              secondaryHref="/contact"
-              secondaryLabel="Talk to Our Team"
-              imagePosition="55% center"
-            />
 
             <section className="process-customer-section">
               <div className="section-head">

@@ -1,0 +1,192 @@
+.card {
+  position: relative;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid rgba(18, 56, 47, .1);
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 0 34px 90px rgba(13, 43, 37, .16);
+  color: #111;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  margin-bottom: 18px;
+}
+
+.title {
+  margin: 0;
+  color: #0d2b25;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -.01em;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(240, 179, 90, .18);
+  color: #8a5514;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.grid :global(.form-field) > span small,
+.formats legend small {
+  color: rgba(17, 17, 17, .64);
+  font-weight: 600;
+}
+
+.textarea {
+  min-height: 92px;
+}
+
+.formats {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.formats legend {
+  margin-bottom: 8px;
+  color: rgba(26, 22, 20, .68);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.formats > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.formats label {
+  position: relative;
+  cursor: pointer;
+}
+
+.formats input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.formats span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1.5px solid rgba(18, 56, 47, .16);
+  border-radius: 999px;
+  background: #fff;
+  color: #24362f;
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.formats label:hover span {
+  border-color: rgba(18, 56, 47, .4);
+}
+
+.formats input:focus-visible + span {
+  outline: 3px solid rgba(240, 179, 90, .7);
+  outline-offset: 2px;
+}
+
+.formats input:checked + span {
+  border-color: #12382f;
+  background: #12382f;
+  color: #fff;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.card :global(.form-error) {
+  margin: 12px 0 0;
+  border-radius: 14px;
+}
+
+.foot {
+  margin: 14px 0 0;
+  color: rgba(17, 17, 17, .6);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.foot a,
+.card :global(.form-error) a {
+  color: #12382f;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.doneIcon {
+  color: #2f8f6b;
+}
+
+.card[role="status"]:focus {
+  outline: none;
+}
+
+.card[role="status"] .title {
+  margin-top: 14px;
+}
+
+.lede {
+  margin: 10px 0 0;
+  color: #3d4a44;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  color: #12382f;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    border-radius: 22px;
+  }
+}

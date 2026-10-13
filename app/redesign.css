@@ -1,0 +1,620 @@
+/* Redesign layer. Loaded after globals.css so these rules win without !important. */
+
+:root {
+  --gold-grad: linear-gradient(135deg, #ffd58a 0%, #f0b35a 48%, #e0953e 100%);
+  --ink-green: #0b231e;
+}
+
+/* ── Primary sample button ─────────────────────────────────── */
+
+.btn-gold {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gold-grad);
+  box-shadow: 0 14px 34px rgba(224, 149, 62, .32), inset 0 1px 0 rgba(255, 255, 255, .45);
+  color: #0d2b25;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .005em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.2, .9, .2, 1), box-shadow .25s ease;
+}
+
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .55) 50%, transparent 70%);
+  transform: translateX(-120%);
+}
+
+.btn-gold svg {
+  transition: transform .25s cubic-bezier(.2, .9, .2, 1);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px rgba(224, 149, 62, .42), inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.btn-gold:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-gold:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #0d2b25;
+}
+
+.btn-gold:disabled {
+  cursor: wait;
+  opacity: .7;
+  transform: none;
+}
+
+.btn-lg {
+  min-height: 58px;
+  padding: 0 32px;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn-gold:hover::after {
+    transition: transform .8s ease;
+    transform: translateX(120%);
+  }
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+
+.site-header {
+  transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+.site-header .header-row {
+  transition: min-height .35s ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 10px 30px rgba(13, 43, 37, .08);
+}
+
+.site-header.is-scrolled .header-row {
+  min-height: 72px;
+}
+
+.site-header .header-actions .btn-gold {
+  min-height: 44px;
+  padding: 0 20px;
+}
+
+/* Home: the header floats over the hero until the page scrolls. */
+.site-header.is-home {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.site-header.is-home.is-top:not(.is-open) {
+  border-bottom-color: transparent;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.site-header.is-home.is-top:not(.is-open) .logo-svg {
+  filter: brightness(0) invert(1);
+}
+
+.site-header.is-home.is-top:not(.is-open) .nav a {
+  color: rgba(255, 255, 255, .82);
+}
+
+.site-header.is-home.is-top:not(.is-open) .nav a:hover {
+  color: #fff;
+}
+
+.site-header.is-home.is-top:not(.is-open) .mobile-toggle {
+  border-color: rgba(255, 255, 255, .3);
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+}
+
+.logo-svg {
+  transition: filter .35s ease;
+}
+
+/* ── Mobile sticky bar ─────────────────────────────────────── */
+
+@media (max-width: 980px) {
+  .mobile-contact-bar {
+    background: #0d2b25;
+  }
+
+  .mobile-contact-bar a:first-child {
+    background: var(--gold-grad);
+    color: #0d2b25;
+  }
+
+  .mobile-contact-bar a + a {
+    border-left: 0;
+  }
+
+  .mobile-contact-bar {
+    transition: transform .3s cubic-bezier(.2, .9, .2, 1), opacity .3s ease;
+  }
+
+  .mobile-contact-bar.is-tucked {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(100% + 16px));
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header .header-actions .btn-gold {
+    display: none;
+  }
+}
+
+/* ── Email fallbacks (address, copy, Gmail, Outlook) ───────── */
+
+.email-fallbacks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.email-fallbacks .email-fallbacks-address {
+  font-weight: 700;
+  letter-spacing: .005em;
+  text-decoration-color: transparent;
+  opacity: 1;
+}
+
+.email-fallbacks .email-fallbacks-address:hover {
+  text-decoration-color: currentColor;
+}
+
+.email-fallbacks button,
+.email-fallbacks a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  opacity: .82;
+}
+
+.email-fallbacks button:hover,
+.email-fallbacks a:hover {
+  opacity: 1;
+}
+
+.email-fallbacks--dark {
+  color: rgba(255, 255, 255, .92);
+}
+
+.email-fallbacks--dark .email-fallbacks-address {
+  color: #fff;
+}
+
+.email-fallbacks--light {
+  color: #12382f;
+}
+
+/* ── Contact page quick request ────────────────────────────── */
+
+.contact-quick {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  margin-top: 48px;
+  scroll-margin-top: 110px;
+}
+
+.contact-quick-copy h2 {
+  margin: 12px 0 0;
+  color: #0d2b25;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.015em;
+}
+
+.contact-quick-copy p {
+  margin: 14px 0 0;
+  color: #3d4a44;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .contact-quick {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Scroll reveal (components/Reveal.tsx) ─────────────────── */
+
+/* Pure CSS: no JS, nothing hidden before hydration. Unsupported browsers show content in place. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; translate: 0 20px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Utilities ─────────────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Homepage refinements for existing sections ────────────── */
+
+.landing .new-section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
+
+.landing .new-industry-image {
+  overflow: hidden;
+}
+
+.landing .new-industry-image img {
+  transition: transform 1s cubic-bezier(.2, .9, .2, 1) !important;
+}
+
+.landing .new-industry-card:hover .new-industry-image img {
+  transform: scale(1.07);
+}
+
+.landing .new-industry-card h3 {
+  transition: color .25s ease;
+}
+
+.landing .new-industry-card:hover h3 {
+  color: #c9852c;
+}
+
+@media (max-width: 640px) {
+  .landing .new-industry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+  }
+
+  .landing .new-industry-image {
+    height: 128px;
+  }
+
+  .landing .new-industry-card h3 {
+    font-size: .95rem;
+  }
+}
+
+/* Shared inner-page CTA (components/CTA.tsx): gold button with phone and email underneath. */
+.new-final-cta-actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex-shrink: 0;
+  justify-items: center;
+  gap: 12px;
+}
+
+.new-final-cta .new-final-cta-alt {
+  max-width: 300px;
+  margin: 0;
+  color: rgba(255, 255, 255, .78);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.new-final-cta-alt a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .new-final-cta-actions {
+    width: 100%;
+  }
+
+  .new-final-cta-inner .btn-gold {
+    width: 100%;
+  }
+}
+
+/* ── Headline word reveal (components/RevealWords.tsx) ────────── */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-word {
+      display: inline-block;
+      animation: word-rise linear both;
+      animation-timeline: view();
+      animation-range: cover calc(4% + var(--i, 0) * 1.4%) cover calc(20% + var(--i, 0) * 1.4%);
+    }
+
+    .reveal-em {
+      animation: word-fade linear both;
+      animation-timeline: view();
+      animation-range: cover calc(6% + var(--i, 0) * 1.4%) cover calc(26% + var(--i, 0) * 1.4%);
+    }
+  }
+}
+
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(.5em); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes word-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Count-up numbers (components/CountUp.tsx) ─────────────────── */
+
+@property --count {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.count-up-anim {
+  display: none;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .count-up-static {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+
+    .count-up-anim {
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+      counter-reset: count var(--count);
+      animation: count-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+
+    .count-up--load .count-up-anim {
+      animation: count-up 1.6s cubic-bezier(.2, .9, .2, 1) .35s both;
+      animation-timeline: auto;
+    }
+
+    .count-up-anim::after {
+      content: counter(count);
+    }
+  }
+}
+
+@keyframes count-up {
+  from { --count: 0; }
+  to { --count: var(--to); }
+}
+
+/* ── Cursor glow on dark sections (components/CursorGlow.tsx) ──── */
+
+.glow-zone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(560px circle at var(--gx, 50%) var(--gy, 50%), rgba(246, 196, 111, .13), rgba(246, 196, 111, 0) 60%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+
+.glow-zone.is-glowing::after {
+  opacity: 1;
+}
+
+/* ── Film grain on dark sections ───────────────────────────────── */
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("/textures/grain.webp") repeat;
+  background-size: 180px 180px;
+  mix-blend-mode: overlay;
+  opacity: .1;
+}
+
+/* ── Page fade-in on navigation (app/template.tsx) ─────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    animation: page-enter .5s cubic-bezier(.2, .9, .2, 1) both;
+  }
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Hover clips on homepage industry cards (components/HoverClip.tsx) */
+
+.hover-clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .5s ease, transform 1s cubic-bezier(.2, .9, .2, 1);
+}
+
+.hover-clip.is-playing {
+  opacity: 1;
+}
+
+.landing .new-industry-image {
+  position: relative;
+}
+
+.landing .new-industry-card:hover .hover-clip {
+  transform: scale(1.07);
+}
+
+/* ── Flavor family header stats ────────────────────────────────── */
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 30px 0 0;
+}
+
+.hero-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 4px;
+  min-width: 150px;
+  padding: 14px 18px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(10px);
+}
+
+.hero-stats dt {
+  color: rgba(255, 255, 255, .72);
+  font-size: 13px;
+}
+
+.hero-stats dd {
+  margin: 0;
+  color: #f6c46f;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.family-formulator-note--lead {
+  max-width: 900px;
+  margin: 0 0 28px;
+}
+
+/* ── Flavor page actions (AddToTrayButton) ─────────────────── */
+
+.flavor-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+  margin-top: 30px;
+}
+
+.flavor-tray-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 26px;
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.flavor-tray-btn:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+.flavor-tray-btn:focus-visible,
+.flavor-request-link:focus-visible {
+  outline: 3px solid #f6c46f;
+  outline-offset: 3px;
+}
+
+.flavor-request-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f6c46f;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.flavor-request-link:hover {
+  color: #ffd58a;
+}
+
+/* Keep the page still behind the open sample tray. */
+.tray-open body,
+.film-open body {
+  overflow: hidden;
+}

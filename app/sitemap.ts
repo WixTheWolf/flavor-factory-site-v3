@@ -4,6 +4,8 @@ import { flavorFamilyDetails } from "@/data/flavor-family-details";
 import { articles } from "@/data/insights";
 import { caseStudies } from "@/data/case-studies";
 import { servicePages } from "@/data/service-pages";
+import { demoFlavors } from "@/data/demo-flavors";
+import { flavorHref } from "@/lib/flavor-library";
 
 const BASE = "https://www.flavorfactory.net";
 
@@ -65,5 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticRoutes, ...industryRoutes, ...familyRoutes, ...insightsIndex, ...insightsRoutes, ...caseStudyRoutes, ...serviceRoutes];
+  const flavorRoutes: MetadataRoute.Sitemap = demoFlavors.map((flavor) => ({
+    url: `${BASE}${flavorHref(flavor)}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...industryRoutes, ...familyRoutes, ...flavorRoutes, ...insightsIndex, ...insightsRoutes, ...caseStudyRoutes, ...serviceRoutes];
 }

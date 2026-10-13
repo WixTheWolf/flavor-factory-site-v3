@@ -4,12 +4,13 @@ import type { ReactNode } from "react";
 type Props = {
   href?: string;
   children: ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "gold";
   className?: string;
 };
 
 export function Button({ href, children, variant = "primary", className = "" }: Props) {
-  const classes = `${variant === "primary" ? "cta-btn" : "light-btn"} ${className}`.trim();
+  const base = variant === "gold" ? "btn-gold" : variant === "primary" ? "cta-btn" : "light-btn";
+  const classes = `${base} ${className}`.trim();
 
   if (href) {
     return <Link href={href} className={classes}>{children}</Link>;

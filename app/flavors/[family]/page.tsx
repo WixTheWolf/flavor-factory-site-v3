@@ -3,9 +3,12 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FlavorCard } from "@/components/flavors/FlavorCard";
+import { FlavorTileGrid } from "@/components/flavors/FlavorTile";
+import { toLibraryItem } from "@/lib/flavor-library";
 import { CTA } from "@/components/CTA";
-import { flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-details";
+import { familyMedia, flavorFamilyDetails, getFamilyBySlug } from "@/data/flavor-family-details";
+import { PageHero } from "@/components/PageHero";
+import { CountUp } from "@/components/CountUp";
 import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { demoFlavors } from "@/data/demo-flavors";
 
@@ -55,7 +58,8 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
   const detail = getFamilyBySlug(params.family);
   if (!detail) notFound();
 
-  const familyFlavors = demoFlavors.filter((f) => f.family === detail.name);
+  const familyFlavors = demoFlavors.filter((f) => f.familySlug === detail.slug);
+  const media = familyMedia(detail.slug);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -72,38 +76,39 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main>
+        <PageHero
+          layout="card"
+          eyebrow="Flavor Family"
+          title={detail.name}
+          accent="Flavors"
+          copy={detail.intro}
+          image={media.image}
+          imageAlt={`${detail.name} flavor ingredients`}
+          video={media.video}
+          primaryHref="/request-samples"
+          primaryLabel={`Request ${detail.name} Samples`}
+          secondaryHref="/flavors"
+          secondaryLabel="Browse full library"
+          breadcrumbs={[{ label: "All Flavors", href: "/flavors" }, { label: detail.name }]}
+        >
+          <dl className="hero-stats">
+            <div>
+              <dt>Flavors in the library</dt>
+              <dd><CountUp value={familyFlavors.length} trigger="load" /></dd>
+            </div>
+            <div>
+              <dt>Format directions</dt>
+              <dd><CountUp value={detail.formats.length} trigger="load" /></dd>
+            </div>
+          </dl>
+        </PageHero>
         <section className="section clean-page">
           <div className="container">
-
-            <nav className="industry-detail-breadcrumb" aria-label="Breadcrumb">
-              <Link href="/flavors">All Flavors</Link>
-              <span aria-hidden="true">/</span>
-              <span>{detail.name}</span>
-            </nav>
-
-            <Reveal><div className="family-hero-layout">
-              <div className="family-hero-panel">
-                <div className="new-eyebrow">Flavor Family</div>
-                <h1 className="family-hero-title">{detail.name} Flavors</h1>
-                <p className="family-hero-intro">{detail.intro}</p>
-                {detail.formulatorNote && (
-                  <p className="family-formulator-note">
-                    <strong>Formulator note:</strong> {detail.formulatorNote}
-                  </p>
-                )}
-              </div>
-              <aside className="family-summary-panel" aria-label={`${detail.name} family summary`}>
-                <div>
-                  <strong>{familyFlavors.length}</strong>
-                  <span>sample-ready starting points</span>
-                </div>
-                <div>
-                  <strong>{detail.formats.length}</strong>
-                  <span>available format directions</span>
-                </div>
-                <Link href="/request-samples" className="cta-btn">Request a Custom Sample</Link>
-              </aside>
-            </div></Reveal>
+            {detail.formulatorNote && (
+              <p className="family-formulator-note family-formulator-note--lead">
+                <strong>Formulator note:</strong> {detail.formulatorNote}
+              </p>
+            )}
 
             <Reveal><div className="family-meta-strip">
               <div className="family-meta-block">
@@ -129,20 +134,16 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                 <div>
                   <div className="new-eyebrow">Profiles in This Family</div>
                   <h2 className="section-title">
-                    {familyFlavors.length} {detail.name.toLowerCase()} direction{familyFlavors.length === 1 ? "" : "s"} in the library.
+                    {familyFlavors.length} {detail.name.toLowerCase()} flavor{familyFlavors.length === 1 ? "" : "s"} to start from.
                   </h2>
                 </div>
-                <Link href="/flavors" className="light-btn">
-                  Browse full library
+                <Link href={`/flavors?family=${detail.slug}`} className="light-btn">
+                  Search and filter
                 </Link>
               </div>
 
               {familyFlavors.length > 0 ? (
-                <div className="finder-results-grid">
-                  {familyFlavors.map((flavor) => (
-                    <FlavorCard key={flavor.id} flavor={flavor} />
-                  ))}
-                </div>
+                <FlavorTileGrid flavors={familyFlavors.map(toLibraryItem)} showFamily={false} />
               ) : (
                 <div className="family-empty-state">
                   <p>Custom development in this family is available. Share your target profile and we&apos;ll build a direction around your application.</p>
@@ -160,7 +161,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
               </div>
               <div className="flavor-family-link-grid">
                 {flavorFamilyDetails.map((family) => {
-                  const count = demoFlavors.filter((flavor) => flavor.family === family.name).length;
+                  const count = demoFlavors.filter((flavor) => flavor.familySlug === family.slug).length;
                   return (
                     <Link
                       key={family.slug}
@@ -168,7 +169,7 @@ export default function FlavorFamilyPage({ params }: { params: { family: string 
                       className={`flavor-family-link${family.slug === detail.slug ? " is-current" : ""}`}
                     >
                       <span>{family.name}</span>
-                      <small>{count} profile{count === 1 ? "" : "s"}</small>
+                      <small>{count} flavor{count === 1 ? "" : "s"}</small>
                     </Link>
                   );
                 })}

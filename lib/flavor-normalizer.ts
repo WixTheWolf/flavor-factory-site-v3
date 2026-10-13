@@ -1,5 +1,6 @@
 import { rawFlavorProducts } from "@/data/raw-flavor-products";
 import { flavorNotes } from "@/data/flavor-notes";
+import { familySlug, familyUses } from "@/data/flavor-family-details";
 import type { DeclarationType, Flavor, FlavorFormat, IndustryKey } from "@/lib/types";
 
 const declarationMatchers: Array<{ type: DeclarationType; patterns: RegExp[] }> = [
@@ -20,8 +21,8 @@ const productTypeMatchers = [
 ] as const;
 
 const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
-  { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
-  { family: "Savory & Culinary", patterns: [/POPCORN|KETTLE CORN|CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|ONION|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO|SRIRACHA|TERIYAKI|MUSTARD|BUFFALO|PICKLE|TRUFFLE/i] },
+  { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|\bMATCH\b|SIGNATURE|MEDICATED|PEDIATRIC/i] },
+  { family: "Savory & Culinary", patterns: [/POPCORN|KETTLE CORN|CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|ONION|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO|SRIRACHA|TERIYAKI|MUSTARD|BUFFALO|PICKLE|TRUFFLE|CHIPOTLE/i] },
   { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION|COLA BOTTLE|ROOT BEER FLOAT/i] },
   { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|WINTERGREEN|COOL|MOUTH ?WASH/i] },
   { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH|GINGER BEER|HORCHATA|LEMONADE|SPORTS DRINK|ICED TEA/i] },
@@ -32,17 +33,17 @@ const familyMatchers: Array<{ family: string; patterns: RegExp[] }> = [
   { family: "Orchard Fruit", patterns: [/APPLE|PEAR/i] },
   { family: "Stone Fruit", patterns: [/PEACH|APRICOT|PLUM|CHERRY|NECTARINE|FIG/i] },
   { family: "Melons", patterns: [/WATERMELON|CANTALOUPE|HONEYDEW|MELON/i] },
-  { family: "Vanilla & Cream", patterns: [/VANILLA|VANILLIN|CREAM|YOGURT|CUSTARD|CHEESECAKE|BAVARIAN|COOKIES/i] },
-  { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE|BUTTERSCOTCH|TOFFEE|BROWNIE|HONEY/i] },
+  { family: "Vanilla & Cream", patterns: [/VANILLA|VANILLIN|CREAM|YOGURT|CUSTARD|CHEESECAKE|BAVARIAN|COOKIES|CREME BRULEE|EGGNOG|RICE PUDDING/i] },
+  { family: "Chocolate & Brown Notes", patterns: [/CHOCOLATE|COCOA|MOCHA|CARAMEL|BROWN SUGAR|MAPLE|BUTTERSCOTCH|TOFFEE|BROWNIE|HONEY|DULCE DE LECHE/i] },
   { family: "Coffee & Beverage", patterns: [/COFFEE|ESPRESSO|COLD BREW|COLA|SODA|ROOT BEER|ENERGY DRINK|PUNCH|GINGER BEER|HORCHATA/i] },
   { family: "Mint & Cooling", patterns: [/MINT|PEPPERMINT|SPEARMINT|WINTERGREEN|COOL|MOUTH ?WASH/i] },
   { family: "Nut & Praline", patterns: [/ALMOND|HAZELNUT|PECAN|PEANUT|PISTACHIO|PRALINE|WALNUT|MACADAMIA|SESAME|NUT/i] },
-  { family: "Spice & Warmth", patterns: [/CINNAMON|SPICE|GINGER|CLOVE|CHAI/i] },
-  { family: "Dessert & Bakery", patterns: [/MARSHMALLOW|BAKERY|PANCAKE|BUTTER|COOKIE|TIRAMISU|RED VELVET|BIRTHDAY CAKE/i] },
+  { family: "Spice & Warmth", patterns: [/CINNAMON|SPICE|GINGER|CLOVE|CHAI|CARDAMOM|NUTMEG/i] },
+  { family: "Dessert & Bakery", patterns: [/MARSHMALLOW|BAKERY|PANCAKE|BUTTER|COOKIE|TIRAMISU|RED VELVET|BIRTHDAY CAKE|CHURRO|FRENCH TOAST|SNICKERDOODLE/i] },
   { family: "Candy & Confectionery", patterns: [/GUMMY|COTTON CANDY|BUBBLE GUM|BLUE RASPBERRY|SOUR|CANDY|CONFECTION/i] },
   { family: "Savory & Culinary", patterns: [/CHICKEN|BEEF|BBQ|RANCH|TOMATO|SAVORY|BROTH|GARLIC|JALAPENO|CHEDDAR|CHEESE|NACHO|BASIL|WASABI|PAPRIKA|MISO/i] },
   { family: "Botanical & Tea", patterns: [/TEA|MATCHA|BOTANICAL|HERBAL|HIBISCUS|LAVENDER|JASMINE|ROSE|ELDERFLOWER|CITRUS PEEL/i] },
-  { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|MATCH|SIGNATURE/i] },
+  { family: "Custom & Signature", patterns: [/MASKING|CUSTOM|\bMATCH\b|SIGNATURE/i] },
 ];
 
 const familyNotes: Record<string, string> = {
@@ -145,7 +146,7 @@ function getAliases(displayName: string, rawNames: string[], family: string, app
   if (/syrup|cola|soda|punch|beverage|lemonade|cold brew|espresso|tea|ginger beer|horchata/.test(source)) aliases.add("beverage");
   if (/gummy/.test(source)) aliases.add("gummy");
   if (/popcorn|kettle corn|cheddar/.test(source)) aliases.add("popcorn");
-  if (/masking|custom|match|signature/.test(source)) aliases.add("custom");
+  if (/masking|custom|\bmatch\b|signature/.test(source)) aliases.add("custom");
   if (/protein|vitamin|electrolyte|nutraceutical/.test(source)) aliases.add("functional");
 
   return [...aliases];
@@ -157,7 +158,7 @@ function getFamily(raw: string, displayName: string) {
   return match?.family ?? "Other";
 }
 
-function getUseCases(raw: string, family: string, format: FlavorFormat) {
+function getUseCases(raw: string, family: string) {
   const source = `${raw} ${family}`.toLowerCase();
   const industries = new Set<IndustryKey>();
   const applications = new Set<string>();
@@ -202,9 +203,6 @@ function getUseCases(raw: string, family: string, format: FlavorFormat) {
     applications.add("Savory");
   }
 
-  if (industries.size === 0) industries.add(format === "Powder" ? "nutraceutical" : "bakery");
-  if (applications.size === 0) applications.add(format === "Powder" ? "Powder Blend" : "Beverage");
-
   return { industries: [...industries], applications: [...applications] };
 }
 
@@ -215,7 +213,7 @@ function parseRawFlavor(rawName: string): ParsedFlavor {
   const strength = getStrength(rawName);
   const displayName = cleanDisplayName(rawName);
   const family = getFamily(rawName, displayName);
-  const { industries, applications } = getUseCases(rawName, family, format);
+  const { industries, applications } = getUseCases(rawName, family);
 
   return { rawName, displayName, family, format, declarationType, productType, strength, industries, applications };
 }
@@ -224,51 +222,57 @@ function slugify(input: string) {
   return input.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+const FORMAT_ORDER: FlavorFormat[] = ["Liquid", "Powder"];
+
 export function buildFlavorCatalog(rawRows: readonly string[] = rawFlavorProducts): Flavor[] {
   const parsed = rawRows.map(parseRawFlavor);
   const grouped = new Map<string, ParsedFlavor[]>();
 
+  // One entry per flavor and family; its liquid and powder versions are formats of the same flavor.
   for (const item of parsed) {
     const normalizedName = normalizeGroupingName(item.displayName) || item.displayName.toLowerCase();
-    const key = `${normalizedName}|${item.family}|${item.format}`;
+    const key = `${normalizedName}|${item.family}`;
     grouped.set(key, [...(grouped.get(key) ?? []), item]);
   }
 
   return [...grouped.entries()].map(([key, variants]) => {
-    const [, family, format] = key.split("|");
+    const [, family] = key.split("|");
+    const slugOfFamily = familySlug(family);
     const name = variants
       .map((v) => v.displayName)
       .sort((a, b) => a.length - b.length)[0];
+    const id = slugify(name);
+    const formats = FORMAT_ORDER.filter((format) => variants.some((v) => v.format === format));
     const declarationSet = new Set(variants.map((item) => item.declarationType));
     const declarationType = declarationSet.size === 1 ? variants[0].declarationType : "Mixed";
     const productTypes = [...new Set(variants.map((item) => item.productType))];
     const strengths = [...new Set(variants.map((item) => item.strength).filter(Boolean) as string[])];
-    const industries = [...new Set(variants.flatMap((item) => item.industries))] as IndustryKey[];
+    const signals = [...new Set(variants.flatMap((item) => item.industries))] as IndustryKey[];
+    const industries = [...new Set([...signals, ...(familyUses[slugOfFamily] ?? [])])] as IndustryKey[];
     const applications = [...new Set(variants.flatMap((item) => item.applications))];
-    const curatedApplications = applications.slice(0, 3);
-    const curatedIndustries = industries.slice(0, 3) as IndustryKey[];
+    const formatNotes: Partial<Record<FlavorFormat, string>> = {};
+    for (const format of formats) {
+      const note = flavorNotes[slugify(`${name}-${format}`)];
+      if (note) formatNotes[format] = note;
+    }
 
     return {
-      id: slugify(`${name}-${format}`),
+      id,
       name,
       family,
-      format: format as FlavorFormat,
+      familySlug: slugOfFamily,
+      formats,
       declarationType,
+      declarations: [...declarationSet].filter((item) => item !== "Mixed"),
       productTypes,
       strengths,
-      industries: curatedIndustries,
-      applications: curatedApplications,
+      signals,
+      industries,
+      applications,
       rawNames: variants.map((item) => item.rawName),
-      aliases: getAliases(name, variants.map((item) => item.rawName), family, curatedApplications),
-      variantCount: variants.length,
-      profile: [
-        family.toLowerCase(),
-        format.toLowerCase(),
-        declarationType.toLowerCase(),
-        ...productTypes.map((p) => p.toLowerCase()),
-        ...curatedApplications.map((item) => item.toLowerCase()),
-      ].slice(0, 8),
-      notes: flavorNotes[slugify(`${name}-${format}`)] ?? familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
+      aliases: getAliases(name, variants.map((item) => item.rawName), family, applications),
+      notes: formatNotes[formats[0]] ?? familyNotes[family] ?? "Representative profile with custom variants available for the target application.",
+      formatNotes,
     } satisfies Flavor;
   }).sort((a, b) => a.name.localeCompare(b.name));
 }

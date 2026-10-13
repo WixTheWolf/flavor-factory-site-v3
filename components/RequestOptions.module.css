@@ -1,0 +1,81 @@
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 6px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .12);
+  backdrop-filter: blur(12px);
+}
+
+.tab {
+  display: grid;
+  gap: 2px;
+  min-height: 58px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 15px;
+  background: transparent;
+  color: rgba(255, 255, 255, .86);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+.tab strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tab small {
+  font-size: 12px;
+  opacity: .78;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, .1);
+}
+
+.tab[aria-selected="true"] {
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+  color: #0d2b25;
+}
+
+.tab:focus-visible {
+  outline: 3px solid #f0b35a;
+  outline-offset: 2px;
+}
+
+/* The detailed form keeps the white card it had before. */
+.detailedPanel {
+  padding: clamp(24px, 3.4vw, 44px);
+  border: 1px solid rgba(18, 56, 47, .08);
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 40px 100px rgba(13, 43, 37, .14);
+}
+
+.detailedPanel > form > ol:first-of-type {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .tab {
+    min-height: 54px;
+    padding: 9px 10px;
+  }
+
+  .tab strong {
+    font-size: 14px;
+  }
+
+  .tab small {
+    font-size: 11px;
+  }
+
+  .detailedPanel {
+    border-radius: 22px;
+  }
+}
