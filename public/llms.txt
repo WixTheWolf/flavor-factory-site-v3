@@ -79,7 +79,7 @@ B2B customers including:
 4. Low minimums support brands from pilot scale through full commercial production
 5. 3–5 business day first sample turnaround
 6. 60+ years of combined flavor industry experience across the team
-7. 224+ common flavor profiles available as starting points; custom development for anything else
+7. 220+ library flavors (many in both liquid and powder) available as starting points; custom development for anything else
 8. "Good on the Bench Is Not Good Enough" — flavors are developed around the finished product, not the sample cup
 
 ## Process
@@ -95,7 +95,7 @@ B2B customers including:
 ## Key Pages
 
 - Homepage: https://www.flavorfactory.net
-- Flavor Library (224+ profiles): https://www.flavorfactory.net/flavors
+- Flavor Library (220+ flavors, each with its own page at /flavors/[family]/[flavor]): https://www.flavorfactory.net/flavors
 - Supplier Resources: https://www.flavorfactory.net/resources
 - Capabilities: https://www.flavorfactory.net/capabilities
 - Process: https://www.flavorfactory.net/process

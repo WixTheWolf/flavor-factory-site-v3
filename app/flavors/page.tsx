@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { SITE_STATS } from "@/data/site-stats";
 
-const flavorLibraryDescription = `Browse ${SITE_STATS.flavorProfileCount}+ liquid and powder flavor profiles across ${SITE_STATS.flavorFamilyCount} families. Filter by format, declaration, and industry. Custom development available for any direction.`;
+const flavorLibraryDescription = `Browse ${SITE_STATS.flavorCount}+ liquid and powder flavors across ${SITE_STATS.flavorFamilyCount} families. Filter by format, label, and application. Custom development available for any direction.`;
 
 export const metadata: Metadata = {
   title: "Flavor Library",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: flavorLibraryDescription,
     images: [
       {
-        url: `/og?title=Flavor+Library&description=${SITE_STATS.flavorProfileCount}%2B+profiles+across+${SITE_STATS.flavorFamilyCount}+families`,
+        url: `/og?title=Flavor+Library&description=${SITE_STATS.flavorCount}%2B+flavors+across+${SITE_STATS.flavorFamilyCount}+families`,
         width: 1200,
         height: 630,
         alt: "The Flavor Factory flavor library",
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Flavor Library | The Flavor Factory",
-    description: `Browse ${SITE_STATS.flavorProfileCount}+ liquid and powder flavor profiles across ${SITE_STATS.flavorFamilyCount} families. Custom development available.`,
-    images: [`/og?title=Flavor+Library&description=${SITE_STATS.flavorProfileCount}%2B+profiles+across+${SITE_STATS.flavorFamilyCount}+families`],
+    description: `Browse ${SITE_STATS.flavorCount}+ liquid and powder flavors across ${SITE_STATS.flavorFamilyCount} families. Custom development available.`,
+    images: [`/og?title=Flavor+Library&description=${SITE_STATS.flavorCount}%2B+flavors+across+${SITE_STATS.flavorFamilyCount}+families`],
   },
 };
 import { Footer } from "@/components/layout/Footer";
@@ -59,7 +59,7 @@ export default function FlavorsPage() {
         />
         <section className="section clean-page flavor-library-section">
           <div className="container">
-            <FlavorLibrary items={libraryItems()} families={familySummaries()} profileCount={SITE_STATS.flavorProfileCount} />
+            <FlavorLibrary items={libraryItems()} families={familySummaries()} />
           </div>
         </section>
         <CTA

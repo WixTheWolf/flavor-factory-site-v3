@@ -97,7 +97,7 @@ export function Footer() {
       <div className="container footer-service-links" aria-label="Flavor services">
         {serviceLinks.map((item) => <Link href={item.href} key={item.label}>{item.label}</Link>)}
       </div>
-      <div className="footer-social-row">
+      <div className="container footer-social-row">
         <a href="https://maps.google.com/?q=The+Flavor+Factory+2058+Second+Street+Norco+CA+92860" target="_blank" rel="noopener" className="footer-social-link">Google Maps</a>
         <a href="https://www.facebook.com/DanTheFlavorFactory" target="_blank" rel="noopener" className="footer-social-link">Facebook</a>
         <a href="https://www.linkedin.com/company/the-flavor-factory/" target="_blank" rel="noopener" className="footer-social-link">LinkedIn</a>

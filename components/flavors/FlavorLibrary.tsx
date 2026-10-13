@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Search, SlidersHorizontal, X } from "lucide-react";
 import { AppImage } from "@/components/ui/AppImage";
 import { FlavorTileGrid } from "@/components/flavors/FlavorTile";
+import { FlavorWheel } from "@/components/flavors/FlavorWheel";
 import { matchesFilters, matchesQuery, suggestNames } from "@/lib/filter-flavors";
 import { INDUSTRY_LABELS, type FamilySummary, type LibraryItem } from "@/lib/flavor-labels";
 import { useShortlist } from "@/lib/shortlist";
@@ -15,7 +16,6 @@ import s from "./FlavorLibrary.module.css";
 type Props = {
   items: LibraryItem[];
   families: FamilySummary[];
-  profileCount: number;
 };
 
 const EMPTY: FlavorFilters = { search: "", family: "All", format: "All", declarationType: "All", industry: "All" };
@@ -69,11 +69,12 @@ function titleCase(value: string) {
   return value.trim().replace(/\s+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-export function FlavorLibrary({ items, families, profileCount }: Props) {
+export function FlavorLibrary({ items, families }: Props) {
   const [filters, setFilters] = useState<FlavorFilters>(EMPTY);
   const filtersRef = useRef<FlavorFilters>(EMPTY);
   const [visible, setVisible] = useState(PAGE);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [hoverFamily, setHoverFamily] = useState<string | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const searchTracked = useRef("");
   const { add, has, mounted } = useShortlist();
@@ -117,6 +118,12 @@ export function FlavorLibrary({ items, families, profileCount }: Props) {
   const refinements = [filters.format !== "All", filters.declarationType !== "All", filters.industry !== "All"].filter(Boolean).length;
   const anyFilter = refinements > 0 || filters.family !== "All" || filters.search.trim() !== "";
   const shown = results.slice(0, visible);
+  // The wheel lights what the search and the other filters leave; the family is shown by focus instead.
+  const narrowed = filters.search.trim() !== "" || refinements > 0;
+  const wheelMatches = useMemo(
+    () => (narrowed ? new Set(items.filter((item) => matchesFilters(item, { ...filters, family: "All" }) && matchesQuery(item.text, filters.search)).map((item) => item.id)) : null),
+    [items, filters, narrowed],
+  );
   const didYouMean = useMemo(
     () => (results.length === 0 && filters.search.trim() ? suggestNames(items.map((item) => item.name), filters.search) : []),
     [results.length, filters.search, items],
@@ -134,54 +141,68 @@ export function FlavorLibrary({ items, families, profileCount }: Props) {
 
   return (
     <section className={s.library} aria-label="Flavor library">
-      <div className={s.familyHead}>
-        <div>
-          <p className="new-eyebrow">Browse by family</p>
-          <h2 className={s.title}>
-            {items.length} flavors, {profileCount} liquid and powder profiles.
-          </h2>
-        </div>
-        <p className={s.lede}>Pick a family, search for an ingredient, or narrow by format, label and application. Add anything to your sample tray as you go.</p>
-      </div>
+      <div className={s.intro}>
+        <div className={s.introCopy}>
+          <p className="new-eyebrow">The flavor library</p>
+          <h2 className={s.title}>{items.length} flavors to start from.</h2>
+          <p className={s.lede}>
+            Pick a family, search for an ingredient, or narrow by format, label and application. Many come in both liquid and powder. Add anything to your sample tray as you go.
+          </p>
 
-      <div className={s.families} role="group" aria-label="Flavor families">
-        <button
-          type="button"
-          className={`${s.family} ${s.familyAll}`}
-          aria-pressed={filters.family === "All"}
-          onClick={() => update({ family: "All" })}
-        >
-          <span className={s.familyDots} aria-hidden="true">
-            {families.slice(0, 4).map((family) => (
-              <i key={family.slug} style={{ background: family.accent }} />
-            ))}
-          </span>
-          <span className={s.familyText}>
-            <strong>All flavors</strong>
-            <small>{Object.values(familyCounts).reduce((total, count) => total + count, 0)}</small>
-          </span>
-        </button>
-        {families.map((family) => {
-          const count = familyCounts[family.slug] ?? 0;
-          return (
+          <div className={s.families} role="group" aria-label="Flavor families">
             <button
-              key={family.slug}
               type="button"
-              className={s.family}
-              aria-pressed={filters.family === family.slug}
-              onClick={() => update({ family: filters.family === family.slug ? "All" : family.slug })}
-              disabled={count === 0 && filters.family !== family.slug}
+              className={`${s.family} ${s.familyAll}`}
+              aria-pressed={filters.family === "All"}
+              onClick={() => update({ family: "All" })}
             >
-              <span className={s.familyImage} aria-hidden="true">
-                <AppImage src={family.image} alt="" sizes="48px" quality={60} />
+              <span className={s.familyDots} aria-hidden="true">
+                {families.slice(0, 4).map((family) => (
+                  <i key={family.slug} style={{ background: family.accent }} />
+                ))}
               </span>
               <span className={s.familyText}>
-                <strong>{family.name}</strong>
-                <small>{count}</small>
+                <strong>All flavors</strong>
+                <small>{Object.values(familyCounts).reduce((total, count) => total + count, 0)}</small>
               </span>
             </button>
-          );
-        })}
+            {families.map((family) => {
+              const count = familyCounts[family.slug] ?? 0;
+              return (
+                <button
+                  key={family.slug}
+                  type="button"
+                  className={`${s.family}${hoverFamily === family.slug ? ` ${s.familyHover}` : ""}`}
+                  aria-pressed={filters.family === family.slug}
+                  onClick={() => update({ family: filters.family === family.slug ? "All" : family.slug })}
+                  onMouseEnter={() => setHoverFamily(family.slug)}
+                  onMouseLeave={() => setHoverFamily(null)}
+                  disabled={count === 0 && filters.family !== family.slug}
+                >
+                  <span className={s.familyImage} aria-hidden="true">
+                    <AppImage src={family.image} alt="" sizes="48px" quality={60} />
+                  </span>
+                  <span className={s.familyText}>
+                    <strong>{family.name}</strong>
+                    <small>{count}</small>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className={s.wheelCol}>
+          <FlavorWheel
+            items={items}
+            families={families}
+            activeFamily={filters.family}
+            matches={wheelMatches}
+            hoverFamily={hoverFamily}
+            onHoverFamily={setHoverFamily}
+            onPickFamily={(slug) => update({ family: filters.family === slug ? "All" : slug })}
+          />
+        </div>
       </div>
 
       <div className={s.searchRow}>

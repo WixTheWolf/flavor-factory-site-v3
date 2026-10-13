@@ -44,7 +44,7 @@ export function FlavorFamilies() {
           <div>
             <div className={s.eyebrow}>The Flavor Library</div>
             <h2 id="flavor-families-title">
-              <RevealWords text={`${SITE_STATS.flavorProfileCount}+ starting points.`} accent="Built out for your product." />
+              <RevealWords text={`${SITE_STATS.flavorCount}+ starting points.`} accent="Built out for your product." />
             </h2>
           </div>
           <div className={s.headSide}>

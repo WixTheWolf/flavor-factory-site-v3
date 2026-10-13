@@ -5,6 +5,8 @@
   --brand-mid:    #1e4d42;
   --gold:         #c9852c;
   --gold-light:   #f0b35a;
+  /* Gold for text on light backgrounds; --gold is too light to read there. */
+  --gold-ink:     #935c16;
   --gold-pale:    rgba(201, 133, 44, 0.10);
 
   /* Surfaces */
@@ -18,7 +20,7 @@
   /* Text */
   --text:              #111111;
   --text-secondary:    #3d4a44;
-  --text-muted:        #65717a;
+  --text-muted:        #5f6a73;
   --text-faint:        rgba(18, 56, 47, 0.50);
   --text-invert:       #ffffff;
   --text-invert-soft:  rgba(255, 255, 255, 0.74);
@@ -111,7 +113,7 @@ button, input, textarea, select { font: inherit; }
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 .section-title {
   margin: 12px 0 0;
@@ -474,7 +476,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .home-capability-copy .eyebrow {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .home-capability-copy h2 {
@@ -688,7 +690,7 @@ button, input, textarea, select { font: inherit; }
 }
 .contact-lines { margin-top: 16px; display: grid; gap: 14px; font-size: 14px; color: rgba(17,17,17,.7); }
 .contact-lines div { display: flex; gap: 12px; align-items: flex-start; }
-.copyright { border-top: 1px solid var(--border); text-align: center; padding: 18px 24px; font-size: 14px; color: rgba(17,17,17,.45); }
+.copyright { border-top: 1px solid var(--border); text-align: center; padding: 18px 24px; font-size: 14px; color: rgba(17,17,17,.64); }
 .form-error {
   border: 1px solid rgba(18, 56, 47, 0.22);
   border-radius: 999px;
@@ -1144,7 +1146,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .company-process-grid span {
-  color: var(--gold);
+  color: var(--gold-light);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: .14em;
@@ -1276,7 +1278,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .new-eyebrow {
-  color: var(--gold);
+  color: var(--gold-ink);
   font-size: var(--text-eyebrow);
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -1979,10 +1981,17 @@ button, input, textarea, select { font: inherit; }
   background: rgba(255, 255, 255, .07);
 }
 
-.company-process-grid span,
 .new-eyebrow,
 .clean-page .new-eyebrow {
-  color: #c9852c;
+  color: var(--gold-ink);
+}
+
+/* Labels on the dark green and charcoal panels keep the light gold. */
+.built-in-norco .new-eyebrow,
+.technical-section .new-eyebrow,
+.about-principles .new-eyebrow,
+.company-process-panel .new-eyebrow {
+  color: var(--gold-light);
 }
 
 .company-process-grid h3,
@@ -2070,7 +2079,7 @@ button, input, textarea, select { font: inherit; }
 
 .industry-pressure {
   margin: 0 0 12px;
-  color: #c9852c;
+  color: var(--gold-ink);
   font-size: 13px;
   font-weight: 900;
   line-height: 1.45;
@@ -2105,7 +2114,7 @@ button, input, textarea, select { font: inherit; }
 
 .process-production-handoff span {
   display: inline-flex;
-  color: #c9852c;
+  color: var(--gold-ink);
   font-size: 12px;
   font-weight: 950;
   letter-spacing: .14em;
@@ -2194,7 +2203,7 @@ button, input, textarea, select { font: inherit; }
 .capability-timeline span,
 .process-customer-grid span {
   display: inline-flex;
-  color: #c9852c;
+  color: var(--gold-ink);
   font-size: 12px;
   font-weight: 950;
   letter-spacing: .14em;
@@ -3807,7 +3816,7 @@ button, input, textarea, select { font: inherit; }
 
 .flavor-family-link small {
   margin-top: 4px;
-  color: rgba(15, 23, 42, .56);
+  color: rgba(15, 23, 42, .7);
   font-size: 11px;
   font-weight: 700;
 }
@@ -4532,7 +4541,7 @@ button, input, textarea, select { font: inherit; }
   border-radius: 8px;
 }
 
-.cs-outcome h3 { color: var(--gold); }
+.cs-outcome h3 { color: var(--gold-ink); }
 
 .cs-panel-meta {
   display: grid;
@@ -4825,7 +4834,7 @@ button, input, textarea, select { font: inherit; }
 .footer-social-link {
   font-size: 13px;
   font-weight: 600;
-  color: rgba(17,17,17,.55);
+  color: rgba(17,17,17,.68);
   transition: color .15s;
 }
 
@@ -4844,7 +4853,7 @@ button, input, textarea, select { font: inherit; }
 
 .footer-review-link:hover {
   background: var(--gold-pale);
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 @media (max-width: 640px) {
@@ -4910,7 +4919,7 @@ button, input, textarea, select { font: inherit; }
 }
 
 .k9s-secondary-link {
-  color: var(--gold);
+  color: var(--gold-ink);
   font-size: 13px;
   font-weight: 900;
   letter-spacing: .06em;

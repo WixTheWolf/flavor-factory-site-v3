@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Fragment, useRef, type CSSProperties, type PointerEvent } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { HeroVideo } from "@/components/HeroVideo";
@@ -17,12 +18,12 @@ const TRUST = [
 ];
 
 const CHIPS = [
-  { name: "Meyer Lemon", family: "citrus", left: "-2%", top: "3%", depth: 1.4 },
-  { name: "Strawberry", family: "berry", left: "54%", top: "0%", depth: 0.8 },
-  { name: "Peppermint", family: "mint-cooling", left: "-12%", top: "46%", depth: 1.8 },
-  { name: "Vanilla Bean", family: "vanilla-cream", left: "78%", top: "7%", depth: 1.1 },
-  { name: "Cold Brew", family: "coffee-beverage", left: "60%", top: "91%", depth: 1.6 },
-  { name: "Mango", family: "tropical", left: "8%", top: "88%", depth: 0.9 },
+  { name: "Meyer Lemon", family: "citrus", slug: "meyer-lemon", left: "-2%", top: "3%", depth: 1.4 },
+  { name: "Strawberry", family: "berry", slug: "strawberry", left: "54%", top: "0%", depth: 0.8 },
+  { name: "Peppermint", family: "mint-cooling", slug: "peppermint", left: "-12%", top: "46%", depth: 1.8 },
+  { name: "Vanilla Bean", family: "vanilla-cream", slug: "vanilla-bean", left: "78%", top: "7%", depth: 1.1 },
+  { name: "Cold Brew", family: "coffee-beverage", slug: "cold-brew-coffee", left: "60%", top: "91%", depth: 1.6 },
+  { name: "Mango", family: "tropical", slug: "mango", left: "8%", top: "88%", depth: 0.9 },
 ] as const;
 
 const STEPS = [
@@ -116,10 +117,14 @@ export function LandingHero() {
         </div>
 
         <div className={s.stage} ref={stageRef}>
+          {/* Mouse shortcuts to real flavor pages. Decorative for keyboard and screen readers, who reach the library from the header. */}
           {CHIPS.map((chip) => (
-            <span
+            <Link
               key={chip.name}
+              href={`/flavors/${chip.family}/${chip.slug}`}
               className={s.chip}
+              tabIndex={-1}
+              onClick={() => trackEvent("hero_chip_click", { flavor: chip.name })}
               style={{
                 left: chip.left,
                 top: chip.top,
@@ -131,7 +136,7 @@ export function LandingHero() {
             >
               <i />
               {chip.name}
-            </span>
+            </Link>
           ))}
 
           <aside className={s.journey} aria-label="How a sample request moves">

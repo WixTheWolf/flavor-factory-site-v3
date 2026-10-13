@@ -4,11 +4,23 @@
   gap: 22px;
 }
 
-.familyHead {
+/* Heading, lede and family pills beside the flavor wheel. */
+.intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  align-items: end;
-  gap: 18px 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+  align-items: center;
+  gap: 32px 56px;
+}
+
+.introCopy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 14px;
+}
+
+.wheelCol {
+  display: grid;
 }
 
 .title {
@@ -21,8 +33,8 @@
 }
 
 .lede {
-  margin: 0;
-  max-width: 520px;
+  margin: 0 0 8px;
+  max-width: 560px;
   color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.6;
@@ -60,6 +72,11 @@
 .family:focus-visible {
   outline: 3px solid var(--brand);
   outline-offset: 2px;
+}
+
+.familyHover:not([aria-pressed="true"]) {
+  border-color: var(--border-strong);
+  box-shadow: 0 8px 22px rgba(18, 56, 47, 0.1);
 }
 
 .family[aria-pressed="true"] {
@@ -465,11 +482,17 @@
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
-  .familyHead {
-    grid-template-columns: 1fr;
+@media (max-width: 1023px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
   }
 
+  .wheelCol {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
   /* One swipeable row of families instead of a tall grid. */
   .families {
     display: flex;

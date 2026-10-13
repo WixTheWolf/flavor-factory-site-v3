@@ -54,7 +54,7 @@ const SERVICES = [
 
 const STATS = [
   { value: null, display: "3-5", label: "business days to first samples" },
-  { value: SITE_STATS.flavorProfileCount, suffix: "+", label: "flavor profiles to start from" },
+  { value: SITE_STATS.flavorCount, suffix: "+", label: "flavors to start from" },
   { value: flavorFamilyDetails.length, suffix: "", label: "flavor families in the library" },
   { value: SITE_STATS.combinedYearsExperience, suffix: "+", label: "years of combined flavor experience" },
 ];
