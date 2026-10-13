@@ -614,6 +614,7 @@
 }
 
 /* Keep the page still behind the open sample tray. */
-.tray-open body {
+.tray-open body,
+.film-open body {
   overflow: hidden;
 }
