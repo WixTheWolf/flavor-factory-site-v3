@@ -1,0 +1,349 @@
+# Instincts generated from https://github.com/WixTheWolf/flavor-factory-site-v3
+# Generated: 2026-08-02T20:19:11.364Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: flavor-factory-site-v3-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Commit Length
+
+## Action
+
+Keep commit messages concise (~49 characters)
+
+## Evidence
+
+- Average commit message length: 49 chars
+- Based on 10 commits
+
+---
+id: flavor-factory-site-v3-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Naming Files
+
+## Action
+
+Use PascalCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: PascalCase
+
+---
+id: flavor-factory-site-v3-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: flavor-factory-site-v3-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: flavor-factory-site-v3-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: flavor-factory-site-v3-workflow-homepage-content-revision
+trigger: "when doing homepage content revision"
+confidence: 0.55
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Workflow Homepage Content Revision
+
+## Action
+
+Follow the homepage-content-revision workflow:
+1. Edit content components for homepage sections (e.g., Hero, ProofStrip, FlavorProblems, QualitySupport, CTA).
+2. Update main homepage layout file (app/page.tsx) as needed.
+3. Adjust navigation or footer components if messaging or links change.
+4. Update site-wide copy data if navigation labels or CTAs are changed.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~1x per month
+- Files: components/Hero.tsx, components/ProofStrip.tsx, components/FlavorProblems.tsx
+
+---
+id: flavor-factory-site-v3-workflow-section-content-simplification
+trigger: "when doing section content simplification"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Workflow Section Content Simplification
+
+## Action
+
+Follow the section-content-simplification workflow:
+1. Identify the target section/component for simplification.
+2. Edit the relevant component file to reduce copy or remove elements.
+3. Test the updated section for clarity and alignment with site goals.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: components/Hero.tsx, components/ProofStrip.tsx, components/FlavorProblems.tsx
+
+---
+id: flavor-factory-site-v3-instinct-file-naming
+trigger: "When creating a new file for a component, class, or utility"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct File Naming
+
+## Action
+
+Name the file using PascalCase (e.g., Hero.tsx, ProofStrip.tsx)
+
+## Evidence
+
+- Pattern in files: components/Hero.tsx, components/ProofStrip.tsx
+
+---
+id: flavor-factory-site-v3-instinct-function-naming
+trigger: "When defining a new function"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Function Naming
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.functions
+
+---
+id: flavor-factory-site-v3-instinct-class-naming
+trigger: "When defining a new class"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Class Naming
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.classes
+
+---
+id: flavor-factory-site-v3-instinct-constant-naming
+trigger: "When declaring a constant"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.constants
+
+---
+id: flavor-factory-site-v3-instinct-import-style
+trigger: "When importing modules"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Import Style
+
+## Action
+
+Use alias import style
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: flavor-factory-site-v3-instinct-export-style
+trigger: "When exporting modules or functions"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: flavor-factory-site-v3-instinct-test-location
+trigger: "When adding or updating tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Test Location
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.testLocation
+
+---
+id: flavor-factory-site-v3-instinct-commit-style
+trigger: "When writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Commit Style
+
+## Action
+
+Use a short, freeform, imperative sentence describing the change (e.g., 'Simplify and humanize homepage hero')
+
+## Evidence
+
+- Seen in commit: 'Simplify and humanize homepage hero'
+- Seen in commit: 'Shorten header call to action'
+- Pattern in commits.examples
+
+---
+id: flavor-factory-site-v3-instinct-homepage-content-revision
+trigger: "When someone wants to update or refine the homepage messaging, copy, or layout"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Homepage Content Revision
+
+## Action
+
+Edit homepage section components, update app/page.tsx, adjust navigation/footer if needed, and update site-wide copy data
+
+## Evidence
+
+- Workflow: homepage-content-revision
+- Commit sequence and files in workflow example
+
+---
+id: flavor-factory-site-v3-instinct-section-content-simplification
+trigger: "When someone wants to make a section more concise, readable, or focused"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: WixTheWolf/flavor-factory-site-v3
+---
+
+# Flavor Factory Site V3 Instinct Section Content Simplification
+
+## Action
+
+Edit the relevant component to reduce copy or remove elements, then test for clarity and alignment with site goals
+
+## Evidence
+
+- Workflow: section-content-simplification
+- Commit sequence and files in workflow example
+
