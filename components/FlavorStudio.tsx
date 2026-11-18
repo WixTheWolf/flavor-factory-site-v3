@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { ArrowDown, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowDown, ArrowRight, Play, X } from "lucide-react";
 
 const drawers = [
   { name: "Citrus", color: "#f4ce20", notes: ["Fresh tangerine", "Grapefruit zest", "Candied lemon"], copy: "From the first burst of juice to the bitter edge of the peel." },
@@ -16,8 +16,9 @@ const drawers = [
 export function FlavorStudio() {
   const [active, setActive] = useState(0);
   const [choices, setChoices] = useState<Record<string, string>>({});
-  const [playing, setPlaying] = useState(false);
-  const [canPlay, setCanPlay] = useState(true);
+  const [filmOpen, setFilmOpen] = useState(false);
+  const [showTeaser, setShowTeaser] = useState(false);
+  const trigger = useRef<HTMLButtonElement>(null);
   const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const video = useRef<HTMLVideoElement>(null);
   const drawer = drawers[active];
@@ -25,19 +26,16 @@ export function FlavorStudio() {
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => {
-      if (media.matches) video.current?.pause();
-    };
+    const sync = () => setShowTeaser(!media.matches);
+    sync();
     media.addEventListener("change", sync);
     return () => media.removeEventListener("change", sync);
   }, []);
 
-  async function toggleFilm() {
-    if (playing) video.current?.pause();
-    else {
-      try { await video.current?.play(); }
-      catch { setPlaying(false); }
-    }
+  function closeFilm() {
+    video.current?.pause();
+    setFilmOpen(false);
+    requestAnimationFrame(() => trigger.current?.focus());
   }
 
   return (
@@ -50,7 +48,7 @@ export function FlavorStudio() {
           <div className="ff-links"><a className="ff-primary" href="#sample-cabinet">Open the cabinet <ArrowDown size={17}/></a><Link href="/request-samples">Request a sample</Link></div>
         </div>
         <div className="ff-screen" onPointerMove={event => {
-          if (event.pointerType !== "mouse" || playing) return;
+          if (event.pointerType !== "mouse" || filmOpen) return;
           const stage = event.currentTarget;
           const rect = stage.getBoundingClientRect();
           stage.style.setProperty("--tilt-x", String((event.clientX - rect.left) / rect.width - 0.5));
@@ -61,8 +59,12 @@ export function FlavorStudio() {
         }}>
           <Image src="/studio/flavor-study.webp" fill priority sizes="(max-width: 760px) 100vw, 56vw" alt="Amber concentrate suspended around a sample bottle, fruit and herbs" className="ff-art"/>
           <div className="ff-droplets" aria-hidden="true">{drawers.map((item, i) => <b key={item.name} style={{"--drop":item.color,"--n":i} as CSSProperties}/>)}</div>
-          <video ref={video} className={playing ? "ff-film is-playing" : "ff-film"} muted playsInline preload="none" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} onError={() => setCanPlay(false)} aria-label="Flavor development film"><source src="/hero/hero.h264.mp4" type="video/mp4"/></video>
-          {canPlay && <button className="ff-play" type="button" onClick={toggleFilm}>{playing ? <Pause size={16}/> : <Play size={16}/>} {playing ? "Pause film" : "Play the film"}</button>}
+          {showTeaser && !filmOpen && <video aria-hidden="true" tabIndex={-1} className="ff-teaser" autoPlay muted playsInline preload="metadata" onEnded={() => setShowTeaser(false)} src="/studio/amber-teaser.mp4"/>}
+          {filmOpen ? <>
+            <video ref={video} autoFocus className="ff-film is-playing" controls autoPlay playsInline preload="auto" onKeyDown={event => { if (event.key === "Escape") closeFilm(); }} aria-label="Inside the Drop, a 22-second Flavor Factory film" src="/studio/inside-the-drop.mp4"/>
+            <button className="ff-play ff-close" type="button" onClick={closeFilm}><X size={16}/> Close film</button>
+          </> : <button ref={trigger} className="ff-play" type="button" onClick={() => { setShowTeaser(false); setFilmOpen(true); }}><Play size={16}/> Inside the Drop · 0:22</button>}
+
         </div>
       </section>
       <section className="ff-cabinet" id="sample-cabinet" aria-labelledby="cabinet-heading">
