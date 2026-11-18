@@ -23,7 +23,7 @@ function field(formData: FormData, name: string) {
   return String(formData.get(name) || "").trim();
 }
 
-export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: string }) {
+export function SampleRequestForm({ initialIndustry = "", initialFlavor = "" }: { initialFlavor?: string; initialIndustry?: string }) {
   const normalizedInitial = normalizeIndustryKey(initialIndustry) || initialIndustry;
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "validationError" | "deliveryError">("idle");
   const [industry, setIndustry] = useState(normalizedInitial);
@@ -180,7 +180,7 @@ export function SampleRequestForm({ initialIndustry = "" }: { initialIndustry?: 
           name="flavorTarget"
           rows={2}
           placeholder="Strawberry, lime, peppermint, vanilla, etc."
-          defaultValue={shortlistNote}
+          defaultValue={[initialFlavor, shortlistNote].filter(Boolean).join(", ")}
           key={shortlistNote}
           maxLength={500}
         />

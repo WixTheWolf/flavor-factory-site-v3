@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/Hero";
+import { FlavorStudio } from "@/components/FlavorStudio";
 import { ProofStrip } from "@/components/ProofStrip";
 import { Industries } from "@/components/Industries";
 import { CTA } from "@/components/CTA";
@@ -73,7 +73,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_SCHEMA) }} />
       <Header />
       <main className="new-home">
-        <Hero />
+        <FlavorStudio />
         <Reveal><ProofStrip /></Reveal>
         <Reveal><FlavorProblems /></Reveal>
         <Reveal>
