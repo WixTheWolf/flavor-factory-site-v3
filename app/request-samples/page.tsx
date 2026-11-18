@@ -39,7 +39,7 @@ const BC_REQUEST_SAMPLES = {"@context":"https://schema.org","@type":"BreadcrumbL
 export default function RequestSamplesPage({
   searchParams,
 }: {
-  searchParams?: { industry?: string };
+  searchParams?: { industry?: string; flavor?: string };
 }) {
   const industry = normalizeIndustryKey(searchParams?.industry ?? "") || searchParams?.industry || "";
 
@@ -60,7 +60,7 @@ export default function RequestSamplesPage({
                 <p className="sample-brief-note">
                   Prefer to talk first? Email <a href="mailto:samples@flavorfactory.net">samples@flavorfactory.net</a> or call <a href="tel:+19512739877">(951) 273-9877</a>.
                 </p>
-                <SampleRequestForm initialIndustry={industry} />
+                <SampleRequestForm initialIndustry={industry} initialFlavor={typeof searchParams?.flavor === "string" ? searchParams.flavor.slice(0, 500) : ""} />
               </div>
               <div className="sample-right">
                 <AppImage

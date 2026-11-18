@@ -8,7 +8,7 @@ interface LogoProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "a
 }
 
 // Single self-contained logo asset used everywhere on the site.
-const LOGO_SRC = "/logo/tff-logo.svg";
+const LOGO_SRC = "/studio/logo.png";
 
 export function Logo({
   variant = "stacked",
